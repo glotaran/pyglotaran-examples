@@ -1,0 +1,73 @@
+type: kinetic-spectrum
+
+megacomplex:
+  mc1:
+    k_matrix: [km1]
+
+k_matrix:
+  km1:
+    matrix:
+      (s2, s1): kinetic.1
+      (s5, s1): kinetic.2
+      (s2, s2): kinetic.3
+      (s3, s2): kinetic.4
+      (s4, s2): kinetic.5
+      (s2, s3): kinetic.6
+      (s2, s4): kinetic.7
+      (s3, s3): kinetic.8
+      (s4, s4): kinetic.8
+      (s5, s5): kinetic.8
+
+irf:
+  irf1:
+    type: gaussian
+    center: irf.center
+    width: irf.width
+    backsweep: True
+    backsweep_period: irf.backsweep
+
+initial_concentration:
+  input1:
+    compartments: [s1, s2, s3, s4, s5]
+    parameters: [
+      input.1,
+      input.0,
+      input.0,
+      input.0,
+      input.0]
+
+spectral_constraints:
+  - type: zero
+    compartment: s1
+    interval:
+      - (1, 1000)
+  - type: zero
+    compartment: s3
+    interval:
+      - (3, 680)
+  - type: zero
+    compartment: s4
+    interval:
+      - (3, 690)
+#  - [zero, s1, [!tuple '(1, 100)', !tuple '(2, 200)']]
+
+equal_area_penalties:
+  - type: equal_area
+    compartment: s2
+    interval: [!tuple '(650, 810)']
+    target: s3
+    parameter: area.1
+    weight: 0.0016
+  - type: equal_area
+    compartment: s2
+    interval: [!tuple '(650, 810)']
+    target: s4
+    parameter: area.1
+    weight: 0.0016
+
+dataset:
+  dataset1:
+    initial_concentration: input1
+    megacomplex: [mc1]
+    irf: irf1
+
