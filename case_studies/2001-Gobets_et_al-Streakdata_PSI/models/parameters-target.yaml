@@ -10,14 +10,14 @@ irf:
 
 kinetic:
   - [2, {vary: false}]
-  - 0.0956613143098889
+  - [0.1, {vary: false}]
   - 0.0601837463824959
   - 0.127
   - 0.0261489927659187
   - 0.057
   - 0.045
   - 0.00016
-  - {non-negative: false}
+  - {non-negative: true}
 
 area:
   - [1, {vary: false}]

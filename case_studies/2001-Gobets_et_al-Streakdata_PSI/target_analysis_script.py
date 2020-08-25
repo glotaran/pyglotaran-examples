@@ -2,9 +2,6 @@
 # To add a new markdown cell, type '# %% [markdown]'
 # %%
 from pathlib import Path
-
-# %%
-from pathlib import Path
 from timeit import default_timer as timer
 
 import matplotlib.pyplot as plt
@@ -50,7 +47,7 @@ print(model.validate(parameter=parameter))
 start = timer()
 # Warning: this may take a while (several seconds per iteration)
 result = model.optimize(
-    parameter, {'dataset1': dataset}, verbose=True, max_nfev=9)
+    parameter, {'dataset1': dataset}, verbose=True, max_nfev=11)
 result.save(str(result_path))
 end = timer()
 
@@ -58,13 +55,13 @@ print(f"Total time: {end - start}")
 
 
 # %%
-print(result)
+print(result.markdown(True))
 
 
 # %%
 res = result.data['dataset1']
 # Tip: print the xarray object to explore its content
-# print(res)
+print(res)
 
 
 # %%
