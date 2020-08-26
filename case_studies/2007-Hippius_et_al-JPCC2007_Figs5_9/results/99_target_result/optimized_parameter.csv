@@ -1,0 +1,17 @@
+label	value	min	max	vary	non-negative	stderr
+inputs.1	1.0	-inf	inf	False	False	
+inputs.0	0.0	-inf	inf	False	False	
+b.1	0.087	-inf	inf	False	False	
+b.2	0.913	-inf	inf	False	False	
+rates.k1sum	9.499438781848532	-inf	inf	False	True	
+rates.k1	1.2163532545600018	-inf	inf	False	True	
+rates.k2	7.809769691687815	-inf	inf	False	True	
+rates.k3	8.783386451528845	-inf	inf	True	True	
+rates.k4	0.0541857348128826	-inf	inf	True	True	
+rates.k5	0.017408658913008784	-inf	inf	True	True	
+irf.center	1.170095029210157	-inf	inf	True	False	
+irf.width	0.1101153155561034	-inf	inf	True	False	
+irf.dispc	550.0	-inf	inf	False	False	
+irf.disp1	0.31288012476042404	-inf	inf	True	False	
+irf.disp2	0.09813753067051055	-inf	inf	True	False	
+irf.disp3	0.012615041197631897	-inf	inf	True	False	
