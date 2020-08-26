@@ -31,7 +31,7 @@ def plot_overview(result, center_λ=None, linlog=True, linrange=(-1,1)):
     # Plot dimensions
     M = 4
     N = 3
-    fig, ax = plt.subplots(M, N, figsize=(18, 16))
+    fig, ax = plt.subplots(M, N, figsize=(18, 16), constrained_layout=True)
 
     plot_style = PlotStyle()
     plt.rc("axes", prop_cycle=plot_style.cycler)
@@ -55,10 +55,11 @@ def plot_overview(result, center_λ=None, linlog=True, linrange=(-1,1)):
     plot_spectra(res, ax[0:2, 1:3])
     plot_svd(res, ax[2:4, 0:3])
     plot_residual(res, ax[1, 0])
-    plt.tight_layout(pad=2, w_pad=3.0, h_pad=3.0)
     plot_style.set_default_colors()
     plot_style.set_default_fontsize()
     plt.rc("axes", prop_cycle=plot_style.cycler)
+    # plt.tight_layout(pad=3, w_pad=4.0, h_pad=4.0)
+    plt.draw()
     plt.show(block=False)
     return fig
 

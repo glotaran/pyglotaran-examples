@@ -38,19 +38,19 @@ def plot_lsv_residual(res, ax, indices=range(2)):
     """ Plot left singular vectors (time) of the residual matrix """
     rLSV = res.residual_left_singular_vectors
     rLSV.isel(left_singular_value_index=indices).plot.line(x="time", ax=ax)
-    ax.set_title("data. LSV")
+    ax.set_title("res. LSV")
 
 
 def plot_rsv_residual(res, ax, indices=range(2)):
     """ Plot right singular vectors (spectra) of the residual matrix """
     rRSV = res.residual_right_singular_vectors
     rRSV.isel(right_singular_value_index=indices).plot.line(x="spectral", ax=ax)
-    ax.set_title("data. RSV")
+    ax.set_title("res. RSV")
 
 
 def plot_sv_residual(res, ax, indices=range(10)):
     """ Plot singular values of the residual matrix """
     rSV = res.residual_singular_values
     rSV.sel(singular_value_index=indices).plot.line("ro-", yscale="log", ax=ax)
-    ax.set_title("data. log(SV)")
+    ax.set_title("res. log(SV)")
 
