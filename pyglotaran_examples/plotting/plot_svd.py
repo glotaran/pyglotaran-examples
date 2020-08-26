@@ -9,6 +9,8 @@ def plot_svd(res, axes):
     plot_lsv_data(res, axes[1, 0])
     plot_rsv_data(res, axes[1, 1])
     plot_sv_data(res, axes[1, 2])
+    plt.draw()
+    plt.pause(0.001)
 
 
 def plot_lsv_data(res, ax, indices=range(4)):

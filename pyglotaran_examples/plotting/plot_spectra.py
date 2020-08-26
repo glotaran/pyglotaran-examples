@@ -7,6 +7,8 @@ def plot_spectra(res, axes):
     plot_das(res, axes[0, 1])
     plot_norm_sas(res, axes[1, 0])
     plot_norm_das(res, axes[1, 1])
+    plt.draw()
+    plt.pause(0.001)
 
 
 def plot_sas(res, ax, title="SAS"):
