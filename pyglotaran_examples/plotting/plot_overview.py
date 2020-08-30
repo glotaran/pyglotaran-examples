@@ -44,14 +44,16 @@ def plot_overview(result, center_λ=None, linlog=True, linrange=(-1,1)):
     if "center_dispersion_1" in res:
         center_dispersion = res.center_dispersion_1  # why _1?
         irf_loc = center_dispersion.sel(spectral=center_λ, method="nearest").item()
-    else:
+    elif "irf_center" in res:
         irf_loc = res.irf_center
+    else:
+        irf_loc = min(times)
 
     times_shifted = times - irf_loc
     traces_shifted = traces.assign_coords(time=times_shifted)
 
     # First and second row: concentrations - SAS/EAS - DAS
-    plot_traces(res, ax[0, 0], center_λ, linlog=True, linrange=linrange)
+    plot_traces(res, ax[0, 0], center_λ, linlog=linlog, linrange=linrange)
     plot_spectra(res, ax[0:2, 1:3])
     plot_svd(res, ax[2:4, 0:3])
     plot_residual(res, ax[1, 0])
