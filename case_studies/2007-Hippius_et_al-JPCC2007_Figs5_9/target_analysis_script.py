@@ -5,6 +5,7 @@ from pathlib import Path
 from timeit import default_timer as timer
 
 import matplotlib.pyplot as plt
+import dask
 
 import glotaran
 from pyglotaran_examples.plotting.plot_overview import plot_overview, plot_traces
@@ -17,6 +18,7 @@ TARGET_MODEL = "models/99_target_model.yaml"
 TARGET_PARAMS = "models/99_target_parameters.yaml"
 SKIP_FIT = False
 
+dask.config.set(scheduler='single-threaded')
 
 # %%
 script_dir = Path(__file__).resolve().parent
@@ -50,7 +52,7 @@ else:
     # %%
     start = timer()
     # Warning: this may take a while (several seconds per iteration)
-    result = model.optimize(parameter, {"dataset1": dataset}, verbose=True, max_nfev=1)
+    result = model.optimize(parameter, {"dataset1": dataset}, verbose=True, max_nfev=9)
     result.save(str(result_path))
 
     end = timer()
