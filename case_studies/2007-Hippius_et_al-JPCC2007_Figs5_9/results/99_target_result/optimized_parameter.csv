@@ -1,17 +1,20 @@
 label	value	min	max	vary	non-negative	stderr
-inputs.1	1.0	-inf	inf	False	False	
-inputs.0	0.0	-inf	inf	False	False	
-b.1	0.087	-inf	inf	False	False	
-b.2	0.913	-inf	inf	False	False	
-rates.k1sum	9.499438781848532	-inf	inf	False	True	
-rates.k1	1.2163532545600018	-inf	inf	False	True	
-rates.k2	7.809769691687815	-inf	inf	False	True	
-rates.k3	8.783386451528845	-inf	inf	True	True	
-rates.k4	0.0541857348128826	-inf	inf	True	True	
-rates.k5	0.017408658913008784	-inf	inf	True	True	
-irf.center	1.170095029210157	-inf	inf	True	False	
-irf.width	0.1101153155561034	-inf	inf	True	False	
-irf.dispc	550.0	-inf	inf	False	False	
-irf.disp1	0.31288012476042404	-inf	inf	True	False	
-irf.disp2	0.09813753067051055	-inf	inf	True	False	
-irf.disp3	0.012615041197631897	-inf	inf	True	False	
+inputs.1	1.0	-inf	inf	False	False	0
+inputs.0	0.0	-inf	inf	False	False	0
+inputs.iC	1.0	-inf	inf	False	False	0
+rel.r1	1.0	-inf	inf	False	False	0
+b.1	1.2356609026948346	-inf	inf	True	True	0.0037807838281008225
+b.2	2.199860675797692	-inf	inf	False	True	0.003780783810099223
+rates.k1sum	9.499438781848532	-inf	inf	False	True	0
+rates.k1	1.6102255873288427	-inf	inf	False	True	0.008511424261591096
+rates.k2	5.8994459264598325	-inf	inf	False	True	0.0
+rates.k3	0.4839758577753674	-inf	inf	True	True	0.03722615186839753
+rates.k4	0.036895561843918054	-inf	inf	True	True	0.017662347097238663
+rates.k5	0.019210756752117492	-inf	inf	True	True	0.0077699491012243795
+rates.kC	98.99999999999999	-inf	inf	False	True	0
+irf.center	1.19809218054946	-inf	inf	True	False	0.0007140245043035152
+irf.width	0.058434331870009106	-inf	inf	True	False	0.000365935380238665
+irf.dispc	550.0	-inf	inf	False	False	0
+irf.disp1	0.30895427671858344	-inf	inf	True	False	0.0016545907945457843
+irf.disp2	-0.08338767465684754	-inf	inf	True	False	0.0008158558406459727
+irf.disp3	0.004666671169129923	-inf	inf	True	False	0.0003831219994877559

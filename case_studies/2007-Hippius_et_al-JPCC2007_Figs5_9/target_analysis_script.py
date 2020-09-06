@@ -52,7 +52,7 @@ else:
     # %%
     start = timer()
     # Warning: this may take a while (several seconds per iteration)
-    result = model.optimize(parameter, {"dataset1": dataset}, verbose=True, max_nfev=9)
+    result = model.optimize(parameter, {"dataset1": dataset}, verbose=True, max_nfev=999)
     result.save(str(result_path))
 
     end = timer()
