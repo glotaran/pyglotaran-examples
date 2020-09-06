@@ -15,7 +15,7 @@ GLOBAL_MODEL = "models/01_global_model.yaml"
 GLOBAL_PARAMS = "models/01_global_parameters.yaml"
 TARGET_MODEL = "models/99_target_model.yaml"
 TARGET_PARAMS = "models/99_target_parameters.yaml"
-SKIP_FIT = True
+SKIP_FIT = False
 
 
 # %%
@@ -40,6 +40,7 @@ else:
     dataset = glotaran.io.read_data_file(data_path)
     # Tip: print the xarray object to explore its content
     # print(dataset)
+    # TODO: slice from 377.96 to 854.404 (335 wavelengths), -0.0001 to 909.85575 (346 timepoints)
 
     # %%
     model = glotaran.read_model_from_yml_file(model_path)
@@ -49,7 +50,7 @@ else:
     # %%
     start = timer()
     # Warning: this may take a while (several seconds per iteration)
-    result = model.optimize(parameter, {"dataset1": dataset}, verbose=True, max_nfev=11)
+    result = model.optimize(parameter, {"dataset1": dataset}, verbose=True, max_nfev=1)
     result.save(str(result_path))
 
     end = timer()

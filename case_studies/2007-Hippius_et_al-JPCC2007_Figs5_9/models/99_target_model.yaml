@@ -18,15 +18,30 @@ k_matrix:
             (s4, s2): 'rates.k3'
             (s4, s3): 'rates.k4'
             (s4, s4): 'rates.k5'
+            (s5, s5): 'rates.kC'
 
 initial_concentration:
     input1:
-        compartments: [s1,s2,s3,s4]
-        parameters: [inputs.1,inputs.0,inputs.0,inputs.0]
+        compartments: [s1,s2,s3,s4,s5]
+        parameters: [inputs.1,inputs.0,inputs.0,inputs.0,inputs.iC]
 irf:
   irf1:
-    type : multi-gaussian
+    type : spectral-multi-gaussian
     center : [irf.center]
     width : [irf.width]
-    dispersion_center : [irf.dispc]
+    dispersion_center : irf.dispc
     center_dispersion : [irf.disp1,irf.disp2,irf.disp3] #model validate accepted "dispersion_par" as valid!
+
+spectral_relations:
+  - compartment: s2
+    target: s3
+    parameter: rel.r1
+    interval: [ !tuple '(0,1000)']
+
+weights:
+  - datasets: [dataset1]
+    global_interval: (280, 550)
+    value: 0.1
+  - datasets: [dataset1]
+    global_interval: (720, 890)
+    value: 0.2
