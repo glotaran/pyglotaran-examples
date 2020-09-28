@@ -1,1 +1,0 @@
-""" pyglotaran_examples plotting package """
