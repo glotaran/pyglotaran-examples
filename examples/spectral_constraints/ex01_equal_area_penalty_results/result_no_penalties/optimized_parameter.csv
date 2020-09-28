@@ -1,0 +1,7 @@
+label	value	min	max	vary	non-negative	stderr
+kinetic.1	0.2500311557878877	-inf	inf	True	False	4.6122314158672434e-05
+kinetic.2	0.999947079490685	-inf	inf	True	False	0.00015503031683039833
+i.1	0.5	-inf	inf	False	False	0
+i.2	0.5	-inf	inf	False	False	0
+irf.1	0.4000020967377573	-inf	inf	True	False	5.602860080312853e-06
+irf.2	0.05997848875404556	-inf	inf	True	False	7.531090386755063e-06
