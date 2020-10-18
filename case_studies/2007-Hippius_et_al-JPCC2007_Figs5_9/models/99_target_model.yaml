@@ -38,10 +38,10 @@ spectral_relations:
     parameter: rel.r1
     interval: [ !tuple '(0,1000)']
 
-# weights:
-#   - datasets: [dataset1]
-#     global_interval: (280, 550)
-#     value: 0.1
-#   - datasets: [dataset1]
-#     global_interval: (720, 890)
-#     value: 0.2
+weights:
+  - datasets: [dataset1]
+    global_interval: (280, 550)
+    value: 0.1
+  - datasets: [dataset1]
+    global_interval: (720, 890)
+    value: 0.2

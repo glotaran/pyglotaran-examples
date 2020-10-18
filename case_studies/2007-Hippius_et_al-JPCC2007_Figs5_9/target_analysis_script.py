@@ -8,15 +8,15 @@ import matplotlib.pyplot as plt
 import dask
 
 import glotaran
-from pyglotaran_examples.plotting.plot_overview import plot_overview, plot_traces
-from pyglotaran_examples.plotting.style import PlotStyle
-from pyglotaran_examples.io.load_data import load_data
+from pyglotaran_extras.plotting.plot_overview import plot_overview, plot_traces
+from pyglotaran_extras.plotting.style import PlotStyle
+from pyglotaran_extras.io.load_data import load_data
 
 GLOBAL_MODEL = "models/01_global_model.yaml"
 GLOBAL_PARAMS = "models/01_global_parameters.yaml"
 TARGET_MODEL = "models/99_target_model.yaml"
 TARGET_PARAMS = "models/99_target_parameters.yaml"
-SKIP_FIT = False
+SKIP_FIT = True
 
 dask.config.set(scheduler='single-threaded')
 

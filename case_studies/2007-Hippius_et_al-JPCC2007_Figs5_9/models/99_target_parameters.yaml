@@ -9,7 +9,7 @@ rel:
 b:
   - [0.22, {vary: True}]
   - [0.78, {expr: '1 - _b_1', vary: False}]
-  - {'non-negative': true}
+  - {'non-negative': True}
 # - [0.913, {vary: False}]
 # - [0.087, {vary: False}]
 
@@ -21,7 +21,7 @@ rates:
   - ['k4', 0.0368954]
   - ['k5', 0.0192859]
   - ['kC', 99, {vary: False}]
-  - {vary: True,'non-negative': true}
+  - {vary: True,'non-negative': True}
 
 irf:
   - ['center',1.19809]
