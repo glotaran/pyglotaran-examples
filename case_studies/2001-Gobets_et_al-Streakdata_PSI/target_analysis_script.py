@@ -7,15 +7,15 @@ from timeit import default_timer as timer
 import matplotlib.pyplot as plt
 
 import glotaran
-from pyglotaran_examples.plotting.plot_overview import plot_overview, plot_traces
-from pyglotaran_examples.plotting.style import PlotStyle
-from pyglotaran_examples.io.load_data import load_data
+from pyglotaran_extras.plotting.plot_overview import plot_overview, plot_traces
+from pyglotaran_extras.plotting.style import PlotStyle
+from pyglotaran_extras.io.load_data import load_data
 
 GLOBAL_MODEL = "models/model.yaml"
 GLOBAL_PARAMS = "models/parameters.yaml"
 TARGET_MODEL = "models/model-target.yaml"
 TARGET_PARAMS = "models/parameters-target.yaml"
-SKIP_FIT = True
+SKIP_FIT = False
 
 
 # %%
