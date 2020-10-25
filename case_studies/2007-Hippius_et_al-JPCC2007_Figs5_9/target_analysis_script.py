@@ -4,7 +4,7 @@
 from pathlib import Path
 from timeit import default_timer as timer
 
-import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt #3.3 or higher
 import dask
 
 import glotaran
@@ -16,7 +16,7 @@ GLOBAL_MODEL = "models/01_global_model.yaml"
 GLOBAL_PARAMS = "models/01_global_parameters.yaml"
 TARGET_MODEL = "models/99_target_model.yaml"
 TARGET_PARAMS = "models/99_target_parameters.yaml"
-SKIP_FIT = True
+SKIP_FIT = False
 
 dask.config.set(scheduler='single-threaded')
 
@@ -52,7 +52,7 @@ else:
     # %%
     start = timer()
     # Warning: this may take a while (several seconds per iteration)
-    result = model.optimize(parameter, {"dataset1": dataset}, verbose=True, max_nfev=999)
+    result = model.optimize(parameter, {"dataset1": dataset}, verbose=True, max_nfev=20)
     result.save(str(result_path))
 
     end = timer()
@@ -73,7 +73,7 @@ plot_style = PlotStyle()
 plt.rc("axes", prop_cycle=plot_style.cycler)
 
 # %%
-fig = plot_overview(result_datafile, linlog=True, linrange=(-1, 1))
+fig = plot_overview(result_datafile, linlog=True, linthresh=1)
 # note species concentration plot still needs work to match styles between the two locatable axis
 
 
