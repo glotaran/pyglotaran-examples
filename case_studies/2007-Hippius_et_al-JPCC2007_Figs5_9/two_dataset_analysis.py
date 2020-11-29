@@ -4,13 +4,15 @@
 from pathlib import Path
 from timeit import default_timer as timer
 
-import matplotlib.pyplot as plt #3.3 or higher
 import dask
-
-import glotaran
+import matplotlib.pyplot as plt  # 3.3 or higher
+from glotaran.io.reader import read_data_file
+from glotaran.analysis.optimize import optimize
+from glotaran.analysis.scheme import Scheme
+from glotaran import read_model_from_yml_file, read_parameter_from_yml_file
+from pyglotaran_extras.io.load_data import load_data
 from pyglotaran_extras.plotting.plot_overview import plot_overview, plot_traces
 from pyglotaran_extras.plotting.style import PlotStyle
-from pyglotaran_extras.io.load_data import load_data
 
 TARGET_MODEL = "models/co_co2_TA_model.yaml"
 TARGET_PARAMS = "models/co_co2_TA_parameters.yaml"
@@ -36,21 +38,23 @@ print(f"Writing results to: {result_path}")
 
 # %%
 
-dataset1 = glotaran.io.read_data_file(data_path1) #CO in toluene
-dataset2 = glotaran.io.read_data_file(data_path2) #C2O in toluene
+dataset1 = read_data_file(data_path1) #CO in toluene
+dataset2 = read_data_file(data_path2) #C2O in toluene
 
 print(dataset1)
 print(dataset2)
 
 # %%
-model = glotaran.read_model_from_yml_file(model_path)
-parameter = glotaran.read_parameter_from_yml_file(parameter_path)
+model = read_model_from_yml_file(model_path)
+parameter = read_parameter_from_yml_file(parameter_path)
 print(model.validate(parameter=parameter))
 
 # %%
 start = timer()
 # TODO: crashes here due to infinite values in lmfit
-result = model.optimize(parameter, {"dataset1": dataset1, "dataset2": dataset2}, verbose=True, max_nfev=10)
+scheme = Scheme(model, parameter, {"dataset1": dataset1, "dataset2": dataset2})
+result = optimize(scheme)
+
 result.save(str(result_path))
 
 end = timer()
