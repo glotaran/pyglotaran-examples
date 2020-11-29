@@ -48,7 +48,6 @@ print(model.validate(parameter=parameter))
 
 # %%
 start = timer()
-# TODO: crashes here due to infinite values in lmfit
 scheme = Scheme(model, parameter, {"dataset1": dataset1, "dataset2": dataset2})
 result = optimize(scheme)
 
