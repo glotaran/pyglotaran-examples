@@ -4,14 +4,15 @@
 from pathlib import Path
 from timeit import default_timer as timer
 
-import matplotlib.pyplot as plt  # 3.3 or higher
 from glotaran.io.reader import read_data_file
 from glotaran.analysis.optimize import optimize
 from glotaran.analysis.scheme import Scheme
 from glotaran import read_model_from_yml_file, read_parameter_from_yml_file
-from pyglotaran_extras.io.load_data import load_data
-from pyglotaran_extras.plotting.plot_overview import plot_overview, plot_traces
-from pyglotaran_extras.plotting.style import PlotStyle
+# Needed for plotting only
+# import matplotlib.pyplot as plt  # 3.3 or higher
+# from pyglotaran_extras.io.load_data import load_data
+# from pyglotaran_extras.plotting.plot_overview import plot_overview, plot_traces
+# from pyglotaran_extras.plotting.style import PlotStyle
 
 TARGET_MODEL = "models/co_co2_TA_model.yaml"
 TARGET_PARAMS = "models/co_co2_TA_parameters.yaml"
@@ -67,8 +68,8 @@ print(res)
 
 
 # %% Set subsequent plots to the glotaran style
-plot_style = PlotStyle()
-plt.rc("axes", prop_cycle=plot_style.cycler)
+# plot_style = PlotStyle()
+# plt.rc("axes", prop_cycle=plot_style.cycler)
 
 # %%
 # TODO: enable for multiple dataset
