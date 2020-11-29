@@ -4,7 +4,6 @@
 from pathlib import Path
 from timeit import default_timer as timer
 
-import dask
 import matplotlib.pyplot as plt  # 3.3 or higher
 from glotaran.io.reader import read_data_file
 from glotaran.analysis.optimize import optimize
@@ -17,12 +16,10 @@ from pyglotaran_extras.plotting.style import PlotStyle
 TARGET_MODEL = "models/co_co2_TA_model.yaml"
 TARGET_PARAMS = "models/co_co2_TA_parameters.yaml"
 
-dask.config.set(scheduler='single-threaded')
 
 # %%
 script_dir = Path(__file__).resolve().parent
 print(f"Script folder: {script_dir}")
-
 
 # %%
 # Dataset are oc and oc2 consisting of a perylene bisimide chromophore
