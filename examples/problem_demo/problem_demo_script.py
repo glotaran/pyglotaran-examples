@@ -1,16 +1,14 @@
 from copy import deepcopy
 from pathlib import Path
 
-import matplotlib.pyplot as plt
 import numpy as np
-import xarray as xr
-import lmfit
-
-from glotaran.builtin.models.kinetic_spectrum import KineticSpectrumModel
-from glotaran.parameter import ParameterGroup
-from glotaran.io import read_data_file
-from glotaran.analysis.scheme import Scheme
+import matplotlib.pyplot as plt
+from glotaran.analysis.optimize import optimize
 from glotaran.analysis.problem import Problem
+from glotaran.analysis.scheme import Scheme
+from glotaran.builtin.models.kinetic_spectrum import KineticSpectrumModel
+from glotaran.io import read_data_file
+from glotaran.parameter import ParameterGroup
 
 script_dir = Path(__file__).resolve().parent
 data_path = script_dir.joinpath("sample_data.ascii")
@@ -52,6 +50,7 @@ def problem_demo():
 
     data = read_data_file(data_path)
     result_folder = script_dir.joinpath("demo_results")
+    result_folder.mkdir(exist_ok=True)
 
     mspec_base = {
         "initial_concentration": {
@@ -119,87 +118,39 @@ def problem_demo():
     scheme_np = Scheme(model_without_penalty, param_np, {"dataset1": data})
     scheme_wp = Scheme(model_with_penalty, param_wp, {"dataset1": data})
 
-    print(scheme_np)
-    print(scheme_wp)
-
-    problem_np = Problem(scheme_np)
-    problem_wp = Problem(scheme_wp)
-
-    problem_np._residual_function
-
-    print(problem_np)
-    print(problem_wp)
-
-    problem_np._index_dependent
-    problem_wp._index_dependent
-
-    problem_np.reduced_clp_labels
-    problem_wp.reduced_clp_labels
-
-    problem_np.reduced_clps
-    # problem_wp.reduced_clps # TODO: Doesn't work yet due to equal area implementation
-
     # Attempt to use the problem class in an optimizer (as in optimze.py)
-    problem_np.scheme.prepare_data(copy=False)
+    result_np = optimize(scheme_np)
+    print(result_np.optimized_parameter)
+    print(result_np.data["dataset1"])
 
-    minimizer = lmfit.Minimizer(
-        problem_np.calculate_residual,
-        problem_np.parameter.as_parameter_dict(),
-        fcn_args=[],
-        fcn_kws=None,
-        iter_cb=None,
-        scale_covar=True,
-        nan_policy="omit",
-        reduce_fcn=None,
-        **{},
-    )
-    verbose = 2
-    lm_result = minimizer.minimize(method="least_squares", verbose=verbose, max_nfev=problem_np.scheme.nfev)
+    result_wp = optimize(scheme_wp)
+    print(result_wp.optimized_parameter)
+    print(result_wp.data["dataset1"])
 
-    # parameter = ParameterGroup.from_parameter_dict(lm_result.params)
-    # datasets = _create_result(scheme, parameter)
-    # covar = lm_result.covar if hasattr(lm_result, "covar") else None
+    folder_np = result_folder.joinpath("result_no_penalties")
+    folder_np.mkdir(exist_ok=True)
+    fig_np = plot_overview(result_np.data["dataset1"], "without penalties")
+    fig_np.savefig(folder_np.joinpath(f"plot_overview_np.pdf"), bbox_inches="tight")
+    print(result_np.optimized_parameter)
+    result_np.save(str(folder_np))
 
-    # return Result(
-    #     scheme,
-    #     datasets,
-    #     parameter,
-    #     lm_result.nfev,
-    #     lm_result.nvarys,
-    #     lm_result.ndata,
-    #     lm_result.nfree,
-    #     lm_result.chisqr,
-    #     lm_result.redchi,
-    #     lm_result.var_names,
-    #     covar,
-    # )
+    folder_wp = result_folder.joinpath("result_with_penalties")
+    folder_wp.mkdir(exist_ok=True)
+    fig_wp = plot_overview(result_wp.data["dataset1"], "with penalties")
+    fig_wp.savefig(folder_wp.joinpath(f"plot_overview_wp.pdf"), bbox_inches="tight")
+    print(result_wp.optimized_parameter)
+    result_wp.save(str(folder_wp))
 
+    res_wp = result_wp.data["dataset1"]
+    res_np = result_np.data["dataset1"]
 
-
-    # result_np = model_without_penalty.optimize(param_np, {"dataset1": data}, nnls=True)
-    # folder_np = result_folder.joinpath("result_no_penalties")
-    # fig_np = plot_overview(result_np.data["dataset1"], "without penalties")
-    # fig_np.savefig(folder_np.joinpath(f"plot_overview_np.pdf"), bbox_inches="tight")
-    # print(result_np.optimized_parameter)
-    # result_np.save(str(folder_np))
-
-    # result_wp = model_with_penalty.optimize(param_wp, {"dataset1": data}, nnls=True)
-    # folder_wp = result_folder.joinpath("result_with_penalties")
-    # fig_wp = plot_overview(result_wp.data["dataset1"], "with penalties")
-    # fig_wp.savefig(folder_wp.joinpath(f"plot_overview_wp.pdf"), bbox_inches="tight")
-    # print(result_wp.optimized_parameter)
-    # result_wp.save(str(folder_wp))
-
-    # res_wp = result_wp.data["dataset1"]
-    # res_np = result_np.data["dataset1"]
-
-    # area_s1_np = np.sum(res_np.species_associated_spectra.sel(species="s1"))
-    # area_s2_np = np.sum(res_np.species_associated_spectra.sel(species="s2"))
-    # area_s1_wp = np.sum(res_wp.species_associated_spectra.sel(species="s1"))
-    # area_s2_wp = np.sum(res_wp.species_associated_spectra.sel(species="s2"))
-    # print(f"  no penalties: area1: {area_s1_np}\narea2: {area_s2_np}\n")
-    # print(f"with penalties: area1: {area_s1_wp}\narea2: {area_s2_wp}\n")
-    # plt.show()
+    area_s1_np = np.sum(res_np.species_associated_spectra.sel(species="s1"))
+    area_s2_np = np.sum(res_np.species_associated_spectra.sel(species="s2"))
+    area_s1_wp = np.sum(res_wp.species_associated_spectra.sel(species="s1"))
+    area_s2_wp = np.sum(res_wp.species_associated_spectra.sel(species="s2"))
+    print(f"  no penalties: area1: {area_s1_np}\narea2: {area_s2_np}\n")
+    print(f"with penalties: area1: {area_s1_wp}\narea2: {area_s2_wp}\n")
+    plt.show()
 
 
 if __name__ == "__main__":
