@@ -4,7 +4,6 @@ from pathlib import Path
 import numpy as np
 import matplotlib.pyplot as plt
 from glotaran.analysis.optimize import optimize
-from glotaran.analysis.problem import Problem
 from glotaran.analysis.scheme import Scheme
 from glotaran.builtin.models.kinetic_spectrum import KineticSpectrumModel
 from glotaran.io import read_data_file
