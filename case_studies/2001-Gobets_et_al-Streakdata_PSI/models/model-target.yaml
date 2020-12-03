@@ -70,4 +70,3 @@ dataset:
     initial_concentration: input1
     megacomplex: [mc1]
     irf: irf1
-

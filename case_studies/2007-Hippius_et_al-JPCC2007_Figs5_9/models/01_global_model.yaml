@@ -9,7 +9,7 @@ dataset:
 megacomplex:
   cmplx1:
       k_matrix: [km1] # A megacomplex has one or more k-matrices
-    
+
 k_matrix:
     km1:
         matrix:
@@ -20,7 +20,7 @@ k_matrix:
 initial_concentration:
     input1:
         compartments: [s1,s2,s3]
-        parameters: [inputs.1,inputs.0,inputs.0]      
+        parameters: [inputs.1,inputs.0,inputs.0]
 irf:
   irf1:
     type : gaussian # -> multi-gaussian
@@ -28,7 +28,3 @@ irf:
     width : irf.width
     # dispersion_center : [irf.dispc]
     # center_dispersion : [irf.disp1,irf.disp2,irf.disp3] #model validate accepted "dispersion_par" as valid!
-          
-        
-      
-

@@ -3,14 +3,23 @@ from pathlib import Path
 
 import matplotlib.pyplot as plt
 import numpy as np
-import xarray as xr
 
+from glotaran.analysis.optimize import optimize
+from glotaran.analysis.scheme import Scheme
 from glotaran.builtin.models.kinetic_spectrum import KineticSpectrumModel
-from glotaran.parameter import ParameterGroup
 from glotaran.io import read_data_file
+from glotaran.parameter import ParameterGroup
 
-script_dir = Path(__file__).resolve().parent
-data_path = script_dir.joinpath("ex01_equal_area_penalty_data.ascii")
+script_path = Path(__file__).resolve()
+script_folder = script_path.parent
+print(f"Executing: {script_path.name} from {script_folder}")
+results_folder_root = Path.home().joinpath("pyglotaran_examples_output")
+results_folder_root.mkdir(exist_ok=True)
+script_folder_rel = script_folder.relative_to(script_folder.parent.parent)
+results_folder = results_folder_root.joinpath(script_folder_rel)
+print(f"Saving results in: {results_folder}")
+
+data_path = script_folder.joinpath("ex01_equal_area_penalty_data.ascii")
 
 
 def plot_overview(res, title=None):
@@ -48,7 +57,8 @@ def plot_overview(res, title=None):
 def ex01_equal_area_penalty():
 
     data = read_data_file(data_path)
-    result_folder = script_dir.joinpath("ex01_equal_area_penalty_results")
+    output_folder = results_folder.joinpath("demo_results")
+    output_folder.mkdir(parents=True, exist_ok=True)
 
     mspec_base = {
         "initial_concentration": {
@@ -113,17 +123,29 @@ def ex01_equal_area_penalty():
     param_np = ParameterGroup.from_dict(deepcopy(pspec_np))
     param_wp = ParameterGroup.from_dict(deepcopy(pspec_wp))
 
-    result_np = model_without_penalty.optimize(param_np, {"dataset1": data}, nnls=True)
-    folder_np = result_folder.joinpath("result_no_penalties")
+    scheme_np = Scheme(model_without_penalty, param_np, {"dataset1": data})
+    scheme_wp = Scheme(model_with_penalty, param_wp, {"dataset1": data})
+
+    # Attempt to use the problem class in an optimizer (as in optimize.py)
+    result_np = optimize(scheme_np)
+    print(result_np.optimized_parameter)
+    print(result_np.data["dataset1"])
+
+    result_wp = optimize(scheme_wp)
+    print(result_wp.optimized_parameter)
+    print(result_wp.data["dataset1"])
+
+    folder_np = output_folder.joinpath("result_no_penalties")
+    folder_np.mkdir(exist_ok=True)
     fig_np = plot_overview(result_np.data["dataset1"], "without penalties")
-    fig_np.savefig(folder_np.joinpath(f"plot_overview_np.pdf"), bbox_inches="tight")
+    fig_np.savefig(folder_np.joinpath("plot_overview_np.pdf"), bbox_inches="tight")
     print(result_np.optimized_parameter)
     result_np.save(str(folder_np))
 
-    result_wp = model_with_penalty.optimize(param_wp, {"dataset1": data}, nnls=True)
-    folder_wp = result_folder.joinpath("result_with_penalties")
+    folder_wp = output_folder.joinpath("result_with_penalties")
+    folder_wp.mkdir(exist_ok=True)
     fig_wp = plot_overview(result_wp.data["dataset1"], "with penalties")
-    fig_wp.savefig(folder_wp.joinpath(f"plot_overview_wp.pdf"), bbox_inches="tight")
+    fig_wp.savefig(folder_wp.joinpath("plot_overview_wp.pdf"), bbox_inches="tight")
     print(result_wp.optimized_parameter)
     result_wp.save(str(folder_wp))
 
