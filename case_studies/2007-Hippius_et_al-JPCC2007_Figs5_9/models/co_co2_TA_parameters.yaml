@@ -7,16 +7,16 @@ rel:
   - ['r1', 1, {vary: False}]
 
 b:
-  - [0.22, {vary: True}]
-  - [0.78, {expr: '1 - _b_1', vary: False}]
+  - [0.087, {vary: True}]
+  - [0.913, {expr: '1 - _b_1', vary: False}]
   - {'non-negative': True}
 # - [0.913, {vary: False}]
 # - [0.087, {vary: False}]
 
 rates:
   - ['k1sum', 9.49943878184853, {vary: False}]
-  - ['k1', 0.8265, {expr: '_b_1 * _rates_k1sum', vary: False}]
-  - ['k2', 8.7635, {expr: '_b_2 * _rates_k1sum', vary: False}]
+  - ['k1', 0.8265, {vary: False}]
+  - ['k2', 8.7635, {vary: False}]
   - ['k3', 0.4839723]
   - ['k4', 0.0368954]
   - ['k3d2', 0.7]

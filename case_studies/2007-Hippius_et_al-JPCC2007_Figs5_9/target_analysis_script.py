@@ -4,13 +4,16 @@
 from pathlib import Path
 from timeit import default_timer as timer
 
-import matplotlib.pyplot as plt #3.3 or higher
-import dask
-
-import glotaran
-from pyglotaran_extras.plotting.plot_overview import plot_overview, plot_traces
+import matplotlib.pyplot as plt  # 3.3 or higher
+from pyglotaran_extras.plotting.plot_overview import plot_overview
 from pyglotaran_extras.plotting.style import PlotStyle
-from pyglotaran_extras.io.load_data import load_data
+
+from glotaran import read_model_from_yml_file
+from glotaran import read_parameter_from_yml_file
+from glotaran.analysis.optimize import optimize
+from glotaran.analysis.problem import Problem
+from glotaran.analysis.scheme import Scheme
+from glotaran.io import read_data_file
 
 GLOBAL_MODEL = "models/01_global_model.yaml"
 GLOBAL_PARAMS = "models/01_global_parameters.yaml"
@@ -18,46 +21,54 @@ TARGET_MODEL = "models/99_target_model.yaml"
 TARGET_PARAMS = "models/99_target_parameters.yaml"
 SKIP_FIT = False
 
-dask.config.set(scheduler='single-threaded')
+# %%
+script_path = Path(__file__).resolve()
+script_folder = script_path.parent
+print(f"Executing: {script_path.name} from {script_folder}")
+results_folder_root = Path.home().joinpath("pyglotaran_examples_output")
+results_folder_root.mkdir(exist_ok=True)
+script_folder_rel = script_folder.relative_to(script_folder.parent.parent)
+results_folder = results_folder_root.joinpath(script_folder_rel)
+print(f"Saving results in: {results_folder}")
+
 
 # %%
-script_dir = Path(__file__).resolve().parent
-print(f"Script folder: {script_dir}")
-
-
-# %%
-data_path = script_dir.joinpath("data/data.ascii")
-model_path = script_dir.joinpath(TARGET_MODEL)  # GLOBAL_MODEL or TARGET_MODEL
-parameter_path = script_dir.joinpath(TARGET_PARAMS)  # GLOBAL_PARAMS or TARGET_PARAMS
+data_path = script_folder.joinpath("data/data.ascii")
+model_path = script_folder.joinpath(TARGET_MODEL)  # or GLOBAL_MODEL
+parameter_path = script_folder.joinpath(TARGET_PARAMS)  # or TARGET_PARAMS
 
 result_name = str(model_path.stem).replace("model", "result")
-result_path = script_dir.joinpath("results").joinpath(result_name)
-print(f"Writing results to: {result_path}")
+output_folder = results_folder.joinpath(result_name)
+print(f"- Using folder {output_folder.name} to read/write files for this run")
 
 # %%
-result_datafile = result_path.joinpath("dataset1.nc")
+result_datafile = output_folder.joinpath("dataset1.nc")
 if result_datafile.exists() and SKIP_FIT:
     print(f"Loading earlier fit results from: {result_datafile}")
 else:
-    dataset = glotaran.io.read_data_file(data_path)
-    # Tip: print the xarray object to explore its content
-    # print(dataset)
-    # TODO: slice from 377.96 to 854.404 (335 wavelengths), -0.0001 to 909.85575 (346 timepoints)
+    dataset = read_data_file(data_path)
+    model = read_model_from_yml_file(model_path)
+    parameter = read_parameter_from_yml_file(parameter_path)
+    scheme = Scheme(model, parameter, {"dataset1": dataset}, nfev=1000)
+    # Although the problem converges in about 10 residual evaluations
+    # a (much) larger initial number is needed due to some lmfit intricacies.
 
-    # %%
-    model = glotaran.read_model_from_yml_file(model_path)
-    parameter = glotaran.read_parameter_from_yml_file(parameter_path)
     print(model.validate(parameter=parameter))
+
+    # The problem is constructed automatically from the scheme by the optimize call,
+    # but can also be created manually for debug purposes:
+    test_problem = Problem(scheme)
 
     # %%
     start = timer()
     # Warning: this may take a while (several seconds per iteration)
-    result = model.optimize(parameter, {"dataset1": dataset}, verbose=True, max_nfev=20)
-    result.save(str(result_path))
-
+    result = optimize(scheme, verbose=True)
     end = timer()
-
     print(f"Total time: {end - start}")
+
+    result.save(str(output_folder))
+    end2 = timer()
+    print(f"Saving took: {end2 - end}")
 
     # %%
     print(result.markdown(True))
@@ -73,12 +84,8 @@ plot_style = PlotStyle()
 plt.rc("axes", prop_cycle=plot_style.cycler)
 
 # %%
-fig = plot_overview(result_datafile, linlog=True, linthresh=1)
+fig = plot_overview(result_datafile, linlog=False)
 # note species concentration plot still needs work to match styles between the two locatable axis
 
-
 # %%
-fig.savefig(
-    result_path.joinpath(f"plot_overview_{result_name}.pdf"), bbox_inches="tight"
-)
-
+fig.savefig(output_folder.joinpath(f"plot_overview_{result_name}.pdf"), bbox_inches="tight")

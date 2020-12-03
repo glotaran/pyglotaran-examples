@@ -25,18 +25,18 @@ _Type_: kinetic-spectrum
 
 * **k1**:
   * *Label*: k1
-  * *Matrix*: 
-    * *('s1', 's1')*: kinetic.1: **2.50031e-01** *(StdErr: 5e-05 ,initial: 2.00000e-01)*
-    * *('s2', 's2')*: kinetic.2: **9.99947e-01** *(StdErr: 2e-04 ,initial: 1.10000e+00)*
-  
+  * *Matrix*:
+    * *('s1', 's1')*: kinetic.1: **2.50031e-01** *(StdErr: 0e+00 ,initial: 2.00000e-01)*
+    * *('s2', 's2')*: kinetic.2: **9.99947e-01** *(StdErr: 0e+00 ,initial: 1.10000e+00)*
+
 
 ## Irf
 
 * **irf1** (gaussian):
   * *Label*: irf1
   * *Type*: gaussian
-  * *Center*: irf.1: **4.00002e-01** *(StdErr: 6e-06 ,initial: 4.00000e-01)*
-  * *Width*: irf.2: **5.99785e-02** *(StdErr: 8e-06 ,initial: 5.00000e-02)*
+  * *Center*: irf.1: **4.00002e-01** *(StdErr: 0e+00 ,initial: 4.00000e-01)*
+  * *Width*: irf.2: **5.99785e-02** *(StdErr: 0e+00 ,initial: 5.00000e-02)*
   * *Normalize*: False
   * *Backsweep*: False
 
@@ -53,4 +53,3 @@ _Type_: kinetic-spectrum
 * **mc1**:
   * *Label*: mc1
   * *K Matrix*: ['k1']
-
