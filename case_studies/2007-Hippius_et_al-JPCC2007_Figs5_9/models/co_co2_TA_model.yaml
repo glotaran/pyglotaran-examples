@@ -5,10 +5,12 @@ dataset:
     megacomplex: [cmplx1]
     initial_concentration: input1
     irf: irf1
+    scale: scale.1
   dataset2:
     megacomplex: [cmplx2]
     initial_concentration: input1
     irf: irf2
+    scale: scale.2
 
 megacomplex:
   cmplx1:
