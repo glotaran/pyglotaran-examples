@@ -1,0 +1,57 @@
+type: kinetic-spectrum
+
+dataset:
+  dataset1:
+    megacomplex: [cmplx1]
+    initial_concentration: input1
+    irf: irf1_no_dispersion # try BOTH irf1 and irf1_no_disp
+    scale: scale.1 # crash when leaving out this parameter?
+  dataset2:
+    megacomplex: [cmplx1]
+    initial_concentration: input1
+    irf: irf1_no_dispersion # also BOTH irf1 and irf1_no_disp
+    scale: scale.2
+
+megacomplex:
+  cmplx1:
+      k_matrix: [km1]
+
+k_matrix:
+    km1:
+        matrix:
+            (s1, s1): 'rates.k1'
+            (s2, s2): 'rates.k2'
+            (s3, s3): 'rates.k3'
+
+initial_concentration:
+    input1:
+        compartments: [s1,s2,s3]
+        parameters: [inputs.1,inputs.2,inputs.3]
+
+irf:
+  irf1:
+    type : spectral-multi-gaussian
+    center : [irf.center]
+    width : [irf.width]
+    dispersion_center : irf.dispc
+    center_dispersion : [irf.disp1] # there is no dispersion so param is fixed
+  irf1_no_dispersion:
+    type : spectral-multi-gaussian
+    center : [irf.center]
+    width : [irf.width]
+
+# It works without equal_area_penalties but then the inputs cannot be estimated
+equal_area_penalties:
+  - type: equal_area
+    compartment: s1
+    interval: [!tuple '(100, 1000)']
+    target: s2
+    parameter: area.1
+    weight: 0.0016
+  - type: equal_area
+    compartment: s1
+    interval: [!tuple '(100, 1000)']
+    target: s3
+    parameter: area.1
+    weight: 0.0016
+

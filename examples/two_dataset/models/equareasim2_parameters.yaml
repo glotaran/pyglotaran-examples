@@ -1,0 +1,26 @@
+inputs:
+  - ['1', 0.5, {'vary': False}]
+  - ['2', 0.1, {'vary': False}]
+  - ['3', 0.2, {'vary': False}]
+
+scale:
+  - ['1', 1, {'vary': False}]
+  - ['2', 1.3]
+
+rates:
+  - ['k1', 0.3]
+  - ['k2', 0.5]
+  - ['k3', 1]
+#  - {vary: True,'non-negative': True}
+
+irf:
+  - ['center',0.5]
+  - ['width', 0.65]
+  - ['dispc', 500, {vary: False}]
+  - ['disp1', 0, {vary: False}]
+
+pen:
+  - ['1', 1, {Vary: False}]
+
+area:
+  - ['1', 1, {Vary: False}]
