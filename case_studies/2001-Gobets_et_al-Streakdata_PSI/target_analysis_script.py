@@ -51,7 +51,7 @@ else:
     dataset = read_data_file(data_path)
     model = read_model_from_yml_file(model_path)
     parameter = read_parameter_from_yml_file(parameter_path)
-    scheme = Scheme(model, parameter, {"dataset1": dataset}, nfev=1000)
+    scheme = Scheme(model, parameter, {"dataset1": dataset}, nfev=1000, nnls=True)
     # Although the problem converges in about 10 residual evaluations
     # a (much) larger initial number is needed due to some lmfit intricacies.
 
