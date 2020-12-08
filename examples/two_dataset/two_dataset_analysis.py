@@ -58,12 +58,12 @@ print(model.validate(parameter=parameter))
 # %%
 start = timer()
 scheme = Scheme(
-    model, parameter, {"dataset1": dataset1, "dataset2": dataset2}, nfev=200, nnls=True
+    model, parameter, {"dataset1": dataset1, "dataset2": dataset2}, nfev=999, nnls=True
 )
 problem = Problem(scheme)
 # check out problem bag
 bag = problem.bag
-print()
+print(problem.parameter)
 result = optimize_problem(problem)
 
 end = timer()
@@ -103,3 +103,4 @@ fig2.savefig(
     output_folder.joinpath(f"plot_overview_{result_name}_d2_{data_path2.stem}.pdf"),
     bbox_inches="tight",
 )
+print(problem.parameter)
