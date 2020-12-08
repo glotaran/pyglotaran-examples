@@ -11,7 +11,8 @@ from pyglotaran_extras.plotting.style import PlotStyle
 
 from glotaran import read_model_from_yml_file
 from glotaran import read_parameter_from_yml_file
-from glotaran.analysis.optimize import optimize
+from glotaran.analysis.optimize import optimize_problem
+from glotaran.analysis.problem import Problem
 from glotaran.analysis.scheme import Scheme
 from glotaran.io.reader import read_data_file
 
@@ -56,8 +57,14 @@ print(model.validate(parameter=parameter))
 
 # %%
 start = timer()
-scheme = Scheme(model, parameter, {"dataset1": dataset1, "dataset2": dataset2}, nfev=200)
-result = optimize(scheme)
+scheme = Scheme(
+    model, parameter, {"dataset1": dataset1, "dataset2": dataset2}, nfev=200, nnls=True
+)
+problem = Problem(scheme)
+# check out problem bag
+bag = problem.bag
+print()
+result = optimize_problem(problem)
 
 end = timer()
 print(f"Total time: {end - start}")
@@ -85,13 +92,13 @@ plt.rc("axes", prop_cycle=plot_style.cycler)
 
 # %%
 # TODO: enhance plot_overview to handle multiple datasets
-fig1 = plot_overview(result_datafile1, linlog=True, linthresh=1)
+fig1 = plot_overview(result_datafile1, linlog=False, linthresh=5)
 fig1.savefig(
     output_folder.joinpath(f"plot_overview_{result_name}_d1_{data_path1.stem}.pdf"),
     bbox_inches="tight",
 )
 
-fig2 = plot_overview(result_datafile2, linlog=True, linthresh=1)
+fig2 = plot_overview(result_datafile2, linlog=False, linthresh=5)
 fig2.savefig(
     output_folder.joinpath(f"plot_overview_{result_name}_d2_{data_path2.stem}.pdf"),
     bbox_inches="tight",

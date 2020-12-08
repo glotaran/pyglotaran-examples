@@ -49,7 +49,7 @@ else:
     dataset = read_data_file(data_path)
     model = read_model_from_yml_file(model_path)
     parameter = read_parameter_from_yml_file(parameter_path)
-    scheme = Scheme(model, parameter, {"dataset1": dataset}, nfev=1000)
+    scheme = Scheme(model, parameter, {"dataset1": dataset}, nfev=111)
     # Although the problem converges in about 10 residual evaluations
     # a (much) larger initial number is needed due to some lmfit intricacies.
 
@@ -84,7 +84,7 @@ plot_style = PlotStyle()
 plt.rc("axes", prop_cycle=plot_style.cycler)
 
 # %%
-fig = plot_overview(result_datafile, linlog=False)
+fig = plot_overview(result_datafile, linlog=True)
 # note species concentration plot still needs work to match styles between the two locatable axis
 
 # %%

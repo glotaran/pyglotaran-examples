@@ -1,21 +1,24 @@
 inputs:
   - ['1', 0.5, {'vary': False}]
-  - ['2', 0.1, {'vary': False}]
-  - ['3', 0.2, {'vary': False}]
+  - ['2', 0.251, {'vary': True}]
+  - ['3', 0.252, {'vary': True}]
+  - ['7', 0.21, {'vary': True}]
+  - ['8', 0.22, {'vary': True}]
+  - {'non-negative': True}
 
 scale:
   - ['1', 1, {'vary': False}]
-  - ['2', 1.3]
+  - ['2', 1.01]
 
 rates:
-  - ['k1', 0.3]
+  - ['k1', 0.199]
   - ['k2', 0.5]
-  - ['k3', 1]
-#  - {vary: True,'non-negative': True}
+  - ['k3', 1.1]
+  - {vary: True,'non-negative': True}
 
 irf:
   - ['center',0.5]
-  - ['width', 0.65]
+  - ['width', 0.1]
   - ['dispc', 500, {vary: False}]
   - ['disp1', 0, {vary: False}]
 

@@ -6,12 +6,12 @@ inputs:
 rel:
   - ['r1', 1, {vary: False}]
 
-# b:
-#   - [0.22, {vary: True}]
-#   - [0.78, {expr: '1 - _b_1', vary: False}]
-#   - {'non-negative': True}
-# # - [0.913, {vary: False}]
-# # - [0.087, {vary: False}]
+b:
+  - [0.22, {vary: True}]
+  - [0.78, {expr: '1 - _b_1'}]
+  - {'non-negative': True}
+# - [0.913, {vary: False}]
+# - [0.087, {vary: False}]
 
 rates:
   - ['k1sum', 9.49943878184853, {vary: False}]
