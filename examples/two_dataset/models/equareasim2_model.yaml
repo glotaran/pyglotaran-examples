@@ -48,14 +48,16 @@ irf:
 # It works without equal_area_penalties but then the inputs cannot be estimated
 equal_area_penalties:
   - type: equal_area
-    compartment: s1
-    interval: [!tuple '(300, 3000)']
+    source: s1
+    source_intervals: [!tuple '(300, 3000)']
     target: s2
+    target_intervals: [!tuple '(300, 3000)']
     parameter: area.1
     weight: 0.1
   - type: equal_area
-    compartment: s1
-    interval: [!tuple '(300, 3000)']
+    source: s1
+    source_intervals: [!tuple '(300, 3000)']
     target: s3
+    target_intervals: [!tuple '(300, 3000)']
     parameter: area.1
     weight: 0.1
