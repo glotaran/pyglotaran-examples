@@ -15,8 +15,8 @@ b:
 
 rates:
   - ['k1sum', 9.49943878184853, {vary: False}]
-  - ['k1', 0.8265, {expr: '_b_1 * _rates_k1sum', vary: False}]
-  - ['k2', 8.7635, {expr: '_b_2 * _rates_k1sum', vary: False}]
+  - ['k1', 0.8265, {expr: '$b.1 * $rates.k1sum', vary: False}]
+  - ['k2', 8.7635, {expr: '$b.2 * $rates.k1sum', vary: False}]
   - ['k3', 0.34981088325342874]
   - ['k4', 0.0427195221803555]
   - ['k5', 0.019998212351462565]

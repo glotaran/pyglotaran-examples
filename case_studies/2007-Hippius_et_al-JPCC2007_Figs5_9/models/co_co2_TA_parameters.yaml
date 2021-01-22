@@ -12,7 +12,7 @@ rel:
 
 b:
   - [0.087, {vary: True}]
-  - [0.913, {expr: '1 - _b_1', vary: False}]
+  - [0.913, {expr: '1 - $b.1', vary: False}]
   - {'non-negative': True}
 # - [0.913, {vary: False}]
 # - [0.087, {vary: False}]

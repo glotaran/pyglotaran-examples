@@ -41,28 +41,30 @@ spectral_constraints:
   - type: zero
     compartment: s1
     interval:
-      - (1, 1000)
+      - [1, 1000]
   - type: zero
     compartment: s3
     interval:
-      - (1, 680)
+      - [1, 680]
   - type: zero
     compartment: s4
     interval:
-      - (1, 690)
+      - [1, 690]
 #  - [zero, s1, (1, 100), (2, 200)]
 
 equal_area_penalties:
   - type: equal_area
-    compartment: s2
-    interval: [!tuple '(100, 1000)']
+    source: s2
+    source_intervals: [[100, 1000]]
     target: s3
+    target_intervals: [[100, 1000]]
     parameter: area.1
     weight: 0.0016
   - type: equal_area
-    compartment: s2
-    interval: [!tuple '(100, 1000)']
+    source: s2
+    source_intervals: [[100, 1000]]
     target: s4
+    target_intervals: [[100, 1000]]
     parameter: area.1
     weight: 0.0016
 

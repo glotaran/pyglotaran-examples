@@ -49,15 +49,15 @@ irf:
 equal_area_penalties:
   - type: equal_area
     source: s1
-    source_intervals: [!tuple '(300, 3000)']
+    source_intervals: [[300, 3000]]
     target: s2
-    target_intervals: [!tuple '(300, 3000)']
+    target_intervals: [[300, 3000]]
     parameter: area.1
     weight: 0.1
   - type: equal_area
     source: s1
-    source_intervals: [!tuple '(300, 3000)']
+    source_intervals: [[300, 3000]]
     target: s3
-    target_intervals: [!tuple '(300, 3000)']
+    target_intervals: [[300, 3000]]
     parameter: area.1
     weight: 0.1

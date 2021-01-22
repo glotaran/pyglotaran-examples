@@ -34,8 +34,8 @@ print(f"Saving results in: {results_folder}")
 
 # %%
 data_path = script_folder.joinpath("data/data.ascii")
-model_path = script_folder.joinpath(TARGET_MODEL)  # or GLOBAL_MODEL
-parameter_path = script_folder.joinpath(TARGET_PARAMS)  # or TARGET_PARAMS
+model_path = script_folder.joinpath(TARGET_MODEL)  # or GLOBAL_MODEL or TARGET_MODEL
+parameter_path = script_folder.joinpath(TARGET_PARAMS)  # or GLOBAL_PARAMS or TARGET_PARAMS
 
 result_name = str(model_path.stem).replace("model", "result")
 output_folder = results_folder.joinpath(result_name)

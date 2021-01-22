@@ -20,7 +20,7 @@ plot_data = dataset.data_singular_values.sel(singular_value_index=range(0, 10))
 plot_data.plot(yscale="log", marker="o", linewidth=0, aspect=2, size=5)
 
 model = gta.read_model_from_yml_file(script_dir.joinpath("model.yml"))
-
+print(model)
 parameter = gta.read_parameter_from_yml_file(script_dir.joinpath("parameter.yml"))
 
 print(model.validate(parameter=parameter))

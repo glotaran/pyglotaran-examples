@@ -58,12 +58,12 @@ spectral_relations:
   - compartment: s2
     target: s3
     parameter: rel.r1
-    interval: [ !tuple '(0,1000)']
+    interval: [[0, 1000]]
 
 # weights:
 #   - datasets: [dataset1, dataset2]
-#     global_interval: (280, 550)
+#     global_interval: [280, 550]
 #     value: 0.1
 #   - datasets: [dataset1, dataset2]
-#     global_interval: (720, 890)
+#     global_interval: [720, 890]
 #     value: 0.2

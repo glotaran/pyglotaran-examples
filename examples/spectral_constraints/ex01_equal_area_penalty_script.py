@@ -94,10 +94,11 @@ def ex01_equal_area_penalty():
     mspec_equ_area = {
         "equal_area_penalties": [
             {
-                "compartment": "s2",
+                "source": "s2",
+                "source_intervals": [[0, 3000]],
                 "target": "s1",
+                "target_intervals": [[0, 3000]],
                 "parameter": "pen.1",
-                "interval": [(0, 3000)],
                 "weight": 0.1,
             },
         ],
