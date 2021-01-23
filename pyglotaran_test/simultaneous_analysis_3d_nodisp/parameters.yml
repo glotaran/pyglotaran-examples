@@ -1,0 +1,30 @@
+rates:
+  - ["k1", 0.199]
+  - ["k2", 0.5]
+  - ["k3", 1.1]
+  - {"vary": True,"non-negative": True}
+
+inputs:
+  - ["1", 0.5, {"vary": False}]
+  - ["2", 0.251]
+  - ["3", 0.252]
+  - ["7", 0.21]
+  - ["8", 0.22]
+  - ["9", 0.22]
+  - ["10", 0.22]
+  - {"non-negative": True}
+
+irf:
+  - ["center",0.5]
+  - ["width", 0.1]
+
+scale:
+  - ["1", 1, {"vary": False}]
+  - ["2", 0.991, {"vary": True}]
+  - ["3", 0.991, {"vary": True}]
+
+pen:
+  - ["1", 1, {"vary": False}]
+
+area:
+  - ["1", 1, {"vary": False}]
