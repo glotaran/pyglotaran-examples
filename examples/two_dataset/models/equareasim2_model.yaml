@@ -61,3 +61,10 @@ equal_area_penalties:
     target_intervals: [[300, 3000]]
     parameter: area.1
     weight: 0.1
+
+# # Test case for #520:
+# spectral_relations:
+#   - compartment: s2
+#     target: s3
+#     parameter: rel.r1
+#     interval: [ [0,1000]]

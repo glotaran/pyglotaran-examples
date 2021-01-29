@@ -19,17 +19,17 @@ dataset = gta.io.prepare_time_trace_dataset(dataset)
 plot_data = dataset.data_singular_values.sel(singular_value_index=range(0, 10))
 plot_data.plot(yscale="log", marker="o", linewidth=0, aspect=2, size=5)
 
-model = gta.read_model_from_yml_file(script_dir.joinpath("model.yml"))
+model = gta.read_model_from_yaml_file(script_dir.joinpath("model.yml"))
 print(model)
-parameter = gta.read_parameter_from_yml_file(script_dir.joinpath("parameter.yml"))
+parameter = gta.read_parameters_from_yaml_file(script_dir.joinpath("parameters.yml"))
 
-print(model.validate(parameter=parameter))
+print(model.validate(parameters=parameter))
 print(model)
 print(parameter)
 
 result = optimize(Scheme(model, parameter, {"dataset1": dataset}))
 print(result)
-print(result.optimized_parameter)
+print(result.optimized_parameters)
 result_dataset = result.get_dataset("dataset1")
 result_dataset
 plot_data = result_dataset.residual_left_singular_vectors.sel(left_singular_value_index=0)

@@ -19,16 +19,16 @@ results_folder.mkdir(exist_ok=True)
 print(f"Saving results to: {str(results_folder)}")
 
 # output folder for this specific analysis
-output_folder = results_folder.joinpath("dummy_3d_disp")
+output_folder = results_folder.joinpath("simultaneous_analysis_2d_weight")
 
 # data inlezen
-data_path = script_folder.joinpath("equareaIRFdispscalsima.ascii")
+data_path = script_folder.joinpath("equareaIRFsim5.ascii")
 dataset1 = gta.io.read_data_file(data_path)
-#print(dataset1)
-data_path2 = script_folder.joinpath("equareaIRFdispscalsimb.ascii")
+# print(dataset1)
+data_path2 = script_folder.joinpath("equareaIRFsim6.ascii")
 dataset2 = gta.io.read_data_file(data_path2)
-#print(dataset2)
-data_path3 = script_folder.joinpath("equareaIRFdispscalsimc.ascii")
+# print(dataset2)
+data_path3 = script_folder.joinpath("equareaIRFsim8.ascii")
 dataset3 = gta.io.read_data_file(data_path3)
 # model inlezen + parameters
 model_path = script_folder.joinpath("model.yml")
@@ -38,7 +38,7 @@ model = gta.read_model_from_yaml_file(model_path)
 
 parameter_file = output_folder.joinpath("optimized_parameters.csv")
 if parameter_file.exists():
-    print("Optimized paramters exists: please check")
+    print("Optimized parameters exists: please check")
     parameter = read_parameters_from_csv_file(str(parameter_file))
 else:
     parameter = gta.read_parameters_from_yaml_file(parameters_path)
@@ -47,7 +47,12 @@ print(model.validate(parameters=parameter))
 
 # analysis schema definieren
 scheme = Scheme(
-    model, parameter, {"dataset1": dataset1, "dataset2": dataset2, "dataset3": dataset3}, nfev=5, nnls=True
+    model,
+    parameter,
+    {"dataset1": dataset1, "dataset2": dataset2, "dataset3": dataset3},
+    nfev=3,
+    nnls=True,
+    optimization_method="LevenbergMarquart", # defaukl
 )
 # optimize
 result = optimize(scheme)

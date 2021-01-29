@@ -27,3 +27,6 @@ pen:
 
 area:
   - ["1", 1, {"vary": False}]
+
+rel:
+  - ["r1", 1, {"vary": False}]

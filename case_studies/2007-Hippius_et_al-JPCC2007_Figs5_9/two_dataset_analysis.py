@@ -9,8 +9,8 @@ import matplotlib.pyplot as plt  # 3.3 or higher
 from pyglotaran_extras.plotting.plot_overview import plot_overview
 from pyglotaran_extras.plotting.style import PlotStyle
 
-from glotaran import read_model_from_yml_file
-from glotaran import read_parameter_from_yml_file
+from glotaran import read_model_from_yaml_file
+from glotaran import read_parameters_from_yaml_file
 from glotaran.analysis.optimize import optimize
 from glotaran.analysis.scheme import Scheme
 from glotaran.io.reader import read_data_file
@@ -53,13 +53,13 @@ print(dataset1)
 print(dataset2)
 
 # %%
-model = read_model_from_yml_file(model_path)
-parameter = read_parameter_from_yml_file(parameter_path)
-print(model.validate(parameter=parameter))
+model = read_model_from_yaml_file(model_path)
+parameter = read_parameters_from_yaml_file(parameter_path)
+print(model.validate(parameters=parameter))
 
 # %%
 start = timer()
-scheme = Scheme(model, parameter, {"dataset1": dataset1, "dataset2": dataset2}, nfev=200)
+scheme = Scheme(model, parameter, {"dataset1": dataset1, "dataset2": dataset2}, nfev=2)
 result = optimize(scheme)
 
 end = timer()

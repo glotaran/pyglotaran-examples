@@ -19,17 +19,23 @@ results_folder.mkdir(exist_ok=True)
 print(f"Saving results to: {str(results_folder)}")
 
 # output folder for this specific analysis
-output_folder = results_folder.joinpath("dummy_3d_disp")
+output_folder = results_folder.joinpath("dummy_6d_disp")
 
 # data inlezen
-data_path = script_folder.joinpath("equareaIRFdispscalsima.ascii")
+data_path = script_folder.joinpath("equareaIRFdispscalsim6a.ascii")
 dataset1 = gta.io.read_data_file(data_path)
-#print(dataset1)
-data_path2 = script_folder.joinpath("equareaIRFdispscalsimb.ascii")
+data_path2 = script_folder.joinpath("equareaIRFdispscalsim6b.ascii")
 dataset2 = gta.io.read_data_file(data_path2)
-#print(dataset2)
-data_path3 = script_folder.joinpath("equareaIRFdispscalsimc.ascii")
+# print(dataset2)
+data_path3 = script_folder.joinpath("equareaIRFdispscalsim6c.ascii")
 dataset3 = gta.io.read_data_file(data_path3)
+data_path = script_folder.joinpath("equareaIRFdispscalsim6d.ascii")
+dataset4 = gta.io.read_data_file(data_path)
+data_path = script_folder.joinpath("equareaIRFdispscalsim6e.ascii")
+dataset5 = gta.io.read_data_file(data_path)
+data_path = script_folder.joinpath("equareaIRFdispscalsim6f.ascii")
+dataset6 = gta.io.read_data_file(data_path)
+
 # model inlezen + parameters
 model_path = script_folder.joinpath("model.yml")
 parameters_path = script_folder.joinpath("parameters.yml")
@@ -47,7 +53,19 @@ print(model.validate(parameters=parameter))
 
 # analysis schema definieren
 scheme = Scheme(
-    model, parameter, {"dataset1": dataset1, "dataset2": dataset2, "dataset3": dataset3}, nfev=5, nnls=True
+    model,
+    parameter,
+    {
+        "dataset1": dataset1,
+        "dataset2": dataset2,
+        "dataset3": dataset3,
+        "dataset4": dataset4,
+        "dataset5": dataset5,
+        "dataset6": dataset6,
+    },
+    nfev=5,
+    nnls=True,
+    optimization_method="LevenbergMarquart",
 )
 # optimize
 result = optimize(scheme)
@@ -66,6 +84,9 @@ plt.rc("axes", prop_cycle=plot_style.cycler)
 result_datafile1 = output_folder.joinpath("dataset1.nc")
 result_datafile2 = output_folder.joinpath("dataset2.nc")
 result_datafile3 = output_folder.joinpath("dataset3.nc")
+result_datafile4 = output_folder.joinpath("dataset4.nc")
+result_datafile5 = output_folder.joinpath("dataset5.nc")
+result_datafile6 = output_folder.joinpath("dataset6.nc")
 fig1 = plot_overview(result_datafile1, linlog=True, linthresh=5)
 fig1.savefig(
     output_folder.joinpath(f"plot_overview_dummy1.pdf"),
@@ -81,5 +102,20 @@ fig2.savefig(
 fig3 = plot_overview(result_datafile3, linlog=True, linthresh=5)
 fig3.savefig(
     output_folder.joinpath(f"plot_overview_dummy3.pdf"),
+    bbox_inches="tight",
+)
+fig4 = plot_overview(result_datafile4, linlog=True, linthresh=5)
+fig4.savefig(
+    output_folder.joinpath(f"plot_overview_dummy4.pdf"),
+    bbox_inches="tight",
+)
+fig5 = plot_overview(result_datafile5, linlog=True, linthresh=5)
+fig5.savefig(
+    output_folder.joinpath(f"plot_overview_dummy5.pdf"),
+    bbox_inches="tight",
+)
+fig6 = plot_overview(result_datafile6, linlog=True, linthresh=5)
+fig6.savefig(
+    output_folder.joinpath(f"plot_overview_dummy6.pdf"),
     bbox_inches="tight",
 )

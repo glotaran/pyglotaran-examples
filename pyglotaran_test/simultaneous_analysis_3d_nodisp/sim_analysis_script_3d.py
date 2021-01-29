@@ -4,7 +4,7 @@ import glotaran as gta
 
 from glotaran.analysis.optimize import optimize
 from glotaran.analysis.scheme import Scheme
-from glotaran import read_parameter_from_csv_file
+from glotaran import read_parameters_from_csv_file
 
 # Needed for plotting only
 import matplotlib.pyplot as plt  # 3.3 or higher
@@ -34,16 +34,16 @@ dataset3 = gta.io.read_data_file(data_path3)
 model_path = script_folder.joinpath("model.yml")
 parameters_path = script_folder.joinpath("parameters.yml")
 
-model = gta.read_model_from_yml_file(model_path)
+model = gta.read_model_from_yaml_file(model_path)
 
-parameter_file = output_folder.joinpath("optimized_parameter.csv")
+parameter_file = output_folder.joinpath("optimized_parameters.csv")
 if parameter_file.exists():
     print("Optimized paramters exists: please check")
-    parameter = read_parameter_from_csv_file(str(parameter_file))
+    parameter = read_parameters_from_csv_file(str(parameter_file))
 else:
-    parameter = gta.read_parameter_from_yml_file(parameters_path)
+    parameter = gta.read_parameters_from_yaml_file(parameters_path)
 
-print(model.validate(parameter=parameter))
+print(model.validate(parameters=parameter))
 
 # analysis schema definieren
 scheme = Scheme(

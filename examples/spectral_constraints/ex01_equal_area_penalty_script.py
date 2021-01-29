@@ -129,25 +129,25 @@ def ex01_equal_area_penalty():
 
     # Attempt to use the problem class in an optimizer (as in optimize.py)
     result_np = optimize(scheme_np)
-    print(result_np.optimized_parameter)
+    print(result_np.optimized_parameters)
     print(result_np.data["dataset1"])
 
     result_wp = optimize(scheme_wp)
-    print(result_wp.optimized_parameter)
+    print(result_wp.optimized_parameters)
     print(result_wp.data["dataset1"])
 
     folder_np = output_folder.joinpath("result_no_penalties")
     folder_np.mkdir(exist_ok=True)
     fig_np = plot_overview(result_np.data["dataset1"], "without penalties")
     fig_np.savefig(folder_np.joinpath("plot_overview_np.pdf"), bbox_inches="tight")
-    print(result_np.optimized_parameter)
+    print(result_np.optimized_parameters)
     result_np.save(str(folder_np))
 
     folder_wp = output_folder.joinpath("result_with_penalties")
     folder_wp.mkdir(exist_ok=True)
     fig_wp = plot_overview(result_wp.data["dataset1"], "with penalties")
     fig_wp.savefig(folder_wp.joinpath("plot_overview_wp.pdf"), bbox_inches="tight")
-    print(result_wp.optimized_parameter)
+    print(result_wp.optimized_parameters)
     result_wp.save(str(folder_wp))
 
     res_wp = result_wp.data["dataset1"]

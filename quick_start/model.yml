@@ -2,15 +2,15 @@ type: kinetic-spectrum
 
 initial_concentration:
   input:
-    compartments: [1, 2, 3]
+    compartments: [s1, s2, s3]
     parameters: [input.1, input.1, input.0]
 
 k_matrix:
   k1:
     matrix:
-      (2, 1): kinetic.1
-      (3, 2): kinetic.2
-      (3, 3): kinetic.3
+      (s2, s1): kinetic.1
+      (s3, s2): kinetic.2
+      (s3, s3): kinetic.3
 
 megacomplex:
   m1:
