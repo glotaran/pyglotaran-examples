@@ -19,7 +19,7 @@ results_folder.mkdir(exist_ok=True)
 print(f"Saving results to: {str(results_folder)}")
 
 # output folder for this specific analysis
-output_folder = results_folder.joinpath("dummy_6d_disp")
+output_folder = results_folder.joinpath("simultaneous_analysis_6d_disp")
 
 # data inlezen
 data_path = script_folder.joinpath("equareaIRFdispscalsim6a.ascii")
@@ -63,8 +63,8 @@ scheme = Scheme(
         "dataset5": dataset5,
         "dataset6": dataset6,
     },
-    nfev=5,
-    nnls=True,
+    maximum_number_function_evaluations=2,
+    non_linear_least_squares=True,
     optimization_method="LevenbergMarquart",
 )
 # optimize

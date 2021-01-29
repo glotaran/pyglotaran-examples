@@ -63,8 +63,8 @@ equal_area_penalties:
     weight: 0.1
 
 # # Test case for #520:
-# spectral_relations:
-#   - compartment: s2
-#     target: s3
-#     parameter: rel.r1
-#     interval: [ [0,1000]]
+spectral_relations:
+  - compartment: s2
+    target: s3
+    parameter: rel.r1
+    interval: [ [0,1000]]

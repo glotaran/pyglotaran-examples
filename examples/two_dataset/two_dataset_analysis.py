@@ -58,7 +58,7 @@ print(model.validate(parameters=parameter))
 # %%
 start = timer()
 scheme = Scheme(
-    model, parameter, {"dataset1": dataset1, "dataset2": dataset2}, nfev=5, nnls=True
+    model, parameter, {"dataset1": dataset1, "dataset2": dataset2}, maximum_number_function_evaluations=5, non_linear_least_squares=True
 )
 problem = Problem(scheme)
 # check out problem bag

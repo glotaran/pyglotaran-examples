@@ -40,22 +40,20 @@ model = gta.read_model_from_yaml_file(model_path)
 parameter_file = output_folder.joinpath("optimized_parameters.csv")
 if parameter_file.exists():
     print("Optimized parameters exists: please check")
-    parameter = read_parameters_from_csv_file(str(parameter_file))
+    parameters = read_parameters_from_csv_file(str(parameter_file))
 else:
-    parameter = gta.read_parameters_from_yaml_file(parameters_path)
+    parameters = gta.read_parameters_from_yaml_file(parameters_path)
 
-print(model.validate(parameters=parameter))
+print(model.validate(parameters=parameters))
 
 # %% Define analysis Scheme
 scheme = Scheme(
     model,
-    parameter,
+    parameters,
     {"dataset1": dataset1, "dataset2": dataset2, "dataset3": dataset3},
-    nfev=3,
-    nnls=True,
-    optimization_method="LevenbergMarquart", # defaukl
+    maximum_number_function_evaluations=5,
+    non_linear_least_squares=True
 )
-scheme.data = scheme.prepare_data() # Remove once pyglotaran#521 is resolved
 
 # %% Optimize
 result = optimize(scheme)
@@ -73,17 +71,17 @@ plt.rc("axes", prop_cycle=plot_style.cycler)
 result_datafile1 = output_folder.joinpath("dataset1.nc")
 result_datafile2 = output_folder.joinpath("dataset2.nc")
 result_datafile3 = output_folder.joinpath("dataset3.nc")
-fig1 = plot_overview(result_datafile1, linlog=True, linthresh=5)
-fig1.savefig(
-    output_folder.joinpath(f"plot_overview_dummy1.pdf"),
-    bbox_inches="tight",
-)
+# fig1 = plot_overview(result_datafile1, linlog=True, linthresh=5)
+# fig1.savefig(
+#     output_folder.joinpath(f"plot_overview_dummy1.pdf"),
+#     bbox_inches="tight",
+# )
 
-fig2 = plot_overview(result_datafile2, linlog=True, linthresh=5)
-fig2.savefig(
-    output_folder.joinpath(f"plot_overview_dummy2.pdf"),
-    bbox_inches="tight",
-)
+# fig2 = plot_overview(result_datafile2, linlog=True, linthresh=5)
+# fig2.savefig(
+#     output_folder.joinpath(f"plot_overview_dummy2.pdf"),
+#     bbox_inches="tight",
+# )
 
 fig3 = plot_overview(result_datafile3, linlog=True, linthresh=5)
 fig3.savefig(

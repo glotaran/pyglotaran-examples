@@ -1,7 +1,7 @@
 rates:
   - ["k1", 0.05]
   - ["k2", 0.5]
-  - ["k3", 2]
+  - ["k3", 2.1]
   - {"vary": True,"non-negative": True}
 
 inputs:

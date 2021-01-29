@@ -6,27 +6,18 @@ rates:
 
 inputs:
   - ["1", 0.5, {"vary": False}]
-  - ["2", 0.251]
-  - ["3", 0.36]
-  - ["7", 0.16]
-  - ["8", 0.31]
   - ["9", 0.1]
   - ["10", 0.2]
   - {"non-negative": True}
 
 irf:
-  - ["center1",0.5]
-  - ["center2",0.5]
   - ["center3",0.5]
-  - ["width1",0.06]
   - ["width2",0.06]
-  - {"non-negative": True}
 
-scale:
-  - ["1", 1, {"vary": False}]
-  - ["2", 0.88, {"vary": True}]
-  - ["3", 74, {"vary": True}]
-  - {"non-negative": True}
+# scale:
+#   - ["1", 1, {"vary": False}]
+#   - ["2", 1.3, {"vary": True}]
+#   - ["3", 77, {"vary": True}]
 
 pen:
   - ["1", 1, {"vary": False}]

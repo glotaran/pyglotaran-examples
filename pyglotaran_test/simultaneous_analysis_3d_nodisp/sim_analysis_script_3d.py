@@ -19,7 +19,7 @@ results_folder.mkdir(exist_ok=True)
 print(f"Saving results to: {str(results_folder)}")
 
 # output folder for this specific analysis
-output_folder = results_folder.joinpath("dummy_3d")
+output_folder = results_folder.joinpath("simultaneous_analysis_3d_nodisp")
 
 # data inlezen
 data_path = script_folder.joinpath("equareaIRFsim3a.ascii")
@@ -47,7 +47,7 @@ print(model.validate(parameters=parameter))
 
 # analysis schema definieren
 scheme = Scheme(
-    model, parameter, {"dataset1": dataset1, "dataset2": dataset2, "dataset3": dataset3}, nfev=5, nnls=True
+    model, parameter, {"dataset1": dataset1, "dataset2": dataset2, "dataset3": dataset3}, maximum_number_function_evaluations=5, non_linear_least_squares=True
 )
 # optimize
 result = optimize(scheme)

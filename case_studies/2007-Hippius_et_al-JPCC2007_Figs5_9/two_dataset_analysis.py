@@ -59,7 +59,7 @@ print(model.validate(parameters=parameter))
 
 # %%
 start = timer()
-scheme = Scheme(model, parameter, {"dataset1": dataset1, "dataset2": dataset2}, nfev=2)
+scheme = Scheme(model, parameter, {"dataset1": dataset1, "dataset2": dataset2}, maximum_number_function_evaluations=2)
 result = optimize(scheme)
 
 end = timer()

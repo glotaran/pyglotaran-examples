@@ -49,8 +49,7 @@ else:
     dataset = read_data_file(data_path)
     model = read_model_from_yaml_file(model_path)
     parameter = read_parameters_from_yaml_file(parameter_path)
-    scheme = Scheme(model, parameter, {"dataset1": dataset}, nfev=2)
-    scheme.data = scheme.prepare_data()
+    scheme = Scheme(model, parameter, {"dataset1": dataset}, maximum_number_function_evaluations=2)
     # Although the problem converges in about 10 residual evaluations
     # a (much) larger initial number is needed due to some lmfit intricacies.
 
