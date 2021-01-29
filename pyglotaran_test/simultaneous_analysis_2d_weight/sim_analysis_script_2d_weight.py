@@ -1,4 +1,4 @@
-# %%
+# %% Imports
 from pathlib import Path
 import glotaran as gta
 
@@ -11,9 +11,10 @@ import matplotlib.pyplot as plt  # 3.3 or higher
 from pyglotaran_extras.plotting.plot_overview import plot_overview
 from pyglotaran_extras.plotting.style import PlotStyle
 
+# %% 
 script_path = Path(__file__)
 script_folder = script_path.parent
-print(f"Excuting: {script_path.name} from {script_folder}")
+print(f"Executing: {script_path.name} from {script_folder}")
 results_folder = Path.home().joinpath("pyglotaran_examples_output")
 results_folder.mkdir(exist_ok=True)
 print(f"Saving results to: {str(results_folder)}")
@@ -21,7 +22,7 @@ print(f"Saving results to: {str(results_folder)}")
 # output folder for this specific analysis
 output_folder = results_folder.joinpath("simultaneous_analysis_2d_weight")
 
-# data inlezen
+# %% Read in data
 data_path = script_folder.joinpath("equareaIRFsim5.ascii")
 dataset1 = gta.io.read_data_file(data_path)
 # print(dataset1)
@@ -45,7 +46,7 @@ else:
 
 print(model.validate(parameters=parameter))
 
-# analysis schema definieren
+# %% Define analysis Scheme
 scheme = Scheme(
     model,
     parameter,
@@ -54,19 +55,20 @@ scheme = Scheme(
     nnls=True,
     optimization_method="LevenbergMarquart", # defaukl
 )
-# optimize
-result = optimize(scheme)
-# %%
-# evt opslaan
+scheme.data = scheme.prepare_data() # Remove once pyglotaran#521 is resolved
 
+# %% Optimize
+result = optimize(scheme)
+# %% Save results
 
 result.save(str(output_folder))
-# evt plotten
-# %% Set subsequent plots to the glotaran style
+
+# %% Plot results
+# Set subsequent plots to the glotaran style
 plot_style = PlotStyle()
 plt.rc("axes", prop_cycle=plot_style.cycler)
 
-# %%
+# %% Save plots for individual datasets
 # TODO: enhance plot_overview to handle multiple datasets
 result_datafile1 = output_folder.joinpath("dataset1.nc")
 result_datafile2 = output_folder.joinpath("dataset2.nc")
