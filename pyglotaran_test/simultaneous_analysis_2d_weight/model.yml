@@ -38,7 +38,6 @@ initial_concentration:
   input3:
     compartments: [s1, s2, s3]
     parameters: [inputs.1, inputs.9, inputs.10]
-#      exclude_from_normalize: [s1, s2, s3]
 
 irf:
   irf1_no_dispersion:
@@ -71,10 +70,10 @@ equal_area_penalties:
     weight: 0.1
 
 weights:
-  - datasets: [dataset2,dataset3]
-    global_interval: [400, 585]
-    value: 0.71
+  - datasets: [dataset2]
+    global_interval: [400, 600]
+    value: 0.7071067811865476  # should be 0.71?
   - datasets: [dataset3]
-    global_interval: [400, 585]
-    value: 0.05
+    global_interval: [400, 600]
+    value: 0.005  # should be 0.05?
 

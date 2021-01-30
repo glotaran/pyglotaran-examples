@@ -63,9 +63,9 @@ scheme = Scheme(
         "dataset5": dataset5,
         "dataset6": dataset6,
     },
-    maximum_number_function_evaluations=2,
+    maximum_number_function_evaluations=25,
     non_linear_least_squares=True,
-    optimization_method="LevenbergMarquart",
+    # optimization_method="LevenbergMarquart",
 )
 # optimize
 result = optimize(scheme)

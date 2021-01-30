@@ -2,8 +2,9 @@
 from pathlib import Path
 import glotaran as gta
 
-from glotaran.analysis.optimize import optimize
+from glotaran.analysis.optimize import optimize, optimize_problem
 from glotaran.analysis.scheme import Scheme
+from glotaran.analysis.problem import Problem
 from glotaran import read_parameters_from_csv_file
 
 # Needed for plotting only
@@ -11,7 +12,7 @@ import matplotlib.pyplot as plt  # 3.3 or higher
 from pyglotaran_extras.plotting.plot_overview import plot_overview
 from pyglotaran_extras.plotting.style import PlotStyle
 
-# %% 
+# %% Specify some data paths
 script_path = Path(__file__)
 script_folder = script_path.parent
 print(f"Executing: {script_path.name} from {script_folder}")
@@ -25,13 +26,12 @@ output_folder = results_folder.joinpath("simultaneous_analysis_2d_weight")
 # %% Read in data
 data_path = script_folder.joinpath("equareaIRFsim5.ascii")
 dataset1 = gta.io.read_data_file(data_path)
-# print(dataset1)
 data_path2 = script_folder.joinpath("equareaIRFsim6.ascii")
 dataset2 = gta.io.read_data_file(data_path2)
-# print(dataset2)
 data_path3 = script_folder.joinpath("equareaIRFsim8.ascii")
 dataset3 = gta.io.read_data_file(data_path3)
-# model inlezen + parameters
+
+# %% Read in model and paremeters
 model_path = script_folder.joinpath("model.yml")
 parameters_path = script_folder.joinpath("parameters.yml")
 
@@ -52,13 +52,18 @@ scheme = Scheme(
     parameters,
     {"dataset1": dataset1, "dataset2": dataset2, "dataset3": dataset3},
     maximum_number_function_evaluations=5,
-    non_linear_least_squares=True
+    non_linear_least_squares=True,
+    # optimization_method="LevenbergMarquart",
 )
 
-# %% Optimize
-result = optimize(scheme)
-# %% Save results
+problem = Problem(scheme)
+print(problem.parameters)
+# results = optimize_problem(problem)
 
+# %% Optimize (this takes some time)
+result = optimize(scheme)
+
+# %% Save results
 result.save(str(output_folder))
 
 # %% Plot results
@@ -71,17 +76,19 @@ plt.rc("axes", prop_cycle=plot_style.cycler)
 result_datafile1 = output_folder.joinpath("dataset1.nc")
 result_datafile2 = output_folder.joinpath("dataset2.nc")
 result_datafile3 = output_folder.joinpath("dataset3.nc")
-# fig1 = plot_overview(result_datafile1, linlog=True, linthresh=5)
-# fig1.savefig(
-#     output_folder.joinpath(f"plot_overview_dummy1.pdf"),
-#     bbox_inches="tight",
-# )
 
-# fig2 = plot_overview(result_datafile2, linlog=True, linthresh=5)
-# fig2.savefig(
-#     output_folder.joinpath(f"plot_overview_dummy2.pdf"),
-#     bbox_inches="tight",
-# )
+# Warning: plotting can take quite a bit of time and is hard to interrupt
+fig1 = plot_overview(result_datafile1, linlog=True, linthresh=5)
+fig1.savefig(
+    output_folder.joinpath(f"plot_overview_dummy1.pdf"),
+    bbox_inches="tight",
+)
+
+fig2 = plot_overview(result_datafile2, linlog=True, linthresh=5)
+fig2.savefig(
+    output_folder.joinpath(f"plot_overview_dummy2.pdf"),
+    bbox_inches="tight",
+)
 
 fig3 = plot_overview(result_datafile3, linlog=True, linthresh=5)
 fig3.savefig(
