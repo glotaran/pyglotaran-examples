@@ -1,0 +1,93 @@
+type: kinetic-spectrum
+
+dataset:
+  dataset1:
+    megacomplex: [complex1]
+    initial_concentration: input1
+    irf: irf1_with_dispersion
+    scale: scale.1
+  dataset2:
+    megacomplex: [complex1]
+    initial_concentration: input1
+    irf: irf1_with_dispersion
+    scale: scale.1
+  dataset3:
+    megacomplex: [complex1]
+    initial_concentration: input2
+    irf: irf2_with_dispersion
+    scale: scale.2
+  dataset4:
+    megacomplex: [complex1]
+    initial_concentration: input2
+    irf: irf2_with_dispersion
+    scale: scale.2
+  dataset5:
+    megacomplex: [complex1]
+    initial_concentration: input3
+    irf: irf3_with_dispersion
+    scale: scale.3
+  dataset6:
+    megacomplex: [complex1]
+    initial_concentration: input3
+    irf: irf3_with_dispersion
+    scale: scale.3
+
+megacomplex:
+  complex1:
+      k_matrix: [km1]
+
+k_matrix:
+  km1:
+    matrix:
+      (s1, s1): rates.k1
+      (s2, s2): rates.k2
+      (s3, s3): rates.k3
+
+initial_concentration:
+    input1:
+      compartments: [s1,s2,s3]
+      parameters: [inputs.1,inputs.2,inputs.3]
+    input2:
+      compartments: [s1,s2,s3]
+      parameters: [inputs.1,inputs.7,inputs.8]
+    input3:
+      compartments: [s1,s2,s3]
+      parameters: [inputs.1,inputs.9,inputs.10]
+#      exclude_from_normalize: [s1, s2, s3]
+
+irf:
+  irf1_with_dispersion:
+    type : spectral-multi-gaussian
+    center : [irf.center1]
+    width : [irf.width]
+    dispersion_center : irf.dispc
+    center_dispersion : [irf.disp1,irf.disp2]
+  irf2_with_dispersion:
+    type : spectral-multi-gaussian
+    center : [irf.center2]
+    width : [irf.width]
+    dispersion_center : irf.dispc
+    center_dispersion : [irf.disp1,irf.disp2]
+  irf3_with_dispersion:
+    type : spectral-multi-gaussian
+    center : [irf.center3]
+    width : [irf.width]
+    dispersion_center : irf.dispc
+    center_dispersion : [irf.disp1,irf.disp2]
+
+    # It works without equal_area_penalties but then the inputs cannot be estimated
+equal_area_penalties:
+  - type: equal_area
+    source: s1
+    source_intervals: [[300, 3000]]
+    target: s2
+    target_intervals: [[300, 3000]]
+    parameter: area.1
+    weight: 0.01
+  - type: equal_area
+    source: s1
+    source_intervals: [[300, 3000]]
+    target: s3
+    target_intervals: [[300, 3000]]
+    parameter: area.1
+    weight: 0.01

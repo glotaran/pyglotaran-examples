@@ -1,0 +1,28 @@
+type: kinetic-spectrum
+
+dataset:
+  dataset1:
+    megacomplex: [complex1]
+    initial_concentration: input1
+    irf: irf1
+
+megacomplex:
+  complex1:
+    k_matrix: [km1]
+
+k_matrix:
+  km1:
+    matrix:
+      (s1, s1): rates.k1
+      (s2, s2): rates.k2
+
+initial_concentration:
+  input1:
+    compartments: [s1, s2]
+    parameters: [inputs.s1, inputs.s2]
+
+irf:
+  irf1:
+    type: spectral-multi-gaussian # TODO: also make gaussian work
+    center: [irf.center]
+    width: [irf.width]
