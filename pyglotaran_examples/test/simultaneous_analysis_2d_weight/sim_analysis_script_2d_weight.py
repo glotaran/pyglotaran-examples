@@ -51,9 +51,9 @@ scheme = Scheme(
     model,
     parameters,
     {"dataset1": dataset1, "dataset2": dataset2, "dataset3": dataset3},
-    maximum_number_function_evaluations=5,
+    maximum_number_function_evaluations=99,
     non_linear_least_squares=True,
-    # optimization_method="LevenbergMarquart",
+    optimization_method="LevenbergMarquart",
 )
 
 problem = Problem(scheme)
@@ -62,6 +62,7 @@ print(problem.parameters)
 
 # %% Optimize (this takes some time)
 result = optimize(scheme)
+print(result.markdown())
 
 # %% Save results
 result.save(str(output_folder))

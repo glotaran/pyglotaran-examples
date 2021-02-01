@@ -72,7 +72,7 @@ equal_area_penalties:
 weights:
   - datasets: [dataset2]
     global_interval: [400, 600]
-    value: 0.7071067811865476  # should be 0.71?
+    value: 0.5  # should be 0.71?
   - datasets: [dataset3]
     global_interval: [400, 600]
-    value: 0.005  # should be 0.05?
+    value: 0.0025  # should be 0.05?
