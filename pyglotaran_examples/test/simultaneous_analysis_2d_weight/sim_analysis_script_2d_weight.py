@@ -52,7 +52,7 @@ scheme = Scheme(
     parameters,
     {"dataset1": dataset1, "dataset2": dataset2, "dataset3": dataset3},
     maximum_number_function_evaluations=99,
-    non_linear_least_squares=True,
+    non_negative_least_squares=True,
     optimization_method="LevenbergMarquart",
 )
 

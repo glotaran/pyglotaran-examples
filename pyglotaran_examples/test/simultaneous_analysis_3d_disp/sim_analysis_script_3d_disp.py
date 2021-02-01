@@ -51,7 +51,7 @@ scheme = Scheme(
     parameter,
     {"dataset1": dataset1, "dataset2": dataset2, "dataset3": dataset3},
     maximum_number_function_evaluations=5,
-    non_linear_least_squares=True,
+    non_negative_least_squares=True,
 )
 # optimize
 result = optimize(scheme)

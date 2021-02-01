@@ -56,7 +56,7 @@ else:
         parameter,
         {"dataset1": dataset},
         maximum_number_function_evaluations=9,
-        non_linear_least_squares=True,
+        non_negative_least_squares=True,
     )
 
     print(model.validate(parameters=parameter))
