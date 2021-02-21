@@ -57,3 +57,10 @@ equal_area_penalties:
     target_intervals: [[300, 3000]]
     parameter: area.1
     weight: 0.1
+
+# Example of weight application:
+# weights:
+#   - datasets: [dataset1, dataset2]
+#     global_interval: [100, 102]
+#     model_interval: [301, 502]
+#     value: 0.95

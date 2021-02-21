@@ -33,7 +33,14 @@ parameters = read_parameters_from_yaml_file(script_folder.joinpath(PARAMETERS_FI
 print(model.validate(parameters=parameters))
 
 # %% Construct the analysis scheme
-scheme = Scheme(model, parameters, {"dataset1": dataset1, "dataset2": dataset2})
+scheme = Scheme(
+    model,
+    parameters,
+    {"dataset1": dataset1, "dataset2": dataset2},
+    maximum_number_function_evaluations=11,
+    non_negative_least_squares=True,
+    optimization_method="TrustRegionReflection",
+)
 
 # %% Optimize the analysis scheme (and estimate parameters)
 result = optimize(scheme)

@@ -77,8 +77,8 @@ equal_area_penalties:
     parameter: area.1
     weight: 0.1
 
-weights:
-  - datasets: [dataset1, dataset2, dataset3]
-    global_interval: [400, 450]
-    # model_interval: [301, 502]
-    value: 0.5
+# weights:
+#   - datasets: [dataset1, dataset2, dataset3]
+#     global_interval: [400, 450]
+#     # model_interval: [301, 502]
+#     value: 0.5

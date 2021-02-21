@@ -13,7 +13,7 @@ from glotaran.analysis.optimize import optimize
 from glotaran.analysis.scheme import Scheme
 from glotaran.io import read_data_file
 
-DATA_PATH = "data/data.ascii"
+DATA_PATH = "data/demo_data_Hippius_etal_JPCC2007_111_13988_Figs5_9.ascii"
 MODEL_PATH = "models/model.yml"
 PARAMETERS_FILE_PATH = "models/parameters.yml"
 

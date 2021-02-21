@@ -15,8 +15,8 @@ from glotaran.analysis.optimize import optimize
 from glotaran.analysis.scheme import Scheme
 from glotaran.io.reader import read_data_file
 
-TARGET_MODEL = "models/co_co2_TA_model.yaml"
-TARGET_PARAMS = "models/co_co2_TA_parameters.yaml"
+TARGET_MODEL = "models/model_2d_co_co2.yml"
+TARGET_PARAMS = "models/parameters_2d_co_co2.yml"
 
 
 # %%

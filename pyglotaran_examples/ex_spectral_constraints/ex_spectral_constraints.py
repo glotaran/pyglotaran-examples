@@ -35,5 +35,9 @@ for key, val in MODEL_PATHS.items():
     print(model.markdown(parameters=parameters))
     scheme = Scheme(model, parameters, {"dataset1": dataset})
     result = optimize(scheme)
+    # Second optimization with results of the first:
+    scheme2 = result.get_scheme()
+    result2 = optimize(scheme2)
     simple_plot_overview(result.data["dataset1"], key)
+    simple_plot_overview(result2.data["dataset1"], key)
 plt.show()
