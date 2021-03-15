@@ -1,0 +1,66 @@
+type: kinetic-spectrum
+
+dataset:
+  dataset1:
+    megacomplex: [complex1]
+    initial_concentration: input1
+    irf: irf1
+    scale: scale.1
+  dataset2:
+    megacomplex: [complex2]
+    initial_concentration: input2
+#    irf: None
+    scale: scale.2
+
+megacomplex:
+  complex1:
+    k_matrix: [km1]
+  complex2:
+    k_matrix: [km2]
+
+k_matrix:
+  km1:
+    matrix:
+      (s1, s4): rates.k1
+      (s3, s1): rates.k2
+      (s2, s1): rates.k3
+      (s5, s2): rates.k4
+      (s6, s3): rates.k5
+      (s6, s6): rates.k6
+      (s5, s5): rates.k6
+  km2:
+    matrix:
+      (s5, s5): rates.k6
+
+initial_concentration:
+  input1:
+    compartments: [s1, s2, s3, s4, s5, s6]
+    parameters: [inputs.s1, inputs.s1, inputs.s1, inputs.s2, inputs.s1, inputs.s1]
+  input2:
+    compartments: [s5]
+    parameters: [inputs.s2]
+
+equal_area_penalties:
+  - type: equal_area
+    source: s2
+    source_intervals: [[0, 1000]]
+    target: s1
+    target_intervals: [[0, 1000]]
+    parameter: area.1
+    weight: 1.E-6
+
+spectral_relations:
+  - compartment: s1
+    target: s4
+    parameter: rel.r1
+    interval: [[0, 1000]]
+  - compartment: s3
+    target: s6
+    parameter: rel.r1
+    interval: [[0, 1000]]
+
+irf:
+  irf1:
+    type: spectral-multi-gaussian
+    center: [irf.center]
+    width: [irf.width]
