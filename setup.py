@@ -39,7 +39,7 @@ setup(
         "Source": "https://github.com/glotaran/pyglotaran_examples",
         "Tracker": "https://github.com/glotaran/pyglotaran_examples/issues",
     },
-    python_requires=">=3.6,<3.9",
+    python_requires=">=3.8,<3.10",
     packages=find_packages(),
     install_requires=install_requires,
     zip_safe=True,
