@@ -1,4 +1,4 @@
-# pyglotaran_examples
+# pyglotaran-examples
 
 This repository hold examples showcasing the use of the pyglotaran package, version 0.3.0.
 Can be installed as a python package from sources, but is not released on pypi or conda.
@@ -14,10 +14,10 @@ Note for Windows Users: The easiest way to get python for Windows is via [Anacon
 
 ### Stable Release
 
-To install pyglotaran_examples from sources, either clone this repository or download the latest release, then run this command in your terminal:
+To install pyglotaran-examples from sources, either clone this repository or download the latest release, then run this command in your terminal:
 
 ```shell
-git clone https://github.com/glotaran/pyglotaran_examples.git
-cd pyglotaran_examples
+git clone https://github.com/glotaran/pyglotaran-examples.git
+cd pyglotaran-examples
 pip install -e .
 ```
