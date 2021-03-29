@@ -56,7 +56,25 @@ print(result2.markdown(True))
 print(result.markdown(True))
 
 # %% Save the results
-save_result(str(output_folder), result, allow_overwrite=True)
+try:
+    save_result(
+        result_path=str(output_folder), result=result, format_name="folder", allow_overwrite=True
+    )
+except (ValueError, FileExistsError) as error:
+    print(f"catching error: {error}")
+    try:
+        save_result(
+            result_path=str(output_folder), result=result, format_name="yml", allow_overwrite=True
+        )
+    except FileExistsError as error:
+        print(f"catching error: {error}")
+        timestamp = datetime.today().strftime("%y%m%d_%H%M")
+        save_result(
+            result_path=str(output_folder.joinpath(timestamp)),
+            result=result,
+            format_name="yml",
+            allow_overwrite=True,
+        )
 
 # %% Plot and save as PDF
 # This set subsequent plots to the glotaran style
