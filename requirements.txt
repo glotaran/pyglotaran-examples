@@ -1,5 +1,5 @@
 
-pyglotaran>=0.3.0,<0.4.0
+pyglotaran>=0.3.0
 jupyterlab>=2.0.0
 matplotlib>=3.3.0
 
