@@ -1,5 +1,7 @@
 import functools
 import warnings
+import os
+import logging
 from pathlib import Path
 
 import matplotlib
@@ -12,6 +14,10 @@ REPO_ROOT = Path(__file__).parent.parent
 RESULTS_DIR = REPO_ROOT / "plot_results"
 if not RESULTS_DIR.exists():
     RESULTS_DIR.mkdir()
+
+
+def github_format_warning(message, category, filename, lineno, line=None):
+    return f"::warning file={filename},line={lineno}::{category.__name__}: {message}\n"
 
 
 def save_all_figures(filename: str):
@@ -34,6 +40,10 @@ def script_run_wrapper(func):
             warnings.filterwarnings(
                 "ignore", message=r"Matplotlib.+non-GUI.+", category=UserWarning
             )
+            warnings.filterwarnings("always", message=r".+glotaran.+", category=DeprecationWarning)
+            warnings.formatwarning = github_format_warning
+            if "GITHUB" in os.environ:
+                pass
 
         func(*args, **kwargs)
 

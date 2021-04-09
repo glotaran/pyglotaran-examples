@@ -6,7 +6,7 @@ inputs:
     description: "Which example to run {quick-start, fluorescence, spectral-constraints, two-datasets, sim-3d-disp, sim-3d-nodisp, sim-3d-weight, sim-6d-disp, run-all}"
     required: true
   examples_branch:
-    description: "Branch of pyglotaran examples to use"
+    description: "Branch/tag of pyglotaran examples to use"
     required: true
     default: main
 
@@ -41,7 +41,7 @@ runs:
       id: example-run
       run: |
         echo "::group:: Running ${{ inputs.example_name }}"
-        python pyglotaran-examples/scripts/run_examples.py ${{ inputs.example_name }} --headless
+        python pyglotaran-examples/scripts/run_examples.py ${{ inputs.example_name }} --headless 2>&1
         echo "::set-output name=plots-path::pyglotaran-examples/plot_results"
         echo "::endgroup::"
       shell: bash

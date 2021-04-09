@@ -3,6 +3,6 @@ pyglotaran>=0.3.0
 jupyterlab>=2.0.0
 matplotlib>=3.3.0
 
-git+https://github.com/glotaran/pyglotaran_extras.git
+git+https://github.com/glotaran/pyglotaran-extras.git
 
 yaargh>=0.28.0

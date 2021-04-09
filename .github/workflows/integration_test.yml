@@ -1,15 +1,16 @@
 name: "Run Examples"
 
 on:
+  push:
   pull_request:
   workflow_dispatch:
     inputs:
       pyglotaran_branch:
-        description: "pyglotaran branch to run the examples against"
+        description: "pyglotaran branch/tag to run the examples against"
         required: true
         default: "main"
       pyglotaran_examples_branch:
-        description: "pyglotaran-examples branch to use"
+        description: "pyglotaran-examples branch/tag to use"
         required: true
         default: "main"
 
@@ -20,16 +21,16 @@ jobs:
     strategy:
       matrix:
         example_name: [
-            quick_start,
+            quick-start,
             fluorescence,
-            # transient_absorption,  # Not working with 0.3.2
-            spectral_constraints,
-            # spectral_guidance,  # Not working with 0.3.2
-            two_datasets,
-            sim_3d_disp,
-            sim_3d_nodisp,
-            sim_3d_weight,
-            sim_6d_disp,
+            # transient-absorption,  # Not working with 0.3.2
+            spectral-constraints,
+            # spectral-guidance,  # Not working with 0.3.2
+            two-datasets,
+            sim-3d-disp,
+            sim-3d-nodisp,
+            sim-3d-weight,
+            sim-6d-disp,
           ]
     steps:
       - uses: actions/checkout@v2
