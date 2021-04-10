@@ -132,3 +132,6 @@ dmypy.json
 *.nc
 
 .vscode/
+
+# plot results when run headless
+plot_results
