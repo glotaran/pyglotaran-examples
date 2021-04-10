@@ -22,15 +22,15 @@ jobs:
       matrix:
         example_name: [
             quick-start,
-            # fluorescence,
-            # # transient-absorption,  # Not working with 0.3.2
-            # spectral-constraints,
-            # # spectral-guidance,  # Not working with 0.3.2
-            # two-datasets,
-            # sim-3d-disp,
-            # sim-3d-nodisp,
-            # sim-3d-weight,
-            # sim-6d-disp,
+            fluorescence,
+            # transient-absorption,  # Not working with 0.3.2
+            spectral-constraints,
+            # spectral-guidance,  # Not working with 0.3.2
+            two-datasets,
+            sim-3d-disp,
+            sim-3d-nodisp,
+            sim-3d-weight,
+            sim-6d-disp,
           ]
     steps:
       - uses: actions/checkout@v2
@@ -43,15 +43,16 @@ jobs:
         with:
           python-version: 3.8
       - name: Install pyglotaran
-        run: pip install .
+        run: |
+          pip install wheel
+          pip install .
       - name: Cloning pyglotaran-examples
         if: ${{ github.event.inputs.pyglotaran_examples_branch }} == ""
         uses: actions/checkout@v2
         with:
           path: pyglotaran-examples
       - id: example-run
-        # uses: glotaran/pyglotaran-examples@main
-        uses: s-weigand/pyglotaran-examples@fix-action
+        uses: glotaran/pyglotaran-examples@main
         with:
           example_name: ${{ matrix.example_name }}
           examples_branch: ${{ github.event.inputs.pyglotaran_examples_branch }}
