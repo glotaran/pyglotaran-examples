@@ -1,7 +1,6 @@
 import functools
 import warnings
 import os
-import logging
 from pathlib import Path
 
 import matplotlib

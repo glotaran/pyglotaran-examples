@@ -20,8 +20,16 @@ runs:
   steps:
     - name: Clone pyglotaran-examples to pyglotaran-examples
       run: |
-        echo "::group:: Cloning examples branch  to pyglotaran-examples"
-        git clone  --depth 1 -b ${{ inputs.examples_branch }} https://github.com/glotaran/pyglotaran-examples.git
+        [ ! -d pyglotaran-examples ] && [ ! -n '${{ inputs.examples_branch }}' ] && \
+          { \
+            echo "::error:: Branch not provided and 'pyglotaran-examples' folder doesn't exist.\
+            Manually clone the examples repo to 'pyglotaran-examples' if you use it with the 'push' or 'pull_request' event."; \
+            exit 1; \
+          }
+        echo "::group:: Cloning examples branch '${{ inputs.examples_branch }}' to pyglotaran-examples"
+        [ ! -d pyglotaran-examples ] && \
+          git clone  --depth 1 -b ${{ inputs.examples_branch }} https://github.com/glotaran/pyglotaran-examples.git || \
+          echo "Folder pyglotaran-examples already exists, skipping cloning."
         echo "::endgroup::"
       shell: bash
     - name: Install pyglotaran-examples
