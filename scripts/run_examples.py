@@ -54,31 +54,36 @@ def script_run_wrapper(func):
 
 @script_run_wrapper
 def quick_start(*, headless=False):
-    """The whole script is run at import."""
+    """Runs pyglotaran_examples/quick_start/quickstart.py"""
+    # The whole script is run at import.
     from pyglotaran_examples.quick_start import quickstart
 
 
 @script_run_wrapper
 def fluorescence(*, headless=False):
-    """The whole script is run at import."""
+    """Runs pyglotaran_examples/study_fluorescence/target_analysis_script.py"""
+    # The whole script is run at import.
     from pyglotaran_examples.study_fluorescence import target_analysis_script
 
 
 @script_run_wrapper
 def transient_absorption(*, headless=False):
-    """The whole script is run at import."""
+    """Runs pyglotaran_examples/study_transient_absorption/target_analysis_script.py"""
+    # The whole script is run at import.
     from pyglotaran_examples.study_transient_absorption import target_analysis_script
 
 
 @script_run_wrapper
 def spectral_constraints(*, headless=False):
-    """The whole script is run at import."""
+    """Runs pyglotaran_examples/ex_spectral_constraints/ex_spectral_constraints.py"""
+    # The whole script is run at import.
     from pyglotaran_examples.ex_spectral_constraints import ex_spectral_constraints
 
 
 @script_run_wrapper
 def spectral_guidance(*, headless=False):
-    """import functions protected by if-name-main and run them"""
+    """Runs pyglotaran_examples/ex_spectral_guidance/ex_spectral_guidance.py"""
+    # import functions protected by if-name-main and run them
     from pyglotaran_examples.ex_spectral_guidance import ex_spectral_guidance
 
     result = ex_spectral_guidance.main()
@@ -88,25 +93,29 @@ def spectral_guidance(*, headless=False):
 
 @script_run_wrapper
 def two_datasets(*, headless=False):
-    """The whole script is run at import."""
+    """Runs pyglotaran_examples/ex_two_datasets/ex_two_datasets.py"""
+    # The whole script is run at import.
     from pyglotaran_examples.ex_two_datasets import ex_two_datasets
 
 
 @script_run_wrapper
 def sim_3d_disp(*, headless=False):
-    """The whole script is run at import."""
+    """Runs pyglotaran_examples/test/simultaneous_analysis_3d_disp/sim_analysis_script_3d_disp.py"""
+    # The whole script is run at import.
     from pyglotaran_examples.test.simultaneous_analysis_3d_disp import sim_analysis_script_3d_disp
 
 
 @script_run_wrapper
 def sim_3d_nodisp(*, headless=False):
-    """The whole script is run at import."""
+    """Runs pyglotaran_examples/test/simultaneous_analysis_3d_nodisp/sim_analysis_script_3d.py"""
+    # The whole script is run at import.
     from pyglotaran_examples.test.simultaneous_analysis_3d_nodisp import sim_analysis_script_3d
 
 
 @script_run_wrapper
 def sim_3d_weight(*, headless=False):
-    """The whole script is run at import."""
+    """Runs pyglotaran_examples/test/simultaneous_analysis_3d_weight/sim_analysis_script_3d_weight.py"""
+    # The whole script is run at import.
     from pyglotaran_examples.test.simultaneous_analysis_3d_weight import (
         sim_analysis_script_3d_weight,
     )
@@ -114,7 +123,8 @@ def sim_3d_weight(*, headless=False):
 
 @script_run_wrapper
 def sim_6d_disp(*, headless=False):
-    """The whole script is run at import."""
+    """Runs pyglotaran_examples/test/simultaneous_analysis_6d_disp/sim_analysis_script_6d_disp.py"""
+    # The whole script is run at import.
     from pyglotaran_examples.test.simultaneous_analysis_6d_disp import sim_analysis_script_6d_disp
 
 
@@ -133,6 +143,7 @@ all_funcs = [
 
 
 def run_all(*, headless=False):
+    """Runs all examples."""
     for func in all_funcs:
         func(headless=headless)
 
