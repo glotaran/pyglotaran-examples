@@ -1,6 +1,6 @@
 # pyglotaran-examples
 
-This repository hold examples showcasing the use of the pyglotaran package.
+This repository holds examples showcasing the use of the [`pyglotaran`](https://github.com/glotaran/pyglotaran) package.
 Can be installed as a python package from sources, but is not released on pypi or conda.
 
 ## Installation
