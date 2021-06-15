@@ -5,13 +5,15 @@ from pathlib import Path
 from timeit import default_timer as timer
 
 import matplotlib.pyplot as plt
-from pyglotaran_extras.plotting.plot_overview import plot_overview
-from pyglotaran_extras.plotting.style import PlotStyle
-
 from glotaran.analysis.optimize import optimize
 from glotaran.analysis.problem import Problem
+from glotaran.io import load_dataset
+from glotaran.io import load_model
+from glotaran.io import load_parameters
+from glotaran.io import save_result
 from glotaran.project.scheme import Scheme
-from glotaran.io import load_dataset, load_model, load_parameters, save_result
+from pyglotaran_extras.plotting.plot_overview import plot_overview
+from pyglotaran_extras.plotting.style import PlotStyle
 
 GLOBAL_MODEL = "models/model.yaml"
 GLOBAL_PARAMS = "models/parameters.yaml"

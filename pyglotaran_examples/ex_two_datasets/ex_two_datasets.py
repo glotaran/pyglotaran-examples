@@ -4,16 +4,16 @@ from datetime import datetime
 from pathlib import Path
 
 import matplotlib.pyplot as plt  # 3.3 or higher
-from pyglotaran_examples.boilerplate import setup_case_study
-from pyglotaran_extras.plotting.plot_overview import plot_overview
-from pyglotaran_extras.plotting.style import PlotStyle
-
 from glotaran.analysis.optimize import optimize
 from glotaran.io import load_dataset
 from glotaran.io import load_model
 from glotaran.io import load_parameters
 from glotaran.io import save_result
 from glotaran.project.scheme import Scheme
+from pyglotaran_extras.plotting.plot_overview import plot_overview
+from pyglotaran_extras.plotting.style import PlotStyle
+
+from pyglotaran_examples.boilerplate import setup_case_study
 
 DATA_PATH1 = "data/data1.ascii"
 DATA_PATH2 = "data/data2.ascii"

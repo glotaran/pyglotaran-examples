@@ -3,13 +3,16 @@ from datetime import datetime
 from pathlib import Path
 
 import matplotlib.pyplot as plt  # 3.3 or higher
-from pyglotaran_examples.boilerplate import setup_case_study
+from glotaran.analysis.optimize import optimize
+from glotaran.io import load_dataset
+from glotaran.io import load_model
+from glotaran.io import load_parameters
+from glotaran.io import save_result
+from glotaran.project.scheme import Scheme
 from pyglotaran_extras.plotting.plot_overview import plot_overview
 from pyglotaran_extras.plotting.style import PlotStyle
 
-from glotaran.analysis.optimize import optimize
-from glotaran.project.scheme import Scheme
-from glotaran.io import load_dataset, load_model, load_parameters, save_result
+from pyglotaran_examples.boilerplate import setup_case_study
 
 DATA_PATH1 = "data/Npq2_220219_800target3fasea.ascii"
 DATA_PATH2 = "data/trNpq2_220219_800target3fase10SAS5.ascii"

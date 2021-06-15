@@ -3,12 +3,14 @@ from pathlib import Path
 
 # Needed for plotting only
 import matplotlib.pyplot as plt  # 3.3 or higher
+from glotaran.analysis.optimize import optimize
+from glotaran.io import load_dataset
+from glotaran.io import load_model
+from glotaran.io import load_parameters
+from glotaran.io import save_result
+from glotaran.project.scheme import Scheme
 from pyglotaran_extras.plotting.plot_overview import plot_overview
 from pyglotaran_extras.plotting.style import PlotStyle
-
-from glotaran.analysis.optimize import optimize
-from glotaran.project.scheme import Scheme
-from glotaran.io import load_dataset, load_model, load_parameters, save_result
 
 script_path = Path(__file__)
 script_folder = script_path.parent

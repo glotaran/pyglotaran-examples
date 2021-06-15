@@ -2,12 +2,14 @@
 from pathlib import Path
 
 import matplotlib.pyplot as plt  # 3.3 or higher
+from glotaran.analysis.optimize import optimize
+from glotaran.io import load_dataset
+from glotaran.io import load_model
+from glotaran.io import load_parameters
+from glotaran.project.scheme import Scheme
+
 from pyglotaran_examples.boilerplate import setup_case_study
 from pyglotaran_examples.boilerplate import simple_plot_overview
-
-from glotaran.analysis.optimize import optimize
-from glotaran.project.scheme import Scheme
-from glotaran.io import load_dataset, load_model, load_parameters
 
 DATA_PATH = "data/data.ascii"
 MODEL_PATHS = {

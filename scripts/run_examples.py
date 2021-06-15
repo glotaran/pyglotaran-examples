@@ -3,11 +3,10 @@ import os
 import warnings
 from pathlib import Path
 
-from glotaran.io import save_result
-
 import matplotlib
 import matplotlib.pyplot as plt
 import yaargh
+from glotaran.io import save_result
 from matplotlib.backends.backend_pdf import PdfPages
 
 REPO_ROOT = Path(__file__).parent.parent
