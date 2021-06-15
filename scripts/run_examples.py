@@ -40,9 +40,9 @@ def script_run_wrapper(func):
                 "ignore", message=r"Matplotlib.+non-GUI.+", category=UserWarning
             )
             warnings.filterwarnings("always", message=r".+glotaran.+", category=DeprecationWarning)
-            warnings.formatwarning = github_format_warning
+            if "GITHUB" not in os.environ:
             if "GITHUB" in os.environ:
-                pass
+                warnings.formatwarning = github_format_warning
 
         func(*args, **kwargs)
 
