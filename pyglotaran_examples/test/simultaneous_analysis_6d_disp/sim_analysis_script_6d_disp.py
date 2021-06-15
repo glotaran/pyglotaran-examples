@@ -3,13 +3,14 @@ from pathlib import Path
 
 # Needed for plotting only
 import matplotlib.pyplot as plt  # 3.3 or higher
+from glotaran.analysis.optimize import optimize
+from glotaran.io import load_dataset
+from glotaran.io import load_model
+from glotaran.io import load_parameters
+from glotaran.io import save_result
+from glotaran.project.scheme import Scheme
 from pyglotaran_extras.plotting.plot_overview import plot_overview
 from pyglotaran_extras.plotting.style import PlotStyle
-
-import glotaran as gta
-from glotaran import read_parameters_from_csv_file
-from glotaran.analysis.optimize import optimize
-from glotaran.analysis.scheme import Scheme
 
 script_path = Path(__file__)
 script_folder = script_path.parent
@@ -23,31 +24,31 @@ output_folder = results_folder.joinpath("simultaneous_analysis_6d_disp")
 
 # data inlezen
 data_path = script_folder.joinpath("equareaIRFdispscalsim6a.ascii")
-dataset1 = gta.io.read_data_file(data_path)
+dataset1 = load_dataset(data_path)
 data_path2 = script_folder.joinpath("equareaIRFdispscalsim6b.ascii")
-dataset2 = gta.io.read_data_file(data_path2)
+dataset2 = load_dataset(data_path2)
 # print(dataset2)
 data_path3 = script_folder.joinpath("equareaIRFdispscalsim6c.ascii")
-dataset3 = gta.io.read_data_file(data_path3)
+dataset3 = load_dataset(data_path3)
 data_path = script_folder.joinpath("equareaIRFdispscalsim6d.ascii")
-dataset4 = gta.io.read_data_file(data_path)
+dataset4 = load_dataset(data_path)
 data_path = script_folder.joinpath("equareaIRFdispscalsim6e.ascii")
-dataset5 = gta.io.read_data_file(data_path)
+dataset5 = load_dataset(data_path)
 data_path = script_folder.joinpath("equareaIRFdispscalsim6f.ascii")
-dataset6 = gta.io.read_data_file(data_path)
+dataset6 = load_dataset(data_path)
 
 # model inlezen + parameters
 model_path = script_folder.joinpath("model.yml")
 parameters_path = script_folder.joinpath("parameters.yml")
 
-model = gta.read_model_from_yaml_file(model_path)
+model = load_model(model_path)
 
 parameter_file = output_folder.joinpath("optimized_parameters.csv")
 if parameter_file.exists():
     print("Optimized parameters exists: please check")
-    parameter = read_parameters_from_csv_file(str(parameter_file))
+    parameter = load_parameters(str(parameter_file))
 else:
-    parameter = gta.read_parameters_from_yaml_file(parameters_path)
+    parameter = load_parameters(parameters_path)
 
 print(model.validate(parameters=parameter))
 
@@ -73,7 +74,7 @@ result = optimize(scheme)
 # evt opslaan
 
 
-result.save(str(output_folder))
+save_result(result, output_folder, format_name="legacy", allow_overwrite=True)
 # evt plotten
 # %% Set subsequent plots to the glotaran style
 plot_style = PlotStyle()

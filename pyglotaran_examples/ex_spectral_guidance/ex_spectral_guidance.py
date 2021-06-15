@@ -3,16 +3,16 @@ from datetime import datetime
 from pathlib import Path
 
 import matplotlib.pyplot as plt  # 3.3 or higher
-from pyglotaran_examples.boilerplate import setup_case_study
+from glotaran.analysis.optimize import optimize
+from glotaran.io import load_dataset
+from glotaran.io import load_model
+from glotaran.io import load_parameters
+from glotaran.io import save_result
+from glotaran.project.scheme import Scheme
 from pyglotaran_extras.plotting.plot_overview import plot_overview
 from pyglotaran_extras.plotting.style import PlotStyle
 
-from glotaran import read_model_from_yaml_file
-from glotaran import read_parameters_from_csv_file
-from glotaran import read_parameters_from_yaml_file
-from glotaran.analysis.optimize import optimize
-from glotaran.analysis.scheme import Scheme
-from glotaran.io import read_data_file
+from pyglotaran_examples.boilerplate import setup_case_study
 
 DATA_PATH1 = "data/Npq2_220219_800target3fasea.ascii"
 DATA_PATH2 = "data/trNpq2_220219_800target3fase10SAS5.ascii"
@@ -32,11 +32,11 @@ def main():
     #     parameters = read_parameters_from_csv_file(str(parameter_file))
     # else:
     #     parameters = read_parameters_from_yaml_file(script_folder.joinpath(PARAMETERS_FILE_PATH))
-    parameters = read_parameters_from_yaml_file(script_folder.joinpath(PARAMETERS_FILE_PATH))
+    parameters = load_parameters(script_folder.joinpath(PARAMETERS_FILE_PATH))
     # %% Load in data, model and parameters
-    dataset1 = read_data_file(script_folder.joinpath(DATA_PATH1))
-    dataset2 = read_data_file(script_folder.joinpath(DATA_PATH2))
-    model = read_model_from_yaml_file(script_folder.joinpath(MODEL_PATH))
+    dataset1 = load_dataset(script_folder.joinpath(DATA_PATH1))
+    dataset2 = load_dataset(script_folder.joinpath(DATA_PATH2))
+    model = load_model(script_folder.joinpath(MODEL_PATH))
 
     # %% Validate model and parameters
     print(model.validate(parameters=parameters))
@@ -60,11 +60,6 @@ def main():
     return result
 
 
-def save_result(result):
-    # %% Save the results
-    result.save(str(output_folder))
-
-
 def load_and_plot_results():
     # %% Plot and save as PDF
     # This set subsequent plots to the glotaran style
@@ -72,7 +67,7 @@ def load_and_plot_results():
     plt.rc("axes", prop_cycle=plot_style.cycler)
 
     parameter_file = output_folder.joinpath("optimized_parameters.csv")
-    parameters = read_parameters_from_csv_file(str(parameter_file))
+    parameters = load_parameters(str(parameter_file))
     print(f"Optimized parameters loaded:\n {parameters}")
 
     result1 = output_folder.joinpath("dataset1.nc")
@@ -94,5 +89,5 @@ def load_and_plot_results():
 if __name__ == "__main__":
     print(f"- Using folder {output_folder.name} to read/write files for this run")
     result = main()
-    save_result(result)
+    save_result(result, output_folder, format_name="legacy", allow_overwrite=True)
     load_and_plot_results()

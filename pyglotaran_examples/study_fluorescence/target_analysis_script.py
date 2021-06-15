@@ -5,15 +5,15 @@ from pathlib import Path
 from timeit import default_timer as timer
 
 import matplotlib.pyplot as plt
-from pyglotaran_extras.plotting.plot_overview import plot_overview
-from pyglotaran_extras.plotting.style import PlotStyle
-
-from glotaran import read_model_from_yaml_file
-from glotaran import read_parameters_from_yaml_file
 from glotaran.analysis.optimize import optimize
 from glotaran.analysis.problem import Problem
-from glotaran.analysis.scheme import Scheme
-from glotaran.io import read_data_file
+from glotaran.io import load_dataset
+from glotaran.io import load_model
+from glotaran.io import load_parameters
+from glotaran.io import save_result
+from glotaran.project.scheme import Scheme
+from pyglotaran_extras.plotting.plot_overview import plot_overview
+from pyglotaran_extras.plotting.style import PlotStyle
 
 GLOBAL_MODEL = "models/model.yaml"
 GLOBAL_PARAMS = "models/parameters.yaml"
@@ -48,9 +48,9 @@ result_datafile = output_folder.joinpath("dataset1.nc")
 if result_datafile.exists() and SKIP_FIT:
     print(f"Loading earlier fit results from: {result_datafile}")
 else:
-    dataset = read_data_file(data_path)
-    model = read_model_from_yaml_file(model_path)
-    parameter = read_parameters_from_yaml_file(parameter_path)
+    dataset = load_dataset(data_path)
+    model = load_model(model_path)
+    parameter = load_parameters(parameter_path)
     scheme = Scheme(
         model,
         parameter,
@@ -72,7 +72,7 @@ else:
     end = timer()
     print(f"Total time: {end - start}")
 
-    result.save(str(output_folder))
+    save_result(result, output_folder, format_name="legacy", allow_overwrite=True)
     end2 = timer()
     print(f"Saving took: {end2 - end}")
 

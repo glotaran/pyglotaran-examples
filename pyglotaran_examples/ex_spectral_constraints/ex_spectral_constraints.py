@@ -2,14 +2,14 @@
 from pathlib import Path
 
 import matplotlib.pyplot as plt  # 3.3 or higher
+from glotaran.analysis.optimize import optimize
+from glotaran.io import load_dataset
+from glotaran.io import load_model
+from glotaran.io import load_parameters
+from glotaran.project.scheme import Scheme
+
 from pyglotaran_examples.boilerplate import setup_case_study
 from pyglotaran_examples.boilerplate import simple_plot_overview
-
-from glotaran import read_model_from_yaml_file
-from glotaran import read_parameters_from_yaml_file
-from glotaran.analysis.optimize import optimize
-from glotaran.analysis.scheme import Scheme
-from glotaran.io import read_data_file
 
 DATA_PATH = "data/data.ascii"
 MODEL_PATHS = {
@@ -27,11 +27,11 @@ output_folder = results_folder.joinpath(script_file.stem)
 print(f"- Using folder {output_folder.name} to read/write files for this run")
 
 # %% Load in data, model and parameters
-dataset = read_data_file(script_folder.joinpath(DATA_PATH))
+dataset = load_dataset(script_folder.joinpath(DATA_PATH))
 
 for key, val in MODEL_PATHS.items():
-    model = read_model_from_yaml_file(script_folder.joinpath(val["model"]))
-    parameters = read_parameters_from_yaml_file(script_folder.joinpath(val["parameters"]))
+    model = load_model(script_folder.joinpath(val["model"]))
+    parameters = load_parameters(script_folder.joinpath(val["parameters"]))
     print(model.markdown(parameters=parameters))
     scheme = Scheme(model, parameters, {"dataset1": dataset})
     result = optimize(scheme)

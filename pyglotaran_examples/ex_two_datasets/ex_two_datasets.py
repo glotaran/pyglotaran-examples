@@ -1,17 +1,19 @@
 # %%
+
 from datetime import datetime
 from pathlib import Path
 
 import matplotlib.pyplot as plt  # 3.3 or higher
-from pyglotaran_examples.boilerplate import setup_case_study
+from glotaran.analysis.optimize import optimize
+from glotaran.io import load_dataset
+from glotaran.io import load_model
+from glotaran.io import load_parameters
+from glotaran.io import save_result
+from glotaran.project.scheme import Scheme
 from pyglotaran_extras.plotting.plot_overview import plot_overview
 from pyglotaran_extras.plotting.style import PlotStyle
 
-from glotaran import read_model_from_yaml_file
-from glotaran import read_parameters_from_yaml_file
-from glotaran.analysis.optimize import optimize
-from glotaran.analysis.scheme import Scheme
-from glotaran.io import read_data_file
+from pyglotaran_examples.boilerplate import setup_case_study
 
 DATA_PATH1 = "data/data1.ascii"
 DATA_PATH2 = "data/data2.ascii"
@@ -24,10 +26,12 @@ output_folder = results_folder.joinpath("target_analysis")
 print(f"- Using folder {output_folder.name} to read/write files for this run")
 
 # %% Load in data, model and parameters
-dataset1 = read_data_file(script_folder.joinpath(DATA_PATH1))
-dataset2 = read_data_file(script_folder.joinpath(DATA_PATH2))
-model = read_model_from_yaml_file(script_folder.joinpath(MODEL_PATH))
-parameters = read_parameters_from_yaml_file(script_folder.joinpath(PARAMETERS_FILE_PATH))
+# dataset1 = ExplicitFile(script_folder.joinpath(DATA_PATH1)).read()
+# dataset2 = ExplicitFile(script_folder.joinpath(DATA_PATH2)).read()
+dataset1 = load_dataset(script_folder.joinpath(DATA_PATH1))
+dataset2 = load_dataset(script_folder.joinpath(DATA_PATH2))
+model = load_model(script_folder.joinpath(MODEL_PATH))
+parameters = load_parameters(script_folder.joinpath(PARAMETERS_FILE_PATH))
 
 # %% Validate model and parameters
 print(model.validate(parameters=parameters))
@@ -44,12 +48,33 @@ scheme = Scheme(
 
 # %% Optimize the analysis scheme (and estimate parameters)
 result = optimize(scheme)
+print(result.markdown(True))
+result2 = optimize(result.get_scheme())
+print(result2.markdown(True))
 
 # %% Basic print of results
 print(result.markdown(True))
 
 # %% Save the results
-result.save(str(output_folder))
+try:
+    save_result(
+        result_path=str(output_folder), result=result, format_name="legacy", allow_overwrite=True
+    )
+except (ValueError, FileExistsError) as error:
+    print(f"catching error: {error}")
+    try:
+        save_result(
+            result_path=str(output_folder), result=result, format_name="yml", allow_overwrite=True
+        )
+    except FileExistsError as error:
+        print(f"catching error: {error}")
+        timestamp = datetime.today().strftime("%y%m%d_%H%M")
+        save_result(
+            result_path=str(output_folder.joinpath(timestamp)),
+            result=result,
+            format_name="yml",
+            allow_overwrite=True,
+        )
 
 # %% Plot and save as PDF
 # This set subsequent plots to the glotaran style
