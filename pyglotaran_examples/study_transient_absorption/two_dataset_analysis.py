@@ -9,11 +9,9 @@ import matplotlib.pyplot as plt  # 3.3 or higher
 from pyglotaran_extras.plotting.plot_overview import plot_overview
 from pyglotaran_extras.plotting.style import PlotStyle
 
-from glotaran import read_model_from_yaml_file
-from glotaran import read_parameters_from_yaml_file
 from glotaran.analysis.optimize import optimize
-from glotaran.analysis.scheme import Scheme
-from glotaran.io.reader import read_data_file
+from glotaran.project.scheme import Scheme
+from glotaran.io import load_dataset, load_model, load_parameters, save_result
 
 TARGET_MODEL = "models/model_2d_co_co2.yml"
 TARGET_PARAMS = "models/parameters_2d_co_co2.yml"
@@ -46,15 +44,15 @@ result_datafile2 = output_folder.joinpath("dataset2.nc")
 
 # %%
 
-dataset1 = read_data_file(data_path1)  # CO in toluene
-dataset2 = read_data_file(data_path2)  # C2O in toluene
+dataset1 = load_dataset(data_path1)  # CO in toluene
+dataset2 = load_dataset(data_path2)  # C2O in toluene
 
 print(dataset1)
 print(dataset2)
 
 # %%
-model = read_model_from_yaml_file(model_path)
-parameter = read_parameters_from_yaml_file(parameter_path)
+model = load_model(model_path)
+parameter = load_parameters(parameter_path)
 print(model.validate(parameters=parameter))
 
 # %%
@@ -70,7 +68,7 @@ result = optimize(scheme)
 end = timer()
 print(f"Total time: {end - start}")
 
-result.save(str(output_folder))
+save_result(result, output_folder, format_name="legacy", allow_overwrite=True)
 end2 = timer()
 print(f"Saving took: {end2 - end}")
 

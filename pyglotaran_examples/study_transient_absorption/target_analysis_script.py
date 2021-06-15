@@ -7,11 +7,9 @@ from pyglotaran_examples.boilerplate import setup_case_study
 from pyglotaran_extras.plotting.plot_overview import plot_overview
 from pyglotaran_extras.plotting.style import PlotStyle
 
-from glotaran import read_model_from_yaml_file
-from glotaran import read_parameters_from_yaml_file
 from glotaran.analysis.optimize import optimize
-from glotaran.analysis.scheme import Scheme
-from glotaran.io import read_data_file
+from glotaran.project.scheme import Scheme
+from glotaran.io import load_model, load_dataset, load_parameters, save_result
 
 DATA_PATH = "data/demo_data_Hippius_etal_JPCC2007_111_13988_Figs5_9.ascii"
 MODEL_PATH = "models/model.yml"
@@ -24,9 +22,9 @@ output_folder = results_folder.joinpath(script_file.stem)
 print(f"- Using folder {output_folder.name} to read/write files for this run")
 
 # %% Load in data, model and parameters
-dataset = read_data_file(script_folder.joinpath(DATA_PATH))
-model = read_model_from_yaml_file(script_folder.joinpath(MODEL_PATH))
-parameters = read_parameters_from_yaml_file(script_folder.joinpath(PARAMETERS_FILE_PATH))
+dataset = load_dataset(script_folder.joinpath(DATA_PATH))
+model = load_model(script_folder.joinpath(MODEL_PATH))
+parameters = load_parameters(script_folder.joinpath(PARAMETERS_FILE_PATH))
 
 # %% Validate model and parameters
 print(model.validate(parameters=parameters))
@@ -41,7 +39,7 @@ result = optimize(scheme)
 print(result.markdown(True))
 
 # %% Save the results
-result.save(str(output_folder))
+save_result(result, output_folder, format_name="legacy", allow_overwrite=True)
 
 # %% Plot and save as PDF
 # This set subsequent plots to the glotaran style

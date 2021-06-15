@@ -3,6 +3,8 @@ import os
 import warnings
 from pathlib import Path
 
+from glotaran.io import save_result
+
 import matplotlib
 import matplotlib.pyplot as plt
 import yaargh
@@ -98,7 +100,9 @@ def spectral_guidance(*, headless=False, raise_on_deprecation=False):
     from pyglotaran_examples.ex_spectral_guidance import ex_spectral_guidance
 
     result = ex_spectral_guidance.main()
-    ex_spectral_guidance.save_result(result)
+    save_result(
+        result, ex_spectral_guidance.output_folder, format_name="legacy", allow_overwrite=True
+    )
     ex_spectral_guidance.load_and_plot_results()
 
 
@@ -147,9 +151,9 @@ def sim_6d_disp(*, headless=False, raise_on_deprecation=False):
 all_funcs = [
     quick_start,
     fluorescence,
-    # transient_absorption,  # Not working with 0.3.2
+    transient_absorption,
     spectral_constraints,
-    # spectral_guidance,  # Not working with 0.3.2
+    spectral_guidance,
     two_datasets,
     sim_3d_disp,
     sim_3d_nodisp,

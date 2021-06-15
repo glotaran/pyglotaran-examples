@@ -6,10 +6,9 @@ import matplotlib.pyplot as plt  # 3.3 or higher
 from pyglotaran_extras.plotting.plot_overview import plot_overview
 from pyglotaran_extras.plotting.style import PlotStyle
 
-import glotaran as gta
-from glotaran import read_parameters_from_csv_file
 from glotaran.analysis.optimize import optimize
-from glotaran.analysis.scheme import Scheme
+from glotaran.project.scheme import Scheme
+from glotaran.io import load_dataset, load_model, load_parameters, save_result
 
 script_path = Path(__file__)
 script_folder = script_path.parent
@@ -23,26 +22,26 @@ output_folder = results_folder.joinpath("simultaneous_analysis_3d_nodisp")
 
 # read in data
 data_path = script_folder.joinpath("equareaIRFsim3a.ascii")
-dataset1 = gta.io.read_data_file(data_path)
+dataset1 = load_dataset(data_path)
 # print(dataset1)
 data_path2 = script_folder.joinpath("equareaIRFsim3b.ascii")
-dataset2 = gta.io.read_data_file(data_path2)
+dataset2 = load_dataset(data_path2)
 # print(dataset2)
 data_path3 = script_folder.joinpath("equareaIRFsim3c.ascii")
-dataset3 = gta.io.read_data_file(data_path3)
+dataset3 = load_dataset(data_path3)
 # model inlezen + parameters
 model_path = script_folder.joinpath("model.yml")
 parameters_path = script_folder.joinpath("parameters.yml")
 
-model = gta.read_model_from_yaml_file(model_path)
+model = load_model(model_path)
 
 # if the optimized parameters from a previous run are available, use those
 parameter_file = output_folder.joinpath("optimized_parameters.csv")
 if parameter_file.exists():
     print("Optimized parameters exists: please check")
-    parameters = read_parameters_from_csv_file(str(parameter_file))
+    parameters = load_parameters(str(parameter_file))
 else:
-    parameters = gta.read_parameters_from_yaml_file(parameters_path)
+    parameters = load_parameters(parameters_path)
 
 print(model.validate(parameters=parameters))
 
@@ -58,7 +57,7 @@ scheme = Scheme(
 # optimize
 result = optimize(scheme)
 # %% Save results
-result.save(str(output_folder))
+save_result(result, output_folder, format_name="legacy", allow_overwrite=True)
 
 # %% Plot results
 # Set subsequent plots to the glotaran style
