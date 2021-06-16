@@ -1,6 +1,5 @@
 # %%
 from datetime import datetime
-from pathlib import Path
 
 import matplotlib.pyplot as plt  # 3.3 or higher
 from glotaran.analysis.optimize import optimize
@@ -9,20 +8,18 @@ from glotaran.io import load_model
 from glotaran.io import load_parameters
 from glotaran.io import save_result
 from glotaran.project.scheme import Scheme
+from pyglotaran_extras.io.boilerplate import setup_case_study
 from pyglotaran_extras.plotting.plot_overview import plot_overview
 from pyglotaran_extras.plotting.style import PlotStyle
-
-from pyglotaran_examples.boilerplate import setup_case_study
 
 DATA_PATH = "data/demo_data_Hippius_etal_JPCC2007_111_13988_Figs5_9.ascii"
 MODEL_PATH = "models/model.yml"
 PARAMETERS_FILE_PATH = "models/parameters.yml"
 
 # %% Setup necessary (output) paths
-script_file = Path(__file__)
-results_folder, script_folder = setup_case_study(script_file)
-output_folder = results_folder.joinpath(script_file.stem)
-print(f"- Using folder {output_folder.name} to read/write files for this run")
+results_folder, script_folder = setup_case_study(output_folder_name="pyglotaran_examples_results")
+results_folder = results_folder / "target_analysis"
+print(f"- Using folder {results_folder} to read/write files for this run")
 
 # %% Load in data, model and parameters
 dataset = load_dataset(script_folder.joinpath(DATA_PATH))
@@ -42,7 +39,7 @@ result = optimize(scheme)
 print(result.markdown(True))
 
 # %% Save the results
-save_result(result, output_folder, format_name="legacy", allow_overwrite=True)
+save_result(result, results_folder, format_name="legacy", allow_overwrite=True)
 
 # %% Plot and save as PDF
 # This set subsequent plots to the glotaran style
@@ -52,4 +49,4 @@ plt.rc("axes", prop_cycle=plot_style.cycler)
 fig = plot_overview(result, linlog=True)
 
 timestamp = datetime.today().strftime("%y%m%d_%H%M")
-fig.savefig(output_folder.joinpath(f"plot_overview_{timestamp}.pdf"), bbox_inches="tight")
+fig.savefig(results_folder.joinpath(f"plot_overview_{timestamp}.pdf"), bbox_inches="tight")

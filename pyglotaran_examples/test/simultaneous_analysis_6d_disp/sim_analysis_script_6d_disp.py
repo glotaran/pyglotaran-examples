@@ -1,6 +1,4 @@
 # %%
-from pathlib import Path
-
 # Needed for plotting only
 import matplotlib.pyplot as plt  # 3.3 or higher
 from glotaran.analysis.optimize import optimize
@@ -9,18 +7,11 @@ from glotaran.io import load_model
 from glotaran.io import load_parameters
 from glotaran.io import save_result
 from glotaran.project.scheme import Scheme
+from pyglotaran_extras.io.boilerplate import setup_case_study
 from pyglotaran_extras.plotting.plot_overview import plot_overview
 from pyglotaran_extras.plotting.style import PlotStyle
 
-script_path = Path(__file__)
-script_folder = script_path.parent
-print(f"Executing: {script_path.name} from {script_folder}")
-results_folder = Path.home().joinpath("pyglotaran_examples_output")
-results_folder.mkdir(exist_ok=True)
-print(f"Saving results to: {str(results_folder)}")
-
-# output folder for this specific analysis
-output_folder = results_folder.joinpath("simultaneous_analysis_6d_disp")
+results_folder, script_folder = setup_case_study(output_folder_name="pyglotaran_examples_results")
 
 # data inlezen
 data_path = script_folder.joinpath("equareaIRFdispscalsim6a.ascii")
@@ -43,7 +34,7 @@ parameters_path = script_folder.joinpath("parameters.yml")
 
 model = load_model(model_path)
 
-parameter_file = output_folder.joinpath("optimized_parameters.csv")
+parameter_file = results_folder.joinpath("optimized_parameters.csv")
 if parameter_file.exists():
     print("Optimized parameters exists: please check")
     parameter = load_parameters(str(parameter_file))
@@ -74,7 +65,7 @@ result = optimize(scheme)
 # evt opslaan
 
 
-save_result(result, output_folder, format_name="legacy", allow_overwrite=True)
+save_result(result, results_folder, format_name="legacy", allow_overwrite=True)
 # evt plotten
 # %% Set subsequent plots to the glotaran style
 plot_style = PlotStyle()
@@ -82,41 +73,41 @@ plt.rc("axes", prop_cycle=plot_style.cycler)
 
 # %%
 # TODO: enhance plot_overview to handle multiple datasets
-result_datafile1 = output_folder.joinpath("dataset1.nc")
-result_datafile2 = output_folder.joinpath("dataset2.nc")
-result_datafile3 = output_folder.joinpath("dataset3.nc")
-result_datafile4 = output_folder.joinpath("dataset4.nc")
-result_datafile5 = output_folder.joinpath("dataset5.nc")
-result_datafile6 = output_folder.joinpath("dataset6.nc")
+result_datafile1 = results_folder.joinpath("dataset1.nc")
+result_datafile2 = results_folder.joinpath("dataset2.nc")
+result_datafile3 = results_folder.joinpath("dataset3.nc")
+result_datafile4 = results_folder.joinpath("dataset4.nc")
+result_datafile5 = results_folder.joinpath("dataset5.nc")
+result_datafile6 = results_folder.joinpath("dataset6.nc")
 fig1 = plot_overview(result_datafile1, linlog=True, linthresh=5)
 fig1.savefig(
-    output_folder.joinpath("plot_overview_dummy1.pdf"),
+    results_folder.joinpath("plot_overview_dummy1.pdf"),
     bbox_inches="tight",
 )
 
 fig2 = plot_overview(result_datafile2, linlog=True, linthresh=5)
 fig2.savefig(
-    output_folder.joinpath("plot_overview_dummy2.pdf"),
+    results_folder.joinpath("plot_overview_dummy2.pdf"),
     bbox_inches="tight",
 )
 
 fig3 = plot_overview(result_datafile3, linlog=True, linthresh=5)
 fig3.savefig(
-    output_folder.joinpath("plot_overview_dummy3.pdf"),
+    results_folder.joinpath("plot_overview_dummy3.pdf"),
     bbox_inches="tight",
 )
 fig4 = plot_overview(result_datafile4, linlog=True, linthresh=5)
 fig4.savefig(
-    output_folder.joinpath("plot_overview_dummy4.pdf"),
+    results_folder.joinpath("plot_overview_dummy4.pdf"),
     bbox_inches="tight",
 )
 fig5 = plot_overview(result_datafile5, linlog=True, linthresh=5)
 fig5.savefig(
-    output_folder.joinpath("plot_overview_dummy5.pdf"),
+    results_folder.joinpath("plot_overview_dummy5.pdf"),
     bbox_inches="tight",
 )
 fig6 = plot_overview(result_datafile6, linlog=True, linthresh=5)
 fig6.savefig(
-    output_folder.joinpath("plot_overview_dummy6.pdf"),
+    results_folder.joinpath("plot_overview_dummy6.pdf"),
     bbox_inches="tight",
 )

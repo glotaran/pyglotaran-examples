@@ -1,5 +1,6 @@
 import functools
 import os
+import sys
 import warnings
 from pathlib import Path
 
@@ -14,6 +15,8 @@ REPO_ROOT = Path(__file__).parent.parent
 RESULTS_DIR = REPO_ROOT / "plot_results"
 if not RESULTS_DIR.exists():
     RESULTS_DIR.mkdir()
+
+sys.path.insert(0, str(REPO_ROOT))
 
 
 def github_format_warning(message, category, filename, lineno, line=None):
@@ -84,6 +87,14 @@ def transient_absorption(*, headless=False, raise_on_deprecation=False):
 
 
 @script_run_wrapper
+def transient_absorption_two_datasets(*, headless=False, raise_on_deprecation=False):
+    """Runs two_dataset_analysis.py
+    from pyglotaran_examples/study_transient_absorption"""
+    # The whole script is run at import.
+    from pyglotaran_examples.study_transient_absorption import two_dataset_analysis
+
+
+@script_run_wrapper
 def spectral_constraints(*, headless=False, raise_on_deprecation=False):
     """Runs ex_spectral_constraints.py
     from pyglotaran_examples/ex_spectral_constraints"""
@@ -100,7 +111,7 @@ def spectral_guidance(*, headless=False, raise_on_deprecation=False):
 
     result = ex_spectral_guidance.main()
     save_result(
-        result, ex_spectral_guidance.output_folder, format_name="legacy", allow_overwrite=True
+        result, ex_spectral_guidance.results_folder, format_name="legacy", allow_overwrite=True
     )
     ex_spectral_guidance.load_and_plot_results()
 
@@ -151,6 +162,7 @@ all_funcs = [
     quick_start,
     fluorescence,
     transient_absorption,
+    transient_absorption_two_datasets,
     spectral_constraints,
     spectral_guidance,
     two_datasets,

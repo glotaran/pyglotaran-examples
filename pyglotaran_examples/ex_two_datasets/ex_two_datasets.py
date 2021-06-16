@@ -1,7 +1,6 @@
 # %%
 
 from datetime import datetime
-from pathlib import Path
 
 import matplotlib.pyplot as plt  # 3.3 or higher
 from glotaran.analysis.optimize import optimize
@@ -10,10 +9,9 @@ from glotaran.io import load_model
 from glotaran.io import load_parameters
 from glotaran.io import save_result
 from glotaran.project.scheme import Scheme
+from pyglotaran_extras.io.boilerplate import setup_case_study
 from pyglotaran_extras.plotting.plot_overview import plot_overview
 from pyglotaran_extras.plotting.style import PlotStyle
-
-from pyglotaran_examples.boilerplate import setup_case_study
 
 DATA_PATH1 = "data/data1.ascii"
 DATA_PATH2 = "data/data2.ascii"
@@ -21,9 +19,8 @@ MODEL_PATH = "models/model.yml"
 PARAMETERS_FILE_PATH = "models/parameters.yml"
 
 # %% Setup necessary (output) paths
-results_folder, script_folder = setup_case_study(Path(__file__))
-output_folder = results_folder.joinpath("target_analysis")
-print(f"- Using folder {output_folder.name} to read/write files for this run")
+results_folder, script_folder = setup_case_study(output_folder_name="pyglotaran_examples_results")
+print(f"- Using folder {results_folder.name} to read/write files for this run")
 
 # %% Load in data, model and parameters
 # dataset1 = ExplicitFile(script_folder.joinpath(DATA_PATH1)).read()
@@ -57,20 +54,16 @@ print(result.markdown(True))
 
 # %% Save the results
 try:
-    save_result(
-        result_path=str(output_folder), result=result, format_name="legacy", allow_overwrite=True
-    )
+    save_result(result, results_folder, format_name="legacy", allow_overwrite=True)
 except (ValueError, FileExistsError) as error:
     print(f"catching error: {error}")
     try:
-        save_result(
-            result_path=str(output_folder), result=result, format_name="yml", allow_overwrite=True
-        )
+        save_result(result, results_folder, format_name="yml", allow_overwrite=True)
     except FileExistsError as error:
         print(f"catching error: {error}")
         timestamp = datetime.today().strftime("%y%m%d_%H%M")
         save_result(
-            result_path=str(output_folder.joinpath(timestamp)),
+            result_path=str(results_folder.joinpath(timestamp)),
             result=result,
             format_name="yml",
             allow_overwrite=True,
@@ -83,10 +76,10 @@ plt.rc("axes", prop_cycle=plot_style.cycler)
 
 fig1 = plot_overview(result.data["dataset1"], linlog=True)
 timestamp = datetime.today().strftime("%y%m%d_%H%M")
-fig1.savefig(output_folder.joinpath(f"plot_overview_1of2_{timestamp}.pdf"), bbox_inches="tight")
+fig1.savefig(results_folder.joinpath(f"plot_overview_1of2_{timestamp}.pdf"), bbox_inches="tight")
 
 fig2 = plot_overview(result.data["dataset2"], linlog=True)
 timestamp = datetime.today().strftime("%y%m%d_%H%M")
-fig2.savefig(output_folder.joinpath(f"plot_overview_2of2_{timestamp}.pdf"), bbox_inches="tight")
+fig2.savefig(results_folder.joinpath(f"plot_overview_2of2_{timestamp}.pdf"), bbox_inches="tight")
 
 plt.show()
