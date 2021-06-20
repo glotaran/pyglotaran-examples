@@ -1,7 +1,6 @@
 # To add a new cell, type '# %%'
 # To add a new markdown cell, type '# %% [markdown]'
 # %%
-from pathlib import Path
 from timeit import default_timer as timer
 
 # Needed for plotting only
@@ -12,6 +11,7 @@ from glotaran.io import load_model
 from glotaran.io import load_parameters
 from glotaran.io import save_result
 from glotaran.project.scheme import Scheme
+from pyglotaran_extras.io.boilerplate import setup_case_study
 from pyglotaran_extras.plotting.plot_overview import plot_overview
 from pyglotaran_extras.plotting.style import PlotStyle
 
@@ -20,13 +20,8 @@ TARGET_PARAMS = "models/parameters_2d_co_co2.yml"
 
 
 # %%
-script_path = Path(__file__).resolve()
-script_folder = script_path.parent
-print(f"Executing: {script_path.name} from {script_folder}")
-results_folder_root = Path.home().joinpath("pyglotaran_examples_output")
-results_folder_root.mkdir(exist_ok=True)
-script_folder_rel = script_folder.relative_to(script_folder.parent.parent)
-results_folder = results_folder_root.joinpath(script_folder_rel)
+results_folder, script_folder = setup_case_study(output_folder_name="pyglotaran_examples_results")
+results_folder = results_folder / "two_dataset_analysis"
 print(f"Saving results in: {results_folder}")
 
 # %%

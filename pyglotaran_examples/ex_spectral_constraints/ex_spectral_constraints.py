@@ -1,15 +1,13 @@
 # %%
-from pathlib import Path
-
 import matplotlib.pyplot as plt  # 3.3 or higher
 from glotaran.analysis.optimize import optimize
 from glotaran.io import load_dataset
 from glotaran.io import load_model
 from glotaran.io import load_parameters
+from glotaran.io import save_result
 from glotaran.project.scheme import Scheme
-
-from pyglotaran_examples.boilerplate import setup_case_study
-from pyglotaran_examples.boilerplate import simple_plot_overview
+from pyglotaran_extras.io.boilerplate import setup_case_study
+from pyglotaran_extras.plotting.plot_overview import plot_simple_overview
 
 DATA_PATH = "data/data.ascii"
 MODEL_PATHS = {
@@ -21,10 +19,8 @@ MODEL_PATHS = {
 }
 
 # %% Setup necessary (output) paths
-script_file = Path(__file__)
-results_folder, script_folder = setup_case_study(script_file)
-output_folder = results_folder.joinpath(script_file.stem)
-print(f"- Using folder {output_folder.name} to read/write files for this run")
+results_folder, script_folder = setup_case_study(output_folder_name="pyglotaran_examples_results")
+print(f"- Using folder {results_folder} to read/write files for this run")
 
 # %% Load in data, model and parameters
 dataset = load_dataset(script_folder.joinpath(DATA_PATH))
@@ -38,6 +34,7 @@ for key, val in MODEL_PATHS.items():
     # Second optimization with results of the first:
     scheme2 = result.get_scheme()
     result2 = optimize(scheme2)
-    simple_plot_overview(result.data["dataset1"], key)
-    simple_plot_overview(result2.data["dataset1"], key)
+    save_result(result2, results_folder / key, format_name="legacy", allow_overwrite=True)
+    plot_simple_overview(result.data["dataset1"], key)
+    plot_simple_overview(result2.data["dataset1"], key)
 plt.show()

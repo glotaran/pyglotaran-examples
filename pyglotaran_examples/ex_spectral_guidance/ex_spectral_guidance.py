@@ -1,6 +1,5 @@
 # %%
 from datetime import datetime
-from pathlib import Path
 
 import matplotlib.pyplot as plt  # 3.3 or higher
 from glotaran.analysis.optimize import optimize
@@ -9,10 +8,9 @@ from glotaran.io import load_model
 from glotaran.io import load_parameters
 from glotaran.io import save_result
 from glotaran.project.scheme import Scheme
+from pyglotaran_extras.io.boilerplate import setup_case_study
 from pyglotaran_extras.plotting.plot_overview import plot_overview
 from pyglotaran_extras.plotting.style import PlotStyle
-
-from pyglotaran_examples.boilerplate import setup_case_study
 
 DATA_PATH1 = "data/Npq2_220219_800target3fasea.ascii"
 DATA_PATH2 = "data/trNpq2_220219_800target3fase10SAS5.ascii"
@@ -20,13 +18,12 @@ MODEL_PATH = "models/model_guidance.yml"
 PARAMETERS_FILE_PATH = "models/parameters_guidance.yml"
 
 # %% Setup necessary (output) paths
-results_folder, script_folder = setup_case_study(Path(__file__))
-output_folder = results_folder.joinpath("example_spectral_guidance")
+results_folder, script_folder = setup_case_study(output_folder_name="pyglotaran_examples_results")
 
 
 def main():
 
-    # parameter_file = output_folder.joinpath("optimized_parameters.csv")
+    # parameter_file = results_folder.joinpath("optimized_parameters.csv")
     # if parameter_file.exists():
     #     print("Optimized parameters exists: please check")
     #     parameters = read_parameters_from_csv_file(str(parameter_file))
@@ -66,28 +63,28 @@ def load_and_plot_results():
     plot_style = PlotStyle()
     plt.rc("axes", prop_cycle=plot_style.cycler)
 
-    parameter_file = output_folder.joinpath("optimized_parameters.csv")
+    parameter_file = results_folder.joinpath("optimized_parameters.csv")
     parameters = load_parameters(str(parameter_file))
     print(f"Optimized parameters loaded:\n {parameters}")
 
-    result1 = output_folder.joinpath("dataset1.nc")
+    result1 = results_folder.joinpath("dataset1.nc")
     fig1 = plot_overview(result1, linlog=True, show_data=True)
     timestamp = datetime.today().strftime("%y%m%d_%H%M")
     fig1.savefig(
-        output_folder.joinpath(f"plot_overview_1of2_{timestamp}.pdf"), bbox_inches="tight"
+        results_folder.joinpath(f"plot_overview_1of2_{timestamp}.pdf"), bbox_inches="tight"
     )
 
-    result2 = output_folder.joinpath("dataset2.nc")
+    result2 = results_folder.joinpath("dataset2.nc")
     fig2 = plot_overview(result2, linlog=True)
     timestamp = datetime.today().strftime("%y%m%d_%H%M")
     fig2.savefig(
-        output_folder.joinpath(f"plot_overview_2of2_{timestamp}.pdf"), bbox_inches="tight"
+        results_folder.joinpath(f"plot_overview_2of2_{timestamp}.pdf"), bbox_inches="tight"
     )
     plt.show()
 
 
 if __name__ == "__main__":
-    print(f"- Using folder {output_folder.name} to read/write files for this run")
+    print(f"- Using folder {results_folder.name} to read/write files for this run")
     result = main()
-    save_result(result, output_folder, format_name="legacy", allow_overwrite=True)
+    save_result(result, results_folder, format_name="legacy", allow_overwrite=True)
     load_and_plot_results()

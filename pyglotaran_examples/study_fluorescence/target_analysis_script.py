@@ -1,7 +1,6 @@
 # To add a new cell, type '# %%'
 # To add a new markdown cell, type '# %% [markdown]'
 # %%
-from pathlib import Path
 from timeit import default_timer as timer
 
 import matplotlib.pyplot as plt
@@ -12,6 +11,7 @@ from glotaran.io import load_model
 from glotaran.io import load_parameters
 from glotaran.io import save_result
 from glotaran.project.scheme import Scheme
+from pyglotaran_extras.io.boilerplate import setup_case_study
 from pyglotaran_extras.plotting.plot_overview import plot_overview
 from pyglotaran_extras.plotting.style import PlotStyle
 
@@ -22,13 +22,7 @@ TARGET_PARAMS = "models/parameters-target.yaml"
 SKIP_FIT = False
 
 # %%
-script_path = Path(__file__).resolve()
-script_folder = script_path.parent
-print(f"Executing: {script_path.name} from {script_folder}")
-results_folder_root = Path.home().joinpath("pyglotaran_examples_output")
-results_folder_root.mkdir(exist_ok=True)
-script_folder_rel = script_folder.relative_to(script_folder.parent.parent)
-results_folder = results_folder_root.joinpath(script_folder_rel)
+results_folder, script_folder = setup_case_study(output_folder_name="pyglotaran_examples_results")
 print(f"Saving results in: {results_folder}")
 
 
@@ -39,12 +33,10 @@ data_path = script_folder.joinpath("data/data.ascii")
 model_path = script_folder.joinpath(TARGET_MODEL)
 parameter_path = script_folder.joinpath(TARGET_PARAMS)
 
-result_name = str(model_path.stem).replace("model", "result")
-output_folder = results_folder.joinpath(result_name)
-print(f"- Using folder {output_folder.name} to read/write files for this run")
+print(f"- Using folder {results_folder.name} to read/write files for this run")
 
 # %%
-result_datafile = output_folder.joinpath("dataset1.nc")
+result_datafile = results_folder.joinpath("dataset1.nc")
 if result_datafile.exists() and SKIP_FIT:
     print(f"Loading earlier fit results from: {result_datafile}")
 else:
@@ -72,7 +64,7 @@ else:
     end = timer()
     print(f"Total time: {end - start}")
 
-    save_result(result, output_folder, format_name="legacy", allow_overwrite=True)
+    save_result(result, results_folder, format_name="legacy", allow_overwrite=True)
     end2 = timer()
     print(f"Saving took: {end2 - end}")
 
@@ -94,4 +86,6 @@ fig = plot_overview(result_datafile, linlog=False)
 # note species concentration plot still needs work to match styles between the two locatable axis
 
 # %%
-fig.savefig(output_folder.joinpath(f"plot_overview_{result_name}.pdf"), bbox_inches="tight")
+fig.savefig(
+    results_folder.joinpath(f"plot_overview_{results_folder.name}.pdf"), bbox_inches="tight"
+)
