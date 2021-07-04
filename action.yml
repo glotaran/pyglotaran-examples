@@ -1,4 +1,4 @@
-name: "PyGloTarAn examples"
+name: "pyglotaran examples"
 description: "Run pyglotaran examples as integration test against a version of glotaran"
 author: "Sebastian Weigand"
 inputs:
