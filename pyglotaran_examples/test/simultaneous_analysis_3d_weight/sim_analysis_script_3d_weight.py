@@ -43,7 +43,7 @@ scheme = Scheme(
     model,
     parameters,
     {"dataset1": dataset1, "dataset2": dataset2, "dataset3": dataset3},
-    maximum_number_function_evaluations=99,
+    maximum_number_function_evaluations=2,
     non_negative_least_squares=True,
     # optimization_method="Levenberg-Marquardt",
 )

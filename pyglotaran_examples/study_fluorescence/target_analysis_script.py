@@ -47,7 +47,7 @@ else:
         model,
         parameter,
         {"dataset1": dataset},
-        maximum_number_function_evaluations=9,
+        maximum_number_function_evaluations=6,
         non_negative_least_squares=True,
     )
 

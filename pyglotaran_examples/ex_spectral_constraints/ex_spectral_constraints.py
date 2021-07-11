@@ -29,8 +29,13 @@ for key, val in MODEL_PATHS.items():
     model = load_model(script_folder.joinpath(val["model"]))
     parameters = load_parameters(script_folder.joinpath(val["parameters"]))
     print(model.markdown(parameters=parameters))
-    scheme = Scheme(model, parameters, {"dataset1": dataset})
+    scheme = Scheme(
+        model, parameters, {"dataset1": dataset}, maximum_number_function_evaluations=5
+    )
     result = optimize(scheme)
+    save_result(
+        result, results_folder / f"{key}_first_run", format_name="legacy", allow_overwrite=True
+    )
     # Second optimization with results of the first:
     scheme2 = result.get_scheme()
     result2 = optimize(scheme2)
