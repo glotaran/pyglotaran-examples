@@ -1,0 +1,25 @@
+label,value,minimum,maximum,vary,non-negative,expression
+inputs.1,1.0,-inf,inf,False,False,None
+inputs.0,0.0,-inf,inf,False,False,None
+inputs.iC,1.0,-inf,inf,False,False,None
+scale.1,1.0,-inf,inf,False,False,None
+scale.2,1.254909431285608,-inf,inf,True,False,None
+rel.r1,1.0,-inf,inf,False,False,None
+b.1,12.679908186989666,-inf,inf,True,True,None
+b.2,-11.679908186989666,-inf,inf,False,False,1 - $b.1
+rates.k1sum,9.49943878184853,-inf,inf,False,True,None
+rates.k1,0.8265,-inf,inf,False,True,None
+rates.k2,8.7635,-inf,inf,False,True,None
+rates.k3,0.9275710767234479,-inf,inf,True,True,None
+rates.k4,0.04552438199047557,-inf,inf,True,True,None
+rates.k3d2,46.35951271818012,-inf,inf,True,True,None
+rates.k4d2,0.09652889797236106,-inf,inf,True,True,None
+rates.k5,0.019026619748967383,-inf,inf,True,True,None
+rates.kC,99.0,-inf,inf,False,True,None
+irf.center,1.1789669015748856,-inf,inf,True,False,None
+irf.width,0.06509479394502463,-inf,inf,True,False,None
+irf.dispc,550.0,-inf,inf,False,False,None
+irf.disp1,0.2894218172444607,-inf,inf,True,False,None
+irf.disp2,-0.031139403833960577,-inf,inf,True,False,None
+irf.disp3,-0.018027074238301445,-inf,inf,True,False,None
+irf2.center,0.6660969674805771,-inf,inf,True,False,None

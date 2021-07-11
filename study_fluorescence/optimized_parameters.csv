@@ -1,0 +1,15 @@
+label,value,minimum,maximum,vary,non-negative,expression
+input.1,1.0,-inf,inf,False,False,None
+input.0,0.0,-inf,inf,False,False,None
+irf.center,-84.31133557880872,-inf,inf,True,False,None
+irf.width,1.5540568685966938,-inf,inf,True,False,None
+irf.backsweep,13200.0,-inf,inf,False,False,None
+kinetic.1,2.0,-inf,inf,False,True,None
+kinetic.2,0.1,-inf,inf,False,True,None
+kinetic.3,0.0630601232473973,-inf,inf,True,True,None
+kinetic.4,0.0271419230964394,-inf,inf,True,True,None
+kinetic.5,0.05660863737192231,-inf,inf,True,True,None
+kinetic.6,0.03966905759839087,-inf,inf,True,True,None
+kinetic.7,0.13328025607085697,-inf,inf,True,True,None
+kinetic.8,0.00016316010157367618,-inf,inf,True,True,None
+area.1,1.0,-inf,inf,False,False,None

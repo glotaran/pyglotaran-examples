@@ -1,0 +1,15 @@
+label,value,minimum,maximum,vary,non-negative,expression
+inputs.s1,0.0,-inf,inf,False,False,None
+inputs.s2,1.0,-inf,inf,False,False,None
+rates.k1,0.25273489854762254,-inf,inf,True,False,None
+rates.k2,0.1564063601230801,-inf,inf,True,False,None
+rates.k3,0.087,-inf,inf,False,False,None
+rates.k4,0.24701430212765074,-inf,inf,True,False,None
+rates.k5,0.011263232936243324,-inf,inf,True,False,None
+rates.k6,1.6295829683461337e-06,-inf,inf,True,False,None
+area.1,3.4634,-inf,inf,False,False,None
+rel.r1,1.0,-inf,inf,False,False,None
+scale.1,1.0,-inf,inf,False,False,None
+scale.2,0.8619591377608209,-inf,inf,True,False,None
+irf.center,-0.00100000005,-inf,inf,False,False,None
+irf.width,0.000415255752,-inf,inf,False,False,None
