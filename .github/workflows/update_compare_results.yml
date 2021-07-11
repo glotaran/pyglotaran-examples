@@ -1,0 +1,104 @@
+name: "Update comparison results"
+
+on:
+  workflow_dispatch:
+    inputs:
+      pyglotaran_branch:
+        description: "pyglotaran branch/tag to run the examples against"
+        required: true
+        default: "v0.4.0"
+      pyglotaran_examples_branch:
+        description: "pyglotaran-examples branch/tag to use"
+        required: true
+        default: "main"
+
+jobs:
+  run-examples:
+    name: "Run Example: "
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        example_name:
+          [
+            quick-start,
+            fluorescence,
+            transient-absorption,
+            transient-absorption-two-datasets,
+            spectral-constraints,
+            spectral-guidance,
+            two-datasets,
+            sim-3d-disp,
+            sim-3d-nodisp,
+            sim-3d-weight,
+            sim-6d-disp,
+          ]
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          repository: "glotaran/pyglotaran"
+          ref: ${{ github.event.inputs.pyglotaran_branch }}
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.8
+      - name: Install pyglotaran
+        run: |
+          pip install wheel
+          pip install .
+      - name: Cloning pyglotaran-examples
+        if: ${{ github.event.inputs.pyglotaran_examples_branch }} == ""
+        uses: actions/checkout@v2
+        with:
+          path: pyglotaran-examples
+      - id: example-run
+        uses: glotaran/pyglotaran-examples@main
+        with:
+          example_name: ${{ matrix.example_name }}
+          examples_branch: ${{ github.event.inputs.pyglotaran_examples_branch }}
+
+      # Needed since plots with timestamps would pollute results
+      - name: Delete result Plots
+        shell: python
+        run: |
+          from pathlib import Path
+
+          results_path = Path.home() / "pyglotaran_examples_results"
+
+          for file in results_path.rglob("*"):
+              if file.is_file() and file.suffix == ".pdf":
+                  print(f"Deleting: {file}")
+                  file.unlink()
+
+      - name: Upload Example Results
+        uses: actions/upload-artifact@v2
+        with:
+          name: example-results
+          path: ~/pyglotaran_examples_results
+
+  upload-results:
+    name: "Upload to comparison-results branch"
+    runs-on: ubuntu-latest
+    needs: [run-examples]
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          repository: "glotaran/pyglotaran-examples"
+          ref: "comparison-results"
+      - name: Download results
+        uses: actions/download-artifact@v2
+        with:
+          name: example-results
+          path: .
+      - name: Commit new results
+        run: |
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git config user.name 'github-actions[bot]'
+          git add .
+          git commit -m "⬆️ Update results using glotaran branch/tag: ${{ github.event.inputs.pyglotaran_branch }}"
+
+      - name: Push to comparison-results branch
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.BENCHMARK_PUSH_TOKEN }}
+          repository: "glotaran/pyglotaran-examples"
+          branch: "comparison-results"
