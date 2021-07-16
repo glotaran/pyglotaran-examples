@@ -28,7 +28,14 @@ print(model.validate(parameters=parameters))
 print(model)
 print(parameters)
 
-result = optimize(Scheme(model, parameters, {"dataset1": dataset}))
+result = optimize(
+    Scheme(
+        model,
+        parameters,
+        {"dataset1": dataset},
+        maximum_number_function_evaluations=3,
+    )
+)
 print(result)
 print(result.optimized_parameters)
 result_dataset = result.data["dataset1"]
