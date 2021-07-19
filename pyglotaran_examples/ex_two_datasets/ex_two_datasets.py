@@ -38,7 +38,7 @@ scheme = Scheme(
     model,
     parameters,
     {"dataset1": dataset1, "dataset2": dataset2},
-    maximum_number_function_evaluations=11,
+    maximum_number_function_evaluations=15,
     non_negative_least_squares=True,
     optimization_method="TrustRegionReflection",
 )

@@ -47,8 +47,10 @@ else:
         model,
         parameter,
         {"dataset1": dataset},
-        maximum_number_function_evaluations=6,
+        maximum_number_function_evaluations=6,  # 6 for TRF, 46 for LM
+        # optimization_method="Levenberg-Marquardt", #lm needs nfev=46
         non_negative_least_squares=True,
+        # group=False
     )
 
     print(model.validate(parameters=parameter))

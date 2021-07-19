@@ -30,7 +30,10 @@ for key, val in MODEL_PATHS.items():
     parameters = load_parameters(script_folder.joinpath(val["parameters"]))
     print(model.markdown(parameters=parameters))
     scheme = Scheme(
-        model, parameters, {"dataset1": dataset}, maximum_number_function_evaluations=5
+        model,
+        parameters,
+        {"dataset1": dataset},
+        maximum_number_function_evaluations=7,  # TRF needs at least 6
     )
     result = optimize(scheme)
     save_result(
