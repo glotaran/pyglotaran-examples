@@ -28,13 +28,7 @@ parameters_path = script_folder.joinpath("parameters.yml")
 
 model = load_model(model_path)
 
-# if the optimized parameters from a previous run are available, use those
-parameter_file = results_folder.joinpath("optimized_parameters.csv")
-if parameter_file.exists():
-    print("Optimized parameters exists: please check")
-    parameters = load_parameters(str(parameter_file))
-else:
-    parameters = load_parameters(parameters_path)
+parameters = load_parameters(parameters_path)
 
 print(model.validate(parameters=parameters))
 
@@ -43,9 +37,9 @@ scheme = Scheme(
     model,
     parameters,
     {"dataset1": dataset1, "dataset2": dataset2, "dataset3": dataset3},
-    maximum_number_function_evaluations=2,
+    maximum_number_function_evaluations=111,  # 111, #7 for TRF, 86-103 for LM
     non_negative_least_squares=True,
-    # optimization_method="Levenberg-Marquardt",
+    optimization_method="Levenberg-Marquardt",  # lm needs nfev=103 to converge
 )
 # optimize
 result = optimize(scheme)

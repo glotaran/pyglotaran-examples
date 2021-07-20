@@ -23,19 +23,13 @@ results_folder, script_folder = setup_case_study(output_folder_name="pyglotaran_
 
 def main():
 
-    # parameter_file = results_folder.joinpath("optimized_parameters.csv")
-    # if parameter_file.exists():
-    #     print("Optimized parameters exists: please check")
-    #     parameters = read_parameters_from_csv_file(str(parameter_file))
-    # else:
-    #     parameters = read_parameters_from_yaml_file(script_folder.joinpath(PARAMETERS_FILE_PATH))
+    # Load in data, model and parameters
     parameters = load_parameters(script_folder.joinpath(PARAMETERS_FILE_PATH))
-    # %% Load in data, model and parameters
     dataset1 = load_dataset(script_folder.joinpath(DATA_PATH1))
     dataset2 = load_dataset(script_folder.joinpath(DATA_PATH2))
     model = load_model(script_folder.joinpath(MODEL_PATH))
 
-    # %% Validate model and parameters
+    # Validate model and parameters
     print(model.validate(parameters=parameters))
 
     # %% Construct the analysis scheme
@@ -43,29 +37,29 @@ def main():
         model,
         parameters,
         {"dataset1": dataset1, "dataset2": dataset2},
-        # optimization_method="Levenberg-Marquardt",
-        maximum_number_function_evaluations=11,
+        # optimization_method="Levenberg-Marquardt", # LM needs more nfev!
+        maximum_number_function_evaluations=23,  # TRF needs nfev=21-23
         non_negative_least_squares=True,
     )
 
-    # %% Optimize the analysis scheme (and estimate parameters)
+    # Optimize the analysis scheme (and estimate parameters)
     result = optimize(scheme)
 
-    # %% Basic print of results
+    # Basic print of results
     print(result.markdown(True))
 
     return result
 
 
 def load_and_plot_results():
-    # %% Plot and save as PDF
+    # Plot and save as PDF
     # This set subsequent plots to the glotaran style
     plot_style = PlotStyle()
     plt.rc("axes", prop_cycle=plot_style.cycler)
 
     parameter_file = results_folder.joinpath("optimized_parameters.csv")
     parameters = load_parameters(str(parameter_file))
-    print(f"Optimized parameters loaded:\n {parameters}")
+    print(f"Optimized parameters:\n {parameters}")
 
     result1 = results_folder.joinpath("dataset1.nc")
     fig1 = plot_overview(result1, linlog=True, show_data=True)

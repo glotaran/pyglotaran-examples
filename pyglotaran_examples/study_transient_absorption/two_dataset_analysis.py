@@ -58,7 +58,7 @@ scheme = Scheme(
     model,
     parameter,
     {"dataset1": dataset1, "dataset2": dataset2},
-    maximum_number_function_evaluations=2,
+    maximum_number_function_evaluations=11,
 )
 result = optimize(scheme)
 
