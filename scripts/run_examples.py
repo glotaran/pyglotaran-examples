@@ -29,7 +29,7 @@ def save_all_figures(filename: str):
     pp = PdfPages(result_file)
     [plt.figure(n).savefig(pp, format="pdf") for n in plt.get_fignums()]
     pp.close()
-    [plt.figure(n).clear() for n in plt.get_fignums()]
+    [plt.close(plt.figure(n)) for n in plt.get_fignums()]
     print(f"Saved plotting result to: {result_file}")
 
 
