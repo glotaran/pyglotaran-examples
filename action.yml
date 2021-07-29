@@ -51,9 +51,14 @@ runs:
       run: |
         echo "::group:: Saving commit sha to ~/pyglotaran_examples_results"
         mkdir -p ~/pyglotaran_examples_results
-        git --git-dir=pyglotaran-examples/.git log -n 1 --pretty=format:%H >> ~/pyglotaran_examples_results/example_commit_sha.txt
+        git --git-dir=pyglotaran-examples/.git log -n 1 --pretty=format:%H | \
+          tee ~/pyglotaran_examples_results/example_commit_sha.txt && \
+          echo
         echo "::endgroup::"
+
         echo "::group:: Saving commit sha to plot_results"
-        git --git-dir=pyglotaran-examples/.git log -n 1 --pretty=format:%H >> pyglotaran-examples/plot_results/example_commit_sha.txt
+        git --git-dir=pyglotaran-examples/.git log -n 1 --pretty=format:%H | \
+          tee pyglotaran-examples/plot_results/example_commit_sha.txt && \
+          echo
         echo "::endgroup::"
       shell: bash
