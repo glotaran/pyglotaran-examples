@@ -91,7 +91,7 @@ jobs:
           repository: "glotaran/pyglotaran-examples"
           ref: "comparison-results"
       - name: Remove obsolete results
-        run: rm -r *
+        run: rm -r * || true
       - name: Download results
         uses: actions/download-artifact@v2
         with:
