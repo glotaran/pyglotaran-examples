@@ -43,7 +43,7 @@ _Type_: kinetic-spectrum
   * *Normalize*: True
   * *Backsweep*: False
   * *Dispersion Center*: irf.dispc: **5.50000e+02** *(fixed)*
-  * *Center Dispersion*: [irf.disp1: **2.89377e-01** *(StdErr: 2e-03 ,initial: 3.08957e-01)*, irf.disp2: **-7.68442e-02** *(StdErr: 1e-03 ,initial: -8.33899e-02)*, irf.disp3: **9.88959e-03** *(StdErr: 6e-04 ,initial: 4.70000e-03)*]
+  * *Center Dispersion*: [irf.disp1: **2.89377e-01** *(StdErr: 2e-03 ,initial: 3.08957e-01)*, irf.disp2: **-7.68442e-02** *(StdErr: 1e-03 ,initial: -8.33899e-02)*, irf.disp3: **9.88958e-03** *(StdErr: 6e-04 ,initial: 4.70000e-03)*]
   * *Width Dispersion*: []
   * *Model Dispersion With Wavenumber*: False
 

@@ -4,5 +4,5 @@ inputs.s2,0.6810942520433104,-inf,inf,True,False,None
 irf.center,0.40000209675033604,-inf,inf,True,False,None
 irf.width,0.05997848876039635,-inf,inf,True,False,None
 rates.k1,0.25003115422490463,-inf,inf,True,False,None
-rates.k2,0.9999470936288748,-inf,inf,True,False,None
+rates.k2,0.9999470787277136,-inf,inf,True,False,None
 area.1,1.0,-inf,inf,False,False,None

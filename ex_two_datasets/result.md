@@ -1,13 +1,13 @@
 | Optimization Result           |                                 |
 |-------------------------------|---------------------------------|
-| Number of residual evaluation | 15                              |
+| Number of residual evaluation | 14                              |
 | Number of variables           | 10                              |
 | Number of datapoints          | 51104                           |
 | Degrees of freedom            | 51094                           |
 | Chi Square                    | 3.14e+02                        |
 | Reduced Chi Square            | 6.15e-03                        |
 | Root Mean Square Error (RMSE) | 7.84e-02                        |
-| RMSE additional penalty       | [1.05696656e-05 5.83357569e-06] |
+| RMSE additional penalty       | [8.22186121e-07 5.10459540e-07] |
 
 | RMSE (per dataset)   |   weighted |   unweighted |
 |----------------------|------------|--------------|
