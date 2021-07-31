@@ -1,0 +1,8 @@
+label,value,minimum,maximum,vary,non-negative,expression
+inputs.s1,0.5,-inf,inf,False,False,None
+inputs.s2,0.6810942446352182,-inf,inf,True,False,None
+irf.center,0.40000209673735465,-inf,inf,True,False,None
+irf.width,0.059978488753597674,-inf,inf,True,False,None
+rates.k1,0.2500311557867673,-inf,inf,True,False,None
+rates.k2,0.9999470943608767,-inf,inf,True,False,None
+area.1,1.0,-inf,inf,False,False,None
