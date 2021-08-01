@@ -8,7 +8,7 @@ dataset:
     scale: scale.1
   dataset2:
     megacomplex: [cmplx2]
-    initial_concentration: input1
+    initial_concentration: input2
     irf: irf2
     scale: scale.2
 
@@ -34,11 +34,14 @@ k_matrix:
       (s4, s2): "rates.k3d2"
       (s4, s3): "rates.k4d2"
       (s4, s4): "rates.k5"
-      (s5, s5): "rates.kC"
+      (s6, s6): "rates.kC"
 
 initial_concentration:
   input1:
     compartments: [s1, s2, s3, s4, s5]
+    parameters: [inputs.1, inputs.0, inputs.0, inputs.0, inputs.iC]
+  input2:
+    compartments: [s1, s2, s3, s4, s6]
     parameters: [inputs.1, inputs.0, inputs.0, inputs.0, inputs.iC]
 irf:
   irf1:
