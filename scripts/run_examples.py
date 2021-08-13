@@ -159,6 +159,14 @@ def sim_6d_disp(*, headless=False, raise_on_deprecation=False):
     from pyglotaran_examples.test.simultaneous_analysis_6d_disp import sim_analysis_script_6d_disp
 
 
+@script_run_wrapper
+def doas_beta(*, headless=False, raise_on_deprecation=False):
+    """Runs ex_doas_beta.py
+    from pyglotaran_examples/ex_doas_beta"""
+    # The whole script is run at import.
+    from pyglotaran_examples.ex_doas_beta import ex_doas_beta
+
+
 all_funcs = [
     quick_start,
     fluorescence,
@@ -173,6 +181,10 @@ all_funcs = [
     sim_6d_disp,
 ]
 
+beta_funcs = [
+    doas_beta,
+]
+
 
 def run_all(*, headless=False, raise_on_deprecation=False):
     """Runs all examples."""
@@ -181,7 +193,7 @@ def run_all(*, headless=False, raise_on_deprecation=False):
 
 
 parser = yaargh.ArghParser()
-parser.add_commands([*all_funcs, run_all])
+parser.add_commands([*all_funcs, *beta_funcs, run_all])
 
 
 if __name__ == "__main__":

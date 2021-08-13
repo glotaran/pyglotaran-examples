@@ -39,4 +39,4 @@ repos:
     hooks:
       - id: codespell
         files: ".py|.rst"
-        args: [--skip="*.ipynb"]
+        args: ["--skip='*.ipynb'", "-L doas,DOAS"]
