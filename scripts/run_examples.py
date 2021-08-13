@@ -179,9 +179,6 @@ all_funcs = [
     sim_3d_nodisp,
     sim_3d_weight,
     sim_6d_disp,
-]
-
-beta_funcs = [
     doas_beta,
 ]
 
@@ -193,7 +190,7 @@ def run_all(*, headless=False, raise_on_deprecation=False):
 
 
 parser = yaargh.ArghParser()
-parser.add_commands([*all_funcs, *beta_funcs, run_all])
+parser.add_commands([*all_funcs, run_all])
 
 
 if __name__ == "__main__":
