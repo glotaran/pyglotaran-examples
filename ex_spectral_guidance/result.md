@@ -7,12 +7,12 @@
 | Chi Square                    | 9.80e+06     |
 | Reduced Chi Square            | 8.71e+02     |
 | Root Mean Square Error (RMSE) | 2.95e+01     |
-| RMSE additional penalty       | [4.02486899] |
+| RMSE additional penalty       | [4.06507309] |
 
 | RMSE (per dataset)   |   weighted |   unweighted |
 |----------------------|------------|--------------|
 | 1.dataset1:          |   3.00e+01 |     3.00e+01 |
-| 2.dataset2:          |   5.85e-04 |     5.85e-04 |
+| 2.dataset2:          |   5.59e-04 |     5.59e-04 |
 
 # Model
 
@@ -36,18 +36,18 @@ _Type_: kinetic-spectrum
 * **km1**:
   * *Label*: km1
   * *Matrix*: 
-    * *('s1', 's4')*: rates.k1: **2.46653e-01** *(StdErr: 1e-01 ,initial: 2.10000e-01)*
-    * *('s3', 's1')*: rates.k2: **1.60300e-01** *(StdErr: 2e-01 ,initial: 1.95500e-01)*
+    * *('s1', 's4')*: rates.k1: **2.46938e-01** *(StdErr: 4e-02 ,initial: 2.10000e-01)*
+    * *('s3', 's1')*: rates.k2: **1.59884e-01** *(StdErr: 8e-02 ,initial: 1.95500e-01)*
     * *('s2', 's1')*: rates.k3: **8.70000e-02** *(fixed)*
-    * *('s5', 's2')*: rates.k4: **2.49055e-01** *(StdErr: 1e-01 ,initial: 2.67000e-01)*
-    * *('s6', 's3')*: rates.k5: **6.43100e-03** *(StdErr: 2e+00 ,initial: 6.40000e-03)*
-    * *('s6', 's6')*: rates.k6: **1.33180e-06** *(StdErr: 5e-01 ,initial: 1.30000e-06)*
-    * *('s5', 's5')*: rates.k6: **1.33180e-06** *(StdErr: 5e-01 ,initial: 1.30000e-06)*
+    * *('s5', 's2')*: rates.k4: **2.49146e-01** *(StdErr: 2e-02 ,initial: 2.67000e-01)*
+    * *('s6', 's3')*: rates.k5: **6.43174e-03** *(StdErr: 2e-01 ,initial: 6.40000e-03)*
+    * *('s6', 's6')*: rates.k6: **1.33179e-06** *(StdErr: 4e-01 ,initial: 1.30000e-06)*
+    * *('s5', 's5')*: rates.k6: **1.33179e-06** *(StdErr: 4e-01 ,initial: 1.30000e-06)*
   
 * **km2**:
   * *Label*: km2
   * *Matrix*: 
-    * *('s5', 's5')*: rates.k6: **1.33180e-06** *(StdErr: 5e-01 ,initial: 1.30000e-06)*
+    * *('s5', 's5')*: rates.k6: **1.33179e-06** *(StdErr: 4e-01 ,initial: 1.30000e-06)*
   
 
 ## Irf
@@ -74,7 +74,7 @@ _Type_: kinetic-spectrum
 * **dataset2**:
   * *Label*: dataset2
   * *Megacomplex*: ['complex2']
-  * *Scale*: scale.2: **8.55538e-01** *(StdErr: 2e+00 ,initial: 8.62000e-01)*
+  * *Scale*: scale.2: **8.55560e-01** *(StdErr: 2e+00 ,initial: 8.62000e-01)*
   * *Initial Concentration*: input2
 
 ## Megacomplex

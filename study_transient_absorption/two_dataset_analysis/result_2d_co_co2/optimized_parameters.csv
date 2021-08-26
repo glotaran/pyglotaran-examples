@@ -3,23 +3,23 @@ inputs.1,1.0,-inf,inf,False,False,None
 inputs.0,0.0,-inf,inf,False,False,None
 inputs.iC,1.0,-inf,inf,False,False,None
 scale.1,1.0,-inf,inf,False,False,None
-scale.2,1.2586307569392319,-inf,inf,True,False,None
+scale.2,1.260432815962042,-inf,inf,True,False,None
 rel.r1,1.0,-inf,inf,False,False,None
-b.1,0.013338856674772097,-inf,inf,True,True,None
-b.2,0.9866611433252279,-inf,inf,False,False,1 - $b.1
+b.1,9.785942358466016,-inf,inf,True,True,None
+b.2,-8.785942358466016,-inf,inf,False,False,1 - $b.1
 rates.k1sum,9.49943878184853,-inf,inf,False,True,None
 rates.k1,0.8265,-inf,inf,False,True,None
 rates.k2,8.7635,-inf,inf,False,True,None
-rates.k3,0.2361014109187071,-inf,inf,True,True,None
-rates.k4,0.044737589982769756,-inf,inf,True,True,None
-rates.k3d2,49.99665537873238,-inf,inf,True,True,None
-rates.k4d2,0.10624381679939837,-inf,inf,True,True,None
-rates.k5,0.018597621673533155,-inf,inf,True,True,None
+rates.k3,0.23990654563683722,-inf,inf,True,True,None
+rates.k4,0.04467399559015495,-inf,inf,True,True,None
+rates.k3d2,1.9183658801263947e+41,-inf,inf,True,True,None
+rates.k4d2,0.10611255920626933,-inf,inf,True,True,None
+rates.k5,0.018626818544432704,-inf,inf,True,True,None
 rates.kC,99.0,-inf,inf,False,True,None
-irf.center,1.2045022691083003,-inf,inf,True,False,None
-irf.width,0.06942319672723987,-inf,inf,True,False,None
+irf.center,1.2008744826476112,-inf,inf,True,False,None
+irf.width,0.07183326178475381,-inf,inf,True,False,None
 irf.dispc,550.0,-inf,inf,False,False,None
-irf.disp1,0.27060857082251777,-inf,inf,True,False,None
-irf.disp2,-0.11586264241057032,-inf,inf,True,False,None
-irf.disp3,0.03800710402069975,-inf,inf,True,False,None
-irf2.center,0.6914972621279207,-inf,inf,True,False,None
+irf.disp1,0.26743626671006787,-inf,inf,True,False,None
+irf.disp2,-0.028296920718478263,-inf,inf,True,False,None
+irf.disp3,-0.0037452445020093347,-inf,inf,True,False,None
+irf2.center,0.6692470112655157,-inf,inf,True,False,None

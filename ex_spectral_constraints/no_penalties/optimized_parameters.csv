@@ -1,7 +1,7 @@
 label,value,minimum,maximum,vary,non-negative,expression
 inputs.s1,0.5,-inf,inf,False,False,None
 inputs.s2,0.5,-inf,inf,False,False,None
-irf.center,0.40000209673744747,-inf,inf,True,False,None
-irf.width,0.05997848875381874,-inf,inf,True,False,None
-rates.k1,0.25003115579016194,-inf,inf,True,False,None
-rates.k2,0.9999470794810041,-inf,inf,True,False,None
+irf.center,0.400002096738232,-inf,inf,True,False,None
+irf.width,0.05997848875436452,-inf,inf,True,False,None
+rates.k1,0.2500311557944875,-inf,inf,True,False,None
+rates.k2,0.9999470795394774,-inf,inf,True,False,None
