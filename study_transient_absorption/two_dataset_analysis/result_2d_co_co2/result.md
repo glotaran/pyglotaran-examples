@@ -47,7 +47,7 @@ _Type_: kinetic-spectrum
   * *Matrix*: 
     * *('s2', 's1')*: rates.k1: **8.26500e-01** *(fixed)*
     * *('s3', 's1')*: rates.k2: **8.76350e+00** *(fixed)*
-    * *('s4', 's2')*: rates.k3d2: **1.91837e+41** *(StdErr: 3e-17 ,initial: 7.00000e-01)*
+    * *('s4', 's2')*: rates.k3d2: **1.44407e+34** *(StdErr: 7e-15 ,initial: 7.00000e-01)*
     * *('s4', 's3')*: rates.k4d2: **1.06113e-01** *(StdErr: 4e-03 ,initial: 8.50000e-02)*
     * *('s4', 's4')*: rates.k5: **1.86268e-02** *(StdErr: 2e-03 ,initial: 1.92859e-02)*
     * *('s6', 's6')*: rates.kC: **9.90000e+01** *(fixed)*
