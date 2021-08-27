@@ -79,6 +79,10 @@ megacomplex:
   baseline:
     type: baseline
     dimension: time
+  artifact:
+    type: coherent-artifact
+    order: 3
+
 
 irf:
   irf1:
@@ -91,5 +95,5 @@ irf:
 dataset:
   dataset1:
     initial_concentration: j1
-    megacomplex: [doas, decay, baseline]
+    megacomplex: [doas, decay, artifact, baseline]
     irf: irf1
