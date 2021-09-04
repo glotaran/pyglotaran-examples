@@ -2,6 +2,7 @@ import functools
 import os
 import sys
 import warnings
+from multiprocessing import Process
 from pathlib import Path
 
 import matplotlib
@@ -180,9 +181,20 @@ def run_all(*, headless=False, raise_on_deprecation=False):
         func(headless=headless, raise_on_deprecation=raise_on_deprecation)
 
 
+def runInParallel(*fns):
+    proc = []
+    for fn in fns:
+        p = Process(target=fn, kwargs={"headless": True, "raise_on_deprecation": False})
+        p.start()
+        proc.append(p)
+    for p in proc:
+        p.join()
+
+
 parser = yaargh.ArghParser()
 parser.add_commands([*all_funcs, run_all])
 
 
 if __name__ == "__main__":
-    parser.dispatch()
+    # parser.dispatch()
+    runInParallel(*all_funcs)
