@@ -43,7 +43,7 @@ def run_doas_model(show_plot=False, block_plot=False):
         non_negative_least_squares=False,
         optimization_method="TrustRegionReflection",
         # maximum_number_function_evaluations=3,
-        maximum_number_function_evaluations=1,
+        maximum_number_function_evaluations=7,
     )
     result = optimize(scheme)
 

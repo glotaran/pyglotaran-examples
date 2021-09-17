@@ -19,11 +19,11 @@ kinetic: [
 ]
 
 irf:
-  - ['center', 1.27411373E-02, {non-negative: False, vary: False}]
+  - ['center', 1.27411373E-02, {non-negative: False, vary: True}]
   - ['width', 6.E-3, {non-negative: True, vary: False}]
   - ['dispcenter', 600.0, {non-negative: False, vary: False}]
-  - ['disp1', -2.11437792E-02, {non-negative: False, vary: False}]
-  - ['disp2', 1.06876018E-02, {non-negative: False, vary: False}]
+  - ['disp1', -2.11437792E-02, {non-negative: False, vary: True}]
+  - ['disp2', 1.06876018E-02, {non-negative: False, vary: True}]
 
 artifact:
   - ['CAwidth', 1.87562369E-02, {non-negative: True, vary: True}]
