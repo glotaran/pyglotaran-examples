@@ -1,0 +1,4 @@
+model: model.yml
+parameters: parameters.yml
+data:
+  dataset1: 2008Polli_betacar_chex_sim.nc
