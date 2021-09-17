@@ -2,16 +2,15 @@
 
 initial_concentration:
   j1:
-    compartments: [S2FC, S2, hotS1, S1]
-    parameters: [j.1, j.0, j.0, j.0]
+    compartments: [S2, hotS1, S1]
+    parameters: [j.1, j.0, j.0]
 
 k_matrix:
     k1:
       matrix:
-        '(S2, S2FC)': kinetic.1
-        '(hotS1, S2)': kinetic.2
-        '(S1, hotS1)': kinetic.3
-        '(S1, S1)': kinetic.4
+        '(hotS1, S2)': kinetic.1
+        '(S1, hotS1)': kinetic.2
+        '(S1, S1)': kinetic.3
 
 megacomplex:
   doas:
@@ -34,6 +33,8 @@ megacomplex:
       osc15,
       osc16,
       osc17,
+      osc18,
+      osc19,
     ]
     frequencies: [
       osc.freq.1,
@@ -53,35 +54,40 @@ megacomplex:
       osc.freq.15,
       osc.freq.16,
       osc.freq.17,
+      osc.freq.18,
+      osc.freq.19,
     ]
     rates: [
-      osc.rate.1,
-      osc.rate.2,
-      osc.rate.3,
-      osc.rate.4,
-      osc.rate.5,
-      osc.rate.6,
-      osc.rate.7,
-      osc.rate.8,
-      osc.rate.9,
-      osc.rate.10,
-      osc.rate.11,
-      osc.rate.12,
-      osc.rate.13,
-      osc.rate.14,
-      osc.rate.15,
-      osc.rate.16,
-      osc.rate.17,
+      osc.rates.1,
+      osc.rates.2,
+      osc.rates.3,
+      osc.rates.4,
+      osc.rates.5,
+      osc.rates.6,
+      osc.rates.7,
+      osc.rates.8,
+      osc.rates.9,
+      osc.rates.10,
+      osc.rates.11,
+      osc.rates.12,
+      osc.rates.13,
+      osc.rates.14,
+      osc.rates.15,
+      osc.rates.16,
+      osc.rates.17,
+      osc.rates.18,
+      osc.rates.19,
     ]
   decay:
     type: decay
     k_matrix: [k1]
-  baseline:
-    type: baseline
-    dimension: time
+#  baseline:
+#    type: baseline
+#    dimension: time
   artifact:
     type: coherent-artifact
     order: 3
+    width: artifact.CAwidth
 
 
 irf:
@@ -95,5 +101,5 @@ irf:
 dataset:
   dataset1:
     initial_concentration: j1
-    megacomplex: [doas, decay, artifact, baseline]
+    megacomplex: [doas, decay, artifact]
     irf: irf1
