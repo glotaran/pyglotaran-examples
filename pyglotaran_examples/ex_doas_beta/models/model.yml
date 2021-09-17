@@ -96,7 +96,8 @@ irf:
     center: irf.center
     width: irf.width
     dispersion_center: irf.dispcenter
-    center_dispersion: [irf.disp1, irf.disp2, irf.disp3]
+    center_dispersion: [irf.disp1, irf.disp2]
+    model_dispersion_with_wavenumber: true
 
 dataset:
   dataset1:

@@ -15,16 +15,15 @@ j:
   - ['0', 0.0, {non-negative: False, vary: False}]
 
 kinetic: [
-  5.96975613,   2.64231563,      0.110913947
+  5.96975613,   2.64231563,      0.110913947, {non-negative: False, vary: False}
 ]
 
 irf:
-  - ['center', -2.35207728E-03, {non-negative: False, vary: True}]
+  - ['center', 1.27411373E-02, {non-negative: False, vary: False}]
   - ['width', 6.E-3, {non-negative: True, vary: False}]
   - ['dispcenter', 600.0, {non-negative: False, vary: False}]
-  - ['disp1', 2.75756628E-03, {non-negative: False, vary: True}]
-  - ['disp2', -2.39017978E-02, {non-negative: False, vary: True}]
-  - ['disp3', -3.09822452E-03, {non-negative: False, vary: True}]
+  - ['disp1', -2.11437792E-02, {non-negative: False, vary: False}]
+  - ['disp2', 1.06876018E-02, {non-negative: False, vary: False}]
 
 artifact:
-  - ['CAwidth', 1.87562369E-02, {non-negative: True, vary: False}]
+  - ['CAwidth', 1.87562369E-02, {non-negative: True, vary: True}]
