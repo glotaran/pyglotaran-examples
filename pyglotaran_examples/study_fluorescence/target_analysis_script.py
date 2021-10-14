@@ -5,7 +5,6 @@ from timeit import default_timer as timer
 
 import matplotlib.pyplot as plt
 from glotaran.analysis.optimize import optimize
-from glotaran.analysis.problem import Problem
 from glotaran.io import load_dataset
 from glotaran.io import load_model
 from glotaran.io import load_parameters
@@ -54,10 +53,6 @@ else:
     )
 
     print(model.validate(parameters=parameter))
-
-    # The problem is constructed automatically from the scheme by the optimize call,
-    # but can also be created manually for debug purposes:
-    test_problem = Problem(scheme)
 
     # %%
     start = timer()
