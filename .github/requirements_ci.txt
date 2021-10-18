@@ -1,6 +1,6 @@
 
 pyglotaran>=0.3.0
-jupyterlab>=2.0.0
+jupyterlab>=3.0.0
 matplotlib>=3.3.0
 
 yaargh>=0.28.0
