@@ -9,6 +9,10 @@ inputs:
     description: "Branch/tag of pyglotaran examples to use"
     required: true
     default: main
+  install_extras:
+    description: "Whether or not to install pyglotaran_extras"
+    required: true
+    default: "true"
 
 outputs:
   plots-path:
@@ -35,8 +39,17 @@ runs:
     - name: Install additional requirements
       run: |
         echo "::group:: Installing requirements"
-        pip install wheel
-        pip install -r pyglotaran-examples/requirements.txt
+        echo 'inputs.install_extras= ${{ inputs.install_extras }}'
+        if [ '${{ inputs.install_extras }}' = 'false' ]
+        then
+          echo "Installing with OUT pyglotaran_extras"
+          pip install wheel
+          pip install -r pyglotaran-examples/.github/requirements_ci.txt
+        else
+          echo "Installing with pyglotaran_extras"
+          pip install wheel
+          pip install -r pyglotaran-examples/requirements.txt
+        fi
         echo "::endgroup::"
       shell: bash
     - name: Run example
