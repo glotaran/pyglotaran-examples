@@ -1,0 +1,66 @@
+exclude: ^.+\.ascii$
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.0.1
+    hooks:
+      - id: check-ast
+      - id: check-builtin-literals
+      - id: check-merge-conflict
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: debug-statements
+      - id: fix-encoding-pragma
+        args: [--remove]
+  - repo: https://github.com/asottile/pyupgrade
+    rev: v2.23.0
+    hooks:
+      - id: pyupgrade
+        args: [--py38-plus]
+  - repo: https://github.com/psf/black
+    rev: 21.7b0
+    hooks:
+      - id: black
+        language_version: python3
+  - repo: https://github.com/PyCQA/isort
+    rev: 5.9.2
+    hooks:
+      - id: isort
+  - repo: https://github.com/asottile/yesqa
+    rev: v1.2.3
+    hooks:
+      - id: yesqa
+        additional_dependencies: [flake8-docstrings]
+
+  # Notebook tools
+  - repo: https://github.com/kynan/nbstripout
+    rev: 0.4.0
+    hooks:
+      - id: nbstripout
+        args: [--strip-empty-cells]
+
+  - repo: https://github.com/nbQA-dev/nbQA
+    rev: 0.13.0
+    hooks:
+      - id: nbqa-black
+        additional_dependencies: [black==21.6b0]
+        args: [--nbqa-mutate]
+      - id: nbqa-pyupgrade
+        additional_dependencies: [pyupgrade==2.19.4]
+        args: [--nbqa-mutate, --py38-plus]
+      - id: nbqa-flake8
+      - id: nbqa-check-ast
+      - id: nbqa-isort
+        additional_dependencies: [isort==5.8.0]
+        args: [--nbqa-mutate]
+
+  - repo: https://github.com/PyCQA/flake8
+    rev: 3.9.2
+    hooks:
+      - id: flake8
+        args: [--max-line-length=99]
+  - repo: https://github.com/codespell-project/codespell
+    rev: v2.1.0
+    hooks:
+      - id: codespell
+        files: ".py|.rst"
+        args: ["--skip='*.ipynb'", "-L doas,DOAS"]
