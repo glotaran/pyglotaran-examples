@@ -1,0 +1,40 @@
+default_megacomplex: decay
+
+megacomplex:
+  mc1:
+    k_matrix: [km1]
+
+k_matrix:
+  km1:
+    matrix:
+      (red1, bulk): rates.bulk_to_red1
+      (red2, red1): rates.red1_to_red2
+      (free, red2): rates.red2_to_free
+      (free, free): rates.free_out
+
+irf:
+  irf1:
+    type: gaussian
+    center: irf.center
+    width: irf.width
+    backsweep: True
+    backsweep_period: irf.backsweep
+
+initial_concentration:
+  input1:
+    compartments: [bulk, red1, red2, free]
+    parameters: [
+      input.1,
+      input.0,
+      input.0,
+      input.0]
+
+dataset_groups:
+  default:
+    residual_function: non_negative_least_squares
+
+dataset:
+  spirolina_data:
+    initial_concentration: input1
+    megacomplex: [mc1]
+    irf: irf1
