@@ -1,0 +1,70 @@
+dataset:
+  dataset:
+    megacomplex: [kin_mc]
+    global_megacomplex: [spec_mc]
+    initial_concentration: inputs
+    irf: irf1
+    # spectral_axis_inverted: True # to allow specification of spectral parameters in cm-1
+    # spectral_axis_scale: 10000000
+
+megacomplex:
+  kin_mc:
+    type: decay
+    k_matrix: [km1]
+  spec_mc:
+    type: spectral
+    shape:
+      s1: sh1
+      s2: sh2
+      s3: sh3
+
+k_matrix:
+  km1:
+    matrix:
+      (s1, s1): kinetic.k1
+      (s2, s2): kinetic.k2
+      (s3, s3): kinetic.k3
+
+shape:
+  sh1:
+    type: gaussian
+    amplitude: spectral.amp1
+    location: spectral.loc1
+    width: spectral.width1
+  sh2:
+    type: gaussian
+    amplitude: spectral.amp2
+    location: spectral.loc2
+    width: spectral.width2
+  sh3:
+    type: gaussian
+    amplitude: spectral.amp3
+    location: spectral.loc3
+    width: spectral.width3
+
+initial_concentration:
+  inputs:
+    compartments: [s1, s2, s3]
+    parameters: [inputs.1, inputs.2, inputs.3]
+
+irf:
+  irf1:
+    type: spectral-multi-gaussian
+    center: [irf.center]
+    width: [irf.width]
+
+clp_area_penalties:
+  - type: equal_area
+    source: s1
+    source_intervals: [[300, 3000]]
+    target: s2
+    target_intervals: [[300, 3000]]
+    parameter: area.1
+    weight: 0.1
+  - type: equal_area
+    source: s1
+    source_intervals: [[300, 3000]]
+    target: s3
+    target_intervals: [[300, 3000]]
+    parameter: area.1
+    weight: 0.1
