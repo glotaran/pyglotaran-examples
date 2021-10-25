@@ -31,7 +31,7 @@ initial_concentration:
 
 dataset_groups:
   default:
-    residual_function: non_negative_least_squares      
+    residual_function: non_negative_least_squares
 
 dataset:
   spirolina_data:
