@@ -1,4 +1,4 @@
-type: kinetic-spectrum
+default_megacomplex: decay
 
 dataset:
   dataset1:
@@ -27,7 +27,7 @@ irf:
     center: [irf.center]
     width: [irf.width]
 
-equal_area_penalties:
+clp_area_penalties:
   - type: equal_area
     source: s2
     source_intervals: [[0, 1000]]
