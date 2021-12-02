@@ -1,5 +1,10 @@
 default_megacomplex: decay
 
+dataset_groups:
+  default:
+    residual_function: non_negative_least_squares
+    # link_clp: false
+
 dataset:
   dataset1:
     megacomplex: [complex1]
@@ -51,11 +56,11 @@ clp_area_penalties:
     weight: 1.E-6
 
 clp_relations:
-  - compartment: s1
+  - source: s1
     target: s4
     parameter: rel.r1
     interval: [[0, 1000]]
-  - compartment: s3
+  - source: s3
     target: s6
     parameter: rel.r1
     interval: [[0, 1000]]

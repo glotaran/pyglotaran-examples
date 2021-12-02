@@ -8,7 +8,7 @@ from glotaran.io import load_model
 from glotaran.io import load_parameters
 from glotaran.io import save_result
 from glotaran.project.scheme import Scheme
-from pyglotaran_extras.io.boilerplate import setup_case_study
+from pyglotaran_extras.io import setup_case_study
 from pyglotaran_extras.plotting.plot_overview import plot_overview
 from pyglotaran_extras.plotting.style import PlotStyle
 
@@ -39,7 +39,6 @@ def main():
         {"dataset1": dataset1, "dataset2": dataset2},
         # optimization_method="Levenberg-Marquardt", # LM needs more nfev!
         maximum_number_function_evaluations=23,  # TRF needs nfev=21-23
-        non_negative_least_squares=True,
     )
 
     # Optimize the analysis scheme (and estimate parameters)
@@ -62,15 +61,15 @@ def load_and_plot_results():
     print(f"Optimized parameters:\n {parameters}")
 
     result1 = results_folder.joinpath("dataset1.nc")
-    fig1 = plot_overview(result1, linlog=True, show_data=True)
-    timestamp = datetime.now().strftime("%y%m%d_%H%M")
+    fig1, _ = plot_overview(result1, linlog=True, show_data=True, figure_only=False)
+    timestamp = datetime.today().strftime("%y%m%d_%H%M")
     fig1.savefig(
         results_folder.joinpath(f"plot_overview_1of2_{timestamp}.pdf"), bbox_inches="tight"
     )
 
     result2 = results_folder.joinpath("dataset2.nc")
-    fig2 = plot_overview(result2, linlog=True)
-    timestamp = datetime.now().strftime("%y%m%d_%H%M")
+    fig2, _ = plot_overview(result2, linlog=True, figure_only=False)
+    timestamp = datetime.today().strftime("%y%m%d_%H%M")
     fig2.savefig(
         results_folder.joinpath(f"plot_overview_2of2_{timestamp}.pdf"), bbox_inches="tight"
     )
