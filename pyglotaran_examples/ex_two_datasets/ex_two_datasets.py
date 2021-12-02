@@ -9,7 +9,7 @@ from glotaran.io import load_model
 from glotaran.io import load_parameters
 from glotaran.io import save_result
 from glotaran.project.scheme import Scheme
-from pyglotaran_extras.io.boilerplate import setup_case_study
+from pyglotaran_extras.io import setup_case_study
 from pyglotaran_extras.plotting.plot_overview import plot_overview
 from pyglotaran_extras.plotting.style import PlotStyle
 
@@ -75,11 +75,11 @@ plot_style = PlotStyle()
 plt.rc("axes", prop_cycle=plot_style.cycler)
 
 fig1 = plot_overview(result.data["dataset1"], linlog=True)
-timestamp = datetime.now().strftime("%y%m%d_%H%M")
+timestamp = datetime.today().strftime("%y%m%d_%H%M")
 fig1.savefig(results_folder.joinpath(f"plot_overview_1of2_{timestamp}.pdf"), bbox_inches="tight")
 
 fig2 = plot_overview(result.data["dataset2"], linlog=True)
-timestamp = datetime.now().strftime("%y%m%d_%H%M")
+timestamp = datetime.today().strftime("%y%m%d_%H%M")
 fig2.savefig(results_folder.joinpath(f"plot_overview_2of2_{timestamp}.pdf"), bbox_inches="tight")
 
 plt.show()
