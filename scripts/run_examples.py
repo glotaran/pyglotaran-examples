@@ -11,6 +11,7 @@ import yaargh
 from glotaran.deprecation.deprecation_utils import GlotaranApiDeprecationWarning
 from glotaran.io import save_result
 from matplotlib.backends.backend_pdf import PdfPages
+from pyglotaran_extras.deprecation.deprecation_utils import PyglotaranExtrasApiDeprecationWarning
 
 REPO_ROOT = Path(__file__).parent.parent
 
@@ -71,8 +72,10 @@ def script_run_wrapper(func):
             )
             if kwargs["raise_on_deprecation"]:
                 warnings.filterwarnings("error", category=GlotaranApiDeprecationWarning)
+                warnings.filterwarnings("error", category=PyglotaranExtrasApiDeprecationWarning)
             else:
                 warnings.filterwarnings("always", category=GlotaranApiDeprecationWarning)
+                warnings.filterwarnings("always", category=PyglotaranExtrasApiDeprecationWarning)
             if "GITHUB" in os.environ:
                 warnings.formatwarning = github_format_warning
 
