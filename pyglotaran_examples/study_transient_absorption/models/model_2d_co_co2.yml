@@ -1,4 +1,4 @@
-type: kinetic-spectrum
+default_megacomplex: decay
 
 dataset:
   dataset1:
@@ -49,16 +49,16 @@ irf:
     center: [irf.center]
     width: [irf.width]
     dispersion_center: irf.dispc
-    center_dispersion: [irf.disp1, irf.disp2, irf.disp3] #model validate accepted "dispersion_par" as valid!
+    center_dispersion_coefficients: [irf.disp1, irf.disp2, irf.disp3] #model validate accepted "dispersion_par" as valid!
   irf2:
     type: spectral-multi-gaussian
     center: [irf2.center]
     width: [irf.width]
     dispersion_center: irf.dispc
-    center_dispersion: [irf.disp1, irf.disp2, irf.disp3] #model validate accepted "dispersion_par" as valid!
+    center_dispersion_coefficients: [irf.disp1, irf.disp2, irf.disp3] #model validate accepted "dispersion_par" as valid!
 
-spectral_relations:
-  - compartment: s2
+clp_relations:
+  - source: s2
     target: s3
     parameter: rel.r1
     interval: [[0, 1000]]

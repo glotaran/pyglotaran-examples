@@ -11,7 +11,7 @@ from glotaran.io import load_model
 from glotaran.io import load_parameters
 from glotaran.io import save_result
 from glotaran.project.scheme import Scheme
-from pyglotaran_extras.io.boilerplate import setup_case_study
+from pyglotaran_extras.io import setup_case_study
 from pyglotaran_extras.plotting.plot_overview import plot_overview
 from pyglotaran_extras.plotting.style import PlotStyle
 
@@ -88,13 +88,13 @@ plt.rc("axes", prop_cycle=plot_style.cycler)
 
 # %%
 # TODO: enhance plot_overview to handle multiple datasets
-fig1 = plot_overview(result_datafile1, linlog=True, linthresh=1)
+fig1, _ = plot_overview(result_datafile1, linlog=True, linthresh=1, figure_only=False)
 fig1.savefig(
     output_folder.joinpath(f"plot_overview_{result_name}_d1_{data_path1.stem}.pdf"),
     bbox_inches="tight",
 )
 
-fig2 = plot_overview(result_datafile2, linlog=True, linthresh=1)
+fig2, _ = plot_overview(result_datafile2, linlog=True, linthresh=1, figure_only=False)
 fig2.savefig(
     output_folder.joinpath(f"plot_overview_{result_name}_d2_{data_path2.stem}.pdf"),
     bbox_inches="tight",
