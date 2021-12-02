@@ -8,7 +8,7 @@ from glotaran.io import load_model
 from glotaran.io import load_parameters
 from glotaran.io import save_result
 from glotaran.project.scheme import Scheme
-from pyglotaran_extras.io.boilerplate import setup_case_study
+from pyglotaran_extras.io import setup_case_study
 from pyglotaran_extras.plotting.plot_overview import plot_overview
 from pyglotaran_extras.plotting.style import PlotStyle
 
@@ -46,7 +46,7 @@ save_result(result, results_folder, format_name="legacy", allow_overwrite=True)
 plot_style = PlotStyle()
 plt.rc("axes", prop_cycle=plot_style.cycler)
 
-fig = plot_overview(result, linlog=True)
+fig, _ = plot_overview(result, linlog=True, figure_only=False)
 
 timestamp = datetime.now().strftime("%y%m%d_%H%M")
 fig.savefig(results_folder.joinpath(f"plot_overview_{timestamp}.pdf"), bbox_inches="tight")
