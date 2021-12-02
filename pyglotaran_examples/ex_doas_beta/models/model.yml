@@ -6,89 +6,91 @@ initial_concentration:
     parameters: [j.1, j.0, j.0]
 
 k_matrix:
-    k1:
-      matrix:
-        '(hotS1, S2)': kinetic.1
-        '(S1, hotS1)': kinetic.2
-        '(S1, S1)': kinetic.3
+  k1:
+    matrix:
+      "(hotS1, S2)": kinetic.1
+      "(S1, hotS1)": kinetic.2
+      "(S1, S1)": kinetic.3
 
 megacomplex:
   doas:
     type: damped-oscillation
-    labels: [
-      osc1,
-      osc2,
-      osc3,
-      osc4,
-      osc5,
-      osc6,
-      osc7,
-      osc8,
-      osc9,
-      osc10,
-      osc11,
-      osc12,
-      osc13,
-      osc14,
-      osc15,
-      osc16,
-      osc17,
-      osc18,
-      osc19,
-    ]
-    frequencies: [
-      osc.freq.1,
-      osc.freq.2,
-      osc.freq.3,
-      osc.freq.4,
-      osc.freq.5,
-      osc.freq.6,
-      osc.freq.7,
-      osc.freq.8,
-      osc.freq.9,
-      osc.freq.10,
-      osc.freq.11,
-      osc.freq.12,
-      osc.freq.13,
-      osc.freq.14,
-      osc.freq.15,
-      osc.freq.16,
-      osc.freq.17,
-      osc.freq.18,
-      osc.freq.19,
-    ]
-    rates: [
-      osc.rates.1,
-      osc.rates.2,
-      osc.rates.3,
-      osc.rates.4,
-      osc.rates.5,
-      osc.rates.6,
-      osc.rates.7,
-      osc.rates.8,
-      osc.rates.9,
-      osc.rates.10,
-      osc.rates.11,
-      osc.rates.12,
-      osc.rates.13,
-      osc.rates.14,
-      osc.rates.15,
-      osc.rates.16,
-      osc.rates.17,
-      osc.rates.18,
-      osc.rates.19,
-    ]
+    labels:
+      [
+        osc1,
+        osc2,
+        osc3,
+        osc4,
+        osc5,
+        osc6,
+        osc7,
+        osc8,
+        osc9,
+        osc10,
+        osc11,
+        osc12,
+        osc13,
+        osc14,
+        osc15,
+        osc16,
+        osc17,
+        osc18,
+        osc19,
+      ]
+    frequencies:
+      [
+        osc.freq.1,
+        osc.freq.2,
+        osc.freq.3,
+        osc.freq.4,
+        osc.freq.5,
+        osc.freq.6,
+        osc.freq.7,
+        osc.freq.8,
+        osc.freq.9,
+        osc.freq.10,
+        osc.freq.11,
+        osc.freq.12,
+        osc.freq.13,
+        osc.freq.14,
+        osc.freq.15,
+        osc.freq.16,
+        osc.freq.17,
+        osc.freq.18,
+        osc.freq.19,
+      ]
+    rates:
+      [
+        osc.rates.1,
+        osc.rates.2,
+        osc.rates.3,
+        osc.rates.4,
+        osc.rates.5,
+        osc.rates.6,
+        osc.rates.7,
+        osc.rates.8,
+        osc.rates.9,
+        osc.rates.10,
+        osc.rates.11,
+        osc.rates.12,
+        osc.rates.13,
+        osc.rates.14,
+        osc.rates.15,
+        osc.rates.16,
+        osc.rates.17,
+        osc.rates.18,
+        osc.rates.19,
+      ]
   decay:
     type: decay
     k_matrix: [k1]
-#  baseline:
-#    type: baseline
-#    dimension: time
+  #  baseline:
+  #    type: baseline
+  #    dimension: time
   artifact:
     type: coherent-artifact
     order: 3
     width: artifact.CAwidth
-
 
 irf:
   irf1:
@@ -96,7 +98,7 @@ irf:
     center: irf.center
     width: irf.width
     dispersion_center: irf.dispcenter
-    center_dispersion: [irf.disp1, irf.disp2]
+    center_dispersion_coefficients: [irf.disp1, irf.disp2]
     model_dispersion_with_wavenumber: true
 
 dataset:
