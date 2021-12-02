@@ -10,7 +10,7 @@ from glotaran.io import load_model
 from glotaran.io import load_parameters
 from glotaran.io import save_result
 from glotaran.project.scheme import Scheme
-from pyglotaran_extras.io.boilerplate import setup_case_study
+from pyglotaran_extras.io import setup_case_study
 from pyglotaran_extras.plotting.plot_overview import plot_overview
 from pyglotaran_extras.plotting.style import PlotStyle
 
@@ -48,8 +48,6 @@ else:
         {"dataset1": dataset},
         maximum_number_function_evaluations=6,  # 6 for TRF, 46 for LM
         # optimization_method="Levenberg-Marquardt", #lm needs nfev=46
-        non_negative_least_squares=True,
-        # group=False
     )
 
     print(model.validate(parameters=parameter))
@@ -79,7 +77,7 @@ plot_style = PlotStyle()
 plt.rc("axes", prop_cycle=plot_style.cycler)
 
 # %%
-fig = plot_overview(result_datafile, linlog=False)
+fig, _ = plot_overview(result_datafile, linlog=False, figure_only=False)
 # note species concentration plot still needs work to match styles between the two locatable axis
 
 # %%

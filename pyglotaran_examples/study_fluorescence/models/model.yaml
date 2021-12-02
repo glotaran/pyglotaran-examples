@@ -1,4 +1,9 @@
-type: kinetic-spectrum
+default_megacomplex: decay
+
+dataset_groups:
+  default:
+    residual_function: non_negative_least_squares
+    # link_clp: false
 
 megacomplex:
   mc1:
@@ -23,11 +28,7 @@ irf:
 initial_concentration:
   input1:
     compartments: [s1, s2, s3, s4]
-    parameters: [
-      input.1,
-      input.0,
-      input.0,
-      input.0]
+    parameters: [input.1, input.0, input.0, input.0]
 
 dataset:
   dataset1:
