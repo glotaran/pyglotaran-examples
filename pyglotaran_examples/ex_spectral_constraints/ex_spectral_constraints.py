@@ -6,7 +6,7 @@ from glotaran.io import load_model
 from glotaran.io import load_parameters
 from glotaran.io import save_result
 from glotaran.project.scheme import Scheme
-from pyglotaran_extras.io.boilerplate import setup_case_study
+from pyglotaran_extras.io import setup_case_study
 from pyglotaran_extras.plotting.plot_overview import plot_simple_overview
 
 DATA_PATH = "data/data.ascii"
@@ -43,6 +43,6 @@ for key, val in MODEL_PATHS.items():
     scheme2 = result.get_scheme()
     result2 = optimize(scheme2)
     save_result(result2, results_folder / key, format_name="legacy", allow_overwrite=True)
-    plot_simple_overview(result.data["dataset1"], key)
-    plot_simple_overview(result2.data["dataset1"], key)
+    plot_simple_overview(result.data["dataset1"], key, figure_only=False)
+    plot_simple_overview(result2.data["dataset1"], key, figure_only=False)
 plt.show()
