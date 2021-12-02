@@ -7,7 +7,7 @@ from glotaran.io import load_model
 from glotaran.io import load_parameters
 from glotaran.io import save_result
 from glotaran.project.scheme import Scheme
-from pyglotaran_extras.io.boilerplate import setup_case_study
+from pyglotaran_extras.io import setup_case_study
 from pyglotaran_extras.plotting.plot_overview import plot_overview
 from pyglotaran_extras.plotting.style import PlotStyle
 
@@ -51,7 +51,6 @@ scheme = Scheme(
         "dataset6": dataset6,
     },
     maximum_number_function_evaluations=9,  # TRF needs 8m LM needs 127
-    non_negative_least_squares=True,
     # optimization_method="Levenberg-Marquardt", #LM needs nfev=127
 )
 # optimize
@@ -74,34 +73,34 @@ result_datafile3 = results_folder.joinpath("dataset3.nc")
 result_datafile4 = results_folder.joinpath("dataset4.nc")
 result_datafile5 = results_folder.joinpath("dataset5.nc")
 result_datafile6 = results_folder.joinpath("dataset6.nc")
-fig1 = plot_overview(result_datafile1, linlog=True, linthresh=5)
+fig1, _ = plot_overview(result_datafile1, linlog=True, linthresh=5, figure_only=False)
 fig1.savefig(
     results_folder.joinpath("plot_overview_dummy1.pdf"),
     bbox_inches="tight",
 )
 
-fig2 = plot_overview(result_datafile2, linlog=True, linthresh=5)
+fig2, _ = plot_overview(result_datafile2, linlog=True, linthresh=5, figure_only=False)
 fig2.savefig(
     results_folder.joinpath("plot_overview_dummy2.pdf"),
     bbox_inches="tight",
 )
 
-fig3 = plot_overview(result_datafile3, linlog=True, linthresh=5)
+fig3, _ = plot_overview(result_datafile3, linlog=True, linthresh=5, figure_only=False)
 fig3.savefig(
     results_folder.joinpath("plot_overview_dummy3.pdf"),
     bbox_inches="tight",
 )
-fig4 = plot_overview(result_datafile4, linlog=True, linthresh=5)
+fig4, _ = plot_overview(result_datafile4, linlog=True, linthresh=5, figure_only=False)
 fig4.savefig(
     results_folder.joinpath("plot_overview_dummy4.pdf"),
     bbox_inches="tight",
 )
-fig5 = plot_overview(result_datafile5, linlog=True, linthresh=5)
+fig5, _ = plot_overview(result_datafile5, linlog=True, linthresh=5, figure_only=False)
 fig5.savefig(
     results_folder.joinpath("plot_overview_dummy5.pdf"),
     bbox_inches="tight",
 )
-fig6 = plot_overview(result_datafile6, linlog=True, linthresh=5)
+fig6, _ = plot_overview(result_datafile6, linlog=True, linthresh=5, figure_only=False)
 fig6.savefig(
     results_folder.joinpath("plot_overview_dummy6.pdf"),
     bbox_inches="tight",
