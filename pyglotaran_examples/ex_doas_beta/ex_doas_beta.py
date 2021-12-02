@@ -11,7 +11,7 @@ from glotaran.io import load_model
 from glotaran.io import load_parameters
 from glotaran.io import save_result
 from glotaran.project.scheme import Scheme
-from pyglotaran_extras.io.boilerplate import setup_case_study
+from pyglotaran_extras.io import setup_case_study
 from pyglotaran_extras.plotting.plot_overview import plot_overview
 from pyglotaran_extras.plotting.style import PlotStyle
 
@@ -40,7 +40,6 @@ def run_doas_model(show_plot=False, block_plot=False):
         model=model,
         parameters=parameters,
         data={"dataset1": dataset},
-        non_negative_least_squares=False,
         optimization_method="TrustRegionReflection",
         # maximum_number_function_evaluations=3,
         maximum_number_function_evaluations=1,
@@ -61,7 +60,7 @@ def run_doas_model(show_plot=False, block_plot=False):
         plot_style = PlotStyle()
         plt.rc("axes", prop_cycle=plot_style.cycler)
 
-        fig = plot_overview(result.data["dataset1"], linlog=True)
+        fig, _ = plot_overview(result.data["dataset1"], linlog=True, figure_only=False)
         plt.rcParams["figure.figsize"] = (21, 14)
 
         timestamp = datetime.now().strftime("%y%m%d_%H%M")
