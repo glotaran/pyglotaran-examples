@@ -1,4 +1,8 @@
-type: kinetic-spectrum
+default_megacomplex: decay
+
+dataset_groups:
+  default:
+    residual_function: non_negative_least_squares
 
 dataset:
   dataset1:
@@ -53,7 +57,7 @@ irf:
     center: [irf.center3]
     width: [irf.width2]
 
-equal_area_penalties:
+clp_area_penalties:
   - type: equal_area
     source: s1
     source_intervals: [[300, 3000]]
@@ -72,7 +76,7 @@ equal_area_penalties:
 weights:
   - datasets: [dataset2]
     global_interval: [400, 600]
-    value: 0.5  # should be 0.71?
+    value: 0.5 # should be 0.71?
   - datasets: [dataset3]
     global_interval: [400, 600]
-    value: 0.0025  # should be 0.05?
+    value: 0.0025 # should be 0.05?
