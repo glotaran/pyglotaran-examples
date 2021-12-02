@@ -1,4 +1,8 @@
-type: kinetic-spectrum
+default_megacomplex: decay
+
+dataset_groups:
+  default:
+    residual_function: non_negative_least_squares
 
 dataset:
   dataset1:
@@ -19,7 +23,7 @@ dataset:
 
 megacomplex:
   complex1:
-      k_matrix: [km1]
+    k_matrix: [km1]
 
 k_matrix:
   km1:
@@ -29,25 +33,25 @@ k_matrix:
       (s3, s3): rates.k3
 
 initial_concentration:
-    input1:
-      compartments: [s1,s2,s3]
-      parameters: [inputs.1,inputs.2,inputs.3]
-    input2:
-      compartments: [s1,s2,s3]
-      parameters: [inputs.1,inputs.7,inputs.8]
-    input3:
-      compartments: [s1,s2,s3]
-      parameters: [inputs.1,inputs.9,inputs.10]
+  input1:
+    compartments: [s1, s2, s3]
+    parameters: [inputs.1, inputs.2, inputs.3]
+  input2:
+    compartments: [s1, s2, s3]
+    parameters: [inputs.1, inputs.7, inputs.8]
+  input3:
+    compartments: [s1, s2, s3]
+    parameters: [inputs.1, inputs.9, inputs.10]
 #      exclude_from_normalize: [s1, s2, s3]
 
 irf:
   irf1_no_dispersion:
-    type : spectral-multi-gaussian
-    center : [irf.center]
-    width : [irf.width]
+    type: spectral-multi-gaussian
+    center: [irf.center]
+    width: [irf.width]
 
-    # It works without equal_area_penalties but then the inputs cannot be estimated
-equal_area_penalties:
+    # It works without clp_area_penalties but then the inputs cannot be estimated
+clp_area_penalties:
   - type: equal_area
     source: s1
     source_intervals: [[300, 3000]]
