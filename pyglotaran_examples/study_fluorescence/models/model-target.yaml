@@ -1,4 +1,9 @@
-type: kinetic-spectrum
+default_megacomplex: decay
+
+dataset_groups:
+  default:
+    residual_function: non_negative_least_squares
+    # link_clp: false
 
 megacomplex:
   mc1:
@@ -29,30 +34,25 @@ irf:
 initial_concentration:
   input1:
     compartments: [s1, s2, s3, s4, s5]
-    parameters: [
-      input.1,
-      input.0,
-      input.0,
-      input.0,
-      input.0]
+    parameters: [input.1, input.0, input.0, input.0, input.0]
     # exclude_from_normalize: [s1, s2, s3, s4, s5]
 
-spectral_constraints:
+clp_constraints:
   - type: zero
-    compartment: s1
+    target: s1
     interval:
       - [1, 1000]
   - type: zero
-    compartment: s3
+    target: s3
     interval:
       - [1, 680]
   - type: zero
-    compartment: s4
+    target: s4
     interval:
       - [1, 690]
 #  - [zero, s1, (1, 100), (2, 200)]
 
-equal_area_penalties:
+clp_area_penalties:
   - type: equal_area
     source: s2
     source_intervals: [[100, 1000]]
