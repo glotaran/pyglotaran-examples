@@ -37,7 +37,7 @@ _Type_: kinetic-spectrum
   * *Matrix*: 
     * *('s2', 's1')*: rates.k1: **8.26500e-01** *(fixed)*
     * *('s3', 's1')*: rates.k2: **8.76350e+00** *(fixed)*
-    * *('s4', 's2')*: rates.k3: **2.39907e-01** *(StdErr: 3e-02 ,initial: 4.83972e-01)*
+    * *('s4', 's2')*: rates.k3: **2.39905e-01** *(StdErr: 3e-02 ,initial: 4.83972e-01)*
     * *('s4', 's3')*: rates.k4: **4.46740e-02** *(StdErr: 3e-03 ,initial: 3.68954e-02)*
     * *('s4', 's4')*: rates.k5: **1.86268e-02** *(StdErr: 2e-03 ,initial: 1.92859e-02)*
     * *('s5', 's5')*: rates.kC: **9.90000e+01** *(fixed)*
@@ -47,8 +47,8 @@ _Type_: kinetic-spectrum
   * *Matrix*: 
     * *('s2', 's1')*: rates.k1: **8.26500e-01** *(fixed)*
     * *('s3', 's1')*: rates.k2: **8.76350e+00** *(fixed)*
-    * *('s4', 's2')*: rates.k3d2: **1.44407e+34** *(StdErr: 7e-15 ,initial: 7.00000e-01)*
-    * *('s4', 's3')*: rates.k4d2: **1.06113e-01** *(StdErr: 4e-03 ,initial: 8.50000e-02)*
+    * *('s4', 's2')*: rates.k3d2: **4.93074e+20** *(StdErr: 1e-16 ,initial: 7.00000e-01)*
+    * *('s4', 's3')*: rates.k4d2: **1.06112e-01** *(StdErr: 4e-03 ,initial: 8.50000e-02)*
     * *('s4', 's4')*: rates.k5: **1.86268e-02** *(StdErr: 2e-03 ,initial: 1.92859e-02)*
     * *('s6', 's6')*: rates.kC: **9.90000e+01** *(fixed)*
   
@@ -58,23 +58,23 @@ _Type_: kinetic-spectrum
 * **irf1** (spectral-multi-gaussian):
   * *Label*: irf1
   * *Type*: spectral-multi-gaussian
-  * *Center*: [irf.center: **1.20087e+00** *(StdErr: 1e-03 ,initial: 1.19809e+00)*]
-  * *Width*: [irf.width: **7.18333e-02** *(StdErr: 3e-04 ,initial: 5.84300e-02)*]
+  * *Center*: [irf.center: **1.20088e+00** *(StdErr: 1e-03 ,initial: 1.19809e+00)*]
+  * *Width*: [irf.width: **7.18337e-02** *(StdErr: 3e-04 ,initial: 5.84300e-02)*]
   * *Normalize*: True
   * *Backsweep*: False
   * *Dispersion Center*: irf.dispc: **5.50000e+02** *(fixed)*
-  * *Center Dispersion*: [irf.disp1: **2.67436e-01** *(StdErr: 3e-03 ,initial: 3.08957e-01)*, irf.disp2: **-2.82969e-02** *(StdErr: 5e-03 ,initial: -8.33899e-02)*, irf.disp3: **-3.74524e-03** *(StdErr: 2e-03 ,initial: 4.70000e-03)*]
+  * *Center Dispersion*: [irf.disp1: **2.67438e-01** *(StdErr: 3e-03 ,initial: 3.08957e-01)*, irf.disp2: **-2.82896e-02** *(StdErr: 5e-03 ,initial: -8.33899e-02)*, irf.disp3: **-3.75019e-03** *(StdErr: 2e-03 ,initial: 4.70000e-03)*]
   * *Width Dispersion*: []
   * *Model Dispersion With Wavenumber*: False
 * **irf2** (spectral-multi-gaussian):
   * *Label*: irf2
   * *Type*: spectral-multi-gaussian
-  * *Center*: [irf2.center: **6.69247e-01** *(StdErr: 1e-03 ,initial: 7.00000e-01)*]
-  * *Width*: [irf.width: **7.18333e-02** *(StdErr: 3e-04 ,initial: 5.84300e-02)*]
+  * *Center*: [irf2.center: **6.69245e-01** *(StdErr: 1e-03 ,initial: 7.00000e-01)*]
+  * *Width*: [irf.width: **7.18337e-02** *(StdErr: 3e-04 ,initial: 5.84300e-02)*]
   * *Normalize*: True
   * *Backsweep*: False
   * *Dispersion Center*: irf.dispc: **5.50000e+02** *(fixed)*
-  * *Center Dispersion*: [irf.disp1: **2.67436e-01** *(StdErr: 3e-03 ,initial: 3.08957e-01)*, irf.disp2: **-2.82969e-02** *(StdErr: 5e-03 ,initial: -8.33899e-02)*, irf.disp3: **-3.74524e-03** *(StdErr: 2e-03 ,initial: 4.70000e-03)*]
+  * *Center Dispersion*: [irf.disp1: **2.67438e-01** *(StdErr: 3e-03 ,initial: 3.08957e-01)*, irf.disp2: **-2.82896e-02** *(StdErr: 5e-03 ,initial: -8.33899e-02)*, irf.disp3: **-3.75019e-03** *(StdErr: 2e-03 ,initial: 4.70000e-03)*]
   * *Width Dispersion*: []
   * *Model Dispersion With Wavenumber*: False
 

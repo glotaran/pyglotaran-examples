@@ -7,7 +7,7 @@
 | Chi Square                    | 6.18e+01         |
 | Reduced Chi Square            | 2.42e-03         |
 | Root Mean Square Error (RMSE) | 4.92e-02         |
-| RMSE additional penalty       | [2.64471555e-07] |
+| RMSE additional penalty       | [7.80414211e-08] |
 
 # Model
 
