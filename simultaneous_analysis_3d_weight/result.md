@@ -7,7 +7,7 @@
 | Chi Square                    | 5.03e+03                        |
 | Reduced Chi Square            | 5.47e-02                        |
 | Root Mean Square Error (RMSE) | 2.34e-01                        |
-| RMSE additional penalty       | [2.84971975e-08 6.57413693e-08] |
+| RMSE additional penalty       | [8.24456947e-09 1.79876224e-08] |
 
 | RMSE (per dataset)   |   weighted |   unweighted |
 |----------------------|------------|--------------|
@@ -24,17 +24,17 @@ _Type_: kinetic-spectrum
 * **input1**:
   * *Label*: input1
   * *Compartments*: ['s1', 's2', 's3']
-  * *Parameters*: [inputs.1: **5.00000e-01** *(fixed)*, inputs.2: **2.42151e-01** *(StdErr: 9e+00 ,initial: 2.42290e-01)*, inputs.3: **3.63162e-01** *(StdErr: 8e+00 ,initial: 3.63180e-01)*]
+  * *Parameters*: [inputs.1: **5.00000e-01** *(fixed)*, inputs.2: **2.42151e-01** *(StdErr: 1e+01 ,initial: 2.42290e-01)*, inputs.3: **3.63162e-01** *(StdErr: 2e+01 ,initial: 3.63180e-01)*]
   * *Exclude From Normalize*: []
 * **input2**:
   * *Label*: input2
   * *Compartments*: ['s1', 's2', 's3']
-  * *Parameters*: [inputs.1: **5.00000e-01** *(fixed)*, inputs.7: **1.61306e-01** *(StdErr: 9e+00 ,initial: 1.61370e-01)*, inputs.8: **3.11549e-01** *(StdErr: 8e+00 ,initial: 3.11570e-01)*]
+  * *Parameters*: [inputs.1: **5.00000e-01** *(fixed)*, inputs.7: **1.61306e-01** *(StdErr: 1e+01 ,initial: 1.61370e-01)*, inputs.8: **3.11549e-01** *(StdErr: 2e+01 ,initial: 3.11570e-01)*]
   * *Exclude From Normalize*: []
 * **input3**:
   * *Label*: input3
   * *Compartments*: ['s1', 's2', 's3']
-  * *Parameters*: [inputs.1: **5.00000e-01** *(fixed)*, inputs.9: **9.62565e-02** *(StdErr: 9e+00 ,initial: 9.61700e-02)*, inputs.10: **2.07943e-01** *(StdErr: 8e+00 ,initial: 2.08060e-01)*]
+  * *Parameters*: [inputs.1: **5.00000e-01** *(fixed)*, inputs.9: **9.62565e-02** *(StdErr: 1e+01 ,initial: 9.61700e-02)*, inputs.10: **2.07943e-01** *(StdErr: 2e+01 ,initial: 2.08060e-01)*]
   * *Exclude From Normalize*: []
 
 ## K Matrix
@@ -91,13 +91,13 @@ _Type_: kinetic-spectrum
 * **dataset2**:
   * *Label*: dataset2
   * *Megacomplex*: ['complex1']
-  * *Scale*: scale.2: **8.80050e-01** *(StdErr: 5e-01 ,initial: 8.80052e-01)*
+  * *Scale*: scale.2: **8.80050e-01** *(StdErr: 7e-01 ,initial: 8.80052e-01)*
   * *Initial Concentration*: input2
   * *Irf*: irf2_no_dispersion
 * **dataset3**:
   * *Label*: dataset3
   * *Megacomplex*: ['complex1']
-  * *Scale*: scale.3: **7.27362e+01** *(StdErr: 1e+00 ,initial: 7.27300e+01)*
+  * *Scale*: scale.3: **7.27362e+01** *(StdErr: 2e+00 ,initial: 7.27300e+01)*
   * *Initial Concentration*: input3
   * *Irf*: irf3_no_dispersion
 
