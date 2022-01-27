@@ -1,0 +1,13 @@
+model: results/result_ex_two_datasets/model.yml
+parameters: results/result_ex_two_datasets/initial_parameters.csv
+data:
+  data1: data/data1.ascii
+  data2: data/data2.ascii
+clp_link_tolerance: 0.0
+maximum_number_function_evaluations: 15
+add_svd: true
+ftol: 1e-08
+gtol: 1e-08
+xtol: 1e-08
+optimization_method: TrustRegionReflection
+result_path: null

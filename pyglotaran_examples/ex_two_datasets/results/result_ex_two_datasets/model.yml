@@ -1,0 +1,79 @@
+default_megacomplex: decay
+dataset_groups:
+  default:
+    residual_function: variable_projection
+    link_clp: null
+clp_area_penalties:
+  - source: s1
+  source_intervals: [[300, 3000]]
+  target: s2
+  target_intervals: [[300, 3000]]
+  parameter: area.1
+  weight: 0.1
+  - source: s1
+  source_intervals: [[300, 3000]]
+  target: s3
+  target_intervals: [[300, 3000]]
+  parameter: area.1
+  weight: 0.1
+k_matrix:
+  km1:
+    matrix:
+      (s1, s1): rates.k1
+      (s2, s2): rates.k2
+      (s3, s3): rates.k3
+initial_concentration:
+  input1:
+    compartments: [s1, s2, s3]
+    parameters:
+      - inputs.1
+      - inputs.2
+      - inputs.3
+    exclude_from_normalize: &id001 []
+  input2:
+    compartments: [s1, s2, s3]
+    parameters:
+      - inputs.1
+      - inputs.7
+      - inputs.8
+    exclude_from_normalize: *id001
+irf:
+  irf1:
+    type: spectral-multi-gaussian
+    center:
+      - irf.center
+    width:
+      - irf.width
+    normalize: true
+    backsweep: false
+    center_dispersion_coefficients: []
+    width_dispersion_coefficients: []
+    model_dispersion_with_wavenumber: false
+  irf1_no_dispersion:
+    type: spectral-multi-gaussian
+    center:
+      - irf.center
+    width:
+      - irf.width
+    normalize: true
+    backsweep: false
+    center_dispersion_coefficients: []
+    width_dispersion_coefficients: []
+    model_dispersion_with_wavenumber: false
+megacomplex:
+  complex1:
+    dimension: time
+    k_matrix: [km1]
+dataset:
+  data1:
+    group: default
+    megacomplex: [complex1]
+    scale: scale.1
+    initial_concentration: input1
+    irf: irf1
+  data2:
+    group: default
+    megacomplex: [complex1]
+    scale: scale.2
+    initial_concentration: input2
+    irf: irf1

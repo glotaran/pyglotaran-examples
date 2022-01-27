@@ -1,12 +1,12 @@
 type: kinetic-spectrum
 
 dataset:
-  dataset1:
+  data1:
     megacomplex: [complex1]
     initial_concentration: input1
     irf: irf1
     scale: scale.1
-  dataset2:
+  data2:
     megacomplex: [complex1]
     initial_concentration: input2
     irf: irf1

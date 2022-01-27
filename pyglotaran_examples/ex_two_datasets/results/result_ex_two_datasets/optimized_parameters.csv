@@ -1,0 +1,14 @@
+label,value,expression,minimum,maximum,non-negative,vary,standard-error
+inputs.1,0.5,None,-inf,inf,True,False,None
+inputs.2,0.3241736589239435,None,-inf,inf,True,True,0.0060165110846317925
+inputs.3,0.663702975090193,None,-inf,inf,True,True,0.0019604284601073144
+inputs.7,0.07199308287881953,None,-inf,inf,True,True,0.007473181749163457
+inputs.8,0.28038519613558904,None,-inf,inf,True,True,0.0017034156131035783
+scale.1,1.0,None,-inf,inf,False,False,None
+scale.2,1.0988429226957728,None,-inf,inf,False,True,5.068768761235873e-05
+rates.k1,0.26090874889782284,None,-inf,inf,True,True,0.0003594210688449748
+rates.k2,1.1764960041058283,None,-inf,inf,True,True,0.0018332580079413955
+rates.k3,0.6161190994265826,None,-inf,inf,True,True,0.0012949247808122452
+irf.center,0.3999993625968203,None,-inf,inf,False,True,5.5115040566613125e-06
+irf.width,0.05996420343714177,None,-inf,inf,False,True,7.467344900803811e-06
+area.1,1.0,None,-inf,inf,False,False,None
