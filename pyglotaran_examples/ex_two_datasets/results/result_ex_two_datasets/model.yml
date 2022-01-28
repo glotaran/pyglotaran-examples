@@ -4,13 +4,13 @@ dataset_groups:
     residual_function: variable_projection
     link_clp: null
 clp_area_penalties:
-  - source: s1
+- source: s1
   source_intervals: [[300, 3000]]
   target: s2
   target_intervals: [[300, 3000]]
   parameter: area.1
   weight: 0.1
-  - source: s1
+- source: s1
   source_intervals: [[300, 3000]]
   target: s3
   target_intervals: [[300, 3000]]
@@ -26,24 +26,24 @@ initial_concentration:
   input1:
     compartments: [s1, s2, s3]
     parameters:
-      - inputs.1
-      - inputs.2
-      - inputs.3
+    - inputs.1
+    - inputs.2
+    - inputs.3
     exclude_from_normalize: &id001 []
   input2:
     compartments: [s1, s2, s3]
     parameters:
-      - inputs.1
-      - inputs.7
-      - inputs.8
+    - inputs.1
+    - inputs.7
+    - inputs.8
     exclude_from_normalize: *id001
 irf:
   irf1:
     type: spectral-multi-gaussian
     center:
-      - irf.center
+    - irf.center
     width:
-      - irf.width
+    - irf.width
     normalize: true
     backsweep: false
     center_dispersion_coefficients: []
@@ -52,9 +52,9 @@ irf:
   irf1_no_dispersion:
     type: spectral-multi-gaussian
     center:
-      - irf.center
+    - irf.center
     width:
-      - irf.width
+    - irf.width
     normalize: true
     backsweep: false
     center_dispersion_coefficients: []

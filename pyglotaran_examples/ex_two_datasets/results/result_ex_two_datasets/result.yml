@@ -3,28 +3,28 @@ success: true
 termination_reason: The maximum number of function evaluations is exceeded.
 glotaran_version: 0.6.0.dev0
 free_parameter_labels:
-  - inputs.2
-  - inputs.3
-  - inputs.7
-  - inputs.8
-  - scale.2
-  - rates.k1
-  - rates.k2
-  - rates.k3
-  - irf.center
-  - irf.width
-scheme: results/result_ex_two_datasets/scheme.yml
-initial_parameters: results/result_ex_two_datasets/initial_parameters.csv
-optimized_parameters: results/result_ex_two_datasets/optimized_parameters.csv
-parameter_history: results/result_ex_two_datasets/parameter_history.csv
+- inputs.2
+- inputs.3
+- inputs.7
+- inputs.8
+- scale.2
+- rates.k1
+- rates.k2
+- rates.k3
+- irf.center
+- irf.width
+scheme: scheme.yml
+initial_parameters: initial_parameters.csv
+optimized_parameters: optimized_parameters.csv
+parameter_history: parameter_history.csv
 data:
-  data1: results/result_ex_two_datasets/data1.nc
-  data2: results/result_ex_two_datasets/data2.nc
-chi_square: 435.1896294925773
+  data1: data1.nc
+  data2: data2.nc
+chi_square: 435.18971422848375
 degrees_of_freedom: 51094
 number_of_data_points: 51104
 number_of_jacobian_evaluations: 13
 number_of_variables: 10
-optimality: 18395.48547243314
-reduced_chi_square: 0.008517431195298417
-root_mean_square_error: 0.09228993008610645
+optimality: 18395.41689240259
+reduced_chi_square: 0.00851743285373006
+root_mean_square_error: 0.09228993907100633

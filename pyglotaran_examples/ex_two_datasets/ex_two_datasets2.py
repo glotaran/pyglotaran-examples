@@ -5,12 +5,6 @@ from glotaran.project.project import Project
 from pyglotaran_extras.plotting.plot_overview import plot_overview
 from pyglotaran_extras.plotting.style import PlotStyle
 
-# This used to create the project at cwd
-# Project.create(name="Example 2 Datasets")
-
-# import the dasets initially
-#  project.import_data("data/data1.ascii")
-#  project.import_data("data/data2.ascii")
 
 project = Project.open(".")
 print(project.markdown())
@@ -34,11 +28,12 @@ print(result.markdown(True))
 plot_style = PlotStyle()
 plt.rc("axes", prop_cycle=plot_style.cycler)
 
-fig1 = plot_overview(result.data["dataset1"], linlog=True)
+results_folder = project.get_result_path("result_ex_two_datasets")
+fig1 = plot_overview(result.data["data1"], linlog=True)
 timestamp = datetime.today().strftime("%y%m%d_%H%M")
 fig1.savefig(results_folder.joinpath(f"plot_overview_1of2_{timestamp}.pdf"), bbox_inches="tight")
 
-fig2 = plot_overview(result.data["dataset2"], linlog=True)
+fig2 = plot_overview(result.data["data2"], linlog=True)
 timestamp = datetime.today().strftime("%y%m%d_%H%M")
 fig2.savefig(results_folder.joinpath(f"plot_overview_2of2_{timestamp}.pdf"), bbox_inches="tight")
 
