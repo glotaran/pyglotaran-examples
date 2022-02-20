@@ -195,7 +195,7 @@ def run_all(*, headless=False, raise_on_deprecation=False):
 
 def set_gha_example_list_output():
     """Export a list of all examples to an output github in github actions."""
-    example_names = [func.__name__ for func in all_funcs]
+    example_names = [func.__name__.replace("_", "-") for func in all_funcs]
     print(f"::set-output name=example-list::{json.dumps(example_names)}")
 
 
