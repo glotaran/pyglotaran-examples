@@ -5,11 +5,7 @@ import sys
 import warnings
 from pathlib import Path
 
-import matplotlib
-import matplotlib.pyplot as plt
 import yaargh
-from glotaran.io import save_result
-from matplotlib.backends.backend_pdf import PdfPages
 
 REPO_ROOT = Path(__file__).parent.parent
 
@@ -26,6 +22,9 @@ def github_format_warning(message, category, filename, lineno, line=None):
 
 def save_all_figures(filename: str):
     """Save all figures to one PDF"""
+    import matplotlib.pyplot as plt
+    from matplotlib.backends.backend_pdf import PdfPages
+
     result_file = RESULTS_DIR / filename
     pp = PdfPages(result_file)
     [plt.figure(n).savefig(pp, format="pdf") for n in plt.get_fignums()]
@@ -35,6 +34,8 @@ def save_all_figures(filename: str):
 
 
 def script_run_wrapper(func):
+    import matplotlib
+
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
         print("\n", "#" * 80, sep="")
@@ -109,6 +110,8 @@ def spectral_guidance(*, headless=False, raise_on_deprecation=False):
     """Runs ex_spectral_guidance.py
     from pyglotaran_examples/ex_spectral_guidance"""
     # import functions protected by if-name-main and run them
+    from glotaran.io import save_result
+
     from pyglotaran_examples.ex_spectral_guidance import ex_spectral_guidance
 
     result = ex_spectral_guidance.main()
