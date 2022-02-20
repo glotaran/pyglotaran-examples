@@ -1,4 +1,5 @@
 import functools
+import json
 import os
 import sys
 import warnings
@@ -189,8 +190,14 @@ def run_all(*, headless=False, raise_on_deprecation=False):
         func(headless=headless, raise_on_deprecation=raise_on_deprecation)
 
 
+def set_gha_example_list_output():
+    """Export a list of all examples to an output github in github actions."""
+    example_names = [func.__name__ for func in all_funcs]
+    print(f"::set-output name=example-list::{json.dumps(example_names)}")
+
+
 parser = yaargh.ArghParser()
-parser.add_commands([*all_funcs, run_all])
+parser.add_commands([*all_funcs, run_all, set_gha_example_list_output])
 
 
 if __name__ == "__main__":
