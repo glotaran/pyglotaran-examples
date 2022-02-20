@@ -34,14 +34,14 @@ def save_all_figures(filename: str):
 
 
 def script_run_wrapper(func):
-    import matplotlib
-
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
         print("\n", "#" * 80, sep="")
         print("#", f"RUNNING: {func.__name__.upper()}".center(78), "#", sep="")
         print("#" * 80, "\n")
         if kwargs["headless"]:
+            import matplotlib
+
             matplotlib.use("Agg")
             warnings.filterwarnings(
                 "ignore", message=r"Matplotlib.+non-GUI.+", category=UserWarning
