@@ -71,9 +71,10 @@ jobs:
                   print(f"Deleting: {file}")
                   file.unlink()
 
-      - name: Save Examples commit sha
+      - name: Save Examples commit sha and requirements.txt
         run: |
           git log -n 1 --pretty=format:%H >> ~/pyglotaran_examples_results/pyglotaran_commit_sha.txt
+          pip freeze >> ~/pyglotaran_examples_results/requirements.txt
         shell: bash
 
       - name: Upload Example Results
