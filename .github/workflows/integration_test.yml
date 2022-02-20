@@ -21,11 +21,16 @@ jobs:
     outputs:
       example-list: ${{ steps.create-example-list.outputs.example-list }}
     steps:
+      - name: Cloning pyglotaran-examples
+        if: ${{ github.event.inputs.pyglotaran_examples_branch }} == ""
+        uses: actions/checkout@v2
+        with:
+          path: pyglotaran-examples
       - name: Set example list output
         id: create-example-list
-        uses: glotaran/pyglotaran-examples@main
+        uses: ./pyglotaran-examples
         with:
-          example_name: none
+          example_name: set example list
           set_example_list: true
 
   run-examples:
@@ -55,7 +60,7 @@ jobs:
         with:
           path: pyglotaran-examples
       - id: example-run
-        uses: glotaran/pyglotaran-examples@main
+        uses: ./pyglotaran-examples
         with:
           example_name: ${{ matrix.example_name }}
           examples_branch: ${{ github.event.inputs.pyglotaran_examples_branch }}

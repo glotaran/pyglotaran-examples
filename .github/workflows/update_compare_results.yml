@@ -23,7 +23,7 @@ jobs:
         id: create-example-list
         uses: glotaran/pyglotaran-examples@main
         with:
-          example_name: none
+          example_name: set example list
           set_example_list: true
 
   run-examples:

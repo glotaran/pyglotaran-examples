@@ -69,13 +69,12 @@ runs:
         if [ '${{ inputs.set_example_list }}' = 'false' ]
         then
           python pyglotaran-examples/scripts/run_examples.py ${{ inputs.example_name }} --headless 2>&1
-          echo "::set-output name=example-list:[]"
+          echo "::set-output name=plots-path::pyglotaran-examples/plot_results"
         else
           pip install yaargh
           python pyglotaran-examples/scripts/run_examples.py set-gha-example-list-output
         fi
 
-        echo "::set-output name=plots-path::pyglotaran-examples/plot_results"
         echo "::endgroup::"
       shell: bash
 
