@@ -41,7 +41,7 @@ jobs:
           # If not provided (push and pull_request event) it uses the default branch
           ref: ${{ github.event.inputs.pyglotaran_branch }}
       - name: Set up Python 3.8
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v3
         with:
           python-version: 3.8
       - name: Install pyglotaran
