@@ -13,11 +13,18 @@ inputs:
     description: "Whether or not to install pyglotaran_extras"
     required: true
     default: "true"
+  set_example_list:
+    description: "Whether or not to set the 'example-list' output and exit."
+    required: true
+    default: "false"
 
 outputs:
   plots-path:
     description: "Plot result path of example run"
     value: ${{ steps.example-run.outputs.plots-path }}
+  example-list:
+    description: "List of all possible example names to be used in a workflow matrix."
+    value: ${{ steps.example-run.outputs.example-list }}
 
 runs:
   using: "composite"
@@ -36,7 +43,9 @@ runs:
           echo "Folder pyglotaran-examples already exists, skipping cloning."
         echo "::endgroup::"
       shell: bash
+
     - name: Install additional requirements
+      if: inputs.set_example_list == 'false'
       run: |
         echo "::group:: Installing requirements"
         echo 'inputs.install_extras= ${{ inputs.install_extras }}'
@@ -52,15 +61,25 @@ runs:
         fi
         echo "::endgroup::"
       shell: bash
+
     - name: Run example
       id: example-run
       run: |
         echo "::group:: Running ${{ inputs.example_name }}"
-        python pyglotaran-examples/scripts/run_examples.py ${{ inputs.example_name }} --headless 2>&1
-        echo "::set-output name=plots-path::pyglotaran-examples/plot_results"
+        if [ '${{ inputs.set_example_list }}' = 'false' ]
+        then
+          python pyglotaran-examples/scripts/run_examples.py ${{ inputs.example_name }} --headless 2>&1
+          echo "::set-output name=plots-path::pyglotaran-examples/plot_results"
+        else
+          pip install yaargh
+          python pyglotaran-examples/scripts/run_examples.py set-gha-example-list-output
+        fi
+
         echo "::endgroup::"
       shell: bash
+
     - name: Save Examples commit sha
+      if: inputs.set_example_list == 'false'
       run: |
         echo "::group:: Saving commit sha to ~/pyglotaran_examples_results"
         mkdir -p ~/pyglotaran_examples_results
