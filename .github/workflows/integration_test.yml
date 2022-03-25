@@ -23,7 +23,7 @@ jobs:
     steps:
       - name: Cloning pyglotaran-examples
         if: ${{ github.event.inputs.pyglotaran_examples_branch }} == ""
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
         with:
           path: pyglotaran-examples
       - name: Set example list output
