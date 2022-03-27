@@ -1,0 +1,12 @@
+model: model.yml
+parameters: initial_parameters.csv
+data:
+  dataset1: ../../../work/pyglotaran-examples/pyglotaran-examples/pyglotaran-examples/pyglotaran_examples/ex_spectral_constraints/data/data.ascii
+clp_link_tolerance: 0.0
+maximum_number_function_evaluations: 7
+add_svd: true
+ftol: 1e-08
+gtol: 1e-08
+xtol: 1e-08
+optimization_method: TrustRegionReflection
+result_path: null

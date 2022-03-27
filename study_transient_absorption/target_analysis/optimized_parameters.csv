@@ -1,21 +1,21 @@
-label,value,minimum,maximum,vary,non-negative,expression
-inputs.1,1.0,-inf,inf,False,False,None
-inputs.0,0.0,-inf,inf,False,False,None
-inputs.iC,1.0,-inf,inf,False,False,None
-scale.1,1.0,-inf,inf,False,False,None
-rel.r1,1.0,-inf,inf,False,False,None
-b.1,0.16000469755171387,-inf,inf,True,True,None
-b.2,0.8399953024482861,-inf,inf,False,False,1.0 - $b.1
-rates.k1sum,9.49943878184853,-inf,inf,False,True,None
-rates.k1,1.5199548292006952,-inf,inf,False,False,$b.1 * $rates.k1sum
-rates.k2,7.979483952647835,-inf,inf,False,False,$b.2 * $rates.k1sum
-rates.k3,0.3609048842995442,-inf,inf,True,True,None
-rates.k4,0.039949440447394166,-inf,inf,True,True,None
-rates.k5,0.020053457243779955,-inf,inf,True,True,None
-rates.kC,99.0,-inf,inf,False,True,None
-irf.center,1.2009421389042862,-inf,inf,True,False,None
-irf.width,0.06122819954501504,-inf,inf,True,False,None
-irf.dispc,550.0,-inf,inf,False,False,None
-irf.disp1,0.28937718243768434,-inf,inf,True,False,None
-irf.disp2,-0.07684418045838594,-inf,inf,True,False,None
-irf.disp3,0.009889576480244421,-inf,inf,True,False,None
+label,value,expression,minimum,maximum,non-negative,vary,standard-error
+inputs.1,1.0,None,-inf,inf,False,False,None
+inputs.0,0.0,None,-inf,inf,False,False,None
+inputs.iC,1.0,None,-inf,inf,False,False,None
+scale.1,1.0,None,-inf,inf,False,False,None
+rel.r1,1.0,None,-inf,inf,False,False,None
+b.1,0.1600046955911875,None,-inf,inf,True,True,0.0127153766645558
+b.2,0.8399953044088125,1.0 - $b.1,-inf,inf,False,False,None
+rates.k1sum,9.49943878184853,None,-inf,inf,True,False,None
+rates.k1,1.519954810576795,$b.1 * $rates.k1sum,-inf,inf,False,False,None
+rates.k2,7.979483971271736,$b.2 * $rates.k1sum,-inf,inf,False,False,None
+rates.k3,0.36090490112184787,None,-inf,inf,True,True,0.025730648991899575
+rates.k4,0.03994944104488968,None,-inf,inf,True,True,0.009013209264919395
+rates.k5,0.02005345711574383,None,-inf,inf,True,True,0.003976857927225014
+rates.kC,99.0,None,-inf,inf,True,False,None
+irf.center,1.200942138655265,None,-inf,inf,False,True,0.000773501589833169
+irf.width,0.061228199646275544,None,-inf,inf,False,True,0.00024100038301216487
+irf.dispc,550.0,None,-inf,inf,False,False,None
+irf.disp1,0.2893771825432853,None,-inf,inf,False,True,0.0017265919532871248
+irf.disp2,-0.07684418024976523,None,-inf,inf,False,True,0.0013751098635217448
+irf.disp3,0.009889576156892874,None,-inf,inf,False,True,0.0005631865749217785

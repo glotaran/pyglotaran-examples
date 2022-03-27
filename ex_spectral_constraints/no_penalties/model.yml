@@ -1,0 +1,39 @@
+default_megacomplex: decay
+dataset_groups:
+  default:
+    residual_function: variable_projection
+    link_clp: null
+k_matrix:
+  km1:
+    matrix:
+      (s1, s1): rates.k1
+      (s2, s2): rates.k2
+initial_concentration:
+  input1:
+    compartments: [s1, s2]
+    parameters:
+      - inputs.s1
+      - inputs.s2
+    exclude_from_normalize: []
+irf:
+  irf1:
+    type: spectral-multi-gaussian
+    center:
+      - irf.center
+    width:
+      - irf.width
+    normalize: true
+    backsweep: false
+    center_dispersion_coefficients: []
+    width_dispersion_coefficients: []
+    model_dispersion_with_wavenumber: false
+megacomplex:
+  complex1:
+    dimension: time
+    k_matrix: [km1]
+dataset:
+  dataset1:
+    group: default
+    megacomplex: [complex1]
+    initial_concentration: input1
+    irf: irf1

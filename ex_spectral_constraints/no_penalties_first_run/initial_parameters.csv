@@ -1,0 +1,7 @@
+label,value,expression,minimum,maximum,non-negative,vary,standard-error
+inputs.s1,0.5,None,-inf,inf,False,False,None
+inputs.s2,0.5,None,-inf,inf,False,False,None
+irf.center,0.4,None,-inf,inf,False,True,None
+irf.width,0.05,None,-inf,inf,False,True,None
+rates.k1,0.2,None,-inf,inf,False,True,None
+rates.k2,1.1,None,-inf,inf,False,True,None

@@ -1,0 +1,64 @@
+default_megacomplex: decay
+dataset_groups:
+  default:
+    residual_function: variable_projection
+    link_clp: null
+clp_relations:
+  - interval: [[0, 1000]]
+  source: s2
+  target: s3
+  parameter: rel.r1
+weights:
+  - datasets: [dataset1]
+  global_interval: [280, 550]
+  value: 0.1
+  - datasets: [dataset1]
+  global_interval: [720, 890]
+  value: 0.1
+k_matrix:
+  km1:
+    matrix:
+      (s2, s1): rates.k1
+      (s3, s1): rates.k2
+      (s4, s2): rates.k3
+      (s4, s3): rates.k4
+      (s4, s4): rates.k5
+      (s5, s5): rates.kC
+initial_concentration:
+  input1:
+    compartments: [s1, s2, s3, s4, s5]
+    parameters:
+      - inputs.1
+      - inputs.0
+      - inputs.0
+      - inputs.0
+      - inputs.iC
+    exclude_from_normalize: []
+irf:
+  irf1:
+    type: spectral-multi-gaussian
+    center:
+      - irf.center
+    width:
+      - irf.width
+    normalize: true
+    backsweep: false
+    dispersion_center: irf.dispc
+    center_dispersion_coefficients:
+      - irf.disp1
+      - irf.disp2
+      - irf.disp3
+    width_dispersion_coefficients: []
+    model_dispersion_with_wavenumber: false
+megacomplex:
+  cmplx1:
+    dimension: time
+    k_matrix: [km1] # A megacomplex has one or more k-matrices
+
+dataset:
+  dataset1:
+    group: default
+    megacomplex: [cmplx1]
+    scale: scale.1
+    initial_concentration: input1
+    irf: irf1

@@ -1,0 +1,18 @@
+model: model.yml
+parameters: initial_parameters.csv
+data:
+  dataset1: ../../work/pyglotaran-examples/pyglotaran-examples/pyglotaran-examples/pyglotaran_examples/test/simultaneous_analysis_6d_disp/equareaIRFdispscalsim6a.ascii
+  dataset2: ../../work/pyglotaran-examples/pyglotaran-examples/pyglotaran-examples/pyglotaran_examples/test/simultaneous_analysis_6d_disp/equareaIRFdispscalsim6b.ascii
+  dataset3: ../../work/pyglotaran-examples/pyglotaran-examples/pyglotaran-examples/pyglotaran_examples/test/simultaneous_analysis_6d_disp/equareaIRFdispscalsim6c.ascii
+  dataset4: ../../work/pyglotaran-examples/pyglotaran-examples/pyglotaran-examples/pyglotaran_examples/test/simultaneous_analysis_6d_disp/equareaIRFdispscalsim6d.ascii
+  dataset5: ../../work/pyglotaran-examples/pyglotaran-examples/pyglotaran-examples/pyglotaran_examples/test/simultaneous_analysis_6d_disp/equareaIRFdispscalsim6e.ascii
+  dataset6: ../../work/pyglotaran-examples/pyglotaran-examples/pyglotaran-examples/pyglotaran_examples/test/simultaneous_analysis_6d_disp/equareaIRFdispscalsim6f.ascii
+clp_link_tolerance: 0.0
+maximum_number_function_evaluations: 9
+non_negative_least_squares: true
+add_svd: true
+ftol: 1e-08
+gtol: 1e-08
+xtol: 1e-08
+optimization_method: TrustRegionReflection
+result_path: null

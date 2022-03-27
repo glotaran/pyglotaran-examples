@@ -1,0 +1,15 @@
+model: model.yml
+parameters: initial_parameters.csv
+data:
+  dataset1: ../../work/pyglotaran-examples/pyglotaran-examples/pyglotaran-examples/pyglotaran_examples/test/simultaneous_analysis_3d_weight/equareaIRFsim5.ascii
+  dataset2: ../../work/pyglotaran-examples/pyglotaran-examples/pyglotaran-examples/pyglotaran_examples/test/simultaneous_analysis_3d_weight/equareaIRFsim6.ascii
+  dataset3: ../../work/pyglotaran-examples/pyglotaran-examples/pyglotaran-examples/pyglotaran_examples/test/simultaneous_analysis_3d_weight/equareaIRFsim8.ascii
+clp_link_tolerance: 0.0
+maximum_number_function_evaluations: 111
+non_negative_least_squares: true
+add_svd: true
+ftol: 1e-08
+gtol: 1e-08
+xtol: 1e-08
+optimization_method: Levenberg-Marquardt
+result_path: null

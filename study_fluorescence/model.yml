@@ -1,0 +1,71 @@
+default_megacomplex: decay
+dataset_groups:
+  default:
+    residual_function: non_negative_least_squares
+    link_clp: null
+clp_area_penalties:
+  - source: s2
+  source_intervals: [[100, 1000]]
+  target: s3
+  target_intervals: [[100, 1000]]
+  parameter: area.1
+  weight: 0.0016
+  - source: s2
+  source_intervals: [[100, 1000]]
+  target: s4
+  target_intervals: [[100, 1000]]
+  parameter: area.1
+  weight: 0.0016
+clp_constraints:
+  - interval:
+    - [1, 1000]
+  target: s1
+  - interval:
+    - [1, 680]
+  target: s3
+  - interval:
+    - [1, 690]
+#  - [zero, s1, (1, 100), (2, 200)]
+
+  target: s4
+k_matrix:
+  km1:
+    matrix:
+      (s2, s1): kinetic.1
+      (s5, s1): kinetic.2
+      (s2, s2): kinetic.3
+      (s3, s2): kinetic.4
+      (s4, s2): kinetic.5
+      (s2, s3): kinetic.6
+      (s2, s4): kinetic.7
+      (s3, s3): kinetic.8
+      (s4, s4): kinetic.8
+      (s5, s5): kinetic.8
+initial_concentration:
+  input1:
+    compartments: [s1, s2, s3, s4, s5]
+    parameters:
+      - input.1
+      - input.0
+      - input.0
+      - input.0
+      - input.0
+    exclude_from_normalize: []
+irf:
+  irf1:
+    type: gaussian
+    center: irf.center
+    width: irf.width
+    normalize: true
+    backsweep: true
+    backsweep_period: irf.backsweep
+megacomplex:
+  mc1:
+    dimension: time
+    k_matrix: [km1]
+dataset:
+  dataset1:
+    group: default
+    megacomplex: [mc1]
+    initial_concentration: input1
+    irf: irf1
