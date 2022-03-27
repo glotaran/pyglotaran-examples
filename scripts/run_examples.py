@@ -5,7 +5,6 @@ import sys
 import warnings
 from pathlib import Path
 
-import xarray as xr
 import yaargh
 
 REPO_ROOT = Path(__file__).parent.parent
@@ -35,7 +34,9 @@ def save_all_figures(filename: str):
 
 
 def compress_nc_file(file_path: str | Path):
-    """Rewrite *.nc files with activated compression.."""
+    """Rewrite *.nc files with activated compression."""
+    import xarray as xr
+
     ds = xr.load_dataset(file_path)
     comp = {"zlib": True, "complevel": 5}
     encoding = {var: comp for var in ds.data_vars}
