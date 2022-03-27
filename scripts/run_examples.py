@@ -5,6 +5,7 @@ import sys
 import warnings
 from pathlib import Path
 
+import xarray as xr
 import yaargh
 
 REPO_ROOT = Path(__file__).parent.parent
@@ -33,6 +34,22 @@ def save_all_figures(filename: str):
     print(f"Saved plotting result to: {result_file}")
 
 
+def compress_nc_file(file_path: str | Path):
+    """Rewrite *.nc files with activated compression.."""
+    ds = xr.load_dataset(file_path)
+    comp = {"zlib": True, "complevel": 5}
+    encoding = {var: comp for var in ds.data_vars}
+    ds.to_netcdf(file_path, encoding=encoding)
+
+
+def compress_all_results():
+    """Rewrite all *.nc result files with activated compression."""
+    results_path = Path.home() / "pyglotaran_examples_results"
+
+    for data_file in results_path.rglob("*.nc"):
+        compress_nc_file(data_file)
+
+
 def script_run_wrapper(func):
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
@@ -58,6 +75,7 @@ def script_run_wrapper(func):
                 warnings.formatwarning = github_format_warning
 
         func(*args, **kwargs)
+        compress_all_results()
 
         if kwargs["headless"]:
             save_all_figures(f"{func.__name__}.pdf")
