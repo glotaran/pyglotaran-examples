@@ -1,18 +1,18 @@
 | Optimization Result           |                       |
 |-------------------------------|-----------------------|
-| Number of residual evaluation | 23                    |
-| Number of variables           | 6                     |
+| Number of residual evaluation | 21                    |
+| Number of parameters          | 6                     |
 | Number of datapoints          | 11265                 |
 | Degrees of freedom            | 11259                 |
-| Chi Square                    | 9.81e+06              |
+| Chi Square                    | 9.80e+06              |
 | Reduced Chi Square            | 8.71e+02              |
 | Root Mean Square Error (RMSE) | 2.95e+01              |
-| RMSE additional penalty       | [array([8.60398997])] |
+| RMSE additional penalty       | [[4.054873364162665]] |
 
 | RMSE (per dataset)   |   weighted |   unweighted |
 |----------------------|------------|--------------|
 | 1.dataset1:          |   3.00e+01 |     3.00e+01 |
-| 2.dataset2:          |   5.71e-04 |     5.71e-04 |
+| 2.dataset2:          |   5.89e-04 |     5.89e-04 |
 
 # Model
 
@@ -60,18 +60,18 @@ _Megacomplex Types_: decay
 * **km1**:
     * *Label*: km1
     * *Matrix*: 
-      * ('s1', 's4'): rates.k1(2.50e-01±2.97e-01, initial: 2.10e-01)
-      * ('s3', 's1'): rates.k2(1.57e-01±9.12e-02, initial: 1.96e-01)
+      * ('s1', 's4'): rates.k1(2.47e-01±4.64e-02, t-value: 5.3, initial: 2.10e-01)
+      * ('s3', 's1'): rates.k2(1.60e-01±1.81e-02, t-value: 8.8, initial: 1.96e-01)
       * ('s2', 's1'): rates.k3(8.70e-02, fixed)
-      * ('s5', 's2'): rates.k4(2.49e-01±3.31e-01, initial: 2.67e-01)
-      * ('s6', 's3'): rates.k5(6.44e-03±1.57e+00, initial: 6.40e-03)
-      * ('s6', 's6'): rates.k6(1.34e-06±4.00e-01, initial: 1.30e-06)
-      * ('s5', 's5'): rates.k6(1.34e-06±4.00e-01, initial: 1.30e-06)
+      * ('s5', 's2'): rates.k4(2.49e-01±4.33e-02, t-value: 5.8, initial: 2.67e-01)
+      * ('s6', 's3'): rates.k5(6.43e-03±2.03e-01, t-value: 3.2e-02, initial: 6.40e-03)
+      * ('s6', 's6'): rates.k6(1.33e-06±3.94e-01, t-value: 3.4e-06, initial: 1.30e-06)
+      * ('s5', 's5'): rates.k6(1.33e-06±3.94e-01, t-value: 3.4e-06, initial: 1.30e-06)
   
 * **km2**:
     * *Label*: km2
     * *Matrix*: 
-      * ('s5', 's5'): rates.k6(1.34e-06±4.00e-01, initial: 1.30e-06)
+      * ('s5', 's5'): rates.k6(1.33e-06±3.94e-01, t-value: 3.4e-06, initial: 1.30e-06)
   
 
 ## Initial Concentration
@@ -150,7 +150,7 @@ _Megacomplex Types_: decay
     * *Group*: default
     * *Megacomplex*: 
       * complex2
-    * *Scale*: scale.2(8.53e-01±1.63e+00, initial: 8.62e-01)
+    * *Scale*: scale.2(8.56e-01±1.92e+00, t-value: 0.4, initial: 8.62e-01)
     * *Initial Concentration*: input2
   
 

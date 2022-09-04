@@ -5,6 +5,7 @@ data:
   dataset2: ../../work/pyglotaran-examples/pyglotaran-examples/pyglotaran-examples/pyglotaran_examples/test/simultaneous_analysis_3d_nodisp/equareaIRFsim3b.ascii
   dataset3: ../../work/pyglotaran-examples/pyglotaran-examples/pyglotaran-examples/pyglotaran_examples/test/simultaneous_analysis_3d_nodisp/equareaIRFsim3c.ascii
 clp_link_tolerance: 0.0
+clp_link_method: nearest
 maximum_number_function_evaluations: null
 non_negative_least_squares: true
 add_svd: true

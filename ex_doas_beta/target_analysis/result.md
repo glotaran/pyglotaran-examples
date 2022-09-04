@@ -1,13 +1,12 @@
-| Optimization Result           |                            |
-|-------------------------------|----------------------------|
-| Number of residual evaluation | 1                          |
-| Number of variables           | 4                          |
-| Number of datapoints          | 138301                     |
-| Degrees of freedom            | 138297                     |
-| Chi Square                    | 1.63e+04                   |
-| Reduced Chi Square            | 1.18e-01                   |
-| Root Mean Square Error (RMSE) | 3.43e-01                   |
-| RMSE additional penalty       | [array([], dtype=float64)] |
+| Optimization Result           |          |
+|-------------------------------|----------|
+| Number of residual evaluation | 1        |
+| Number of parameters          | 4        |
+| Number of datapoints          | 138301   |
+| Degrees of freedom            | 138297   |
+| Chi Square                    | 1.63e+04 |
+| Reduced Chi Square            | 1.18e-01 |
+| Root Mean Square Error (RMSE) | 3.43e-01 |
 
 # Model
 
@@ -25,14 +24,14 @@ _Megacomplex Types_: damped-oscillation, decay, coherent-artifact
 * **irf1** (spectral-gaussian):
     * *Label*: irf1
     * *Type*: spectral-gaussian
-    * *Center*: irf.center(1.27e-02±1.58e-05, initial: 1.27e-02)
+    * *Center*: irf.center(1.27e-02±1.58e-05, t-value: 807, initial: 1.27e-02)
     * *Width*: irf.width(6.00e-03, fixed)
     * *Normalize*: True
     * *Backsweep*: False
     * *Dispersion Center*: irf.dispcenter(6.00e+02, fixed)
     * *Center Dispersion Coefficients*: 
-      * irf.disp1(-2.11e-02±8.29e-05, initial: -2.11e-02)
-      * irf.disp2(1.07e-02±4.48e-04, initial: 1.07e-02)
+      * irf.disp1(-2.11e-02±8.29e-05, t-value: -2.6e+02, initial: -2.11e-02)
+      * irf.disp2(1.07e-02±4.48e-04, t-value: 24, initial: 1.07e-02)
     * *Width Dispersion Coefficients*: 
     * *Model Dispersion With Wavenumber*: True
   
@@ -140,7 +139,7 @@ _Megacomplex Types_: damped-oscillation, decay, coherent-artifact
     * *Label*: artifact
     * *Type*: coherent-artifact
     * *Order*: 3
-    * *Width*: artifact.CAwidth(1.88e-02±6.70e-04, initial: 1.88e-02)
+    * *Width*: artifact.CAwidth(1.88e-02±6.70e-04, t-value: 28, initial: 1.88e-02)
     * *Dimension*: time
   
 

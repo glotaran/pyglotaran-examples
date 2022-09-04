@@ -1,0 +1,37 @@
+number_of_function_evaluations: 86
+success: true
+termination_reason: '`ftol` termination condition is satisfied.'
+glotaran_version: 0.7.0.dev0
+free_parameter_labels:
+- rates.k1
+- rates.k2
+- rates.k3
+- inputs.2
+- inputs.3
+- inputs.7
+- inputs.8
+- inputs.9
+- inputs.10
+- irf.center1
+- irf.center2
+- irf.center3
+- irf.width1
+- irf.width2
+- scale.2
+- scale.3
+scheme: scheme.yml
+initial_parameters: initial_parameters.csv
+optimized_parameters: optimized_parameters.csv
+parameter_history: parameter_history.csv
+data:
+  dataset1: dataset1.nc
+  dataset2: dataset2.nc
+  dataset3: dataset3.nc
+chi_square: 5029.018034571809
+degrees_of_freedom: 91939
+number_of_data_points: 91955
+number_of_jacobian_evaluations: null
+number_of_parameters: 16
+optimality: 0.0009574304883097943
+reduced_chi_square: 0.054699507658032054
+root_mean_square_error: 0.23387925871703982

@@ -1,0 +1,23 @@
+number_of_function_evaluations: 1
+success: true
+termination_reason: The maximum number of function evaluations is exceeded.
+glotaran_version: 0.7.0.dev0
+free_parameter_labels:
+- irf.center
+- irf.disp1
+- irf.disp2
+- artifact.CAwidth
+scheme: scheme.yml
+initial_parameters: initial_parameters.csv
+optimized_parameters: optimized_parameters.csv
+parameter_history: parameter_history.csv
+data:
+  dataset1: dataset1.nc
+chi_square: 16257.242851257342
+degrees_of_freedom: 138297
+number_of_data_points: 138301
+number_of_jacobian_evaluations: 1
+number_of_parameters: 4
+optimality: 612782.9085831726
+reduced_chi_square: 0.11755311287488046
+root_mean_square_error: 0.34286019435752596

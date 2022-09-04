@@ -1,21 +1,21 @@
 label,value,expression,minimum,maximum,non-negative,vary,standard-error
-inputs.1,1.0,None,-inf,inf,False,False,None
-inputs.0,0.0,None,-inf,inf,False,False,None
-inputs.iC,1.0,None,-inf,inf,False,False,None
-scale.1,1.0,None,-inf,inf,False,False,None
-rel.r1,1.0,None,-inf,inf,False,False,None
-b.1,0.22,None,-inf,inf,True,True,None
-b.2,0.78,1.0 - $b.1,-inf,inf,False,False,None
-rates.k1sum,9.49943878184853,None,-inf,inf,True,False,None
-rates.k1,2.089876532006677,$b.1 * $rates.k1sum,-inf,inf,False,False,None
-rates.k2,7.409562249841854,$b.2 * $rates.k1sum,-inf,inf,False,False,None
-rates.k3,0.4839723,None,-inf,inf,True,True,None
-rates.k4,0.0368954,None,-inf,inf,True,True,None
-rates.k5,0.0192859,None,-inf,inf,True,True,None
-rates.kC,99.0,None,-inf,inf,True,False,None
-irf.center,1.19809,None,-inf,inf,False,True,None
-irf.width,0.05843,None,-inf,inf,False,True,None
-irf.dispc,550.0,None,-inf,inf,False,False,None
-irf.disp1,0.3089571,None,-inf,inf,False,True,None
-irf.disp2,-0.0833899,None,-inf,inf,False,True,None
-irf.disp3,0.0047,None,-inf,inf,False,True,None
+inputs.1,1.0,None,,,False,False,None
+inputs.0,0.0,None,,,False,False,None
+inputs.iC,1.0,None,,,False,False,None
+scale.1,1.0,None,,,False,False,None
+rel.r1,1.0,None,,,False,False,None
+b.1,0.22,None,,,True,True,None
+b.2,0.78,1.0 - $b.1,,,False,False,None
+rates.k1sum,9.49943878184853,None,,,True,False,None
+rates.k1,2.089876532006677,$b.1 * $rates.k1sum,,,False,False,None
+rates.k2,7.409562249841854,$b.2 * $rates.k1sum,,,False,False,None
+rates.k3,0.4839723,None,,,True,True,None
+rates.k4,0.0368954,None,,,True,True,None
+rates.k5,0.0192859,None,,,True,True,None
+rates.kC,99.0,None,,,True,False,None
+irf.center,1.19809,None,,,False,True,None
+irf.width,0.05843,None,,,False,True,None
+irf.dispc,550.0,None,,,False,False,None
+irf.disp1,0.3089571,None,,,False,True,None
+irf.disp2,-0.0833899,None,,,False,True,None
+irf.disp3,0.0047,None,,,False,True,None

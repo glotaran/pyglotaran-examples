@@ -1,0 +1,24 @@
+number_of_function_evaluations: 2
+success: true
+termination_reason: Both `ftol` and `xtol` termination conditions are satisfied.
+glotaran_version: 0.7.0.dev0
+free_parameter_labels:
+- inputs.s2
+- irf.center
+- irf.width
+- rates.k1
+- rates.k2
+scheme: scheme.yml
+initial_parameters: initial_parameters.csv
+optimized_parameters: optimized_parameters.csv
+parameter_history: parameter_history.csv
+data:
+  dataset1: dataset1.nc
+chi_square: 61.768311096730116
+degrees_of_freedom: 25547
+number_of_data_points: 25552
+number_of_jacobian_evaluations: 2
+number_of_parameters: 5
+optimality: 6.887883730610778e-05
+reduced_chi_square: 0.0024178303165432384
+root_mean_square_error: 0.049171438015816034

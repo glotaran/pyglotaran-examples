@@ -4,13 +4,13 @@ dataset_groups:
     residual_function: non_negative_least_squares
     link_clp: null
 clp_area_penalties:
-  - source: s1
+- source: s1
   source_intervals: [[300, 3000]]
   target: s2
   target_intervals: [[300, 3000]]
   parameter: area.1
   weight: 0.01
-  - source: s1
+- source: s1
   source_intervals: [[300, 3000]]
   target: s3
   target_intervals: [[300, 3000]]
@@ -26,65 +26,65 @@ initial_concentration:
   input1:
     compartments: [s1, s2, s3]
     parameters:
-      - inputs.1
-      - inputs.2
-      - inputs.3
+    - inputs.1
+    - inputs.2
+    - inputs.3
     exclude_from_normalize: &id001 []
   input2:
     compartments: [s1, s2, s3]
     parameters:
-      - inputs.1
-      - inputs.7
-      - inputs.8
+    - inputs.1
+    - inputs.7
+    - inputs.8
     exclude_from_normalize: *id001
   input3:
     compartments: [s1, s2, s3]
     parameters:
-      - inputs.1
-      - inputs.9
-      - inputs.10
+    - inputs.1
+    - inputs.9
+    - inputs.10
     exclude_from_normalize: *id001
 irf:
   irf1_with_dispersion:
     type: spectral-multi-gaussian
     center:
-      - irf.center1
+    - irf.center1
     width:
-      - irf.width
+    - irf.width
     normalize: true
     backsweep: false
     dispersion_center: irf.dispc
     center_dispersion_coefficients:
-      - irf.disp1
-      - irf.disp2
+    - irf.disp1
+    - irf.disp2
     width_dispersion_coefficients: []
     model_dispersion_with_wavenumber: false
   irf2_with_dispersion:
     type: spectral-multi-gaussian
     center:
-      - irf.center2
+    - irf.center2
     width:
-      - irf.width
+    - irf.width
     normalize: true
     backsweep: false
     dispersion_center: irf.dispc
     center_dispersion_coefficients:
-      - irf.disp1
-      - irf.disp2
+    - irf.disp1
+    - irf.disp2
     width_dispersion_coefficients: []
     model_dispersion_with_wavenumber: false
   irf3_with_dispersion:
     type: spectral-multi-gaussian
     center:
-      - irf.center3
+    - irf.center3
     width:
-      - irf.width
+    - irf.width
     normalize: true
     backsweep: false
     dispersion_center: irf.dispc
     center_dispersion_coefficients:
-      - irf.disp1
-      - irf.disp2
+    - irf.disp1
+    - irf.disp2
     width_dispersion_coefficients: []
     model_dispersion_with_wavenumber: false
 megacomplex:

@@ -1,21 +1,21 @@
 label,value,expression,minimum,maximum,non-negative,vary,standard-error
-inputs.1,1.0,None,-inf,inf,False,False,None
-inputs.0,0.0,None,-inf,inf,False,False,None
-inputs.iC,1.0,None,-inf,inf,False,False,None
-scale.1,1.0,None,-inf,inf,False,False,None
-rel.r1,1.0,None,-inf,inf,False,False,None
-b.1,0.1600046955911875,None,-inf,inf,True,True,0.0127153766645558
-b.2,0.8399953044088125,1.0 - $b.1,-inf,inf,False,False,None
-rates.k1sum,9.49943878184853,None,-inf,inf,True,False,None
-rates.k1,1.519954810576795,$b.1 * $rates.k1sum,-inf,inf,False,False,None
-rates.k2,7.979483971271736,$b.2 * $rates.k1sum,-inf,inf,False,False,None
-rates.k3,0.36090490112184787,None,-inf,inf,True,True,0.025730648991899575
-rates.k4,0.03994944104488968,None,-inf,inf,True,True,0.009013209264919395
-rates.k5,0.02005345711574383,None,-inf,inf,True,True,0.003976857927225014
-rates.kC,99.0,None,-inf,inf,True,False,None
-irf.center,1.200942138655265,None,-inf,inf,False,True,0.000773501589833169
-irf.width,0.061228199646275544,None,-inf,inf,False,True,0.00024100038301216487
-irf.dispc,550.0,None,-inf,inf,False,False,None
-irf.disp1,0.2893771825432853,None,-inf,inf,False,True,0.0017265919532871248
-irf.disp2,-0.07684418024976523,None,-inf,inf,False,True,0.0013751098635217448
-irf.disp3,0.009889576156892874,None,-inf,inf,False,True,0.0005631865749217785
+inputs.1,1.0,None,,,False,False,None
+inputs.0,0.0,None,,,False,False,None
+inputs.iC,1.0,None,,,False,False,None
+scale.1,1.0,None,,,False,False,None
+rel.r1,1.0,None,,,False,False,None
+b.1,0.1600046990573785,None,,,True,True,0.012715375996949461
+b.2,0.8399953009426215,1.0 - $b.1,,,False,False,None
+rates.k1sum,9.49943878184853,None,,,True,False,None
+rates.k1,1.5199548435036643,$b.1 * $rates.k1sum,,,False,False,None
+rates.k2,7.979483938344867,$b.2 * $rates.k1sum,,,False,False,None
+rates.k3,0.3609048855810902,None,,,True,True,0.025730648774937512
+rates.k4,0.039949440419538025,None,,,True,True,0.009013209680761426
+rates.k5,0.020053457235106695,None,,,True,True,0.003976858191001033
+rates.kC,99.0,None,,,True,False,None
+irf.center,1.2009421394285338,None,,,False,True,0.0007735015832704744
+irf.width,0.06122820007997558,None,,,False,True,0.00024100039993033364
+irf.dispc,550.0,None,,,False,False,None
+irf.disp1,0.2893771796971301,None,,,False,True,0.0017265920341863138
+irf.disp2,-0.07684418356607571,None,,,False,True,0.0013751099881519574
+irf.disp3,0.009889577998814863,None,,,False,True,0.0005631865954128331

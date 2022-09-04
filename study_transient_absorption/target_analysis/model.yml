@@ -4,15 +4,15 @@ dataset_groups:
     residual_function: variable_projection
     link_clp: null
 clp_relations:
-  - interval: [[0, 1000]]
+- interval: [[0, 1000]]
   source: s2
   target: s3
   parameter: rel.r1
 weights:
-  - datasets: [dataset1]
+- datasets: [dataset1]
   global_interval: [280, 550]
   value: 0.1
-  - datasets: [dataset1]
+- datasets: [dataset1]
   global_interval: [720, 890]
   value: 0.1
 k_matrix:
@@ -28,26 +28,26 @@ initial_concentration:
   input1:
     compartments: [s1, s2, s3, s4, s5]
     parameters:
-      - inputs.1
-      - inputs.0
-      - inputs.0
-      - inputs.0
-      - inputs.iC
+    - inputs.1
+    - inputs.0
+    - inputs.0
+    - inputs.0
+    - inputs.iC
     exclude_from_normalize: []
 irf:
   irf1:
     type: spectral-multi-gaussian
     center:
-      - irf.center
+    - irf.center
     width:
-      - irf.width
+    - irf.width
     normalize: true
     backsweep: false
     dispersion_center: irf.dispc
     center_dispersion_coefficients:
-      - irf.disp1
-      - irf.disp2
-      - irf.disp3
+    - irf.disp1
+    - irf.disp2
+    - irf.disp3
     width_dispersion_coefficients: []
     model_dispersion_with_wavenumber: false
 megacomplex:

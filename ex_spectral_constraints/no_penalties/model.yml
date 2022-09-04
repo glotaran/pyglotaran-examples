@@ -12,16 +12,16 @@ initial_concentration:
   input1:
     compartments: [s1, s2]
     parameters:
-      - inputs.s1
-      - inputs.s2
+    - inputs.s1
+    - inputs.s2
     exclude_from_normalize: []
 irf:
   irf1:
     type: spectral-multi-gaussian
     center:
-      - irf.center
+    - irf.center
     width:
-      - irf.width
+    - irf.width
     normalize: true
     backsweep: false
     center_dispersion_coefficients: []

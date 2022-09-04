@@ -1,0 +1,26 @@
+number_of_function_evaluations: 21
+success: true
+termination_reason: '`xtol` termination condition is satisfied.'
+glotaran_version: 0.7.0.dev0
+free_parameter_labels:
+- rates.k1
+- rates.k2
+- rates.k4
+- rates.k5
+- rates.k6
+- scale.2
+scheme: scheme.yml
+initial_parameters: initial_parameters.csv
+optimized_parameters: optimized_parameters.csv
+parameter_history: parameter_history.csv
+data:
+  dataset1: dataset1.nc
+  dataset2: dataset2.nc
+chi_square: 9803536.037842419
+degrees_of_freedom: 11259
+number_of_data_points: 11265
+number_of_jacobian_evaluations: 6
+number_of_parameters: 6
+optimality: 8100596.839083272
+reduced_chi_square: 870.7288425119832
+root_mean_square_error: 29.5081148586619

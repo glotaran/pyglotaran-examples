@@ -1,13 +1,13 @@
-| Optimization Result           |                                           |
-|-------------------------------|-------------------------------------------|
-| Number of residual evaluation | 103                                       |
-| Number of variables           | 16                                        |
-| Number of datapoints          | 91955                                     |
-| Degrees of freedom            | 91939                                     |
-| Chi Square                    | 5.03e+03                                  |
-| Reduced Chi Square            | 5.47e-02                                  |
-| Root Mean Square Error (RMSE) | 2.34e-01                                  |
-| RMSE additional penalty       | [array([8.24456947e-09, 1.79876224e-08])] |
+| Optimization Result           |                                                 |
+|-------------------------------|-------------------------------------------------|
+| Number of residual evaluation | 86                                              |
+| Number of parameters          | 16                                              |
+| Number of datapoints          | 91955                                           |
+| Degrees of freedom            | 91939                                           |
+| Chi Square                    | 5.03e+03                                        |
+| Reduced Chi Square            | 5.47e-02                                        |
+| Root Mean Square Error (RMSE) | 2.34e-01                                        |
+| RMSE additional penalty       | [[0.003886125626831927, 0.0004874689842836233]] |
 
 | RMSE (per dataset)   |   weighted |   unweighted |
 |----------------------|------------|--------------|
@@ -71,9 +71,9 @@ _Megacomplex Types_: decay
 * **km1**:
     * *Label*: km1
     * *Matrix*: 
-      * ('s1', 's1'): rates.k1(5.00e-02±2.14e-04, initial: 5.00e-02)
-      * ('s2', 's2'): rates.k2(1.99e+00±3.31e-03, initial: 1.99e+00)
-      * ('s3', 's3'): rates.k3(4.99e-01±1.84e-03, initial: 4.99e-01)
+      * ('s1', 's1'): rates.k1(5.00e-02±2.14e-04, t-value: 234, initial: 5.00e-02)
+      * ('s2', 's2'): rates.k2(1.99e+00±3.31e-03, t-value: 602, initial: 1.99e+00)
+      * ('s3', 's3'): rates.k3(4.99e-01±1.84e-03, t-value: 271, initial: 4.99e-01)
   
 
 ## Initial Concentration
@@ -86,8 +86,8 @@ _Megacomplex Types_: decay
       * s3
     * *Parameters*: 
       * inputs.1(5.00e-01, fixed)
-      * inputs.2(2.42e-01±1.39e+01, initial: 2.42e-01)
-      * inputs.3(3.63e-01±2.26e+01, initial: 3.63e-01)
+      * inputs.2(2.42e-01±4.32e+01, t-value: 5.6e-03, initial: 2.42e-01)
+      * inputs.3(3.63e-01±2.69e+01, t-value: 1.3e-02, initial: 3.63e-01)
     * *Exclude From Normalize*: 
   
 * **input2**:
@@ -98,8 +98,8 @@ _Megacomplex Types_: decay
       * s3
     * *Parameters*: 
       * inputs.1(5.00e-01, fixed)
-      * inputs.7(1.61e-01±1.39e+01, initial: 1.61e-01)
-      * inputs.8(3.12e-01±2.26e+01, initial: 3.12e-01)
+      * inputs.7(1.61e-01±4.32e+01, t-value: 3.7e-03, initial: 1.61e-01)
+      * inputs.8(3.12e-01±2.69e+01, t-value: 1.2e-02, initial: 3.12e-01)
     * *Exclude From Normalize*: 
   
 * **input3**:
@@ -110,8 +110,8 @@ _Megacomplex Types_: decay
       * s3
     * *Parameters*: 
       * inputs.1(5.00e-01, fixed)
-      * inputs.9(9.63e-02±1.39e+01, initial: 9.62e-02)
-      * inputs.10(2.08e-01±2.26e+01, initial: 2.08e-01)
+      * inputs.9(9.63e-02±4.32e+01, t-value: 2.2e-03, initial: 9.62e-02)
+      * inputs.10(2.08e-01±2.69e+01, t-value: 7.7e-03, initial: 2.08e-01)
     * *Exclude From Normalize*: 
   
 
@@ -121,9 +121,9 @@ _Megacomplex Types_: decay
     * *Label*: irf1_no_dispersion
     * *Type*: spectral-multi-gaussian
     * *Center*: 
-      * irf.center1(5.00e-01±4.06e-05, initial: 5.00e-01)
+      * irf.center1(5.00e-01±4.06e-05, t-value: 12308, initial: 5.00e-01)
     * *Width*: 
-      * irf.width1(6.00e-02±3.81e-04, initial: 6.00e-02)
+      * irf.width1(6.00e-02±3.81e-04, t-value: 157, initial: 6.00e-02)
     * *Normalize*: True
     * *Backsweep*: False
     * *Center Dispersion Coefficients*: 
@@ -134,9 +134,9 @@ _Megacomplex Types_: decay
     * *Label*: irf2_no_dispersion
     * *Type*: spectral-multi-gaussian
     * *Center*: 
-      * irf.center2(4.00e-01±9.08e-05, initial: 4.00e-01)
+      * irf.center2(4.00e-01±9.08e-05, t-value: 4405, initial: 4.00e-01)
     * *Width*: 
-      * irf.width1(6.00e-02±3.81e-04, initial: 6.00e-02)
+      * irf.width1(6.00e-02±3.81e-04, t-value: 157, initial: 6.00e-02)
     * *Normalize*: True
     * *Backsweep*: False
     * *Center Dispersion Coefficients*: 
@@ -147,9 +147,9 @@ _Megacomplex Types_: decay
     * *Label*: irf3_no_dispersion
     * *Type*: spectral-multi-gaussian
     * *Center*: 
-      * irf.center3(4.50e-01±2.80e-04, initial: 3.00e-01)
+      * irf.center3(4.50e-01±2.80e-04, t-value: 1606, initial: 3.00e-01)
     * *Width*: 
-      * irf.width2(1.20e-01±1.42e-03, initial: 8.99e-02)
+      * irf.width2(1.20e-01±1.42e-03, t-value: 84, initial: 8.99e-02)
     * *Normalize*: True
     * *Backsweep*: False
     * *Center Dispersion Coefficients*: 
@@ -182,7 +182,7 @@ _Megacomplex Types_: decay
     * *Group*: default
     * *Megacomplex*: 
       * complex1
-    * *Scale*: scale.2(8.80e-01±7.22e-01, initial: 8.80e-01)
+    * *Scale*: scale.2(8.80e-01±2.26e+00, t-value: 0.4, initial: 8.80e-01)
     * *Initial Concentration*: input2
     * *Irf*: irf2_no_dispersion
   
@@ -191,7 +191,7 @@ _Megacomplex Types_: decay
     * *Group*: default
     * *Megacomplex*: 
       * complex1
-    * *Scale*: scale.3(7.27e+01±1.86e+00, initial: 7.27e+01)
+    * *Scale*: scale.3(7.27e+01±4.29e+00, t-value: 17, initial: 7.27e+01)
     * *Initial Concentration*: input3
     * *Irf*: irf3_no_dispersion
   

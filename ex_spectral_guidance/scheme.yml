@@ -4,6 +4,7 @@ data:
   dataset1: ../../work/pyglotaran-examples/pyglotaran-examples/pyglotaran-examples/pyglotaran_examples/ex_spectral_guidance/data/Npq2_220219_800target3fasea.ascii
   dataset2: ../../work/pyglotaran-examples/pyglotaran-examples/pyglotaran-examples/pyglotaran_examples/ex_spectral_guidance/data/trNpq2_220219_800target3fase10SAS5.ascii
 clp_link_tolerance: 0.0
+clp_link_method: nearest
 maximum_number_function_evaluations: 23
 non_negative_least_squares: true
 add_svd: true

@@ -4,6 +4,7 @@ data:
   dataset1: ../../../../work/pyglotaran-examples/pyglotaran-examples/pyglotaran-examples/pyglotaran_examples/study_transient_absorption/data/2016co_tol.ascii
   dataset2: ../../../../work/pyglotaran-examples/pyglotaran-examples/pyglotaran-examples/pyglotaran_examples/study_transient_absorption/data/2016c2o_tol.ascii
 clp_link_tolerance: 0.0
+clp_link_method: nearest
 maximum_number_function_evaluations: 11
 add_svd: true
 ftol: 1e-08

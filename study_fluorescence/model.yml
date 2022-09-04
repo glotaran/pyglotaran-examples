@@ -4,27 +4,27 @@ dataset_groups:
     residual_function: non_negative_least_squares
     link_clp: null
 clp_area_penalties:
-  - source: s2
+- source: s2
   source_intervals: [[100, 1000]]
   target: s3
   target_intervals: [[100, 1000]]
   parameter: area.1
   weight: 0.0016
-  - source: s2
+- source: s2
   source_intervals: [[100, 1000]]
   target: s4
   target_intervals: [[100, 1000]]
   parameter: area.1
   weight: 0.0016
 clp_constraints:
-  - interval:
-    - [1, 1000]
+- interval:
+  - [1, 1000]
   target: s1
-  - interval:
-    - [1, 680]
+- interval:
+  - [1, 680]
   target: s3
-  - interval:
-    - [1, 690]
+- interval:
+  - [1, 690]
 #  - [zero, s1, (1, 100), (2, 200)]
 
   target: s4
@@ -45,11 +45,11 @@ initial_concentration:
   input1:
     compartments: [s1, s2, s3, s4, s5]
     parameters:
-      - input.1
-      - input.0
-      - input.0
-      - input.0
-      - input.0
+    - input.1
+    - input.0
+    - input.0
+    - input.0
+    - input.0
     exclude_from_normalize: []
 irf:
   irf1:

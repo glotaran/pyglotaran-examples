@@ -3,6 +3,7 @@ parameters: initial_parameters.csv
 data:
   dataset1: ../../work/pyglotaran-examples/pyglotaran-examples/pyglotaran-examples/pyglotaran_examples/study_fluorescence/data/data.ascii
 clp_link_tolerance: 0.0
+clp_link_method: nearest
 maximum_number_function_evaluations: 6
 non_negative_least_squares: true
 add_svd: true
