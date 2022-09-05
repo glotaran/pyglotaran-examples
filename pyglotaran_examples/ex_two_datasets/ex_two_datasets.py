@@ -61,7 +61,7 @@ except (ValueError, FileExistsError) as error:
         save_result(result, results_folder, format_name="yml", allow_overwrite=True)
     except FileExistsError as error:
         print(f"catching error: {error}")
-        timestamp = datetime.today().strftime("%y%m%d_%H%M")
+        timestamp = datetime.now().strftime("%y%m%d_%H%M")
         save_result(
             result_path=str(results_folder.joinpath(timestamp)),
             result=result,
@@ -75,11 +75,11 @@ plot_style = PlotStyle()
 plt.rc("axes", prop_cycle=plot_style.cycler)
 
 fig1 = plot_overview(result.data["dataset1"], linlog=True)
-timestamp = datetime.today().strftime("%y%m%d_%H%M")
+timestamp = datetime.now().strftime("%y%m%d_%H%M")
 fig1.savefig(results_folder.joinpath(f"plot_overview_1of2_{timestamp}.pdf"), bbox_inches="tight")
 
 fig2 = plot_overview(result.data["dataset2"], linlog=True)
-timestamp = datetime.today().strftime("%y%m%d_%H%M")
+timestamp = datetime.now().strftime("%y%m%d_%H%M")
 fig2.savefig(results_folder.joinpath(f"plot_overview_2of2_{timestamp}.pdf"), bbox_inches="tight")
 
 plt.show()
