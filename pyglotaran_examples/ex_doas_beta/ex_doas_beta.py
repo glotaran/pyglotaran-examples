@@ -64,7 +64,7 @@ def run_doas_model(show_plot=False, block_plot=False):
         fig = plot_overview(result.data["dataset1"], linlog=True)
         plt.rcParams["figure.figsize"] = (21, 14)
 
-        timestamp = datetime.today().strftime("%y%m%d_%H%M")
+        timestamp = datetime.now().strftime("%y%m%d_%H%M")
         fig.savefig(results_folder.joinpath(f"plot_overview_{timestamp}.pdf"), bbox_inches="tight")
 
         plt.show(block=block_plot)

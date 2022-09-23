@@ -48,5 +48,5 @@ plt.rc("axes", prop_cycle=plot_style.cycler)
 
 fig = plot_overview(result, linlog=True)
 
-timestamp = datetime.today().strftime("%y%m%d_%H%M")
+timestamp = datetime.now().strftime("%y%m%d_%H%M")
 fig.savefig(results_folder.joinpath(f"plot_overview_{timestamp}.pdf"), bbox_inches="tight")
