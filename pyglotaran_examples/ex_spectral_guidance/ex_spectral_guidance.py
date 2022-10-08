@@ -62,14 +62,14 @@ def load_and_plot_results():
 
     result1 = results_folder.joinpath("dataset1.nc")
     fig1, _ = plot_overview(result1, linlog=True, show_data=True, figure_only=False)
-    timestamp = datetime.today().strftime("%y%m%d_%H%M")
+    timestamp = datetime.now().strftime("%y%m%d_%H%M")
     fig1.savefig(
         results_folder.joinpath(f"plot_overview_1of2_{timestamp}.pdf"), bbox_inches="tight"
     )
 
     result2 = results_folder.joinpath("dataset2.nc")
     fig2, _ = plot_overview(result2, linlog=True, figure_only=False)
-    timestamp = datetime.today().strftime("%y%m%d_%H%M")
+    timestamp = datetime.now().strftime("%y%m%d_%H%M")
     fig2.savefig(
         results_folder.joinpath(f"plot_overview_2of2_{timestamp}.pdf"), bbox_inches="tight"
     )
