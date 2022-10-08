@@ -8,10 +8,6 @@ import warnings
 from pathlib import Path
 
 import yaargh
-from glotaran.deprecation.deprecation_utils import GlotaranApiDeprecationWarning
-from glotaran.io import save_result
-from matplotlib.backends.backend_pdf import PdfPages
-from pyglotaran_extras.deprecation.deprecation_utils import PyglotaranExtrasApiDeprecationWarning
 
 REPO_ROOT = Path(__file__).parent.parent
 
@@ -60,6 +56,11 @@ def compress_all_results():
 def script_run_wrapper(func):
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
+        from glotaran.deprecation.deprecation_utils import GlotaranApiDeprecationWarning
+        from pyglotaran_extras.deprecation.deprecation_utils import (
+            PyglotaranExtrasApiDeprecationWarning,
+        )
+
         print("\n", "#" * 80, sep="")
         print("#", f"RUNNING: {func.__name__.upper()}".center(78), "#", sep="")
         print("#" * 80, "\n")
