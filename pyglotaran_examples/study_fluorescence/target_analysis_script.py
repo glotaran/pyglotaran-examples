@@ -4,11 +4,11 @@
 from timeit import default_timer as timer
 
 import matplotlib.pyplot as plt
-from glotaran.analysis.optimize import optimize
 from glotaran.io import load_dataset
 from glotaran.io import load_model
 from glotaran.io import load_parameters
 from glotaran.io import save_result
+from glotaran.optimization.optimize import optimize
 from glotaran.project.scheme import Scheme
 from pyglotaran_extras.io import setup_case_study
 from pyglotaran_extras.plotting.plot_overview import plot_overview

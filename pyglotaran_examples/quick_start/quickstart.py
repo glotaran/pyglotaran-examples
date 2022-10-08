@@ -1,11 +1,11 @@
 from pathlib import Path
 
 import matplotlib.pyplot as plt
-from glotaran.analysis.optimize import optimize
 from glotaran.examples.sequential import dataset
 from glotaran.io import load_model
 from glotaran.io import load_parameters
 from glotaran.io import prepare_time_trace_dataset
+from glotaran.optimization.optimize import optimize
 from glotaran.project.scheme import Scheme
 
 script_dir = Path(__file__).resolve().parent
