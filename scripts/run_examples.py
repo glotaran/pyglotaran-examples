@@ -139,9 +139,7 @@ def spectral_guidance(*, headless=False, raise_on_deprecation=False):
     from pyglotaran_examples.ex_spectral_guidance import ex_spectral_guidance
 
     result = ex_spectral_guidance.main()
-    save_result(
-        result, ex_spectral_guidance.results_folder, format_name="legacy", allow_overwrite=True
-    )
+    save_result(result, ex_spectral_guidance.results_folder / "result.yml", allow_overwrite=True)
     ex_spectral_guidance.load_and_plot_results()
 
 

@@ -36,13 +36,11 @@ for key, val in MODEL_PATHS.items():
         maximum_number_function_evaluations=7,  # TRF needs at least 6
     )
     result = optimize(scheme)
-    save_result(
-        result, results_folder / f"{key}_first_run", format_name="legacy", allow_overwrite=True
-    )
+    save_result(result, results_folder / f"{key}_first_run" / "result.yml", allow_overwrite=True)
     # Second optimization with results of the first:
     scheme2 = result.get_scheme()
     result2 = optimize(scheme2)
-    save_result(result2, results_folder / key, format_name="legacy", allow_overwrite=True)
+    save_result(result2, results_folder / key / "result.yml", allow_overwrite=True)
     plot_simple_overview(result.data["dataset1"], key, figure_only=False)
     plot_simple_overview(result2.data["dataset1"], key, figure_only=False)
 plt.show()

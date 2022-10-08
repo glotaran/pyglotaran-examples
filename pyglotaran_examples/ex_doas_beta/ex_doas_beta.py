@@ -51,7 +51,7 @@ def run_doas_model(show_plot=False, block_plot=False):
     print(f"\n{'#'*3} DOAS Model - Optimized Parameters {'#'*3}\n")
     print(result.optimized_parameters)
 
-    save_result(result, results_folder, format_name="legacy", allow_overwrite=True)
+    save_result(result, results_folder / "result.yml", allow_overwrite=True)
 
     plot_style = PlotStyle()
     plt.rc("axes", prop_cycle=plot_style.cycler)

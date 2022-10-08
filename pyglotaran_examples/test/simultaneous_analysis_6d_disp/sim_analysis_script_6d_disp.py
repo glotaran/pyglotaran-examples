@@ -59,7 +59,7 @@ result = optimize(scheme)
 # evt opslaan
 
 
-save_result(result, results_folder, format_name="legacy", allow_overwrite=True)
+save_result(result, results_folder / "result.yml", allow_overwrite=True)
 # evt plotten
 # %% Set subsequent plots to the glotaran style
 plot_style = PlotStyle()

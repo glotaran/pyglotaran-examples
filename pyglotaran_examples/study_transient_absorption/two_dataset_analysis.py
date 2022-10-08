@@ -65,7 +65,7 @@ result = optimize(scheme)
 end = timer()
 print(f"Total time: {end - start}")
 
-save_result(result, output_folder, format_name="legacy", allow_overwrite=True)
+save_result(result, output_folder / "result.yml", allow_overwrite=True)
 end2 = timer()
 print(f"Saving took: {end2 - end}")
 

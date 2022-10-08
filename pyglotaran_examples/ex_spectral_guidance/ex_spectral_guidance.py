@@ -79,5 +79,5 @@ def load_and_plot_results():
 if __name__ == "__main__":
     print(f"- Using folder {results_folder.name} to read/write files for this run")
     result = main()
-    save_result(result, results_folder, format_name="legacy", allow_overwrite=True)
+    save_result(result, results_folder / "result.yml", allow_overwrite=True)
     load_and_plot_results()
