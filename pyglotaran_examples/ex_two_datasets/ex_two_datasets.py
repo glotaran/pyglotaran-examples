@@ -73,11 +73,11 @@ except (ValueError, FileExistsError) as error:
 plot_style = PlotStyle()
 plt.rc("axes", prop_cycle=plot_style.cycler)
 
-fig1 = plot_overview(result.data["dataset1"], linlog=True)
+fig1, _ = plot_overview(result.data["dataset1"], linlog=True, figure_only=False)
 timestamp = datetime.now().strftime("%y%m%d_%H%M")
 fig1.savefig(results_folder.joinpath(f"plot_overview_1of2_{timestamp}.pdf"), bbox_inches="tight")
 
-fig2 = plot_overview(result.data["dataset2"], linlog=True)
+fig2, _ = plot_overview(result.data["dataset2"], linlog=True, figure_only=False)
 timestamp = datetime.now().strftime("%y%m%d_%H%M")
 fig2.savefig(results_folder.joinpath(f"plot_overview_2of2_{timestamp}.pdf"), bbox_inches="tight")
 
