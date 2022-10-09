@@ -35,6 +35,7 @@ def run_doas_model(show_plot=False, block_plot=False):
 
     print(f"\n{'#'*10} DOAS Model {'#'*10}\n")
     print(model.validate(parameters=parameters))
+    assert model.valid(parameters=parameters)
 
     scheme = Scheme(
         model=model,

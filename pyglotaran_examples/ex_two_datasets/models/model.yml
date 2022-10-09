@@ -38,13 +38,13 @@ initial_concentration:
 
 irf:
   irf1:
-    type: spectral-multi-gaussian
-    center: [irf.center]
-    width: [irf.width]
+    type: gaussian
+    center: irf.center
+    width: irf.width
   irf1_no_dispersion:
-    type: spectral-multi-gaussian
-    center: [irf.center]
-    width: [irf.width]
+    type: gaussian
+    center: irf.center
+    width: irf.width
 
 # It works without clp_area_penalties but then the inputs cannot be estimated
 clp_area_penalties:

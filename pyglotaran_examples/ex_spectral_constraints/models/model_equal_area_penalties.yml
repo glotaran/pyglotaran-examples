@@ -23,11 +23,11 @@ initial_concentration:
 
 irf:
   irf1:
-    type: spectral-multi-gaussian
-    center: [irf.center]
-    width: [irf.width]
+    type: gaussian
+    center: irf.center
+    width: irf.width
 
-clp_area_penalties:
+clp_penalties:
   - type: equal_area
     source: s2
     source_intervals: [[0, 1000]]

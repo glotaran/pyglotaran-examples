@@ -67,6 +67,6 @@ clp_relations:
 
 irf:
   irf1:
-    type: spectral-multi-gaussian
-    center: [irf.center]
-    width: [irf.width]
+    type: gaussian
+    center: irf.center
+    width: irf.width
