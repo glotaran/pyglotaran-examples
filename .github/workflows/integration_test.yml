@@ -46,10 +46,10 @@ jobs:
           repository: "glotaran/pyglotaran"
           # If not provided (push and pull_request event) it uses the default branch
           ref: ${{ github.event.inputs.pyglotaran_branch }}
-      - name: Set up Python 3.8
+      - name: Set up Python 3.10
         uses: actions/setup-python@v4
         with:
-          python-version: 3.8
+          python-version: "3.10"
       - name: Install pyglotaran
         run: |
           pip install wheel
@@ -105,10 +105,10 @@ jobs:
           echo "♻️ pyglotaran-examples commit: $(< comparison-results-current/example_commit_sha.txt)"
           echo "::endgroup::"
 
-      - name: Set up Python 3.8
+      - name: Set up Python 3.10
         uses: actions/setup-python@v4
         with:
-          python-version: 3.8
+          python-version: "3.10"
 
       - name: Run result validator
         uses: glotaran/pyglotaran-validation@main
