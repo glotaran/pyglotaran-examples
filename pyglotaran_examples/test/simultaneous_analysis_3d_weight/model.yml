@@ -45,17 +45,17 @@ initial_concentration:
 
 irf:
   irf1_no_dispersion:
-    type: spectral-multi-gaussian
-    center: [irf.center1]
-    width: [irf.width1]
+    type: gaussian
+    center: irf.center1
+    width: irf.width1
   irf2_no_dispersion:
-    type: spectral-multi-gaussian
-    center: [irf.center2]
-    width: [irf.width1]
+    type: gaussian
+    center: irf.center2
+    width: irf.width1
   irf3_no_dispersion:
-    type: spectral-multi-gaussian
-    center: [irf.center3]
-    width: [irf.width2]
+    type: gaussian
+    center: irf.center3
+    width: irf.width2
 
 clp_area_penalties:
   - type: equal_area
