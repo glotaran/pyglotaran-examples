@@ -5,13 +5,13 @@ from timeit import default_timer as timer
 
 # Needed for plotting only
 import matplotlib.pyplot as plt  # 3.3 or higher
-from glotaran.analysis.optimize import optimize
 from glotaran.io import load_dataset
 from glotaran.io import load_model
 from glotaran.io import load_parameters
 from glotaran.io import save_result
+from glotaran.optimization.optimize import optimize
 from glotaran.project.scheme import Scheme
-from pyglotaran_extras.io.boilerplate import setup_case_study
+from pyglotaran_extras.io import setup_case_study
 from pyglotaran_extras.plotting.plot_overview import plot_overview
 from pyglotaran_extras.plotting.style import PlotStyle
 
@@ -65,7 +65,7 @@ result = optimize(scheme)
 end = timer()
 print(f"Total time: {end - start}")
 
-save_result(result, output_folder, format_name="legacy", allow_overwrite=True)
+save_result(result, output_folder / "result.yml", allow_overwrite=True)
 end2 = timer()
 print(f"Saving took: {end2 - end}")
 
@@ -88,13 +88,13 @@ plt.rc("axes", prop_cycle=plot_style.cycler)
 
 # %%
 # TODO: enhance plot_overview to handle multiple datasets
-fig1 = plot_overview(result_datafile1, linlog=True, linthresh=1)
+fig1, _ = plot_overview(result_datafile1, linlog=True, linthresh=1, figure_only=False)
 fig1.savefig(
     output_folder.joinpath(f"plot_overview_{result_name}_d1_{data_path1.stem}.pdf"),
     bbox_inches="tight",
 )
 
-fig2 = plot_overview(result_datafile2, linlog=True, linthresh=1)
+fig2, _ = plot_overview(result_datafile2, linlog=True, linthresh=1, figure_only=False)
 fig2.savefig(
     output_folder.joinpath(f"plot_overview_{result_name}_d2_{data_path2.stem}.pdf"),
     bbox_inches="tight",

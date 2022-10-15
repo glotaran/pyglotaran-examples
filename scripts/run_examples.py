@@ -56,6 +56,11 @@ def compress_all_results():
 def script_run_wrapper(func):
     @functools.wraps(func)
     def wrapper(*args, **kwargs):
+        from glotaran.deprecation.deprecation_utils import GlotaranApiDeprecationWarning
+        from pyglotaran_extras.deprecation.deprecation_utils import (
+            PyglotaranExtrasApiDeprecationWarning,
+        )
+
         print("\n", "#" * 80, sep="")
         print("#", f"RUNNING: {func.__name__.upper()}".center(78), "#", sep="")
         print("#" * 80, "\n")
@@ -67,13 +72,11 @@ def script_run_wrapper(func):
                 "ignore", message=r"Matplotlib.+non-GUI.+", category=UserWarning
             )
             if kwargs["raise_on_deprecation"]:
-                warnings.filterwarnings(
-                    "error", message=r".+glotaran.+", category=DeprecationWarning
-                )
+                warnings.filterwarnings("error", category=GlotaranApiDeprecationWarning)
+                warnings.filterwarnings("error", category=PyglotaranExtrasApiDeprecationWarning)
             else:
-                warnings.filterwarnings(
-                    "always", message=r".+glotaran.+", category=DeprecationWarning
-                )
+                warnings.filterwarnings("always", category=GlotaranApiDeprecationWarning)
+                warnings.filterwarnings("always", category=PyglotaranExtrasApiDeprecationWarning)
             if "GITHUB" in os.environ:
                 warnings.formatwarning = github_format_warning
 
@@ -136,9 +139,7 @@ def spectral_guidance(*, headless=False, raise_on_deprecation=False):
     from pyglotaran_examples.ex_spectral_guidance import ex_spectral_guidance
 
     result = ex_spectral_guidance.main()
-    save_result(
-        result, ex_spectral_guidance.results_folder, format_name="legacy", allow_overwrite=True
-    )
+    save_result(result, ex_spectral_guidance.results_folder / "result.yml", allow_overwrite=True)
     ex_spectral_guidance.load_and_plot_results()
 
 

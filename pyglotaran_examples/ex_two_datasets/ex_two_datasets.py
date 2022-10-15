@@ -3,13 +3,13 @@
 from datetime import datetime
 
 import matplotlib.pyplot as plt  # 3.3 or higher
-from glotaran.analysis.optimize import optimize
 from glotaran.io import load_dataset
 from glotaran.io import load_model
 from glotaran.io import load_parameters
 from glotaran.io import save_result
+from glotaran.optimization.optimize import optimize
 from glotaran.project.scheme import Scheme
-from pyglotaran_extras.io.boilerplate import setup_case_study
+from pyglotaran_extras.io import setup_case_study
 from pyglotaran_extras.plotting.plot_overview import plot_overview
 from pyglotaran_extras.plotting.style import PlotStyle
 
@@ -39,7 +39,6 @@ scheme = Scheme(
     parameters,
     {"dataset1": dataset1, "dataset2": dataset2},
     maximum_number_function_evaluations=18,
-    non_negative_least_squares=True,
     optimization_method="TrustRegionReflection",
 )
 
@@ -54,7 +53,7 @@ print(result.markdown(True))
 
 # %% Save the results
 try:
-    save_result(result, results_folder, format_name="legacy", allow_overwrite=True)
+    save_result(result, results_folder / "result.yml", allow_overwrite=True)
 except (ValueError, FileExistsError) as error:
     print(f"catching error: {error}")
     try:
@@ -74,11 +73,11 @@ except (ValueError, FileExistsError) as error:
 plot_style = PlotStyle()
 plt.rc("axes", prop_cycle=plot_style.cycler)
 
-fig1 = plot_overview(result.data["dataset1"], linlog=True)
+fig1, _ = plot_overview(result.data["dataset1"], linlog=True, figure_only=False)
 timestamp = datetime.now().strftime("%y%m%d_%H%M")
 fig1.savefig(results_folder.joinpath(f"plot_overview_1of2_{timestamp}.pdf"), bbox_inches="tight")
 
-fig2 = plot_overview(result.data["dataset2"], linlog=True)
+fig2, _ = plot_overview(result.data["dataset2"], linlog=True, figure_only=False)
 timestamp = datetime.now().strftime("%y%m%d_%H%M")
 fig2.savefig(results_folder.joinpath(f"plot_overview_2of2_{timestamp}.pdf"), bbox_inches="tight")
 

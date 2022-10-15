@@ -4,13 +4,13 @@
 from timeit import default_timer as timer
 
 import matplotlib.pyplot as plt
-from glotaran.analysis.optimize import optimize
 from glotaran.io import load_dataset
 from glotaran.io import load_model
 from glotaran.io import load_parameters
 from glotaran.io import save_result
+from glotaran.optimization.optimize import optimize
 from glotaran.project.scheme import Scheme
-from pyglotaran_extras.io.boilerplate import setup_case_study
+from pyglotaran_extras.io import setup_case_study
 from pyglotaran_extras.plotting.plot_overview import plot_overview
 from pyglotaran_extras.plotting.style import PlotStyle
 
@@ -48,8 +48,6 @@ else:
         {"dataset1": dataset},
         maximum_number_function_evaluations=6,  # 6 for TRF, 46 for LM
         # optimization_method="Levenberg-Marquardt", #lm needs nfev=46
-        non_negative_least_squares=True,
-        # group=False
     )
 
     print(model.validate(parameters=parameter))
@@ -61,7 +59,7 @@ else:
     end = timer()
     print(f"Total time: {end - start}")
 
-    save_result(result, results_folder, format_name="legacy", allow_overwrite=True)
+    save_result(result, results_folder / "result.yml", allow_overwrite=True)
     end2 = timer()
     print(f"Saving took: {end2 - end}")
 
@@ -79,7 +77,7 @@ plot_style = PlotStyle()
 plt.rc("axes", prop_cycle=plot_style.cycler)
 
 # %%
-fig = plot_overview(result_datafile, linlog=False)
+fig, _ = plot_overview(result_datafile, linlog=False, figure_only=False)
 # note species concentration plot still needs work to match styles between the two locatable axis
 
 # %%

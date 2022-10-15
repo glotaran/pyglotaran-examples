@@ -2,13 +2,13 @@
 from datetime import datetime
 
 import matplotlib.pyplot as plt  # 3.3 or higher
-from glotaran.analysis.optimize import optimize
 from glotaran.io import load_dataset
 from glotaran.io import load_model
 from glotaran.io import load_parameters
 from glotaran.io import save_result
+from glotaran.optimization.optimize import optimize
 from glotaran.project.scheme import Scheme
-from pyglotaran_extras.io.boilerplate import setup_case_study
+from pyglotaran_extras.io import setup_case_study
 from pyglotaran_extras.plotting.plot_overview import plot_overview
 from pyglotaran_extras.plotting.style import PlotStyle
 
@@ -39,14 +39,14 @@ result = optimize(scheme)
 print(result.markdown(True))
 
 # %% Save the results
-save_result(result, results_folder, format_name="legacy", allow_overwrite=True)
+save_result(result, results_folder / "result.yml", allow_overwrite=True)
 
 # %% Plot and save as PDF
 # This set subsequent plots to the glotaran style
 plot_style = PlotStyle()
 plt.rc("axes", prop_cycle=plot_style.cycler)
 
-fig = plot_overview(result, linlog=True)
+fig, _ = plot_overview(result, linlog=True, figure_only=False)
 
 timestamp = datetime.now().strftime("%y%m%d_%H%M")
 fig.savefig(results_folder.joinpath(f"plot_overview_{timestamp}.pdf"), bbox_inches="tight")
