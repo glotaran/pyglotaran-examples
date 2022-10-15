@@ -52,7 +52,7 @@ clp_constraints:
       - [1, 690]
 #  - [zero, s1, (1, 100), (2, 200)]
 
-clp_penalties:
+clp_area_penalties:
   - type: equal_area
     source: s2
     source_intervals: [[100, 1000]]
