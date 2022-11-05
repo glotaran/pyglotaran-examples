@@ -218,7 +218,9 @@ def run_all(*, headless=False, raise_on_deprecation=False):
 def set_gha_example_list_output():
     """Export a list of all examples to an output github in github actions."""
     example_names = [func.__name__.replace("_", "-") for func in all_funcs]
-    print(f"::set-output name=example-list::{json.dumps(example_names)}")
+    gh_output = Path(os.getenv("GITHUB_OUTPUT", ""))
+    with gh_output.open("a", encoding="utf8") as f:
+        f.writelines([f"example-list={json.dumps(example_names)}"])
 
 
 parser = yaargh.ArghParser()
