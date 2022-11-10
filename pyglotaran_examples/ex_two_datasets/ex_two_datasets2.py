@@ -30,11 +30,11 @@ plt.rc("axes", prop_cycle=plot_style.cycler)
 
 results_folder = project.get_result_path("result_ex_two_datasets")
 fig1 = plot_overview(result.data["data1"], linlog=True)
-timestamp = datetime.today().strftime("%y%m%d_%H%M")
+timestamp = datetime.now().strftime("%y%m%d_%H%M")
 fig1.savefig(results_folder.joinpath(f"plot_overview_1of2_{timestamp}.pdf"), bbox_inches="tight")
 
 fig2 = plot_overview(result.data["data2"], linlog=True)
-timestamp = datetime.today().strftime("%y%m%d_%H%M")
+timestamp = datetime.now().strftime("%y%m%d_%H%M")
 fig2.savefig(results_folder.joinpath(f"plot_overview_2of2_{timestamp}.pdf"), bbox_inches="tight")
 
 plt.show()
