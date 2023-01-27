@@ -90,14 +90,6 @@ def script_run_wrapper(func):
 
 
 @script_run_wrapper
-def quick_start(*, headless=False, raise_on_deprecation=False):
-    """Runs quickstart.py
-    from pyglotaran_examples/quick_start"""
-    # The whole script is run at import.
-    from pyglotaran_examples.quick_start import quickstart
-
-
-@script_run_wrapper
 def fluorescence(*, headless=False, raise_on_deprecation=False):
     """Runs target_analysis_script.py
     from pyglotaran_examples/study_fluorescence/"""
@@ -194,7 +186,6 @@ def doas_beta(*, headless=False, raise_on_deprecation=False):
 
 
 all_funcs = [
-    quick_start,
     fluorescence,
     transient_absorption,
     transient_absorption_two_datasets,
