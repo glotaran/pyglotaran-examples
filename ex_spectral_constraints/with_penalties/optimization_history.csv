@@ -1,0 +1,3 @@
+iteration,nfev,cost,cost_reduction,step_norm,optimality
+0,1,30.884,,,0.00239
+1,2,30.884,1.72e-12,7.16e-09,6.89e-05

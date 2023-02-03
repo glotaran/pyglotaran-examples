@@ -15,13 +15,14 @@ scheme: scheme.yml
 initial_parameters: initial_parameters.csv
 optimized_parameters: optimized_parameters.csv
 parameter_history: parameter_history.csv
+optimization_history: optimization_history.csv
 data:
   dataset1: dataset1.nc
-chi_square: 90108706.91164877
+chi_square: 90108706.91164574
 degrees_of_freedom: 45221
 number_of_data_points: 45229
 number_of_jacobian_evaluations: 6
 number_of_parameters: 8
-optimality: 815.6675475435899
-reduced_chi_square: 1992.629683369425
-root_mean_square_error: 44.63888084808383
+optimality: 816.0608509400809
+reduced_chi_square: 1992.629683369358
+root_mean_square_error: 44.638880848083076

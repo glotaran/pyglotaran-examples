@@ -1,40 +1,44 @@
-default_megacomplex: damped-oscillation
+clp_penalties: []
+clp_constraints: []
+clp_relations: []
 dataset_groups:
   default:
+    label: default
     residual_function: variable_projection
     link_clp: null
-irf:
-  irf1:
-    type: spectral-gaussian
-    center: irf.center
-    width: irf.width
-    normalize: true
-    backsweep: false
-    dispersion_center: irf.dispcenter
-    center_dispersion_coefficients:
-    - irf.disp1
-    - irf.disp2
-    width_dispersion_coefficients: []
-    model_dispersion_with_wavenumber: true
+weights: []
 k_matrix:
   k1:
+    label: k1
     matrix:
       (hotS1, S2): kinetic.1
       (S1, hotS1): kinetic.2
       (S1, S1): kinetic.3
-initial_concentration:
-  j1:
-    compartments: [S2, hotS1, S1]
-    parameters:
-    - j.1
-    - j.0
-    - j.0
-    exclude_from_normalize: []
 megacomplex:
   doas:
+    label: doas
+    dimension: time
     type: damped-oscillation
-    labels: [osc1, osc2, osc3, osc4, osc5, osc6, osc7, osc8, osc9, osc10, osc11, osc12,
-      osc13, osc14, osc15, osc16, osc17, osc18, osc19]
+    labels:
+    - osc1
+    - osc2
+    - osc3
+    - osc4
+    - osc5
+    - osc6
+    - osc7
+    - osc8
+    - osc9
+    - osc10
+    - osc11
+    - osc12
+    - osc13
+    - osc14
+    - osc15
+    - osc16
+    - osc17
+    - osc18
+    - osc19
     frequencies:
     - osc.freq.1
     - osc.freq.2
@@ -75,19 +79,59 @@ megacomplex:
     - osc.rates.17
     - osc.rates.18
     - osc.rates.19
-    dimension: time
   decay:
-    type: decay
+    label: decay
     dimension: time
-    k_matrix: [k1]
+    type: decay
+    k_matrix:
+    - k1
   artifact:
+    label: artifact
+    dimension: time
     type: coherent-artifact
     order: 3
     width: artifact.CAwidth
-    dimension: time
+initial_concentration:
+  j1:
+    label: j1
+    compartments:
+    - S2
+    - hotS1
+    - S1
+    parameters:
+    - j.1
+    - j.0
+    - j.0
+    exclude_from_normalize: []
+irf:
+  irf1:
+    label: irf1
+    scale: null
+    shift: null
+    normalize: true
+    backsweep: false
+    backsweep_period: null
+    dispersion_center: irf.dispcenter
+    center_dispersion_coefficients:
+    - irf.disp1
+    - irf.disp2
+    width_dispersion_coefficients: []
+    model_dispersion_with_wavenumber: true
+    type: spectral-gaussian
+    center: irf.center
+    width: irf.width
 dataset:
   dataset1:
+    label: dataset1
     group: default
-    megacomplex: [doas, decay, artifact]
-    irf: irf1
+    force_index_dependent: false
+    megacomplex:
+    - doas
+    - decay
+    - artifact
+    megacomplex_scale: null
+    global_megacomplex: null
+    global_megacomplex_scale: null
+    scale: null
     initial_concentration: j1
+    irf: irf1

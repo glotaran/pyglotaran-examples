@@ -24,6 +24,7 @@ scheme: scheme.yml
 initial_parameters: initial_parameters.csv
 optimized_parameters: optimized_parameters.csv
 parameter_history: parameter_history.csv
+optimization_history: optimization_history.csv
 data:
   dataset1: dataset1.nc
   dataset2: dataset2.nc
@@ -31,11 +32,11 @@ data:
   dataset4: dataset4.nc
   dataset5: dataset5.nc
   dataset6: dataset6.nc
-chi_square: 0.000148671533419687
+chi_square: 0.00014867153341971507
 degrees_of_freedom: 92539
 number_of_data_points: 92556
 number_of_jacobian_evaluations: 8
 number_of_parameters: 17
-optimality: 5.634449259043608e-05
-reduced_chi_square: 1.6065824508551745e-09
-root_mean_square_error: 4.008219618303337e-05
+optimality: 5.635473104253088e-05
+reduced_chi_square: 1.6065824508554778e-09
+root_mean_square_error: 4.008219618303715e-05

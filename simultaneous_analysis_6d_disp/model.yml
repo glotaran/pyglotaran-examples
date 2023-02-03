@@ -1,58 +1,95 @@
-default_megacomplex: decay
+clp_penalties:
+- type: equal_area
+  source: s1
+  source_intervals:
+  - - 300
+    - 3000
+  target: s2
+  target_intervals:
+  - - 300
+    - 3000
+  parameter: area.1
+  weight: 0.01
+- type: equal_area
+  source: s1
+  source_intervals:
+  - - 300
+    - 3000
+  target: s3
+  target_intervals:
+  - - 300
+    - 3000
+  parameter: area.1
+  weight: 0.01
+clp_constraints: []
+clp_relations: []
 dataset_groups:
   default:
+    label: default
     residual_function: non_negative_least_squares
     link_clp: null
-clp_area_penalties:
-- source: s1
-  source_intervals: [[300, 3000]]
-  target: s2
-  target_intervals: [[300, 3000]]
-  parameter: area.1
-  weight: 0.01
-- source: s1
-  source_intervals: [[300, 3000]]
-  target: s3
-  target_intervals: [[300, 3000]]
-  parameter: area.1
-  weight: 0.01
+weights: []
 k_matrix:
   km1:
+    label: km1
     matrix:
       (s1, s1): rates.k1
       (s2, s2): rates.k2
       (s3, s3): rates.k3
+megacomplex:
+  complex1:
+    label: complex1
+    dimension: time
+    type: decay
+    k_matrix:
+    - km1
 initial_concentration:
   input1:
-    compartments: [s1, s2, s3]
+    label: input1
+    compartments:
+    - s1
+    - s2
+    - s3
     parameters:
     - inputs.1
     - inputs.2
     - inputs.3
-    exclude_from_normalize: &id001 []
+    exclude_from_normalize: []
   input2:
-    compartments: [s1, s2, s3]
+    label: input2
+    compartments:
+    - s1
+    - s2
+    - s3
     parameters:
     - inputs.1
     - inputs.7
     - inputs.8
-    exclude_from_normalize: *id001
+    exclude_from_normalize: []
   input3:
-    compartments: [s1, s2, s3]
+    label: input3
+    compartments:
+    - s1
+    - s2
+    - s3
     parameters:
     - inputs.1
     - inputs.9
     - inputs.10
-    exclude_from_normalize: *id001
+    exclude_from_normalize: []
 irf:
   irf1_with_dispersion:
-    type: spectral-multi-gaussian
+    label: irf1_with_dispersion
     center:
     - irf.center1
     width:
     - irf.width
+    scale: null
+    shift: null
     normalize: true
     backsweep: false
+    backsweep_period: null
+    type: spectral-multi-gaussian
     dispersion_center: irf.dispc
     center_dispersion_coefficients:
     - irf.disp1
@@ -60,13 +97,17 @@ irf:
     width_dispersion_coefficients: []
     model_dispersion_with_wavenumber: false
   irf2_with_dispersion:
-    type: spectral-multi-gaussian
+    label: irf2_with_dispersion
     center:
     - irf.center2
     width:
     - irf.width
+    scale: null
+    shift: null
     normalize: true
     backsweep: false
+    backsweep_period: null
+    type: spectral-multi-gaussian
     dispersion_center: irf.dispc
     center_dispersion_coefficients:
     - irf.disp1
@@ -74,57 +115,93 @@ irf:
     width_dispersion_coefficients: []
     model_dispersion_with_wavenumber: false
   irf3_with_dispersion:
-    type: spectral-multi-gaussian
+    label: irf3_with_dispersion
     center:
     - irf.center3
     width:
     - irf.width
+    scale: null
+    shift: null
     normalize: true
     backsweep: false
+    backsweep_period: null
+    type: spectral-multi-gaussian
     dispersion_center: irf.dispc
     center_dispersion_coefficients:
     - irf.disp1
     - irf.disp2
     width_dispersion_coefficients: []
     model_dispersion_with_wavenumber: false
-megacomplex:
-  complex1:
-    dimension: time
-    k_matrix: [km1]
 dataset:
   dataset1:
+    label: dataset1
     group: default
-    megacomplex: [complex1]
+    force_index_dependent: false
+    megacomplex:
+    - complex1
+    megacomplex_scale: null
+    global_megacomplex: null
+    global_megacomplex_scale: null
     scale: scale.1
     initial_concentration: input1
     irf: irf1_with_dispersion
   dataset2:
+    label: dataset2
     group: default
-    megacomplex: [complex1]
+    force_index_dependent: false
+    megacomplex:
+    - complex1
+    megacomplex_scale: null
+    global_megacomplex: null
+    global_megacomplex_scale: null
     scale: scale.1
     initial_concentration: input1
     irf: irf1_with_dispersion
   dataset3:
+    label: dataset3
     group: default
-    megacomplex: [complex1]
+    force_index_dependent: false
+    megacomplex:
+    - complex1
+    megacomplex_scale: null
+    global_megacomplex: null
+    global_megacomplex_scale: null
     scale: scale.2
     initial_concentration: input2
     irf: irf2_with_dispersion
   dataset4:
+    label: dataset4
     group: default
-    megacomplex: [complex1]
+    force_index_dependent: false
+    megacomplex:
+    - complex1
+    megacomplex_scale: null
+    global_megacomplex: null
+    global_megacomplex_scale: null
     scale: scale.2
     initial_concentration: input2
     irf: irf2_with_dispersion
   dataset5:
+    label: dataset5
     group: default
-    megacomplex: [complex1]
+    force_index_dependent: false
+    megacomplex:
+    - complex1
+    megacomplex_scale: null
+    global_megacomplex: null
+    global_megacomplex_scale: null
     scale: scale.3
     initial_concentration: input3
     irf: irf3_with_dispersion
   dataset6:
+    label: dataset6
     group: default
-    megacomplex: [complex1]
+    force_index_dependent: false
+    megacomplex:
+    - complex1
+    megacomplex_scale: null
+    global_megacomplex: null
+    global_megacomplex_scale: null
     scale: scale.3
     initial_concentration: input3
     irf: irf3_with_dispersion

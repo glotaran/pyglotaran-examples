@@ -1,35 +1,52 @@
-default_megacomplex: decay
-dataset_groups:
-  default:
-    residual_function: non_negative_least_squares
-    link_clp: null
-clp_area_penalties:
-- source: s2
-  source_intervals: [[100, 1000]]
+clp_penalties:
+- type: equal_area
+  source: s2
+  source_intervals:
+  - - 100
+    - 1000
   target: s3
-  target_intervals: [[100, 1000]]
+  target_intervals:
+  - - 100
+    - 1000
   parameter: area.1
   weight: 0.0016
-- source: s2
-  source_intervals: [[100, 1000]]
+- type: equal_area
+  source: s2
+  source_intervals:
+  - - 100
+    - 1000
   target: s4
-  target_intervals: [[100, 1000]]
+  target_intervals:
+  - - 100
+    - 1000
   parameter: area.1
   weight: 0.0016
 clp_constraints:
 - interval:
-  - [1, 1000]
+  - - 1
+    - 1000
   target: s1
+  type: zero
 - interval:
-  - [1, 680]
+  - - 1
+    - 680
   target: s3
+  type: zero
 - interval:
-  - [1, 690]
-#  - [zero, s1, (1, 100), (2, 200)]
-
+  - - 1
+    - 690
   target: s4
+  type: zero
+clp_relations: []
+dataset_groups:
+  default:
+    label: default
+    residual_function: non_negative_least_squares
+    link_clp: null
+weights: []
 k_matrix:
   km1:
+    label: km1
     matrix:
       (s2, s1): kinetic.1
       (s5, s1): kinetic.2
@@ -41,9 +58,22 @@ k_matrix:
       (s3, s3): kinetic.8
       (s4, s4): kinetic.8
       (s5, s5): kinetic.8
+megacomplex:
+  mc1:
+    label: mc1
+    dimension: time
+    type: decay
+    k_matrix:
+    - km1
 initial_concentration:
   input1:
-    compartments: [s1, s2, s3, s4, s5]
+    label: input1
+    compartments:
+    - s1
+    - s2
+    - s3
+    - s4
+    - s5
     parameters:
     - input.1
     - input.0
@@ -53,19 +83,25 @@ initial_concentration:
     exclude_from_normalize: []
 irf:
   irf1:
-    type: gaussian
-    center: irf.center
-    width: irf.width
+    label: irf1
+    scale: null
+    shift: null
     normalize: true
     backsweep: true
     backsweep_period: irf.backsweep
-megacomplex:
-  mc1:
-    dimension: time
-    k_matrix: [km1]
+    type: gaussian
+    center: irf.center
+    width: irf.width
 dataset:
   dataset1:
+    label: dataset1
     group: default
-    megacomplex: [mc1]
+    force_index_dependent: false
+    megacomplex:
+    - mc1
+    megacomplex_scale: null
+    global_megacomplex: null
+    global_megacomplex_scale: null
+    scale: null
     initial_concentration: input1
     irf: irf1

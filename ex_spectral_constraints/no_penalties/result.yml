@@ -11,6 +11,7 @@ scheme: scheme.yml
 initial_parameters: initial_parameters.csv
 optimized_parameters: optimized_parameters.csv
 parameter_history: parameter_history.csv
+optimization_history: optimization_history.csv
 data:
   dataset1: dataset1.nc
 chi_square: 61.76831109673022

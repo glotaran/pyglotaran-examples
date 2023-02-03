@@ -1,12 +1,11 @@
 model: model.yml
 parameters: initial_parameters.csv
 data:
-  dataset1: ../../work/pyglotaran-examples/pyglotaran-examples/pyglotaran-examples/pyglotaran_examples/ex_two_datasets/data/data1.ascii
-  dataset2: ../../work/pyglotaran-examples/pyglotaran-examples/pyglotaran-examples/pyglotaran_examples/ex_two_datasets/data/data2.ascii
+  dataset1: dataset1.nc
+  dataset2: dataset2.nc
 clp_link_tolerance: 0.0
 clp_link_method: nearest
 maximum_number_function_evaluations: 18
-non_negative_least_squares: true
 add_svd: true
 ftol: 1e-08
 gtol: 1e-08

@@ -1,8 +1,8 @@
-label,value,expression,minimum,maximum,non-negative,vary,standard-error
-inputs.s1,0.5,None,,,False,False,None
-inputs.s2,0.681094244701484,None,,,False,True,0.00026891147700038574
-irf.center,0.40000209673750065,None,,,False,True,5.602860069459267e-06
-irf.width,0.05997848875359835,None,,,False,True,7.531090374700983e-06
-rates.k1,0.2500311557799468,None,,,False,True,4.6122313984385065e-05
-rates.k2,0.9999470794617186,None,,,False,True,0.0001550303168239754
-area.1,1.0,None,,,False,False,None
+label,value,standard_error,expression,maximum,minimum,non_negative,vary
+inputs.s1,0.5,None,None,,,False,False
+inputs.s2,0.681094244701484,0.00026891147700038574,None,,,False,True
+irf.center,0.40000209673750065,5.602860069459267e-06,None,,,False,True
+irf.width,0.05997848875359835,7.531090374700983e-06,None,,,False,True
+rates.k1,0.2500311557799468,4.6122313984385065e-05,None,,,False,True
+rates.k2,0.9999470794617186,0.0001550303168239754,None,,,False,True
+area.1,1.0,None,None,,,False,False

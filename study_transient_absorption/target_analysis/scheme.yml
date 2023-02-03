@@ -1,7 +1,7 @@
 model: model.yml
 parameters: initial_parameters.csv
 data:
-  dataset1: ../../../work/pyglotaran-examples/pyglotaran-examples/pyglotaran-examples/pyglotaran_examples/study_transient_absorption/data/demo_data_Hippius_etal_JPCC2007_111_13988_Figs5_9.ascii
+  dataset1: dataset1.nc
 clp_link_tolerance: 0.0
 clp_link_method: nearest
 maximum_number_function_evaluations: 10
