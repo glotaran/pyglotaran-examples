@@ -22,7 +22,6 @@ PARAMETERS_FILE_PATH = "models/parameters.yml"
 
 # %% Define function
 def run_doas_model(show_plot=False, block_plot=False):
-
     results_folder, script_folder = setup_case_study(
         output_folder_name="pyglotaran_examples_results"
     )

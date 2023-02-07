@@ -22,7 +22,6 @@ results_folder, script_folder = setup_case_study(output_folder_name="pyglotaran_
 
 
 def main():
-
     # Load in data, model and parameters
     parameters = load_parameters(script_folder.joinpath(PARAMETERS_FILE_PATH))
     dataset1 = load_dataset(script_folder.joinpath(DATA_PATH1))
