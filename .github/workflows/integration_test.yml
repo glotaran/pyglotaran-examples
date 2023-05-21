@@ -144,9 +144,10 @@ jobs:
           append_body: true
 
       - name: 📦 Create comparison-results tag
-        uses: mathieudutour/github-tag-action@v6.1
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          release_branches: comparison-results
-          custom_tag: comparison-results-${{steps.tag.outputs.tag}}
-          tag_prefix: ""
+        run: |
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git config user.name 'github-actions[bot]'
+          NEW_VERSION="comparison-results-${{steps.tag.outputs.tag}}"
+          git tag -a $NEW_VERSION -m "Comparison results used with release ${{steps.tag.outputs.tag}}"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          git push origin $NEW_VERSION
