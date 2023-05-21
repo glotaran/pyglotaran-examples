@@ -2,6 +2,8 @@ name: "Run Examples"
 
 on:
   push:
+    tags:
+      - v**
   pull_request:
   workflow_dispatch:
     inputs:
@@ -114,3 +116,20 @@ jobs:
         uses: glotaran/pyglotaran-validation@main
         with:
           validation_name: pyglotaran-examples
+
+      - name: Get tag
+        if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
+        id: tag
+        uses: devops-actions/action-get-tag@v1.0.1
+
+      - name: 📦 Create release asset
+        if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
+        run: cd comparison-results && zip -r ../comparison-results-${{steps.tag.outputs.tag}}.zip . -x .git
+
+      - name: 🚀⬆️ Upload Release Asset
+        if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
+        uses: softprops/action-gh-release@v1
+        with:
+          files: comparison-results-${{steps.tag.outputs.tag}}.zip
+          generate_release_notes: true
+          append_body: true
