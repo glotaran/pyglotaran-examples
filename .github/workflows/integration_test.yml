@@ -133,3 +133,11 @@ jobs:
           files: comparison-results-${{steps.tag.outputs.tag}}.zip
           generate_release_notes: true
           append_body: true
+
+      - name: 📦 Create comparison-results tag
+        if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
+        uses: mathieudutour/github-tag-action@v6.1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          release_branches: comparison-results
+          custom_tag: comparison-results-${{steps.tag.outputs.tag}}
