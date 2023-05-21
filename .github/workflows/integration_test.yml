@@ -134,7 +134,7 @@ jobs:
         uses: devops-actions/action-get-tag@v1.0.1
 
       - name: 📦 Create release asset
-        run: zip -r comparison-results-${{steps.tag.outputs.tag}}.zip . -x .git
+        run: zip -r comparison-results-${{steps.tag.outputs.tag}}.zip . -x ".git/*"
 
       - name: 🚀⬆️ Upload Release Asset
         uses: softprops/action-gh-release@v1
