@@ -138,3 +138,5 @@ plot_results
 
 # DOAS data file
 !pyglotaran_examples/ex_doas_beta/data/2008Polli_betacar_chex_sim.nc
+
+pyglotaran_examples/study_fluorescence/results/*

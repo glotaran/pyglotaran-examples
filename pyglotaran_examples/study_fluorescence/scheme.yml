@@ -1,0 +1,13 @@
+model: models/model.yml
+parameters: parameters/parameters.yml
+data:
+  dataset1: dataset1.nc
+clp_link_tolerance: 0.0
+clp_link_method: nearest
+maximum_number_function_evaluations: null
+add_svd: true
+ftol: 1e-08
+gtol: 1e-08
+xtol: 1e-08
+optimization_method: TrustRegionReflection
+result_path: null
