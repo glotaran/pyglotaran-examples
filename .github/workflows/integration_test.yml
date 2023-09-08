@@ -25,7 +25,7 @@ jobs:
     steps:
       - name: Cloning pyglotaran-examples
         if: ${{ github.event.inputs.pyglotaran_examples_branch }} == ""
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           path: pyglotaran-examples
       - name: Set example list output
@@ -43,7 +43,7 @@ jobs:
       matrix:
         example_name: ${{fromJson(needs.create-example-list.outputs.example-list)}}
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
         with:
           repository: "glotaran/pyglotaran"
           # If not provided (push and pull_request event) it uses the default branch
@@ -58,7 +58,7 @@ jobs:
           pip install .
       - name: Cloning pyglotaran-examples
         if: ${{ github.event.inputs.pyglotaran_examples_branch }} == ""
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           path: pyglotaran-examples
       - id: example-run
@@ -85,7 +85,7 @@ jobs:
     needs: [run-examples]
     steps:
       - name: Checkout compare results
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: "glotaran/pyglotaran-examples"
           ref: comparison-results
@@ -124,7 +124,7 @@ jobs:
     needs: [compare-results]
     steps:
       - name: ⏬ Checkout compare results
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           repository: "glotaran/pyglotaran-examples"
           ref: comparison-results
