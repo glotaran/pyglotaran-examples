@@ -1,5 +1,5 @@
 library:
-  seq_4comp:
+  target:
     type: kinetic
     rates:
       (s2, s1): kinetic.1
@@ -18,7 +18,7 @@ experiments:
     residual_function: non_negative_least_squares
     datasets:
       dataset1:
-        elements: [seq_4comp]
+        elements: [target]
         activation:
           - type: gaussian
             compartments:
@@ -43,11 +43,9 @@ experiments:
     clp_penalties: # was clp_area_penalties
       - type: equal_area
         source: s2
-        # source_intervals: [[100, 1000]]
-        source_intervals: [(100, 900)]
+        source_intervals: [[100, 1000]]
         target: s3
-        # target_intervals: [[100, 1000]]
-        target_intervals: (100, 900)
+        target_intervals: [[100, 1000]]
         parameter: area.1
         weight: 0.0016
       - type: equal_area
