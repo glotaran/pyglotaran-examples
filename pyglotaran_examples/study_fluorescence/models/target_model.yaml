@@ -1,0 +1,59 @@
+library:
+  seq_4comp:
+    type: kinetic
+    rates:
+      (s2, s1): kinetic.1
+      (s5, s1): kinetic.2
+      (s2, s2): kinetic.3
+      (s3, s2): kinetic.4
+      (s4, s2): kinetic.5
+      (s2, s3): kinetic.6
+      (s2, s4): kinetic.7
+      (s3, s3): kinetic.8
+      (s4, s4): kinetic.8
+      (s5, s5): kinetic.8
+
+experiments:
+  exp1:
+    residual_function: non_negative_least_squares
+    datasets:
+      dataset1:
+        elements: [seq_4comp]
+        activation:
+          - type: gaussian
+            compartments:
+              s1: 1
+            center: irf.center
+            width: irf.width
+            backsweep: 13200.0
+    clp_constraints:
+      - type: zero
+        target: s1
+        interval:
+          - [1, 1000]
+      - type: zero
+        target: s3
+        interval:
+          - [1, 680]
+      - type: zero
+        target: s4
+        interval:
+          - [1, 690]
+
+    clp_penalties: # was clp_area_penalties
+      - type: equal_area
+        source: s2
+        # source_intervals: [[100, 1000]]
+        source_intervals: [(100, 900)]
+        target: s3
+        # target_intervals: [[100, 1000]]
+        target_intervals: (100, 900)
+        parameter: area.1
+        weight: 0.0016
+      - type: equal_area
+        source: s2
+        source_intervals: [[100, 1000]]
+        target: s4
+        target_intervals: [[100, 1000]]
+        parameter: area.1
+        weight: 0.0016
