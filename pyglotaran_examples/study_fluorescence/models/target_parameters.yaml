@@ -1,0 +1,17 @@
+irf:
+  - ["center", -84.0]
+  - ["width", 1.55]
+
+kinetic:
+  - [2, { vary: false }]
+  - [0.1, { vary: false }]
+  - 0.060
+  - 0.027
+  - 0.056
+  - 0.039
+  - 0.133
+  - 0.00016
+  - { non-negative: true }
+
+area:
+  - [1, { vary: false }]
