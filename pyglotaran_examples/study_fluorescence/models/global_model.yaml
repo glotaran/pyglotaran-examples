@@ -1,0 +1,22 @@
+library:
+  seq_4comp:
+    type: kinetic
+    rates:
+      (s2, s1): kinetic.1
+      (s3, s2): kinetic.2
+      (s4, s3): kinetic.3
+      (s4, s4): kinetic.4
+
+experiments:
+  exp1:
+    datasets:
+      dataset1:
+        elements: [seq_4comp]
+        activation:
+          - type: gaussian
+            compartments:
+              s1: 1
+            center: irf.center
+            width: irf.width
+            backsweep: 13200.0
+    residual_function: non_negative_least_squares
