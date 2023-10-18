@@ -1,7 +1,9 @@
 from pathlib import Path
 from timeit import default_timer as timer
+
+from matplotlib import pyplot as plt
 from glotaran.io import load_dataset, load_parameters, load_scheme
-from pyglotaran_extras.io import setup_case_study
+from pyglotaran_extras.plotting.plot_overview import plot_overview
 
 if __name__ == "__main__":
     HERE = Path(__file__).parent
@@ -25,3 +27,10 @@ if __name__ == "__main__":
 
     print(result)
     print(f"Total time optimizing: {end - start}")
+
+    from pyglotaran_extras.compat.convert_dataset import convert
+
+    res = result.data["dataset1"]
+    new_res = convert(res)
+    plot_overview(new_res, linlog=False)
+    plt.show(block=False)
