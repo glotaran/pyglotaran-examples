@@ -28,9 +28,10 @@ if __name__ == "__main__":
     print(result)
     print(f"Total time optimizing: {end - start}")
 
-    from pyglotaran_extras.compat.convert_dataset import convert
+    from pyglotaran_extras.compat import convert
 
+    print(convert(result))
     res = result.data["dataset1"]
     new_res = convert(res)
-    plot_overview(new_res, linlog=False)
+    plot_overview(new_res, linlog=True)
     plt.show(block=False)
