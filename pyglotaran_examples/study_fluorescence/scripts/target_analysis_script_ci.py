@@ -4,6 +4,7 @@ from timeit import default_timer as timer
 from matplotlib import pyplot as plt
 from glotaran.io import load_dataset, load_parameters, load_scheme
 from pyglotaran_extras.plotting.plot_overview import plot_overview
+from pyglotaran_extras.compat import convert
 
 if __name__ == "__main__":
     HERE = Path(__file__).parent
@@ -22,16 +23,15 @@ if __name__ == "__main__":
 
     start = timer()
     result = scheme.optimize(parameters, maximum_number_function_evaluations=6)
+    converted_result = convert(result)
     end = timer()
     result.save(results_folder, allow_overwrite=True)
 
-    print(result)
+    print("### Parameters ###")
+    print(result.parameters_optimized)
     print(f"Total time optimizing: {end - start}")
 
-    from pyglotaran_extras.compat import convert
-
-    print(convert(result))
-    res = result.data["dataset1"]
-    new_res = convert(res)
-    plot_overview(new_res, linlog=True)
-    plt.show(block=False)
+    converted_result = convert(result)
+    print(converted_result)
+    plot_overview(converted_result, linlog=True, linthresh=100, linscale=0.9)
+    plt.show(block=True)
