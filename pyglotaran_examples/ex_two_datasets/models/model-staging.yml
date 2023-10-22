@@ -1,0 +1,61 @@
+library:
+  target:
+    type: kinetic
+    rates:
+      (s1, s1): "rates.k1"
+      (s2, s2): "rates.k2"
+      (s3, s3): "rates.k3"
+
+experiments:
+  exp1:
+    residual_function: non_negative_least_squares
+    datasets:
+      dataset1:
+        # global_element_scale ???
+        # scale: scale.1
+        elements: [target]
+        element_scale:
+          target: scale.1
+        activation:
+          - type: gaussian
+            compartments:
+              s1: inputs.1
+              s2: inputs.2
+              s3: inputs.3
+            center: irf.center
+            width: irf.width
+        weights:
+          - value: 1000000.95
+      dataset2:
+        # scale: scale.2
+        elements: [target]
+        element_scale:
+          target: scale.2
+        activation:
+          - type: gaussian
+            compartments:
+              s1: inputs.1
+              s2: inputs.7
+              s3: inputs.8
+            center: irf.center
+            width: irf.width
+        weights:
+          - global_interval: [100, 900]
+            model_interval: [-10, 1000]
+            value: 0.00000095
+
+    clp_penalties: # was clp_area_penalties
+      - type: equal_area
+        source: s1
+        source_intervals: [[300, 3000]]
+        target: s2
+        target_intervals: [[300, 3000]]
+        parameter: area.1
+        weight: 0.1
+      - type: equal_area
+        source: s1
+        source_intervals: [[300, 3000]]
+        target: s3
+        target_intervals: [[300, 3000]]
+        parameter: area.1
+        weight: 0.1
