@@ -4,20 +4,20 @@
 from timeit import default_timer as timer
 
 import matplotlib.pyplot as plt
-from glotaran.io import load_dataset
-from glotaran.io import load_model
-from glotaran.io import load_parameters
-from glotaran.io import save_result
-from glotaran.optimization.optimize import optimize
+from pathlib import Path
+from timeit import default_timer as timer
+
+from matplotlib import pyplot as plt
+from glotaran.io import load_dataset, load_parameters, load_scheme, save_result
+from pyglotaran_extras.plotting.plot_overview import plot_overview
+from pyglotaran_extras.compat import convert
 from glotaran.project.scheme import Scheme
 from pyglotaran_extras.io import setup_case_study
 from pyglotaran_extras.plotting.plot_overview import plot_overview
 from pyglotaran_extras.plotting.style import PlotStyle
 
-GLOBAL_MODEL = "models/model.yaml"
-GLOBAL_PARAMS = "models/parameters.yaml"
-TARGET_MODEL = "models/model-target.yaml"
-TARGET_PARAMS = "models/parameters-target.yaml"
+TARGET_MODEL = "models/target_model.yaml"
+TARGET_PARAMS = "models/target_parameters.yaml"
 SKIP_FIT = False
 
 # %%
@@ -39,32 +39,25 @@ result_datafile = results_folder.joinpath("dataset1.nc")
 if result_datafile.exists() and SKIP_FIT:
     print(f"Loading earlier fit results from: {result_datafile}")
 else:
-    dataset = load_dataset(data_path)
-    model = load_model(model_path)
-    parameter = load_parameters(parameter_path)
-    scheme = Scheme(
-        model,
-        parameter,
-        {"dataset1": dataset},
-        maximum_number_function_evaluations=6,  # 6 for TRF, 46 for LM
-        # optimization_method="Levenberg-Marquardt", #lm needs nfev=46
-    )
-
-    print(model.validate(parameters=parameter))
+    experiment_data = {"dataset1": load_dataset(data_path)}
+    scheme = load_scheme(model_path, format_name="yml")
+    parameters = load_parameters(parameter_path)
+    scheme.load_data(experiment_data)
 
     # %%
     start = timer()
     # Warning: this may take a while (several seconds per iteration)
-    result = optimize(scheme, verbose=True)
+    result = scheme.optimize(parameters, maximum_number_function_evaluations=6)
+
     end = timer()
     print(f"Total time: {end - start}")
 
-    save_result(result, results_folder / "result.yml", allow_overwrite=True)
+    # save_result(result, results_folder, allow_overwrite=True)
     end2 = timer()
     print(f"Saving took: {end2 - end}")
 
     # %%
-    print(result.markdown(True))
+    # print(result.markdown(True))
 
     # %%
     res = result.data["dataset1"]
