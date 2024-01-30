@@ -70,7 +70,7 @@ plot_style = PlotStyle()
 plt.rc("axes", prop_cycle=plot_style.cycler)
 
 # %%
-fig, _ = plot_overview(result_datafile, linlog=False, figure_only=False)
+fig, _ = plot_overview(result, linlog=False, figure_only=False)
 # note species concentration plot still needs work to match styles between the two locatable axis
 
 # %%
