@@ -39,7 +39,8 @@ repos:
     hooks:
       - id: codespell
         files: ".py|.rst"
-        args: ["--skip='*.ipynb'", "-L doas,DOAS"]
+        args: ["--ignore-words-list=doas"]
+        exclude: "\\.ipynb"
 
   # Notebook tools
   - repo: https://github.com/kynan/nbstripout
