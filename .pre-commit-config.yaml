@@ -40,3 +40,13 @@ repos:
       - id: codespell
         files: ".py|.rst"
         args: ["--skip='*.ipynb'", "-L doas,DOAS"]
+
+  # Notebook tools
+  - repo: https://github.com/kynan/nbstripout
+    rev: 0.6.1
+    hooks:
+      - id: nbstripout
+        args:
+          - "--drop-empty-cells"
+          - "--extra-keys"
+          - "metadata.vscode metadata.language_info.version"
