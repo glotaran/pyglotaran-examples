@@ -2,3 +2,4 @@
 
 # pyglotaran-extras should be installed
 yaargh
+papermill>=2.3.4
