@@ -32,7 +32,7 @@ def ci_wrapper(func: callable[[], Path]):
         notebook_path = func()
         if "GITHUB" in os.environ:
             warnings.formatwarning = github_format_warning
-            notebook_path.rename(REPO_ROOT / notebook_path.name)
+            notebook_path.rename(Path(os.getenv("GITHUB_WORKSPACE")) / notebook_path.name)
 
     return wrapper
 
