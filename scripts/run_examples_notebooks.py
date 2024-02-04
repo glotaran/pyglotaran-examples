@@ -32,7 +32,7 @@ def ci_wrapper(func: callable[[], Path]):
         print("#", f"RUNNING: {func.__name__.upper()}".center(78), "#", sep="")
         print("#" * 80, "\n")
         notebook_path = func()
-        if "GITHUB" in os.environ:
+        if "GITHUB_OUTPUT" in os.environ:
             warnings.formatwarning = github_format_warning
             gh_output = Path(os.getenv("GITHUB_OUTPUT", ""))
             artifact_paths = [notebook_path.as_posix()]
