@@ -24,8 +24,10 @@ def run_notebook(notebook_path: Path) -> Path:
     if "GITHUB_OUTPUT" in os.environ:
         warnings.formatwarning = github_format_warning
         gh_output = Path(os.getenv("GITHUB_OUTPUT", ""))
-        workspace = Path(os.getenv("GITHUB_WORKSPACE", ""))
-        artifact_paths = [notebook_path.relative_to(workspace).as_posix()]
+        artifact_paths = [
+            notebook_path.as_posix(),
+            (Path.home() / "pyglotaran_examples_results_staging").as_posix(),
+        ]
         with gh_output.open("a", encoding="utf8") as f:
             f.writelines([f"artifact-paths={json.dumps(artifact_paths)}"])
         print(f"Setting artifact-paths output to {artifact_paths}")
