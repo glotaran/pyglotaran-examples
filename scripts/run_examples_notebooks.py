@@ -12,6 +12,10 @@ REPO_ROOT = Path(__file__).parent.parent
 EXAMPLES_FOLDER = REPO_ROOT / "pyglotaran_examples"
 
 
+def github_format_warning(message, category, filename, lineno, line=None):
+    return f"::warning file={filename},line={lineno}::{category.__name__}: {message}\n"
+
+
 def run_notebook(notebook_path: Path) -> Path:
     """Run notebook to update results."""
     print("\n", "#" * 80, sep="")
@@ -20,15 +24,12 @@ def run_notebook(notebook_path: Path) -> Path:
     if "GITHUB_OUTPUT" in os.environ:
         warnings.formatwarning = github_format_warning
         gh_output = Path(os.getenv("GITHUB_OUTPUT", ""))
-        artifact_paths = [notebook_path.as_posix()]
+        workspace = Path(os.getenv("GITHUB_WORKSPACE", ""))
+        artifact_paths = [notebook_path.relative_to(workspace).as_posix()]
         with gh_output.open("a", encoding="utf8") as f:
             f.writelines([f"artifact-paths={json.dumps(artifact_paths)}"])
         print(f"Setting artifact-paths output to {artifact_paths}")
     pm.execute_notebook(notebook_path, notebook_path, cwd=notebook_path.parent)
-
-
-def github_format_warning(message, category, filename, lineno, line=None):
-    return f"::warning file={filename},line={lineno}::{category.__name__}: {message}\n"
 
 
 def fluorescence():
