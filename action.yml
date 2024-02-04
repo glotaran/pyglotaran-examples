@@ -19,9 +19,9 @@ inputs:
     default: "false"
 
 outputs:
-  artifact-paths:
-    description: "Plot result path of example run"
-    value: ${{ steps.example-run.outputs.artifact-paths }}
+  notebook-path:
+    description: "Path to evaluated notebook after running the example"
+    value: ${{ steps.example-run.outputs.notebook-path }}
   example-list:
     description: "List of all possible example names to be used in a workflow matrix."
     value: ${{ steps.example-run.outputs.example-list }}
