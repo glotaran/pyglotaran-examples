@@ -114,8 +114,21 @@ all_funcs = [
 
 def run_all():
     """Runs all examples."""
+    errors = {}
     for func in all_funcs:
-        func()
+        try:
+            func()
+        except Exception as err:
+            errors[func.__name__] = err
+    if errors:
+        for func_name, err in errors.items():
+            print("\n", "#" * 80, sep="")
+            print("#", f"Error running: {func_name.upper()}".center(78), "#", sep="")
+            print("#" * 80, "\n")
+            print(err)
+        print("Failed to run the following examples:")
+        for func_name in errors:
+            print(func_name)
 
 
 def set_gha_example_list_output():
