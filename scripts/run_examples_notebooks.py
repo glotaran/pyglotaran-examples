@@ -15,8 +15,10 @@ EXAMPLES_FOLDER = REPO_ROOT / "pyglotaran_examples"
 
 def run_notebook(notebook_path: Path) -> Path:
     """Run notebook to update results."""
-    pm.execute_notebook(notebook_path, notebook_path, cwd=notebook_path.parent)
-    return notebook_path
+    try:
+        pm.execute_notebook(notebook_path, notebook_path, cwd=notebook_path.parent)
+    finally:
+        return notebook_path
 
 
 def github_format_warning(message, category, filename, lineno, line=None):
@@ -32,7 +34,11 @@ def ci_wrapper(func: callable[[], Path]):
         notebook_path = func()
         if "GITHUB" in os.environ:
             warnings.formatwarning = github_format_warning
-            notebook_path.rename(Path(os.getenv("GITHUB_WORKSPACE")) / notebook_path.name)
+            gh_output = Path(os.getenv("GITHUB_OUTPUT", ""))
+            artifact_paths = [notebook_path.as_posix()]
+            with gh_output.open("a", encoding="utf8") as f:
+                f.writelines([f"artifact-paths={json.dumps(artifact_paths)}"])
+            print(f"Setting artifact-paths output to {artifact_paths}")
 
     return wrapper
 

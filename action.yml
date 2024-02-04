@@ -19,9 +19,9 @@ inputs:
     default: "false"
 
 outputs:
-  plots-path:
+  artifact-paths:
     description: "Plot result path of example run"
-    value: ${{ steps.example-run.outputs.plots-path }}
+    value: ${{ steps.example-run.outputs.artifact-paths }}
   example-list:
     description: "List of all possible example names to be used in a workflow matrix."
     value: ${{ steps.example-run.outputs.example-list }}
@@ -69,7 +69,6 @@ runs:
         if [ '${{ inputs.set_example_list }}' = 'false' ]
         then
           python pyglotaran-examples/scripts/run_examples_notebooks.py ${{ inputs.example_name }} 2>&1
-          echo "plots-path=pyglotaran-examples/plot_results"  >> $GITHUB_OUTPUT
         else
           pip install yaargh papermill
           python pyglotaran-examples/scripts/run_examples_notebooks.py set-gha-example-list-output
