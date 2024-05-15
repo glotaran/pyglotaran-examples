@@ -14,10 +14,10 @@ from pyglotaran_extras.io import setup_case_study
 from pyglotaran_extras.plotting.plot_overview import plot_overview
 from pyglotaran_extras.plotting.style import PlotStyle
 
-GLOBAL_MODEL = "models/model.yaml"
-GLOBAL_PARAMS = "models/parameters.yaml"
+GLOBAL_MODEL = "models/model.yml"
+GLOBAL_PARAMS = "parameters/parameters.yml"
 TARGET_MODEL = "models/model-target.yaml"
-TARGET_PARAMS = "models/parameters-target.yaml"
+TARGET_PARAMS = "parameters/parameters-target.yaml"
 SKIP_FIT = False
 
 # %%
@@ -26,7 +26,7 @@ print(f"Saving results in: {results_folder}")
 
 
 # %%
-data_path = script_folder.joinpath("data/data.ascii")
+data_path = script_folder.joinpath("data/dataset1.ascii")
 # model_path = script_folder.joinpath(GLOBAL_MODEL)
 # parameter_path = script_folder.joinpath(GLOBAL_PARAMS)
 model_path = script_folder.joinpath(TARGET_MODEL)

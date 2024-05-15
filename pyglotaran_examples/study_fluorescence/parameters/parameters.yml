@@ -13,4 +13,4 @@ kinetic:
   - 0.07
   - 0.02
   - 0.00016
-  - {non-negative: true}
+  # - {non-negative: true}
