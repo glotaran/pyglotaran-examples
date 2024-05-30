@@ -1,0 +1,153 @@
+name: "Run Examples"
+
+on:
+  push:
+    tags:
+      - v**
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      pyglotaran_branch:
+        description: "pyglotaran branch/tag to run the examples against"
+        required: true
+        default: "staging"
+      pyglotaran_examples_branch:
+        description: "pyglotaran-examples branch/tag to use"
+        required: true
+        default: "staging_rewrite"
+
+jobs:
+  create-example-list:
+    name: Create Example List
+    runs-on: ubuntu-latest
+    outputs:
+      example-list: ${{ steps.create-example-list.outputs.example-list }}
+    steps:
+      - name: Cloning pyglotaran-examples
+        if: ${{ github.event.inputs.pyglotaran_examples_branch }} == ""
+        uses: actions/checkout@v4
+        with:
+          path: pyglotaran-examples
+      - name: Set example list output
+        id: create-example-list
+        uses: ./pyglotaran-examples
+        with:
+          example_name: set example list
+          set_example_list: true
+
+  run-examples:
+    name: "Run Example: "
+    runs-on: ubuntu-latest
+    needs: [create-example-list]
+    strategy:
+      matrix:
+        example_name: ${{fromJson(needs.create-example-list.outputs.example-list)}}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          repository: "glotaran/pyglotaran"
+          # If not provided (push and pull_request event) it uses the default branch
+          ref: ${{ github.event.inputs.pyglotaran_branch }}
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+      - name: Install pyglotaran
+        run: |
+          pip install wheel
+          pip install .
+      - name: Cloning pyglotaran-examples
+        if: ${{ github.event.inputs.pyglotaran_examples_branch }} == ""
+        uses: actions/checkout@v4
+        with:
+          path: pyglotaran-examples
+      - id: example-run
+        uses: ./pyglotaran-examples
+        with:
+          example_name: ${{ matrix.example_name }}
+          examples_branch: ${{ github.event.inputs.pyglotaran_examples_branch }}
+
+      - name: Upload Example Plots Artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: example-results
+          path: ${{ steps.example-run.outputs.plots-path }}
+
+      - name: Upload Example Results
+        uses: actions/upload-artifact@v3
+        with:
+          name: example-results
+          path: ~/pyglotaran_examples_results
+
+  compare-results:
+    name: Compare Results
+    runs-on: ubuntu-latest
+    needs: [run-examples]
+    steps:
+      - name: Checkout compare results
+        uses: actions/checkout@v4
+        with:
+          repository: "glotaran/pyglotaran-examples"
+          ref: comparison-results
+          path: comparison-results
+
+      - name: Download result artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: example-results
+          path: comparison-results-current
+
+      - name: Show used versions for result creation
+        run: |
+          echo "::group:: ✔️ Compare-Results"
+          echo "✔️ pyglotaran-examples commit: $(< comparison-results/example_commit_sha.txt)"
+          echo "✔️ pyglotaran commit: $(< comparison-results/pyglotaran_commit_sha.txt)"
+          echo "::endgroup::"
+          echo "::group:: ♻️ Current-Results"
+          echo "♻️ pyglotaran-examples commit: $(< comparison-results-current/example_commit_sha.txt)"
+          echo "::endgroup::"
+
+      - name: Set up Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Run result validator
+        uses: glotaran/pyglotaran-validation@main
+        with:
+          validation_name: pyglotaran-examples
+
+  create-release:
+    name: "🚀 Create release assets and tag comparison-results branch"
+    if: github.event_name == 'push' && startsWith(github.event.ref, 'refs/tags')
+    runs-on: ubuntu-latest
+    needs: [compare-results]
+    steps:
+      - name: ⏬ Checkout compare results
+        uses: actions/checkout@v4
+        with:
+          repository: "glotaran/pyglotaran-examples"
+          ref: comparison-results
+
+      - name: Get tag name
+        id: tag
+        uses: devops-actions/action-get-tag@v1.0.2
+
+      - name: 📦 Create release asset
+        run: zip -r comparison-results-${{steps.tag.outputs.tag}}.zip . -x ".git/*"
+
+      - name: 🚀⬆️ Upload Release Asset
+        uses: softprops/action-gh-release@v1
+        with:
+          files: comparison-results-${{steps.tag.outputs.tag}}.zip
+          generate_release_notes: true
+          append_body: true
+
+      - name: 📦 Create comparison-results tag
+        run: |
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git config user.name 'github-actions[bot]'
+          NEW_VERSION="comparison-results-${{steps.tag.outputs.tag}}"
+          git tag -a $NEW_VERSION -m "Comparison results used with release ${{steps.tag.outputs.tag}}"
+          git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
+          git push origin $NEW_VERSION
