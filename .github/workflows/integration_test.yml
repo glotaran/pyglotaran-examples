@@ -69,10 +69,11 @@ jobs:
           examples_branch: ${{ github.event.inputs.pyglotaran_examples_branch }}
 
       - name: Upload Example Plots Artifact
+        if: always()
         uses: actions/upload-artifact@v3
         with:
           name: example-results
-          path: ${{ steps.example-run.outputs.plots-path }}
+          path: ${{ steps.example-run.outputs.notebook-path }}
 
       - name: Upload Example Results
         uses: actions/upload-artifact@v3
