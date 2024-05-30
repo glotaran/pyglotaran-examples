@@ -128,7 +128,7 @@ jobs:
   compare-results:
     name: Compare Results
     runs-on: ubuntu-latest
-    needs: [run-examples]
+    needs: [collect-artifacts]
     steps:
       - name: Checkout compare results
         uses: actions/checkout@v4
