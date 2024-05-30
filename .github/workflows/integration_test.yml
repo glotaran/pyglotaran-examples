@@ -82,7 +82,8 @@ jobs:
           path: ~/pyglotaran_examples_results_staging
 
   collect-artifacts:
-    name: "Collect plot artifacts and reupload as bundel"
+    if: always()
+    name: "Collect artifacts and reupload as bundel"
     runs-on: ubuntu-latest
     needs: [run-examples]
     steps:
