@@ -42,6 +42,7 @@ jobs:
     strategy:
       matrix:
         example_name: ${{fromJson(needs.create-example-list.outputs.example-list)}}
+      fail-fast: false
     steps:
       - uses: actions/checkout@v4
         with:
