@@ -19,9 +19,9 @@ inputs:
     default: "false"
 
 outputs:
-  plots-path:
-    description: "Plot result path of example run"
-    value: ${{ steps.example-run.outputs.plots-path }}
+  notebook-path:
+    description: "Path to evaluated notebook after running the example"
+    value: ${{ steps.example-run.outputs.notebook-path }}
   example-list:
     description: "List of all possible example names to be used in a workflow matrix."
     value: ${{ steps.example-run.outputs.example-list }}
@@ -39,7 +39,7 @@ runs:
           }
         echo "::group:: Cloning examples branch '${{ inputs.examples_branch }}' to pyglotaran-examples"
         [ ! -d pyglotaran-examples ] && \
-          git clone  --depth 1 -b ${{ inputs.examples_branch }} https://github.com/glotaran/pyglotaran-examples.git || \
+          git clone --depth 1 -b ${{ inputs.examples_branch }} https://github.com/glotaran/pyglotaran-examples.git || \
           echo "Folder pyglotaran-examples already exists, skipping cloning."
         echo "::endgroup::"
       shell: bash
@@ -68,29 +68,11 @@ runs:
         echo "::group:: Running ${{ inputs.example_name }}"
         if [ '${{ inputs.set_example_list }}' = 'false' ]
         then
-          python pyglotaran-examples/scripts/run_examples.py ${{ inputs.example_name }} --headless 2>&1
-          echo "plots-path=pyglotaran-examples/plot_results"  >> $GITHUB_OUTPUT
+          python pyglotaran-examples/scripts/run_examples_notebooks.py ${{ inputs.example_name }} 2>&1
         else
-          pip install yaargh
-          python pyglotaran-examples/scripts/run_examples.py set-gha-example-list-output
+          pip install yaargh papermill
+          python pyglotaran-examples/scripts/run_examples_notebooks.py set-gha-example-list-output
         fi
 
-        echo "::endgroup::"
-      shell: bash
-
-    - name: Save Examples commit sha
-      if: inputs.set_example_list == 'false'
-      run: |
-        echo "::group:: Saving commit sha to ~/pyglotaran_examples_results"
-        mkdir -p ~/pyglotaran_examples_results
-        git --git-dir=pyglotaran-examples/.git log -n 1 --pretty=format:%H | \
-          tee ~/pyglotaran_examples_results/example_commit_sha.txt && \
-          echo
-        echo "::endgroup::"
-
-        echo "::group:: Saving commit sha to plot_results"
-        git --git-dir=pyglotaran-examples/.git log -n 1 --pretty=format:%H | \
-          tee pyglotaran-examples/plot_results/example_commit_sha.txt && \
-          echo
         echo "::endgroup::"
       shell: bash

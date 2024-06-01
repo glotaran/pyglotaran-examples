@@ -4,14 +4,9 @@
 from timeit import default_timer as timer
 
 import matplotlib.pyplot as plt
-from pathlib import Path
-from timeit import default_timer as timer
-
-from matplotlib import pyplot as plt
-from glotaran.io import load_dataset, load_parameters, load_scheme, save_result
-from pyglotaran_extras.plotting.plot_overview import plot_overview
-from pyglotaran_extras.compat import convert
-from glotaran.project.scheme import Scheme
+from glotaran.io import load_dataset
+from glotaran.io import load_parameters
+from glotaran.io import load_scheme
 from pyglotaran_extras.io import setup_case_study
 from pyglotaran_extras.plotting.plot_overview import plot_overview
 from pyglotaran_extras.plotting.style import PlotStyle

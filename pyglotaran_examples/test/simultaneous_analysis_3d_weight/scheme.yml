@@ -1,53 +1,66 @@
 # yaml-language-server: $schema=schema.json
-
 library:
-  target:
+  complex1:
     type: kinetic
     rates:
-      (s1, s1): "rates.k1"
-      (s2, s2): "rates.k2"
-      (s3, s3): "rates.k3"
+      (s1, s1): rates.k1
+      (s2, s2): rates.k2
+      (s3, s3): rates.k3
+
 
 experiments:
-  exp1:
+  my_exp:
     residual_function: non_negative_least_squares
     scale:
       dataset1: scale.1
       dataset2: scale.2
+      dataset3: scale.3
     datasets:
       dataset1:
-        elements: [target]
+        elements: [complex1]
         activation:
           - type: gaussian
             compartments:
               s1: inputs.1
               s2: inputs.2
               s3: inputs.3
-            center: irf.center
-            width: irf.width
+            center: irf.center1
+            width: irf.width1
       dataset2:
-        elements: [target]
+        elements: [complex1]
         activation:
           - type: gaussian
             compartments:
               s1: inputs.1
               s2: inputs.7
               s3: inputs.8
-            center: irf.center
-            width: irf.width
+            center: irf.center2
+            width: irf.width1
+        weights:
+          - value: 0.5
+            global_interval: [400, 600]
+      dataset3:
+        elements: [complex1]
+        activation:
+          - type: gaussian
+            compartments:
+              s1: inputs.1
+              s2: inputs.9
+              s3: inputs.10
+            center: irf.center3
+            width: irf.width2
+        weights:
+          - value: 0.0025
+            global_interval: [400, 600]
 
-    clp_penalties: # was clp_area_penalties
+    clp_penalties:
       - type: equal_area
         source: s1
-        source_intervals: [[300, 3000]]
         target: s2
-        target_intervals: [[300, 3000]]
         parameter: area.1
         weight: 0.1
       - type: equal_area
         source: s1
-        source_intervals: [[300, 3000]]
         target: s3
-        target_intervals: [[300, 3000]]
         parameter: area.1
         weight: 0.1
