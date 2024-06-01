@@ -1,0 +1,48 @@
+# yaml-language-server: $schema=schema.json
+
+library:
+  complex1:
+    type: kinetic
+    rates:
+      (s1, s4): rates.k1
+      (s3, s1): rates.k2
+      (s2, s1): rates.k3
+      (s5, s2): rates.k4
+      (s6, s3): rates.k5
+      (s6, s6): rates.k6
+      (s5, s5): rates.k6
+  complex2:
+    type: clp-guide
+    target: s5
+    dimension: time
+
+experiments:
+  my_exp:
+    residual_function: non_negative_least_squares
+    scale:
+      dataset1: scale.1
+      dataset2: scale.2
+    datasets:
+      dataset1:
+        elements: [complex1]
+        activation:
+          - type: gaussian
+            compartments:
+              s4: 1
+            center: irf.center
+            width: irf.width
+      dataset2:
+        elements: [complex2]
+    clp_relations:
+      - source: s1
+        target: s4
+        parameter: rel.r1
+      - source: s3
+        target: s6
+        parameter: rel.r1
+    clp_penalties:
+      - type: equal_area
+        source: s2
+        target: s1
+        parameter: area.1
+        weight: 1.E-6

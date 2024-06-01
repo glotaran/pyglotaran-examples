@@ -1,3 +1,5 @@
+# yaml-language-server: $schema=schema.json
+
 library:
   target:
     type: kinetic
@@ -9,13 +11,12 @@ library:
 experiments:
   exp1:
     residual_function: non_negative_least_squares
+    scale:
+      dataset1: scale.1
+      dataset2: scale.2
     datasets:
       dataset1:
-        # global_element_scale ???
-        # scale: scale.1
         elements: [target]
-        element_scale:
-          target: scale.1
         activation:
           - type: gaussian
             compartments:
@@ -24,13 +25,8 @@ experiments:
               s3: inputs.3
             center: irf.center
             width: irf.width
-        weights:
-          - value: 1000000.95
       dataset2:
-        # scale: scale.2
         elements: [target]
-        element_scale:
-          target: scale.2
         activation:
           - type: gaussian
             compartments:
@@ -39,10 +35,6 @@ experiments:
               s3: inputs.8
             center: irf.center
             width: irf.width
-        weights:
-          - global_interval: [100, 900]
-            model_interval: [-10, 1000]
-            value: 0.00000095
 
     clp_penalties: # was clp_area_penalties
       - type: equal_area

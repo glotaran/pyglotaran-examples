@@ -2,3 +2,4 @@
 
 # pyglotaran-extras should be installed
 yaargh
+git+https://github.com/glotaran/pyglotaran-extras@staging_support

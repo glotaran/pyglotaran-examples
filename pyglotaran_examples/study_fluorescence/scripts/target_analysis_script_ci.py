@@ -1,10 +1,12 @@
 from pathlib import Path
 from timeit import default_timer as timer
 
+from glotaran.io import load_dataset
+from glotaran.io import load_parameters
+from glotaran.io import load_scheme
 from matplotlib import pyplot as plt
-from glotaran.io import load_dataset, load_parameters, load_scheme
-from pyglotaran_extras.plotting.plot_overview import plot_overview
 from pyglotaran_extras.compat import convert
+from pyglotaran_extras.plotting.plot_overview import plot_overview
 
 if __name__ == "__main__":
     HERE = Path(__file__).parent

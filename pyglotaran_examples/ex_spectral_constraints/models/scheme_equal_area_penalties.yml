@@ -1,0 +1,27 @@
+# yaml-language-server: $schema=schema.json
+library:
+  complex1:
+    type: kinetic
+    rates:
+      (s1, s1): rates.k1
+      (s2, s2): rates.k2
+
+experiments:
+  my_exp:
+    datasets:
+      dataset1:
+        elements: [complex1]
+        activation:
+          - type: gaussian
+            compartments:
+              s1: 0.5
+              s2: 0.5
+            center: irf.center
+            width: irf.width
+
+    clp_penalties:
+      - type: equal_area
+        source: s2
+        target: s1
+        parameter: area.1
+        weight: 0.1

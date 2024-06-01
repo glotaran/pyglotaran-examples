@@ -1,0 +1,110 @@
+# yaml-language-server: $schema=schema.json
+
+library:
+  doas:
+    type: damped-oscillation
+    oscillations:
+      osc1:
+        frequency: osc.freq.1
+        rate: osc.rates.1
+      osc2:
+        frequency: osc.freq.2
+        rate: osc.rates.2
+      osc3:
+        frequency: osc.freq.3
+        rate: osc.rates.3
+      osc4:
+        frequency: osc.freq.4
+        rate: osc.rates.4
+      osc5:
+        frequency: osc.freq.5
+        rate: osc.rates.5
+      osc6:
+        frequency: osc.freq.6
+        rate: osc.rates.6
+      osc7:
+        frequency: osc.freq.7
+        rate: osc.rates.7
+      osc8:
+        frequency: osc.freq.8
+        rate: osc.rates.8
+      osc9:
+        frequency: osc.freq.9
+        rate: osc.rates.9
+      osc10:
+        frequency: osc.freq.10
+        rate: osc.rates.10
+      osc11:
+        frequency: osc.freq.11
+        rate: osc.rates.11
+      osc12:
+        frequency: osc.freq.12
+        rate: osc.rates.12
+      osc13:
+        frequency: osc.freq.13
+        rate: osc.rates.13
+      osc14:
+        frequency: osc.freq.14
+        rate: osc.rates.14
+      osc15:
+        frequency: osc.freq.15
+        rate: osc.rates.15
+      osc16:
+        frequency: osc.freq.16
+        rate: osc.rates.16
+      osc17:
+        frequency: osc.freq.17
+        rate: osc.rates.17
+      osc18:
+        frequency: osc.freq.18
+        rate: osc.rates.18
+      osc19:
+        frequency: osc.freq.19
+        rate: osc.rates.19
+  decay:
+    type: kinetic
+    rates:
+      (hotS1, S2): kinetic.1
+      (S1, hotS1): kinetic.2
+      (S1, S1): kinetic.3
+  artifact:
+    type: coherent-artifact
+    order: 3
+    width: artifact.CAwidth
+
+
+experiments:
+  my_exp:
+    residual_function: variable_projection
+    datasets:
+      dataset1:
+        elements: [doas,decay,artifact]
+        activation:
+          - type: gaussian
+            compartments:
+              S2: 1
+              artifact: 1
+              osc1: 1
+              osc2: 1
+              osc3: 1
+              osc4: 1
+              osc5: 1
+              osc6: 1
+              osc7: 1
+              osc8: 1
+              osc9: 1
+              osc10: 1
+              osc11: 1
+              osc12: 1
+              osc13: 1
+              osc14: 1
+              osc15: 1
+              osc16: 1
+              osc17: 1
+              osc18: 1
+              osc19: 1
+            center: irf.center
+            width: irf.width
+            dispersion_center: irf.dispcenter
+            center_dispersion_coefficients: [irf.disp1,irf.disp2]
+            reciproke_global_axis: true
