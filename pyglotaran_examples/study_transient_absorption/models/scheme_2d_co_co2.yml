@@ -50,7 +50,7 @@ experiments:
         weights:
           - value: 0.1
             global_interval: [280, 550]
-          - value: 0.1
+          - value: 0.2
             global_interval: [720, 890]
     # Currently this breaks the optimization result creation:
     clp_relations:
