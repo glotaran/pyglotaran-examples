@@ -35,6 +35,11 @@ experiments:
             width: irf.width
             dispersion_center: irf.dispc
             center_dispersion_coefficients: [irf.disp1, irf.disp2, irf.disp3]
+        weights:
+          - value: 0.1
+            global_interval: [280, 550]
+          - value: 0.2
+            global_interval: [720, 890]
       dataset2:
         elements: [cmplx2]
         activation:
