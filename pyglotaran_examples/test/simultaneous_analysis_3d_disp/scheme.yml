@@ -7,10 +7,13 @@ library:
       (s2, s2): rates.k2
       (s3, s3): rates.k3
 
-
 experiments:
   my_exp:
     residual_function: non_negative_least_squares
+    scale:
+      dataset1: scale.1
+      dataset2: scale.2
+      dataset3: scale.3
     datasets:
       dataset1:
         elements: [complex1]

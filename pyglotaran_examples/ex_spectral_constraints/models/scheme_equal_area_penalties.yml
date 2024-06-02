@@ -15,7 +15,7 @@ experiments:
           - type: gaussian
             compartments:
               s1: 0.5
-              s2: 0.5
+              s2: inputs.s2
             center: irf.center
             width: irf.width
 
