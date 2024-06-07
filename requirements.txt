@@ -1,5 +1,4 @@
 -r .github/requirements_ci.txt
 
 yaargh
-papermill
 git+https://github.com/glotaran/pyglotaran-extras.git

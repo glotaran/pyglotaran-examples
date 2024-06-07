@@ -61,7 +61,6 @@ runs:
           echo "Installing with pyglotaran_extras"
           pip install wheel
           pip install -r pyglotaran-examples/requirements.txt
-          pip install -r pyglotaran-examples/.github/requirements_ci.txt
         fi
         echo "::endgroup::"
       shell: bash
