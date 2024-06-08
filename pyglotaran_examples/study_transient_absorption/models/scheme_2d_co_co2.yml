@@ -23,16 +23,20 @@ library:
 
 experiments:
   my_exp:
+    scale:
+      dataset1: scale.1
+      dataset2: scale.2
     datasets:
       dataset1:
         elements: [cmplx1]
         activation:
           - type: gaussian
             compartments:
-              # TODO: Replace const parameters with numbers
               s1: inputs.1
               s2: inputs.0
-              s5: 1
+              s3: inputs.0
+              s4: inputs.0
+              s5: inputs.iC
             center: irf.center
             width: irf.width
             dispersion_center: irf.dispc
@@ -47,8 +51,11 @@ experiments:
         activation:
           - type: gaussian
             compartments:
-              s1: 1
-              s6: 1
+              s1: inputs.1
+              s2: inputs.0
+              s3: inputs.0
+              s4: inputs.0
+              s6: inputs.iC
             center: irf2.center
             width: irf.width
             dispersion_center: irf.dispc
