@@ -103,9 +103,9 @@ all_funcs = [
     # spectral_guidance,
     # two_datasets,
     sim_3d_disp,
-    # sim_3d_nodisp,
-    # sim_3d_weight,
-    # sim_6d_disp,
+    sim_3d_nodisp,
+    sim_3d_weight,
+    sim_6d_disp,
     doas_beta,
 ]
 
