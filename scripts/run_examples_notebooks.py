@@ -31,19 +31,25 @@ def run_notebook(notebook_path: Path) -> Path:
 
 
 def fluorescence():
-    """Run study_fluorescence/global_and_target_analysis.ipynb"""
-    return run_notebook(EXAMPLES_FOLDER / "study_fluorescence/global_and_target_analysis.ipynb")
+    """Run study_fluorescence/fluorescence_global_and_target_analysis.ipynb"""
+    return run_notebook(
+        EXAMPLES_FOLDER / "study_fluorescence/fluorescence_global_and_target_analysis.ipynb"
+    )
 
 
 def transient_absorption():
-    """Runs study_transient_absorption/target_analysis.ipynb"""
-    return run_notebook(EXAMPLES_FOLDER / "study_transient_absorption/target_analysis.ipynb")
+    """Runs study_transient_absorption/transient_absorption_target_analysis.ipynb"""
+    return run_notebook(
+        EXAMPLES_FOLDER / "study_transient_absorption/transient_absorption_target_analysis.ipynb"
+    )
 
 
 def transient_absorption_two_datasets():
-    """Runs study_transient_absorption/two_dataset_analysis.ipynb"""
-    return run_notebook(EXAMPLES_FOLDER / "study_transient_absorption/two_dataset_analysis.ipynb")
-
+    """Runs study_transient_absorption/transient_absorption_two_dataset_analysis.ipynb"""
+    return run_notebook(
+        EXAMPLES_FOLDER
+        / "study_transient_absorption/transient_absorption_two_dataset_analysis.ipynb"
+    )
 
 def spectral_constraints():
     """Runs ex_spectral_constraints/ex_spectral_constraints.ipynb"""
