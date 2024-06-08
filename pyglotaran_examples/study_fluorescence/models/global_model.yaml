@@ -15,7 +15,9 @@ experiments:
         activation:
           - type: gaussian
             compartments:
-              s1: 1
+              # TODO: Replace const parameters with numbers
+              s1: input.1
+              s2: input.0
             center: irf.center
             width: irf.width
             backsweep: 13200.0
