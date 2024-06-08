@@ -37,12 +37,17 @@ def fluorescence():
 
 def transient_absorption():
     """Runs study_transient_absorption/target_analysis.ipynb"""
-    return run_notebook(EXAMPLES_FOLDER / "study_transient_absorption/target_analysis.ipynb")
+    return run_notebook(
+        EXAMPLES_FOLDER / "study_transient_absorption/transient_absorption_target_analysis.ipynb"
+    )
 
 
 def transient_absorption_two_datasets():
     """Runs study_transient_absorption/two_dataset_analysis.ipynb"""
-    return run_notebook(EXAMPLES_FOLDER / "study_transient_absorption/two_dataset_analysis.ipynb")
+    return run_notebook(
+        EXAMPLES_FOLDER
+        / "study_transient_absorption/transient_absorption_two_dataset_analysis.ipynb"
+    )
 
 
 def spectral_constraints():
@@ -97,8 +102,8 @@ def doas_beta():
 
 all_funcs = [
     fluorescence,
-    # transient_absorption,
-    # transient_absorption_two_datasets,
+    transient_absorption,
+    transient_absorption_two_datasets,
     spectral_constraints,
     spectral_guidance,
     two_datasets,
