@@ -19,15 +19,12 @@ inputs:
     default: "false"
 
 outputs:
-  plots-path:
-    description: "Plot result path of example run"
-    value: ${{ steps.example-run.outputs.plots-path }}
   example-list:
     description: "List of all possible example names to be used in a workflow matrix."
     value: ${{ steps.example-run.outputs.example-list }}
   notebook-path:
     description: "Path to evaluated notebook after running the example"
-    value: ${{ steps.example-notebook-run.outputs.notebook-path }}
+    value: ${{ steps.example-run.outputs.notebook-path }}
 
 runs:
   using: "composite"
@@ -66,7 +63,7 @@ runs:
       shell: bash
 
     - name: Run example notebooks
-      id: example-notebook-run
+      id: example-run
       run: |
         echo "::group:: Running ${{ inputs.example_name }}"
         if [ '${{ inputs.set_example_list }}' = 'false' ]
