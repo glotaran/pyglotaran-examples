@@ -19,12 +19,12 @@ inputs:
     default: "false"
 
 outputs:
-  plots-path:
-    description: "Plot result path of example run"
-    value: ${{ steps.example-run.outputs.plots-path }}
   example-list:
     description: "List of all possible example names to be used in a workflow matrix."
     value: ${{ steps.example-run.outputs.example-list }}
+  notebook-path:
+    description: "Path to evaluated notebook after running the example"
+    value: ${{ steps.example-run.outputs.notebook-path }}
 
 runs:
   using: "composite"
@@ -62,17 +62,16 @@ runs:
         echo "::endgroup::"
       shell: bash
 
-    - name: Run example
+    - name: Run example notebooks
       id: example-run
       run: |
         echo "::group:: Running ${{ inputs.example_name }}"
         if [ '${{ inputs.set_example_list }}' = 'false' ]
         then
-          python pyglotaran-examples/scripts/run_examples.py ${{ inputs.example_name }} --headless 2>&1
-          echo "plots-path=pyglotaran-examples/plot_results"  >> $GITHUB_OUTPUT
+          python pyglotaran-examples/scripts/run_examples_notebooks.py ${{ inputs.example_name }} 2>&1
         else
-          pip install yaargh
-          python pyglotaran-examples/scripts/run_examples.py set-gha-example-list-output
+          pip install yaargh papermill
+          python pyglotaran-examples/scripts/run_examples_notebooks.py set-gha-example-list-output
         fi
 
         echo "::endgroup::"

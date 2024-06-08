@@ -42,12 +42,13 @@ jobs:
     strategy:
       matrix:
         example_name: ${{fromJson(needs.create-example-list.outputs.example-list)}}
+      fail-fast: false
     steps:
       - uses: actions/checkout@v4
         with:
           repository: "glotaran/pyglotaran"
-          # If not provided (push and pull_request event) it uses the default branch
-          ref: ${{ github.event.inputs.pyglotaran_branch }}
+          # If not provided (push and pull_request event) it uses the main branch
+          ref: ${{ github.event.inputs.pyglotaran_branch != '' && github.event.inputs.pyglotaran_branch || 'main'}}
       - name: Set up Python 3.10
         uses: actions/setup-python@v5
         with:
