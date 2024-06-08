@@ -101,7 +101,7 @@ all_funcs = [
     # transient_absorption_two_datasets,
     spectral_constraints,
     spectral_guidance,
-    # two_datasets,
+    two_datasets,
     sim_3d_disp,
     sim_3d_nodisp,
     sim_3d_weight,
