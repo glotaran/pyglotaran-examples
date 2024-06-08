@@ -16,6 +16,24 @@ def github_format_warning(message, category, filename, lineno, line=None):
     return f"::warning file={filename},line={lineno}::{category.__name__}: {message}\n"
 
 
+def compress_nc_file(file_path: str | Path):
+    """Rewrite *.nc files with activated compression."""
+    import xarray as xr
+
+    ds = xr.load_dataset(file_path)
+    comp = {"zlib": True, "complevel": 5}
+    encoding = {var: comp for var in ds.data_vars}
+    ds.to_netcdf(file_path, encoding=encoding)
+
+
+def compress_all_results():
+    """Rewrite all *.nc result files with activated compression."""
+    results_path = Path.home() / "pyglotaran_examples_results"
+
+    for data_file in results_path.rglob("*.nc"):
+        compress_nc_file(data_file)
+
+
 def run_notebook(notebook_path: Path) -> Path:
     """Run notebook to update results."""
     print("\n", "#" * 80, sep="")
@@ -28,6 +46,7 @@ def run_notebook(notebook_path: Path) -> Path:
             f.writelines([f"notebook-path={notebook_path.as_posix()}"])
         print(f"Setting notebook-path output to {notebook_path.as_posix()}")
     pm.execute_notebook(notebook_path, notebook_path, cwd=notebook_path.parent)
+    compress_all_results()
 
 
 def fluorescence():
