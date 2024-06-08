@@ -32,7 +32,9 @@ def run_notebook(notebook_path: Path) -> Path:
 
 def fluorescence():
     """Run study_fluorescence/global_and_target_analysis.ipynb"""
-    return run_notebook(EXAMPLES_FOLDER / "study_fluorescence/global_and_target_analysis.ipynb")
+    return run_notebook(
+        EXAMPLES_FOLDER / "study_fluorescence/fluorescence_global_and_target_analysis.ipynb"
+    )
 
 
 def transient_absorption():
