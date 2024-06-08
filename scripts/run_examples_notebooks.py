@@ -96,7 +96,7 @@ def doas_beta():
 
 
 all_funcs = [
-    # fluorescence,
+    fluorescence,
     # transient_absorption,
     # transient_absorption_two_datasets,
     spectral_constraints,
