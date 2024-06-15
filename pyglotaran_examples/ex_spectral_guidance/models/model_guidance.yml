@@ -21,7 +21,9 @@ megacomplex:
   complex1:
     k_matrix: [km1]
   complex2:
-    k_matrix: [km2]
+    type: clp-guide
+    dimension: time
+    target: s5
 
 k_matrix:
   km1:
@@ -32,9 +34,6 @@ k_matrix:
       (s5, s2): rates.k4
       (s6, s3): rates.k5
       (s6, s6): rates.k6
-      (s5, s5): rates.k6
-  km2:
-    matrix:
       (s5, s5): rates.k6
 
 initial_concentration:
