@@ -11,14 +11,10 @@ library:
       (s6, s3): rates.k5
       (s6, s6): rates.k6
       (s5, s5): rates.k6
-  # complex2:
-  #   type: clp-guide
-  #   target: s5
-  #   dimension: time
   complex2:
-    type: kinetic
-    rates:
-      (s5, s5): rates.k6
+    type: clp-guide
+    target: s5
+    dimension: time
 
 experiments:
   my_exp:
@@ -42,10 +38,6 @@ experiments:
             width: irf.width
       dataset2:
         elements: [complex2]
-        activation:
-          - type: instant
-            compartments:
-              s5: inputs.s2
     clp_relations:
       - source: s1
         target: s4
