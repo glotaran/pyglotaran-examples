@@ -17,6 +17,9 @@ experiments:
     datasets:
       dataset1:
         elements: [complex1]
+        weights:
+          - value: 0.5
+            global_interval: [400, 450]
         activation:
           - type: gaussian
             compartments:
@@ -27,6 +30,9 @@ experiments:
             width: irf.width
       dataset2:
         elements: [complex1]
+        weights:
+          - value: 0.5
+            global_interval: [400, 450]
         activation:
           - type: gaussian
             compartments:
@@ -37,6 +43,9 @@ experiments:
             width: irf.width
       dataset3:
         elements: [complex1]
+        weights:
+          - value: 0.5
+            global_interval: [400, 450]
         activation:
           - type: gaussian
             compartments:
@@ -51,9 +60,9 @@ experiments:
         source: s1
         target: s2
         parameter: area.1
-        weight: 01
+        weight: 0.1
       - type: equal_area
         source: s1
         target: s3
         parameter: area.1
-        weight: 01
+        weight: 0.1
