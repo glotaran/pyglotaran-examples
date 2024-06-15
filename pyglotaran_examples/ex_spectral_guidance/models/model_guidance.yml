@@ -13,15 +13,15 @@ dataset:
     scale: scale.1
   dataset2:
     megacomplex: [complex2]
-    initial_concentration: input2
-    #    irf: None
     scale: scale.2
 
 megacomplex:
   complex1:
     k_matrix: [km1]
   complex2:
-    k_matrix: [km2]
+    type: clp-guide
+    dimension: time
+    target: s5
 
 k_matrix:
   km1:
@@ -33,18 +33,12 @@ k_matrix:
       (s6, s3): rates.k5
       (s6, s6): rates.k6
       (s5, s5): rates.k6
-  km2:
-    matrix:
-      (s5, s5): rates.k6
 
 initial_concentration:
   input1:
     compartments: [s1, s2, s3, s4, s5, s6]
     parameters:
       [inputs.s1, inputs.s1, inputs.s1, inputs.s2, inputs.s1, inputs.s1]
-  input2:
-    compartments: [s5]
-    parameters: [inputs.s2]
 
 clp_area_penalties:
   - type: equal_area
