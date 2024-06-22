@@ -19,10 +19,3 @@ experiments:
               s2: inputs.s2
             center: irf.center
             width: irf.width
-
-    clp_penalties:
-      - type: equal_area
-        source: s2
-        target: s1
-        parameter: area.1
-        weight: 0.1

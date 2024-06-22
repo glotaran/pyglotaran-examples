@@ -1,3 +1,8 @@
+input:
+  - ["1", 1]
+  - ["0", 0]
+  - { vary: false }
+
 irf:
   - ["center", -84.0]
   - ["width", 1.55]
