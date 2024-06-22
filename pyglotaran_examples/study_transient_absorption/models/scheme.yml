@@ -10,21 +10,25 @@ library:
       (s4, s4): "rates.k5"
       (s5, s5): "rates.kC"
 
-
 experiments:
   my_exp:
+    scale:
+      dataset1: scale.1
     datasets:
       dataset1:
         elements: [cmplx1]
         activation:
           - type: gaussian
             compartments:
-              s1: 1
-              s5: 1
+              s1: inputs.1
+              s2: inputs.0
+              s3: inputs.0
+              s4: inputs.0
+              s5: inputs.iC
             center: irf.center
             width: irf.width
             dispersion_center: irf.dispc
-            center_dispersion_coefficients: [irf.disp1,irf.disp2,irf.disp3]
+            center_dispersion_coefficients: [irf.disp1, irf.disp2, irf.disp3]
 
         weights:
           - value: 0.1
@@ -35,3 +39,4 @@ experiments:
       - source: s2
         target: s3
         parameter: rel.r1
+        interval: [[0, 1000]]

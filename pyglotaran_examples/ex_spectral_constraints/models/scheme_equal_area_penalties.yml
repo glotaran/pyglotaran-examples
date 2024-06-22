@@ -14,7 +14,8 @@ experiments:
         activation:
           - type: gaussian
             compartments:
-              s1: 0.5
+              # TODO: Replace const parameters with numbers
+              s1: inputs.s1
               s2: inputs.s2
             center: irf.center
             width: irf.width

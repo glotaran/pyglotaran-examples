@@ -82,7 +82,9 @@ experiments:
         activation:
           - type: gaussian
             compartments:
-              S2: 1
+              # TODO: Replace const parameters with numbers
+              S2: j.1
+              S1: j.0
               artifact: 1
               osc1: 1
               osc2: 1

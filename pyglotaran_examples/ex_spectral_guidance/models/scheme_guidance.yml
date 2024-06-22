@@ -28,7 +28,12 @@ experiments:
         activation:
           - type: gaussian
             compartments:
-              s4: 1
+              s1: inputs.s1
+              s2: inputs.s1
+              s3: inputs.s1
+              s4: inputs.s2
+              s5: inputs.s1
+              s6: inputs.s1
             center: irf.center
             width: irf.width
       dataset2:
