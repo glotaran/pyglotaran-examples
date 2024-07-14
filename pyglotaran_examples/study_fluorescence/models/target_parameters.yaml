@@ -6,6 +6,7 @@ input:
 irf:
   - ["center", -84.0]
   - ["width", 1.55]
+  - ["backsweep", 13200.0, {vary: false}]
 
 kinetic:
   - [2, { vary: false }]

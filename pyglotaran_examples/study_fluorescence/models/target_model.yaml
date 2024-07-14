@@ -3,14 +3,14 @@ library:
     type: kinetic
     rates:
       (s2, s1): kinetic.1
-      (s5, s1): kinetic.2
       (s2, s2): kinetic.3
       (s3, s2): kinetic.4
       (s4, s2): kinetic.5
       (s2, s3): kinetic.6
-      (s2, s4): kinetic.7
       (s3, s3): kinetic.8
+      (s2, s4): kinetic.7
       (s4, s4): kinetic.8
+      (s5, s1): kinetic.2
       (s5, s5): kinetic.8
 
 experiments:
@@ -27,7 +27,7 @@ experiments:
               s2: input.0
             center: irf.center
             width: irf.width
-            backsweep: 13200.0
+            backsweep: irf.backsweep
     clp_constraints:
       - type: zero
         target: s1
