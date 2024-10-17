@@ -17,8 +17,9 @@ experiments:
     datasets:
       dataset1:
         elements: [target]
-        activation:
-          - type: gaussian
+        activations:
+          irf:
+            type: gaussian
             compartments:
               s1: inputs.1
               s2: inputs.2
@@ -27,8 +28,9 @@ experiments:
             width: irf.width
       dataset2:
         elements: [target]
-        activation:
-          - type: gaussian
+        activations:
+          irf:
+            type: gaussian
             compartments:
               s1: inputs.1
               s2: inputs.7

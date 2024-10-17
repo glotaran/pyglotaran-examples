@@ -79,8 +79,9 @@ experiments:
     datasets:
       dataset1:
         elements: [doas,decay,artifact]
-        activation:
-          - type: gaussian
+        activations:
+          irf:
+            type: gaussian
             compartments:
               # TODO: Replace const parameters with numbers
               S2: j.1

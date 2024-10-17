@@ -29,8 +29,9 @@ experiments:
     datasets:
       dataset1:
         elements: [cmplx1]
-        activation:
-          - type: gaussian
+        activations:
+          irf:
+            type: gaussian
             compartments:
               s1: inputs.1
               s2: inputs.0
@@ -48,8 +49,9 @@ experiments:
             global_interval: [720, 890]
       dataset2:
         elements: [cmplx2]
-        activation:
-          - type: gaussian
+        activations:
+          irf:
+            type: gaussian
             compartments:
               s1: inputs.1
               s2: inputs.0
