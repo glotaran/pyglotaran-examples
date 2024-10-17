@@ -17,8 +17,9 @@ experiments:
     datasets:
       dataset1:
         elements: [complex1]
-        activation:
-          - type: gaussian
+        activations:
+          irf:
+            type: gaussian
             compartments:
               s1: inputs.1
               s2: inputs.2
@@ -29,8 +30,9 @@ experiments:
             center_dispersion_coefficients: [irf.disp1,irf.disp2]
       dataset2:
         elements: [complex1]
-        activation:
-          - type: gaussian
+        activations:
+          irf:
+            type: gaussian
             compartments:
               s1: inputs.1
               s2: inputs.7
@@ -41,8 +43,9 @@ experiments:
             center_dispersion_coefficients: [irf.disp1,irf.disp2]
       dataset3:
         elements: [complex1]
-        activation:
-          - type: gaussian
+        activations:
+          irf:
+            type: gaussian
             compartments:
               s1: inputs.1
               s2: inputs.9

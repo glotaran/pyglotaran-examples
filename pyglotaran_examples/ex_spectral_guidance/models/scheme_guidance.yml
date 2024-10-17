@@ -25,8 +25,9 @@ experiments:
     datasets:
       dataset1:
         elements: [complex1]
-        activation:
-          - type: gaussian
+        activations:
+          irf:
+            type: gaussian
             compartments:
               s1: inputs.s1
               s2: inputs.s1
