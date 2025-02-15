@@ -12,8 +12,9 @@ experiments:
     datasets:
       dataset1:
         elements: [seq_4comp]
-        activation:
-          - type: gaussian
+        activations:
+          irf:
+            type: gaussian
             compartments:
               # TODO: Replace const parameters with numbers
               s1: input.1
