@@ -32,8 +32,9 @@ experiments:
     datasets:
       dataset1:
         elements: [target]
-        activation:
-          - type: gaussian
+        activations:
+          irf:
+            type: gaussian
             compartments:
               # TODO: Replace const parameters with numbers
               s1: input.1
