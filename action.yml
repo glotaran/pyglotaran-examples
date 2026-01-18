@@ -76,3 +76,14 @@ runs:
 
         echo "::endgroup::"
       shell: bash
+
+    - name: Save Examples commit sha
+      if: inputs.set_example_list == 'false'
+      run: |
+        echo "::group:: Saving commit sha to ~/pyglotaran_examples_results_staging"
+        mkdir -p ~/pyglotaran_examples_results_staging
+        git --git-dir=pyglotaran-examples/.git log -n 1 --pretty=format:%H | \
+          tee ~/pyglotaran_examples_results_staging/example_commit_sha.txt && \
+          echo
+        echo "::endgroup::"
+      shell: bash
