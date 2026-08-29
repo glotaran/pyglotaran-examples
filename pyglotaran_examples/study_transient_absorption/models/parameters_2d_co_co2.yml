@@ -23,8 +23,8 @@ rates:
   - ['k2', 8.7635, {vary: False}]
   - ['k3', 0.4839723]
   - ['k4', 0.0368954]
-  - ['k3d2', 0.7]
-  - ['k4d2', 0.085]
+  - ['k3d2', 0.7, {expr: '2*$rates.k3', vary: False}]
+  - ['k4d2', 0.085, {expr: '2*$rates.k4', vary: False}]
   - ['k5', 0.0192859]
   - ['kC', 99, {vary: False}]
   - {vary: True,'non-negative': True}
