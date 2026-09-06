@@ -1,0 +1,40 @@
+input:
+  - ["1", 1]
+  - ["0", 0]
+  - {vary: false}
+
+irf:
+  - ["common_dispcenter",550, {"vary": False}]
+  - ["data1_disp1", -0.840490937 ,{"vary": False}]
+  - ["data1_disp2", -0.354524136 ,{"vary": False}]
+  - ["center1",1.21, {"vary": True}]
+  - ["width1",5.053E-02, {"vary": True}]
+  - ["center2",0.69, {"vary": True}]
+  - ["width2",6.2E-02, {"vary": True}]
+
+rates:
+  - ["kocfast",0.3]
+  - ["kocslow",0.04]
+  - ["kcocfast",1, {"expr": "$rates.kocfast*2"}]
+  - ["kcocslow",1, {"expr": "$rates.kocslow*2"}]
+  - ["k21",5., {"vary": True}]
+  # - ["k31",0.1]
+  # - ["k31coc",1, {"expr": "$rates.k31*2"}]
+  - ["k3total",0.019]
+  - ["Tyield",0.3, {"vary": False}]
+  - ["k33",1, {"expr": "$rates.k3total*(1-$rates.Tyield)"}]
+  - ["k43",1, {"expr": "$rates.k3total*$rates.Tyield"}]
+  - ["k44",0.00001, {"vary": False}]
+  - {non-negative: True}
+
+mc_scale:
+  - ["1", 1,{"expr": "1-$mc_scale.2"}]
+  - ["2", 0.91]
+  - {vary: true}
+
+rel:
+  - ['r1', 1, {"vary": False}]
+
+# dataset_scale:
+#   - ["oc_scale", 0.9]
+#   - ["coc_scale", 1, {vary: false}]
