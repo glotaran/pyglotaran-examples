@@ -1,0 +1,135 @@
+default_megacomplex: decay
+
+dataset_groups:
+  default:
+    residual_function: variable_projection
+
+dataset:
+  oc_tol_data:
+    initial_concentration: input1
+    megacomplex: [mc1fast, mc1slow, artifact1]
+    megacomplex_scale: [mc_scale.1, mc_scale.2,input.1]
+    # megacomplex: [mc2fast, mc2slow]
+    # megacomplex_scale: [mc_scale.1, mc_scale.2]
+    irf: irf1
+    # scale: dataset_scale.oc_scale
+  coc_tol_data:
+    initial_concentration: input2
+    megacomplex: [mc2fast, mc2slow, artifact2]
+    megacomplex_scale: [mc_scale.1, mc_scale.2,input.1]
+    # megacomplex: [mc2fast, mc2slow]
+    # megacomplex_scale: [mc_scale.1, mc_scale.2]
+    irf: irf2
+    # scale: dataset_scale.coc_scale
+
+initial_concentration:
+  input1:
+    compartments: [c1, c2, c3, c4]
+    parameters: [
+      input.1,
+      input.0,
+      input.0,
+      input.0
+      ]
+  input2:
+    compartments: [s1, s2, s3, s4]
+    parameters: [
+      input.1,
+      input.0,
+      input.0,
+      input.0
+      ]
+
+megacomplex:
+  mc1fast:
+    k_matrix: [km1fast]
+  mc1slow:
+    k_matrix: [km1slow]
+  artifact1:
+    type: coherent-artifact
+    order: 3
+  mc2fast:
+    k_matrix: [km2fast]
+  mc2slow:
+    k_matrix: [km2slow]
+  artifact2:
+    type: coherent-artifact
+    order: 3
+
+k_matrix:
+  km1fast:
+    matrix:
+      (c2, c1): rates.k21
+      # (c3, c1): rates.k31
+      (c3, c1): rates.kocfast
+      (c3, c2): rates.kocfast
+      (c3, c3): rates.k33
+      (c4, c3): rates.k43
+      (c4, c4): rates.k44
+  km1slow:
+    matrix:
+      (c2, c1): rates.k21
+      # (c3, c1): rates.k31
+      (c3, c1): rates.kocslow
+      (c3, c2): rates.kocslow
+      (c3, c3): rates.k33
+      (c4, c3): rates.k43
+      (c4, c4): rates.k44
+  km2fast:
+    matrix:
+      (s2, s1): rates.k21
+      # (s3, s1): rates.k31coc
+      (s3, s1): rates.kcocfast
+      (s3, s2): rates.kcocfast
+      (s3, s3): rates.k33
+      (s4, s3): rates.k43
+      (s4, s4): rates.k44
+  km2slow:
+    matrix:
+      (s2, s1): rates.k21
+      # (s3, s1): rates.k31coc
+      (s3, s1): rates.kcocslow
+      (s3, s2): rates.kcocslow
+      (s3, s3): rates.k33
+      (s4, s3): rates.k43
+      (s4, s4): rates.k44
+
+irf:
+  irf1:
+    type: spectral-multi-gaussian
+    center: [irf.center1]
+    width: [irf.width1]
+    dispersion_center: irf.common_dispcenter
+    center_dispersion_coefficients: [irf.data1_disp1,irf.data1_disp2]
+    model_dispersion_with_wavenumber: true
+  irf2:
+    type: spectral-multi-gaussian
+    center: [irf.center2]
+    width: [irf.width2]
+    dispersion_center: irf.common_dispcenter
+    center_dispersion_coefficients: [irf.data1_disp1,irf.data1_disp2]
+    model_dispersion_with_wavenumber: true
+
+clp_relations:
+  - source: c1
+    target: c2
+    parameter: rel.r1
+    interval: [[680, 1000]]
+  - source: s1
+    target: s2
+    parameter: rel.r1
+    interval: [[680, 1000]]
+
+weights:
+  - datasets: [oc_tol_data]
+    global_interval: [520, 540]
+    value: 0.4
+  - datasets: [oc_tol_data]
+    global_interval: [720,1000]
+    value: 0.5
+  - datasets: [coc_tol_data]
+    global_interval: [520, 540]
+    value: 0.4
+  - datasets: [coc_tol_data]
+    global_interval: [720,1000]
+    value: 0.5
