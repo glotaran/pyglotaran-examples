@@ -1,0 +1,112 @@
+# yaml-language-server: $schema=schema_2d.json
+
+library:
+  mc1fast:
+    type: kinetic
+    rates:
+      (c2, c1): rates.k21
+      (c3, c1): rates.kocfast
+      (c3, c2): rates.kocfast
+      (c3, c3): rates.k33
+      (c4, c3): rates.k43
+      (c4, c4): rates.k44
+  mc1slow:
+    type: kinetic
+    rates:
+      (c2, c1): rates.k21
+      (c3, c1): rates.kocslow
+      (c3, c2): rates.kocslow
+      (c3, c3): rates.k33
+      (c4, c3): rates.k43
+      (c4, c4): rates.k44
+  artifact1:
+    type: coherent-artifact
+    order: 3
+  mc2fast:
+    type: kinetic
+    rates:
+      (s2, s1): rates.k21
+      (s3, s1): rates.kcocfast
+      (s3, s2): rates.kcocfast
+      (s3, s3): rates.k33
+      (s4, s3): rates.k43
+      (s4, s4): rates.k44
+  mc2slow:
+    type: kinetic
+    rates:
+      (s2, s1): rates.k21
+      (s3, s1): rates.kcocslow
+      (s3, s2): rates.kcocslow
+      (s3, s3): rates.k33
+      (s4, s3): rates.k43
+      (s4, s4): rates.k44
+  artifact2:
+    type: coherent-artifact
+    order: 3
+
+experiments:
+  default:
+    residual_function: variable_projection
+    clp_link_tolerance: 0.1
+    datasets:
+      oc_tol_data:
+        elements: [mc1fast, mc1slow, artifact1]
+        element_scale:
+          mc1fast: mc_scale.1
+          mc1slow: mc_scale.2
+          artifact1: input.1
+        activations:
+          irf:
+            type: multi-gaussian
+            compartments:
+              c1: input.1
+              c2: input.0
+              c3: input.0
+              c4: input.0
+              artifact1: 1
+            center: [irf.center1]
+            width: [irf.width1]
+            dispersion_center: irf.common_dispcenter
+            center_dispersion_coefficients: [irf.data1_disp1, irf.data1_disp2]
+            reciproke_global_axis: true
+            not_normalized_compartments: [artifact1]
+        weights:
+          - global_interval: [520, 540]
+            value: 0.4
+          - global_interval: [720, 1000]
+            value: 0.5
+      coc_tol_data:
+        elements: [mc2fast, mc2slow, artifact2]
+        element_scale:
+          mc2fast: mc_scale.1
+          mc2slow: mc_scale.2
+          artifact2: input.1
+        activations:
+          irf:
+            type: multi-gaussian
+            compartments:
+              s1: input.1
+              s2: input.0
+              s3: input.0
+              s4: input.0
+              artifact2: 1
+            center: [irf.center2]
+            width: [irf.width2]
+            dispersion_center: irf.common_dispcenter
+            center_dispersion_coefficients: [irf.data1_disp1, irf.data1_disp2]
+            reciproke_global_axis: true
+            not_normalized_compartments: [artifact2]
+        weights:
+          - global_interval: [520, 540]
+            value: 0.4
+          - global_interval: [720, 1000]
+            value: 0.5
+    clp_relations:
+      - source: c1
+        target: c2
+        parameter: rel.r1
+        interval: [[680, 1000]]
+      - source: s1
+        target: s2
+        parameter: rel.r1
+        interval: [[680, 1000]]
