@@ -69,13 +69,13 @@ jobs:
 
       - name: Upload Example Plots Artifact
         if: always()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: example-notebooks-${{ matrix.example_name }}
           path: ${{ steps.example-run.outputs.notebook-path }}
 
       - name: Upload Example Results
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: example-results-${{ matrix.example_name }}
           path: ~/pyglotaran_examples_results
@@ -94,7 +94,7 @@ jobs:
           merge-multiple: true
 
       - name: Upload Example Notebooks Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: example-notebooks
           path: example-notebooks
@@ -113,7 +113,7 @@ jobs:
           merge-multiple: true
 
       - name: Upload Example Result Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: example-results
           path: example-results
