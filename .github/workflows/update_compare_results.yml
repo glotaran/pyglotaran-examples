@@ -80,7 +80,7 @@ jobs:
       - name: Upload Example Results
         uses: actions/upload-artifact@v7
         with:
-          name: example-results
+          name: example-results-${{ matrix.example_name }}
           path: ~/pyglotaran_examples_results
 
   upload-results:
@@ -97,8 +97,9 @@ jobs:
       - name: Download results
         uses: actions/download-artifact@v8
         with:
-          name: example-results
           path: .
+          pattern: example-results-*
+          merge-multiple: true
       - name: Commit new results
         run: |
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
