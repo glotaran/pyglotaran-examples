@@ -64,7 +64,7 @@ irf:
     dispersion_center: irf.dispc
     center_dispersion_coefficients: [irf.disp1, irf.disp2]
 
-    # It works without clp_area_penalties but then the inputs cannot be estimated
+    # It works without clp_penalties but then the inputs cannot be estimated
 clp_penalties:
   - type: equal_area
     source: s1

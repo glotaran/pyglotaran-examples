@@ -7,8 +7,8 @@ rates:
   - ["k2", 0.1955]
   - ["k3", 0.087, {"vary": False}]
   - ["k4", 0.267]
-  - ["k5", 0.0064]
-  - ["k6", 1.3E-6]
+  - ["k5", 0.0064, {"vary": False}]
+  - ["k6", 1.3E-6, {"vary": False}]
   - {"non-negative": True}
 
 area:
@@ -19,7 +19,7 @@ rel:
 
 scale:
   - ["1", 1, {"vary": False}]
-  - ["2", 0.862, {"vary": True}]
+  - ["2", 0.862, {"vary": False}]
 
 irf:
   - ["center",-1.00000005E-3, {"vary": False}]
