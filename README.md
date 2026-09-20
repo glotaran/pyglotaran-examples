@@ -37,18 +37,18 @@ pip install -r requirements.txt
 Run all examples via the CLI script:
 
 ```console
-python scripts/run_examples.py run-all
+uv run scripts/run_examples_notebooks.py run-all
 ```
 
 If you don't want the plots to pop up you can add the `--headless` flag,
 the plots will then be saved in the folder `plot_results` as one PDF per script.
 
 ```console
-python scripts/run_examples.py run-all --headless
+uv run scripts/run_examples_notebooks.py run-all --headless
 ```
 
 To run only single examples check out the help by running.
 
 ```console
-python scripts/run_examples.py -h
+uv run scripts/run_examples_notebooks.py -h
 ```
