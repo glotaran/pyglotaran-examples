@@ -42,9 +42,9 @@ j.0,0.0,None,None,,,False,False
 kinetic.1,5.96975613,None,None,,,False,False
 kinetic.2,2.64231563,None,None,,,False,False
 kinetic.3,0.110913947,None,None,,,False,False
-irf.center,0.0127411373,1.5793104062030246e-05,None,,,False,True
+irf.center,0.0127411373,1.646419143740934e-05,None,,,False,True
 irf.width,0.006,None,None,,,True,False
 irf.dispcenter,600.0,None,None,,,False,False
-irf.disp1,-0.0211437792,8.290955278677596e-05,None,,,False,True
-irf.disp2,0.0106876018,0.00044847501923210613,None,,,False,True
-artifact.CAwidth,0.018756236899999997,0.0006703620750493669,None,,,True,True
+irf.disp1,-0.0211437792,8.643299701152563e-05,None,,,False,True
+irf.disp2,0.0106876018,0.00046753435293899213,None,,,False,True
+artifact.CAwidth,0.018756236899999997,1.3112316134519942e-05,None,,,True,True

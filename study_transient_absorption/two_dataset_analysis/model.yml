@@ -1,0 +1,222 @@
+clp_penalties: []
+clp_constraints: []
+clp_relations:
+- interval:
+  - - 680
+    - 1000
+  source: c1
+  target: c2
+  parameter: rel.r1
+- interval:
+  - - 680
+    - 1000
+  source: s1
+  target: s2
+  parameter: rel.r1
+dataset_groups:
+  default:
+    label: default
+    residual_function: variable_projection
+    link_clp: null
+weights:
+- datasets:
+  - dataset1
+  global_interval:
+  - 520
+  - 540
+  model_interval: null
+  value: 0.4
+- datasets:
+  - dataset1
+  global_interval:
+  - 720
+  - 1000
+  model_interval: null
+  value: 0.5
+- datasets:
+  - dataset2
+  global_interval:
+  - 520
+  - 540
+  model_interval: null
+  value: 0.4
+- datasets:
+  - dataset2
+  global_interval:
+  - 720
+  - 1000
+  model_interval: null
+  value: 0.5
+k_matrix:
+  km1fast:
+    label: km1fast
+    matrix:
+      (c2, c1): rates.k21
+      (c3, c1): rates.kocfast
+      (c3, c2): rates.kocfast
+      (c3, c3): rates.k33
+      (c4, c3): rates.k43
+      (c4, c4): rates.k44
+  km1slow:
+    label: km1slow
+    matrix:
+      (c2, c1): rates.k21
+      (c3, c1): rates.kocslow
+      (c3, c2): rates.kocslow
+      (c3, c3): rates.k33
+      (c4, c3): rates.k43
+      (c4, c4): rates.k44
+  km2fast:
+    label: km2fast
+    matrix:
+      (s2, s1): rates.k21
+      (s3, s1): rates.kcocfast
+      (s3, s2): rates.kcocfast
+      (s3, s3): rates.k33
+      (s4, s3): rates.k43
+      (s4, s4): rates.k44
+  km2slow:
+    label: km2slow
+    matrix:
+      (s2, s1): rates.k21
+      (s3, s1): rates.kcocslow
+      (s3, s2): rates.kcocslow
+      (s3, s3): rates.k33
+      (s4, s3): rates.k43
+      (s4, s4): rates.k44
+megacomplex:
+  mc1fast:
+    label: mc1fast
+    dimension: time
+    type: decay
+    k_matrix:
+    - km1fast
+  mc1slow:
+    label: mc1slow
+    dimension: time
+    type: decay
+    k_matrix:
+    - km1slow
+  artifact1:
+    label: artifact1
+    dimension: time
+    type: coherent-artifact
+    order: 3
+    width: null
+  mc2fast:
+    label: mc2fast
+    dimension: time
+    type: decay
+    k_matrix:
+    - km2fast
+  mc2slow:
+    label: mc2slow
+    dimension: time
+    type: decay
+    k_matrix:
+    - km2slow
+  artifact2:
+    label: artifact2
+    dimension: time
+    type: coherent-artifact
+    order: 3
+    width: null
+initial_concentration:
+  input1:
+    label: input1
+    compartments:
+    - c1
+    - c2
+    - c3
+    - c4
+    parameters:
+    - input.1
+    - input.0
+    - input.0
+    - input.0
+    exclude_from_normalize: []
+  input2:
+    label: input2
+    compartments:
+    - s1
+    - s2
+    - s3
+    - s4
+    parameters:
+    - input.1
+    - input.0
+    - input.0
+    - input.0
+    exclude_from_normalize: []
+irf:
+  irf1:
+    label: irf1
+    center:
+    - irf.center1
+    width:
+    - irf.width1
+    scale: null
+    shift: null
+    normalize: true
+    backsweep: false
+    backsweep_period: null
+    type: spectral-multi-gaussian
+    dispersion_center: irf.common_dispcenter
+    center_dispersion_coefficients:
+    - irf.data1_disp1
+    - irf.data1_disp2
+    width_dispersion_coefficients: []
+    model_dispersion_with_wavenumber: true
+  irf2:
+    label: irf2
+    center:
+    - irf.center2
+    width:
+    - irf.width2
+    scale: null
+    shift: null
+    normalize: true
+    backsweep: false
+    backsweep_period: null
+    type: spectral-multi-gaussian
+    dispersion_center: irf.common_dispcenter
+    center_dispersion_coefficients:
+    - irf.data1_disp1
+    - irf.data1_disp2
+    width_dispersion_coefficients: []
+    model_dispersion_with_wavenumber: true
+dataset:
+  dataset1:
+    label: dataset1
+    group: default
+    force_index_dependent: false
+    megacomplex:
+    - mc1fast
+    - mc1slow
+    - artifact1
+    megacomplex_scale:
+    - mc_scale.1
+    - mc_scale.2
+    - input.1
+    global_megacomplex: null
+    global_megacomplex_scale: null
+    scale: null
+    initial_concentration: input1
+    irf: irf1
+  dataset2:
+    label: dataset2
+    group: default
+    force_index_dependent: false
+    megacomplex:
+    - mc2fast
+    - mc2slow
+    - artifact2
+    megacomplex_scale:
+    - mc_scale.1
+    - mc_scale.2
+    - input.1
+    global_megacomplex: null
+    global_megacomplex_scale: null
+    scale: null
+    initial_concentration: input2
+    irf: irf2

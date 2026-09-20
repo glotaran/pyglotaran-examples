@@ -1,12 +1,13 @@
-| Optimization Result           |          |
-|-------------------------------|----------|
-| Number of residual evaluation | 10       |
-| Number of parameters          | 9        |
-| Number of datapoints          | 115910   |
-| Degrees of freedom            | 115901   |
-| Chi Square                    | 4.66e-03 |
-| Reduced Chi Square            | 4.02e-08 |
-| Root Mean Square Error (RMSE) | 2.00e-04 |
+| Optimization Result                       |          |
+|-------------------------------------------|----------|
+| Number of residual evaluation             | 10       |
+| Number of residuals                       | 115910   |
+| Number of free parameters                 | 9        |
+| Number of conditionally linear parameters | 1384     |
+| Degrees of freedom                        | 114517   |
+| Chi Square                                | 4.66e-03 |
+| Reduced Chi Square                        | 4.07e-08 |
+| Root Mean Square Error (RMSE)             | 2.02e-04 |
 
 # Model
 
@@ -43,7 +44,7 @@
 
 - **km1**
   - _Label_: km1
-  - _Matrix_: {('s2', 's1'): 'rates.k1(1.52e+00=_b.1(1.60e-01±1.27e-02, t-value: 13)_ * _rates.k1sum(9.50e+00, fixed)_)', ('s3', 's1'): 'rates.k2(7.98e+00=_b.2(8.40e-01=1.0 - _b.1(1.60e-01±1.27e-02, t-value: 13)_)_ * _rates.k1sum(9.50e+00, fixed)_)', ('s4', 's2'): 'rates.k3(3.61e-01±2.57e-02, t-value: 14, initial: 4.84e-01)', ('s4', 's3'): 'rates.k4(3.99e-02±9.01e-03, t-value: 4.4, initial: 3.69e-02)', ('s4', 's4'): 'rates.k5(2.01e-02±3.98e-03, t-value: 5.0, initial: 1.93e-02)', ('s5', 's5'): 'rates.kC(9.90e+01, fixed)'}
+  - _Matrix_: {('s2', 's1'): 'rates.k1(1.52e+00=_b.1(1.60e-01±2.06e-03, t-value: 78)_ * _rates.k1sum(9.50e+00, fixed)_)', ('s3', 's1'): 'rates.k2(7.98e+00=_b.2(8.40e-01=1.0 - _b.1(1.60e-01±2.06e-03, t-value: 78)_)_ * _rates.k1sum(9.50e+00, fixed)_)', ('s4', 's2'): 'rates.k3(3.61e-01±9.46e-03, t-value: 38, initial: 4.84e-01)', ('s4', 's3'): 'rates.k4(3.99e-02±3.64e-04, t-value: 110, initial: 3.69e-02)', ('s4', 's4'): 'rates.k5(2.01e-02±8.04e-05, t-value: 249, initial: 1.93e-02)', ('s5', 's5'): 'rates.kC(9.90e+01, fixed)'}
 
 
 ## Megacomplex
@@ -68,13 +69,13 @@
 
 - **irf1**
   - _Label_: irf1
-  - _Center_: ['irf.center(1.20e+00±7.74e-04, t-value: 1553, initial: 1.20e+00)']
-  - _Width_: ['irf.width(6.12e-02±2.41e-04, t-value: 254, initial: 5.84e-02)']
+  - _Center_: ['irf.center(1.20e+00±7.78e-04, t-value: 1543, initial: 1.20e+00)']
+  - _Width_: ['irf.width(6.12e-02±2.42e-04, t-value: 253, initial: 5.84e-02)']
   - _Normalize_: True
   - _Backsweep_: False
   - _Type_: spectral-multi-gaussian
   - _Dispersion Center_: irf.dispc(5.50e+02, fixed)
-  - _Center Dispersion Coefficients_: ['irf.disp1(2.89e-01±1.73e-03, t-value: 168, initial: 3.09e-01)', 'irf.disp2(-7.68e-02±1.38e-03, t-value: -56, initial: -8.34e-02)', 'irf.disp3(9.89e-03±5.63e-04, t-value: 18, initial: 4.70e-03)']
+  - _Center Dispersion Coefficients_: ['irf.disp1(2.89e-01±1.74e-03, t-value: 167, initial: 3.09e-01)', 'irf.disp2(-7.68e-02±1.38e-03, t-value: -56, initial: -8.34e-02)', 'irf.disp3(9.89e-03±5.67e-04, t-value: 17, initial: 4.70e-03)']
   - _Width Dispersion Coefficients_: []
   - _Model Dispersion With Wavenumber_: False
 

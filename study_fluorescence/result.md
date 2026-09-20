@@ -1,13 +1,14 @@
-| Optimization Result           |                                           |
-|-------------------------------|-------------------------------------------|
-| Number of residual evaluation | 6                                         |
-| Number of parameters          | 8                                         |
-| Number of datapoints          | 45229                                     |
-| Degrees of freedom            | 45221                                     |
-| Chi Square                    | 9.01e+07                                  |
-| Reduced Chi Square            | 1.99e+03                                  |
-| Root Mean Square Error (RMSE) | 4.46e+01                                  |
-| RMSE additional penalty       | [[59.571331186128596, 44.56693972679381]] |
+| Optimization Result                       |                                                                  |
+|-------------------------------------------|------------------------------------------------------------------|
+| Number of residual evaluation             | 6                                                                |
+| Number of residuals                       | 45229                                                            |
+| Number of free parameters                 | 8                                                                |
+| Number of conditionally linear parameters | 161                                                              |
+| Degrees of freedom                        | 45060                                                            |
+| Chi Square                                | 9.01e+07                                                         |
+| Reduced Chi Square                        | 2.00e+03                                                         |
+| Root Mean Square Error (RMSE)             | 4.47e+01                                                         |
+| RMSE additional penalty                   | [[np.float64(59.57133108911831), np.float64(44.56694180032681)]] |
 
 # Model
 
@@ -61,7 +62,7 @@
 
 - **km1**
   - _Label_: km1
-  - _Matrix_: {('s2', 's1'): 'kinetic.1(2.00e+00, fixed)', ('s5', 's1'): 'kinetic.2(1.00e-01, fixed)', ('s2', 's2'): 'kinetic.3(6.31e-02±2.85e-03, t-value: 22, initial: 6.00e-02)', ('s3', 's2'): 'kinetic.4(2.71e-02±1.25e-02, t-value: 2.2, initial: 2.70e-02)', ('s4', 's2'): 'kinetic.5(5.66e-02±1.29e-02, t-value: 4.4, initial: 5.60e-02)', ('s2', 's3'): 'kinetic.6(3.97e-02±6.22e-03, t-value: 6.4, initial: 3.90e-02)', ('s2', 's4'): 'kinetic.7(1.33e-01±8.41e-03, t-value: 16, initial: 1.33e-01)', ('s3', 's3'): 'kinetic.8(1.63e-04±6.11e-03, t-value: 2.7e-02, initial: 1.60e-04)', ('s4', 's4'): 'kinetic.8(1.63e-04±6.11e-03, t-value: 2.7e-02, initial: 1.60e-04)', ('s5', 's5'): 'kinetic.8(1.63e-04±6.11e-03, t-value: 2.7e-02, initial: 1.60e-04)'}
+  - _Matrix_: {('s2', 's1'): 'kinetic.1(2.00e+00, fixed)', ('s5', 's1'): 'kinetic.2(1.00e-01, fixed)', ('s2', 's2'): 'kinetic.3(6.31e-02±1.80e-04, t-value: 350, initial: 6.00e-02)', ('s3', 's2'): 'kinetic.4(2.71e-02±3.41e-04, t-value: 80, initial: 2.70e-02)', ('s4', 's2'): 'kinetic.5(5.66e-02±7.38e-04, t-value: 77, initial: 5.60e-02)', ('s2', 's3'): 'kinetic.6(3.97e-02±2.48e-04, t-value: 160, initial: 3.90e-02)', ('s2', 's4'): 'kinetic.7(1.33e-01±1.13e-03, t-value: 118, initial: 1.33e-01)', ('s3', 's3'): 'kinetic.8(1.63e-04±1.00e-06, t-value: 163, initial: 1.60e-04)', ('s4', 's4'): 'kinetic.8(1.63e-04±1.00e-06, t-value: 163, initial: 1.60e-04)', ('s5', 's5'): 'kinetic.8(1.63e-04±1.00e-06, t-value: 163, initial: 1.60e-04)'}
 
 
 ## Megacomplex
@@ -90,8 +91,8 @@
   - _Backsweep_: True
   - _Backsweep Period_: irf.backsweep(1.32e+04, fixed)
   - _Type_: gaussian
-  - _Center_: irf.center(-8.43e+01±3.04e-03, t-value: -27711, initial: -8.40e+01)
-  - _Width_: irf.width(1.55e+00±3.24e-03, t-value: 480, initial: 1.55e+00)
+  - _Center_: irf.center(-8.43e+01±3.05e-03, t-value: -27662, initial: -8.40e+01)
+  - _Width_: irf.width(1.55e+00±3.24e-03, t-value: 479, initial: 1.55e+00)
 
 
 ## Dataset

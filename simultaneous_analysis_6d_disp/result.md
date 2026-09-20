@@ -1,13 +1,14 @@
-| Optimization Result           |                                                 |
-|-------------------------------|-------------------------------------------------|
-| Number of residual evaluation | 8                                               |
-| Number of parameters          | 17                                              |
-| Number of datapoints          | 92556                                           |
-| Degrees of freedom            | 92539                                           |
-| Chi Square                    | 1.49e-04                                        |
-| Reduced Chi Square            | 1.61e-09                                        |
-| Root Mean Square Error (RMSE) | 4.01e-05                                        |
-| RMSE additional penalty       | [[4.00875114792143e-08, 4.683422957896255e-08]] |
+| Optimization Result                       |                                                                            |
+|-------------------------------------------|----------------------------------------------------------------------------|
+| Number of residual evaluation             | 8                                                                          |
+| Number of residuals                       | 92556                                                                      |
+| Number of free parameters                 | 17                                                                         |
+| Number of conditionally linear parameters | 153                                                                        |
+| Degrees of freedom                        | 92386                                                                      |
+| Chi Square                                | 1.49e-04                                                                   |
+| Reduced Chi Square                        | 1.61e-09                                                                   |
+| Root Mean Square Error (RMSE)             | 4.01e-05                                                                   |
+| RMSE additional penalty                   | [[np.float64(4.0103204810293393e-08), np.float64(4.6920690692786594e-08)]] |
 
 | RMSE (per dataset)   |   weighted |   unweighted |
 |----------------------|------------|--------------|
@@ -52,7 +53,7 @@
 
 - **km1**
   - _Label_: km1
-  - _Matrix_: {('s1', 's1'): 'rates.k1(5.00e-02±2.37e-08, t-value: 2108831, initial: 5.00e-02)', ('s2', 's2'): 'rates.k2(5.09e-01±2.00e-07, t-value: 2552274, initial: 5.00e-01)', ('s3', 's3'): 'rates.k3(2.31e+00±3.11e-07, t-value: 7423333, initial: 2.00e+00)'}
+  - _Matrix_: {('s1', 's1'): 'rates.k1(5.00e-02±1.19e-09, t-value: 42150036, initial: 5.00e-02)', ('s2', 's2'): 'rates.k2(5.09e-01±1.02e-07, t-value: 5008251, initial: 5.00e-01)', ('s3', 's3'): 'rates.k3(2.31e+00±7.20e-07, t-value: 3209338, initial: 2.00e+00)'}
 
 
 ## Megacomplex
@@ -69,19 +70,19 @@
 - **input1**
   - _Label_: input1
   - _Compartments_: ['s1', 's2', 's3']
-  - _Parameters_: ['inputs.1(5.00e-01, fixed)', 'inputs.2(3.03e-01±1.06e-06, t-value: 286638, initial: 5.10e-02)', 'inputs.3(1.80e-01±2.27e-06, t-value: 78942, initial: 2.52e-01)']
+  - _Parameters_: ['inputs.1(5.00e-01, fixed)', 'inputs.2(3.03e-01±3.21e-07, t-value: 944957, initial: 5.10e-02)', 'inputs.3(1.80e-01±4.08e-07, t-value: 439676, initial: 2.52e-01)']
   - _Exclude From Normalize_: []
 
 - **input2**
   - _Label_: input2
   - _Compartments_: ['s1', 's2', 's3']
-  - _Parameters_: ['inputs.1(5.00e-01, fixed)', 'inputs.7(3.94e-01±1.06e-06, t-value: 371345, initial: 5.21e-02)', 'inputs.8(3.87e-01±2.24e-06, t-value: 172739, initial: 2.20e-01)']
+  - _Parameters_: ['inputs.1(5.00e-01, fixed)', 'inputs.7(3.94e-01±4.19e-07, t-value: 941252, initial: 5.21e-02)', 'inputs.8(3.87e-01±8.66e-07, t-value: 446666, initial: 2.20e-01)']
   - _Exclude From Normalize_: []
 
 - **input3**
   - _Label_: input3
   - _Compartments_: ['s1', 's2', 's3']
-  - _Parameters_: ['inputs.1(5.00e-01, fixed)', 'inputs.9(3.52e-01±1.06e-06, t-value: 332666, initial: 5.22e-02)', 'inputs.10(2.88e-01±2.25e-06, t-value: 127941, initial: 2.20e-01)']
+  - _Parameters_: ['inputs.1(5.00e-01, fixed)', 'inputs.9(3.52e-01±3.73e-07, t-value: 943394, initial: 5.22e-02)', 'inputs.10(2.88e-01±6.46e-07, t-value: 444953, initial: 2.20e-01)']
   - _Exclude From Normalize_: []
 
 
@@ -89,37 +90,37 @@
 
 - **irf1_with_dispersion**
   - _Label_: irf1_with_dispersion
-  - _Center_: ['irf.center1(4.00e-01±3.92e-09, t-value: 102061193, initial: 4.00e-01)']
-  - _Width_: ['irf.width(6.00e-02±2.40e-09, t-value: 24959078, initial: 6.00e-02)']
+  - _Center_: ['irf.center1(4.00e-01±3.92e-09, t-value: 101976787, initial: 4.00e-01)']
+  - _Width_: ['irf.width(6.00e-02±2.41e-09, t-value: 24938437, initial: 6.00e-02)']
   - _Normalize_: True
   - _Backsweep_: False
   - _Type_: spectral-multi-gaussian
   - _Dispersion Center_: irf.dispc(5.00e+02, fixed)
-  - _Center Dispersion Coefficients_: ['irf.disp1(1.00e-02±9.01e-09, t-value: 1109677, initial: 1.00e-02)', 'irf.disp2(1.00e-03±1.36e-08, t-value: 73426, initial: 1.00e-03)']
+  - _Center Dispersion Coefficients_: ['irf.disp1(1.00e-02±9.02e-09, t-value: 1108759, initial: 1.00e-02)', 'irf.disp2(1.00e-03±1.36e-08, t-value: 73366, initial: 1.00e-03)']
   - _Width Dispersion Coefficients_: []
   - _Model Dispersion With Wavenumber_: False
 
 - **irf2_with_dispersion**
   - _Label_: irf2_with_dispersion
-  - _Center_: ['irf.center2(4.10e-01±3.50e-09, t-value: 117073070, initial: 4.00e-01)']
-  - _Width_: ['irf.width(6.00e-02±2.40e-09, t-value: 24959078, initial: 6.00e-02)']
+  - _Center_: ['irf.center2(4.10e-01±3.50e-09, t-value: 116976248, initial: 4.00e-01)']
+  - _Width_: ['irf.width(6.00e-02±2.41e-09, t-value: 24938437, initial: 6.00e-02)']
   - _Normalize_: True
   - _Backsweep_: False
   - _Type_: spectral-multi-gaussian
   - _Dispersion Center_: irf.dispc(5.00e+02, fixed)
-  - _Center Dispersion Coefficients_: ['irf.disp1(1.00e-02±9.01e-09, t-value: 1109677, initial: 1.00e-02)', 'irf.disp2(1.00e-03±1.36e-08, t-value: 73426, initial: 1.00e-03)']
+  - _Center Dispersion Coefficients_: ['irf.disp1(1.00e-02±9.02e-09, t-value: 1108759, initial: 1.00e-02)', 'irf.disp2(1.00e-03±1.36e-08, t-value: 73366, initial: 1.00e-03)']
   - _Width Dispersion Coefficients_: []
   - _Model Dispersion With Wavenumber_: False
 
 - **irf3_with_dispersion**
   - _Label_: irf3_with_dispersion
-  - _Center_: ['irf.center3(4.20e-01±3.64e-09, t-value: 115284489, initial: 4.00e-01)']
-  - _Width_: ['irf.width(6.00e-02±2.40e-09, t-value: 24959078, initial: 6.00e-02)']
+  - _Center_: ['irf.center3(4.20e-01±3.65e-09, t-value: 115189146, initial: 4.00e-01)']
+  - _Width_: ['irf.width(6.00e-02±2.41e-09, t-value: 24938437, initial: 6.00e-02)']
   - _Normalize_: True
   - _Backsweep_: False
   - _Type_: spectral-multi-gaussian
   - _Dispersion Center_: irf.dispc(5.00e+02, fixed)
-  - _Center Dispersion Coefficients_: ['irf.disp1(1.00e-02±9.01e-09, t-value: 1109677, initial: 1.00e-02)', 'irf.disp2(1.00e-03±1.36e-08, t-value: 73426, initial: 1.00e-03)']
+  - _Center Dispersion Coefficients_: ['irf.disp1(1.00e-02±9.02e-09, t-value: 1108759, initial: 1.00e-02)', 'irf.disp2(1.00e-03±1.36e-08, t-value: 73366, initial: 1.00e-03)']
   - _Width Dispersion Coefficients_: []
   - _Model Dispersion With Wavenumber_: False
 
@@ -149,7 +150,7 @@
   - _Group_: default
   - _Force Index Dependent_: False
   - _Megacomplex_: ['complex1']
-  - _Scale_: scale.2(1.31e+00±3.44e-07, t-value: 3793402, initial: 1.30e+00)
+  - _Scale_: scale.2(1.31e+00±3.44e-07, t-value: 3793595, initial: 1.30e+00)
   - _Initial Concentration_: input2
   - _Irf_: irf2_with_dispersion
 
@@ -158,7 +159,7 @@
   - _Group_: default
   - _Force Index Dependent_: False
   - _Megacomplex_: ['complex1']
-  - _Scale_: scale.2(1.31e+00±3.44e-07, t-value: 3793402, initial: 1.30e+00)
+  - _Scale_: scale.2(1.31e+00±3.44e-07, t-value: 3793595, initial: 1.30e+00)
   - _Initial Concentration_: input2
   - _Irf_: irf2_with_dispersion
 
@@ -167,7 +168,7 @@
   - _Group_: default
   - _Force Index Dependent_: False
   - _Megacomplex_: ['complex1']
-  - _Scale_: scale.3(1.16e+00±1.80e-07, t-value: 6462359, initial: 1.10e+00)
+  - _Scale_: scale.3(1.16e+00±1.80e-07, t-value: 6462617, initial: 1.10e+00)
   - _Initial Concentration_: input3
   - _Irf_: irf3_with_dispersion
 
@@ -176,7 +177,7 @@
   - _Group_: default
   - _Force Index Dependent_: False
   - _Megacomplex_: ['complex1']
-  - _Scale_: scale.3(1.16e+00±1.80e-07, t-value: 6462359, initial: 1.10e+00)
+  - _Scale_: scale.3(1.16e+00±1.80e-07, t-value: 6462617, initial: 1.10e+00)
   - _Initial Concentration_: input3
   - _Irf_: irf3_with_dispersion
 

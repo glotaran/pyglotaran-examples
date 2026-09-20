@@ -1,18 +1,19 @@
-| Optimization Result           |                      |
-|-------------------------------|----------------------|
-| Number of residual evaluation | 21                   |
-| Number of parameters          | 6                    |
-| Number of datapoints          | 11265                |
-| Degrees of freedom            | 11259                |
-| Chi Square                    | 9.80e+06             |
-| Reduced Chi Square            | 8.71e+02             |
-| Root Mean Square Error (RMSE) | 2.95e+01             |
-| RMSE additional penalty       | [[4.05067793457248]] |
+| Optimization Result                       |                                   |
+|-------------------------------------------|-----------------------------------|
+| Number of residual evaluation             | 23                                |
+| Number of residuals                       | 11265                             |
+| Number of free parameters                 | 3                                 |
+| Number of conditionally linear parameters | 1408                              |
+| Degrees of freedom                        | 9854                              |
+| Chi Square                                | 9.80e+06                          |
+| Reduced Chi Square                        | 9.95e+02                          |
+| Root Mean Square Error (RMSE)             | 3.15e+01                          |
+| RMSE additional penalty                   | [[np.float64(4.133294996656057)]] |
 
 | RMSE (per dataset)   |   weighted |   unweighted |
 |----------------------|------------|--------------|
 | 1.dataset1:          |   3.00e+01 |     3.00e+01 |
-| 2.dataset2:          |   5.82e-04 |     5.82e-04 |
+| 2.dataset2:          |   5.80e-04 |     5.80e-04 |
 
 # Model
 
@@ -54,11 +55,7 @@
 
 - **km1**
   - _Label_: km1
-  - _Matrix_: {('s1', 's4'): 'rates.k1(2.47e-01±7.28e-02, t-value: 3.4, initial: 2.10e-01)', ('s3', 's1'): 'rates.k2(1.60e-01±1.40e-01, t-value: 1.1, initial: 1.96e-01)', ('s2', 's1'): 'rates.k3(8.70e-02, fixed)', ('s5', 's2'): 'rates.k4(2.49e-01±1.39e-01, t-value: 1.8, initial: 2.67e-01)', ('s6', 's3'): 'rates.k5(6.43e-03±2.64e+00, t-value: 2.4e-03, initial: 6.40e-03)', ('s6', 's6'): 'rates.k6(1.33e-06±4.73e-01, t-value: 2.8e-06, initial: 1.30e-06)', ('s5', 's5'): 'rates.k6(1.33e-06±4.73e-01, t-value: 2.8e-06, initial: 1.30e-06)'}
-
-- **km2**
-  - _Label_: km2
-  - _Matrix_: {('s5', 's5'): 'rates.k6(1.33e-06±4.73e-01, t-value: 2.8e-06, initial: 1.30e-06)'}
+  - _Matrix_: {('s1', 's4'): 'rates.k1(2.48e-01±3.24e-02, t-value: 7.6, initial: 2.10e-01)', ('s3', 's1'): 'rates.k2(1.60e-01±3.16e-02, t-value: 5.0, initial: 1.96e-01)', ('s2', 's1'): 'rates.k3(8.70e-02, fixed)', ('s5', 's2'): 'rates.k4(2.49e-01±3.29e-02, t-value: 7.6, initial: 2.67e-01)', ('s6', 's3'): 'rates.k5(6.40e-03, fixed)', ('s6', 's6'): 'rates.k6(1.30e-06, fixed)', ('s5', 's5'): 'rates.k6(1.30e-06, fixed)'}
 
 
 ## Megacomplex
@@ -72,8 +69,8 @@
 - **complex2**
   - _Label_: complex2
   - _Dimension_: time
-  - _Type_: decay
-  - _K Matrix_: ['km2']
+  - _Type_: clp-guide
+  - _Target_: s5
 
 
 ## Initial Concentration
@@ -82,12 +79,6 @@
   - _Label_: input1
   - _Compartments_: ['s1', 's2', 's3', 's4', 's5', 's6']
   - _Parameters_: ['inputs.s1(0.00e+00, fixed)', 'inputs.s1(0.00e+00, fixed)', 'inputs.s1(0.00e+00, fixed)', 'inputs.s2(1.00e+00, fixed)', 'inputs.s1(0.00e+00, fixed)', 'inputs.s1(0.00e+00, fixed)']
-  - _Exclude From Normalize_: []
-
-- **input2**
-  - _Label_: input2
-  - _Compartments_: ['s5']
-  - _Parameters_: ['inputs.s2(1.00e+00, fixed)']
   - _Exclude From Normalize_: []
 
 
@@ -118,7 +109,6 @@
   - _Group_: default
   - _Force Index Dependent_: False
   - _Megacomplex_: ['complex2']
-  - _Scale_: scale.2(8.56e-01±1.80e+00, t-value: 0.5, initial: 8.62e-01)
-  - _Initial Concentration_: input2
+  - _Scale_: scale.2(8.62e-01, fixed)
 
 

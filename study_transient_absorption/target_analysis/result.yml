@@ -1,7 +1,7 @@
 number_of_function_evaluations: 10
 success: true
 termination_reason: The maximum number of function evaluations is exceeded.
-glotaran_version: 0.7.0.dev0
+glotaran_version: 0.7.4
 free_parameter_labels:
 - b.1
 - rates.k3
@@ -19,11 +19,12 @@ parameter_history: parameter_history.csv
 optimization_history: optimization_history.csv
 data:
   dataset1: dataset1.nc
-chi_square: 0.004657290934111597
-degrees_of_freedom: 115901
-number_of_data_points: 115910
+chi_square: 0.0046572909331338746
+degrees_of_freedom: 114517
+number_of_clps: 1384
+number_of_residuals: 115910
 number_of_jacobian_evaluations: 8
-number_of_parameters: 9
-optimality: 0.00017650230011447335
-reduced_chi_square: 4.018335419117693e-08
-root_mean_square_error: 0.0002004578613853219
+number_of_free_parameters: 9
+optimality: 0.00017650205215258288
+reduced_chi_square: 4.0668991792780764e-08
+root_mean_square_error: 0.0002016655443866918

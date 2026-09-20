@@ -1,12 +1,13 @@
-| Optimization Result           |          |
-|-------------------------------|----------|
-| Number of residual evaluation | 1        |
-| Number of parameters          | 4        |
-| Number of datapoints          | 138301   |
-| Degrees of freedom            | 138297   |
-| Chi Square                    | 1.63e+04 |
-| Reduced Chi Square            | 1.18e-01 |
-| Root Mean Square Error (RMSE) | 3.43e-01 |
+| Optimization Result                       |          |
+|-------------------------------------------|----------|
+| Number of residual evaluation             | 1        |
+| Number of residuals                       | 138301   |
+| Number of free parameters                 | 4        |
+| Number of conditionally linear parameters | 11044    |
+| Degrees of freedom                        | 127253   |
+| Chi Square                                | 1.63e+04 |
+| Reduced Chi Square                        | 1.28e-01 |
+| Root Mean Square Error (RMSE)             | 3.57e-01 |
 
 # Model
 
@@ -45,7 +46,7 @@
   - _Dimension_: time
   - _Type_: coherent-artifact
   - _Order_: 3
-  - _Width_: artifact.CAwidth(1.88e-02±6.70e-04, t-value: 28, initial: 1.88e-02)
+  - _Width_: artifact.CAwidth(1.88e-02±1.31e-05, t-value: 1430, initial: 1.88e-02)
 
 
 ## Initial Concentration
@@ -64,11 +65,11 @@
   - _Normalize_: True
   - _Backsweep_: False
   - _Dispersion Center_: irf.dispcenter(6.00e+02, fixed)
-  - _Center Dispersion Coefficients_: ['irf.disp1(-2.11e-02±8.29e-05, t-value: -255, initial: -2.11e-02)', 'irf.disp2(1.07e-02±4.48e-04, t-value: 24, initial: 1.07e-02)']
+  - _Center Dispersion Coefficients_: ['irf.disp1(-2.11e-02±8.64e-05, t-value: -245, initial: -2.11e-02)', 'irf.disp2(1.07e-02±4.68e-04, t-value: 23, initial: 1.07e-02)']
   - _Width Dispersion Coefficients_: []
   - _Model Dispersion With Wavenumber_: True
   - _Type_: spectral-gaussian
-  - _Center_: irf.center(1.27e-02±1.58e-05, t-value: 807, initial: 1.27e-02)
+  - _Center_: irf.center(1.27e-02±1.65e-05, t-value: 774, initial: 1.27e-02)
   - _Width_: irf.width(6.00e-03, fixed)
 
 

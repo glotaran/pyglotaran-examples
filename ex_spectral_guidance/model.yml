@@ -41,10 +41,6 @@ k_matrix:
       (s6, s3): rates.k5
       (s6, s6): rates.k6
       (s5, s5): rates.k6
-  km2:
-    label: km2
-    matrix:
-      (s5, s5): rates.k6
 megacomplex:
   complex1:
     label: complex1
@@ -55,9 +51,8 @@ megacomplex:
   complex2:
     label: complex2
     dimension: time
-    type: decay
-    k_matrix:
-    - km2
+    type: clp-guide
+    target: s5
 initial_concentration:
   input1:
     label: input1
@@ -75,13 +70,6 @@ initial_concentration:
     - inputs.s2
     - inputs.s1
     - inputs.s1
-    exclude_from_normalize: []
-  input2:
-    label: input2
-    compartments:
-    - s5
-    parameters:
-    - inputs.s2
     exclude_from_normalize: []
 irf:
   irf1:
@@ -117,5 +105,5 @@ dataset:
     global_megacomplex: null
     global_megacomplex_scale: null
     scale: scale.2
-    initial_concentration: input2
+    initial_concentration: null
     irf: null

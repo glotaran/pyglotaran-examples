@@ -1,7 +1,7 @@
 label,value,standard_error,expression,maximum,minimum,non_negative,vary
 inputs.s1,0.5,None,None,,,False,False
 inputs.s2,0.5,None,None,,,False,False
-irf.center,0.4000020967378384,5.6028600789168805e-06,None,,,False,True
-irf.width,0.05997848875409771,7.531090391431457e-06,None,,,False,True
-rates.k1,0.2500311557952002,4.612231392952419e-05,None,,,False,True
-rates.k2,0.9999470795123746,0.00015503031667595305,None,,,False,True
+irf.center,0.40000209673807896,5.614078784469342e-06,None,,,False,True
+irf.width,0.05997848875450508,7.546170016873264e-06,None,,,False,True
+rates.k1,0.2500311557910577,4.6214665754614464e-05,None,,,False,True
+rates.k2,0.9999470795160799,0.00015534074112929925,None,,,False,True
