@@ -5,7 +5,7 @@ dataset_groups:
     residual_function: variable_projection
 
 dataset:
-  oc_tol_data:
+  dataset1:
     initial_concentration: input1
     megacomplex: [mc1fast, mc1slow, artifact1]
     megacomplex_scale: [mc_scale.1, mc_scale.2,input.1]
@@ -13,7 +13,7 @@ dataset:
     # megacomplex_scale: [mc_scale.1, mc_scale.2]
     irf: irf1
     # scale: dataset_scale.oc_scale
-  coc_tol_data:
+  dataset2:
     initial_concentration: input2
     megacomplex: [mc2fast, mc2slow, artifact2]
     megacomplex_scale: [mc_scale.1, mc_scale.2,input.1]
@@ -121,15 +121,15 @@ clp_relations:
     interval: [[680, 1000]]
 
 weights:
-  - datasets: [oc_tol_data]
+  - datasets: [dataset1]
     global_interval: [520, 540]
     value: 0.4
-  - datasets: [oc_tol_data]
+  - datasets: [dataset1]
     global_interval: [720,1000]
     value: 0.5
-  - datasets: [coc_tol_data]
+  - datasets: [dataset2]
     global_interval: [520, 540]
     value: 0.4
-  - datasets: [coc_tol_data]
+  - datasets: [dataset2]
     global_interval: [720,1000]
     value: 0.5
