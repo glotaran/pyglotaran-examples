@@ -40,7 +40,7 @@ initial_concentration:
     parameters:
       [inputs.s1, inputs.s1, inputs.s1, inputs.s2, inputs.s1, inputs.s1]
 
-clp_area_penalties:
+clp_penalties:
   - type: equal_area
     source: s2
     source_intervals: [[0, 1000]]

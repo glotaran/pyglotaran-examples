@@ -57,7 +57,7 @@ irf:
     center: irf.center3
     width: irf.width2
 
-clp_area_penalties:
+clp_penalties:
   - type: equal_area
     source: s1
     source_intervals: [[300, 3000]]

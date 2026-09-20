@@ -46,7 +46,7 @@ irf:
     center: irf.center
     width: irf.width
 
-# It works without clp_area_penalties but then the inputs cannot be estimated
+# It works without clp_penalties but then the inputs cannot be estimated
 clp_penalties:
   - type: equal_area
     source: s1
