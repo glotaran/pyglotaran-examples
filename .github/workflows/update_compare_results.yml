@@ -47,7 +47,7 @@ jobs:
           pip install wheel
           pip install .
       - name: Cloning pyglotaran-examples
-        if: ${{ github.event.inputs.pyglotaran_examples_branch }} == ""
+        if: ${{ github.event.inputs.pyglotaran_examples_branch == '' }}
         uses: actions/checkout@v5
         with:
           path: pyglotaran-examples
@@ -80,7 +80,7 @@ jobs:
       - name: Upload Example Results
         uses: actions/upload-artifact@v7
         with:
-          name: example-results
+          name: example-results-${{ matrix.example_name }}
           path: ~/pyglotaran_examples_results
 
   upload-results:
@@ -97,8 +97,9 @@ jobs:
       - name: Download results
         uses: actions/download-artifact@v8
         with:
-          name: example-results
           path: .
+          pattern: example-results-*
+          merge-multiple: true
       - name: Commit new results
         run: |
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
@@ -110,7 +111,7 @@ jobs:
             -m "👌 pyglotaran commit: $(< pyglotaran_commit_sha.txt)" \
 
       - name: Push to comparison-results branch
-        uses: ad-m/github-push-action@v0.8.0
+        uses: ad-m/github-push-action@v1.3.0
         with:
           github_token: ${{ secrets.BENCHMARK_PUSH_TOKEN }}
           repository: "glotaran/pyglotaran-examples"

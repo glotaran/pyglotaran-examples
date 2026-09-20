@@ -24,7 +24,7 @@ jobs:
       example-list: ${{ steps.create-example-list.outputs.example-list }}
     steps:
       - name: Cloning pyglotaran-examples
-        if: ${{ github.event.inputs.pyglotaran_examples_branch }} == ""
+        if: ${{ github.event.inputs.pyglotaran_examples_branch == '' }}
         uses: actions/checkout@v5
         with:
           path: pyglotaran-examples
@@ -57,7 +57,7 @@ jobs:
           pip install wheel
           pip install .
       - name: Cloning pyglotaran-examples
-        if: ${{ github.event.inputs.pyglotaran_examples_branch }} == ""
+        if: ${{ github.event.inputs.pyglotaran_examples_branch == '' }}
         uses: actions/checkout@v5
         with:
           path: pyglotaran-examples
@@ -182,7 +182,7 @@ jobs:
         run: zip -r comparison-results-${{steps.tag.outputs.tag}}.zip . -x ".git/*"
 
       - name: 🚀⬆️ Upload Release Asset
-        uses: softprops/action-gh-release@v1
+        uses: softprops/action-gh-release@v3
         with:
           files: comparison-results-${{steps.tag.outputs.tag}}.zip
           generate_release_notes: true
