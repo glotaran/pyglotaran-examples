@@ -51,3 +51,11 @@ repos:
           - "--drop-empty-cells"
           - "--extra-keys"
           - "cell.metadata.tags metadata.vscode metadata.papermill metadata.language_info.version cell.metadata.papermill"
+
+  - repo: https://github.com/rhysd/actionlint
+    rev: "v1.7.12"
+    hooks:
+      - id: actionlint
+        args:
+          - -ignore
+          - "update the action's version"

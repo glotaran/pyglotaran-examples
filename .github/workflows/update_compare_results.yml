@@ -47,7 +47,7 @@ jobs:
           pip install wheel
           pip install .
       - name: Cloning pyglotaran-examples
-        if: ${{ github.event.inputs.pyglotaran_examples_branch }} == ""
+        if: ${{ github.event.inputs.pyglotaran_examples_branch == '' }}
         uses: actions/checkout@v5
         with:
           path: pyglotaran-examples
