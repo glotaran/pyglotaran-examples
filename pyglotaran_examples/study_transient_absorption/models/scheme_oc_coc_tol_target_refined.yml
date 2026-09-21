@@ -49,7 +49,7 @@ experiments:
     residual_function: variable_projection
     clp_link_tolerance: 0.1
     datasets:
-      oc_tol_data:
+      dataset1:
         elements: [mc1fast, mc1slow, artifact1]
         element_scale:
           mc1fast: mc_scale.1
@@ -75,7 +75,7 @@ experiments:
             value: 0.4
           - global_interval: [720, 1000]
             value: 0.5
-      coc_tol_data:
+      dataset2:
         elements: [mc2fast, mc2slow, artifact2]
         element_scale:
           mc2fast: mc_scale.1
