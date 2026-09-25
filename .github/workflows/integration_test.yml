@@ -176,7 +176,7 @@ jobs:
 
       - name: Get tag name
         id: tag
-        uses: devops-actions/action-get-tag@v1.0.2
+        uses: devops-actions/action-get-tag@v1.0.5
 
       - name: 📦 Create release asset
         run: zip -r comparison-results-${{steps.tag.outputs.tag}}.zip . -x ".git/*"
