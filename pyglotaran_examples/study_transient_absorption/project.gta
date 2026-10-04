@@ -1,0 +1,21 @@
+# Description of this project and its data for research data management.
+# Every field is optional. pyglotaran reads none of them and copies this file into every export.
+title: Target analysis of calix[4]arene-perylene bisimide dye conjugates
+description: >
+  pyglotaran example: target analysis of transient absorption data with one dataset
+  (transient_absorption_target_analysis.ipynb) and with two datasets
+  (transient_absorption_two_dataset_analysis.ipynb).
+data_description: >
+  Transient absorption data of Figures 5 to 9 of Hippius et al., "Excited State Interactions in
+  Calix[4]arene-Perylene Bisimide Dye Conjugates: Global and Target Analysis of Supramolecular
+  Building Blocks", J. Phys. Chem. C 2007, 111, 13988-13996
+  (data/demo_data_Hippius_etal_JPCC2007_111_13988_Figs5_9.ascii).
+creators:
+  - name:
+    orcid:
+    affiliation:
+keywords: [transient absorption, target analysis]
+license:
+related_identifiers:
+  - doi: 10.1021/jp0733825
+funding:

@@ -141,3 +141,7 @@ plot_results
 
 # JSON schema files for schemes
 schema*.json
+
+# Records and exports of pyglotaran projects
+pyglotaran_examples/**/results/
+pyglotaran_examples/**/exports/

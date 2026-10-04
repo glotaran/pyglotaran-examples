@@ -1,0 +1,17 @@
+# Description of this project and its data for research data management.
+# Every field is optional. pyglotaran reads none of them and copies this file into every export.
+title: Spectral constraints with equal area penalties
+description: >
+  pyglotaran example: two-step fits of one dataset without and with equal area penalties
+  (ex_spectral_constraints.ipynb).
+data_description: >
+  Simulated data in data/data.ascii (header "equareasim"), 501 time points from 0 to 5.
+creators:
+  - name:
+    orcid:
+    affiliation:
+keywords: [equal area penalty, simulated data]
+license:
+related_identifiers:
+  - doi:
+funding:
