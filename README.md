@@ -34,31 +34,6 @@ Or clone the release with git (replace `v0.7.5` with your version):
 git clone --branch v0.7.5 https://github.com/glotaran/pyglotaran-examples.git
 ```
 
-## Installation
-
-Prerequisites:
-
-- Python 3.13 or later
-- Python package `pyglotaran` v0.3.0 (or later)
-
-We recommend [uv](https://docs.astral.sh/uv/getting-started/installation/) to install Python and the
-packages. If you don't have Python 3.13 yet, install it with:
-
-```shell
-uv python install 3.13
-```
-
-### Stable Release
-
-To install pyglotaran-examples from sources, either clone the release matching your pyglotaran version (see [Which examples do I need?](#which-examples-do-i-need)) or download it, then run this command in your terminal:
-
-```shell
-git clone --branch v0.7.5 https://github.com/glotaran/pyglotaran-examples.git
-cd pyglotaran-examples
-uv venv --python 3.13
-uv pip install -e .
-```
-
 ## Development
 
 To use the examples as integration tests for `pyglotaran` development, see [DEVELOPMENT.md](DEVELOPMENT.md).
