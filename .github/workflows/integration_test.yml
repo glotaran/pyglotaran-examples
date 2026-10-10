@@ -24,10 +24,10 @@ jobs:
       example-list: ${{ steps.create-example-list.outputs.example-list }}
     steps:
       - name: Cloning pyglotaran-examples
-        if: ${{ github.event.inputs.pyglotaran_examples_branch }} == ""
         uses: actions/checkout@v4
         with:
           path: pyglotaran-examples
+          ref: ${{ github.event.inputs.pyglotaran_examples_branch }}
       - name: Set example list output
         id: create-example-list
         uses: ./pyglotaran-examples
@@ -58,10 +58,10 @@ jobs:
           pip install wheel
           pip install .
       - name: Cloning pyglotaran-examples
-        if: ${{ github.event.inputs.pyglotaran_examples_branch }} == ""
         uses: actions/checkout@v4
         with:
           path: pyglotaran-examples
+          ref: ${{ github.event.inputs.pyglotaran_examples_branch }}
       - id: example-run
         uses: ./pyglotaran-examples
         with:
