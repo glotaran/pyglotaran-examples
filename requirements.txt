@@ -1,5 +1,4 @@
 -r .github/requirements_ci.txt
 
 # pyglotaran-extras should be installed
-yaargh
 git+https://github.com/glotaran/pyglotaran-extras@main

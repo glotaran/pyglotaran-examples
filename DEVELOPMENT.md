@@ -8,8 +8,7 @@ Create an environment with the requirements and install your `pyglotaran` checko
 
 ```console
 uv venv --python 3.13
-uv pip install -r requirements.txt
-uv pip install -e ../pyglotaran
+uv pip install -e ../pyglotaran -r requirements.txt
 ```
 
 Run all examples:
