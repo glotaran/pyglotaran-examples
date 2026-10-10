@@ -3,7 +3,7 @@ description: "Run pyglotaran examples as integration test against a version of g
 author: "Sebastian Weigand"
 inputs:
   example_name:
-    description: "Which example to run {fluorescence, transient-absorption, transient-absorption-two-datasets, spectral-constraints, spectral-guidance, two-datasets, sim-3d-disp, sim-3d-nodisp, sim-3d-weight, sim-6d-disp, run-all}"
+    description: "Which example to run (see 'scripts/run_examples_notebooks.py -h'), or run-all"
     required: true
   examples_branch:
     description: "Branch/tag of pyglotaran examples to use"
@@ -29,6 +29,9 @@ outputs:
 runs:
   using: "composite"
   steps:
+    - name: Install uv
+      uses: astral-sh/setup-uv@bec219d24cd3e171d82865faccec33120bb574f4 # v10.1.0
+
     - name: Clone pyglotaran-examples to pyglotaran-examples
       run: |
         [ ! -d pyglotaran-examples ] && [ ! -n '${{ inputs.examples_branch }}' ] && \
@@ -52,12 +55,10 @@ runs:
         if [ '${{ inputs.install_extras }}' = 'false' ]
         then
           echo "Installing with OUT pyglotaran_extras"
-          pip install wheel
-          pip install -r pyglotaran-examples/.github/requirements_ci.txt
+          uv pip install --python "$(command -v python)" -r pyglotaran-examples/.github/requirements_ci.txt
         else
           echo "Installing with pyglotaran_extras"
-          pip install wheel
-          pip install -r pyglotaran-examples/requirements.txt
+          uv pip install --python "$(command -v python)" -r pyglotaran-examples/requirements.txt
         fi
         echo "::endgroup::"
       shell: bash
@@ -70,8 +71,7 @@ runs:
         then
           python pyglotaran-examples/scripts/run_examples_notebooks.py ${{ inputs.example_name }} 2>&1
         else
-          pip install yaargh papermill
-          python pyglotaran-examples/scripts/run_examples_notebooks.py set-gha-example-list-output
+          uv run --no-project --with yaargh --with papermill pyglotaran-examples/scripts/run_examples_notebooks.py set-gha-example-list-output
         fi
 
         echo "::endgroup::"
