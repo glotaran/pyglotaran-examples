@@ -31,7 +31,7 @@ select = [
   "RSE", # flake8-raise
   "RET", # flake8-return
   "SIM", # flake8-simplify
-  "TCH", # flake8-type-checking
+  "TC",  # flake8-type-checking
   # "ARG", # flake8-unused-arguments
   "PTH", # flake8-use-pathlib
   # "ERA", # eradicate
@@ -59,3 +59,7 @@ unfixable = ["F401"]
 required-imports = ["from __future__ import annotations"]
 known-first-party = ["glotaran"]
 force-single-line = true
+
+[lint.per-file-ignores]
+# The runner script reports progress with print and collects all example errors
+"scripts/*" = ["INP001", "T20", "BLE001"]

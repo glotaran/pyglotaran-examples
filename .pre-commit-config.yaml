@@ -33,14 +33,25 @@ repos:
         args:
           - "--config=.ruff-notebooks.toml"
         alias: check-notebooks
+      - id: ruff
+        name: "ruff sort imports"
+        args:
+          - "--fix"
+          - "--select=I"
+        alias: isort
+        types_or: [python, pyi]
+      - id: ruff-format
+        types_or: [python, pyi]
+      - id: ruff
+        name: "ruff lint"
+        types_or: [python, pyi]
 
   - repo: https://github.com/codespell-project/codespell
     rev: v2.4.3
     hooks:
       - id: codespell
-        files: ".py|.rst"
+        types_or: [python, markdown]
         args: ["--ignore-words-list=doas"]
-        exclude: "\\.ipynb"
 
   # Notebook tools
   - repo: https://github.com/kynan/nbstripout
