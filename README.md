@@ -44,7 +44,7 @@ git clone --branch v0.7.5 https://github.com/glotaran/pyglotaran-examples.git
 
 Prerequisites:
 
-- Python 3.8 or 3.9
+- Python 3.13 or later
 - Python package `pyglotaran` v0.3.0 (or later)
 
 Note for Windows Users: The easiest way to get python for Windows is via [Anaconda](https://www.anaconda.com/)
