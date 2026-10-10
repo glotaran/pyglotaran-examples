@@ -3,6 +3,8 @@
 This repository holds examples showcasing the use of the [`pyglotaran`](https://github.com/glotaran/pyglotaran) package.
 Can be installed as a python package from sources, but is not released on pypi or conda.
 
+<sub>**Note**: Install a stable release of pyglotaran from [PyPI](https://pypi.org/project/pyglotaran/), e.g. with `uv pip install pyglotaran`, and use the examples from the [release](https://github.com/glotaran/pyglotaran-examples/releases) that matches your pyglotaran version. The branches of this repository follow pyglotaran development and may not work with a released version; using them is at your own risk.</sub>
+
 ## Installation
 
 Prerequisites:
