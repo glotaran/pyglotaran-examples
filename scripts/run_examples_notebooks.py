@@ -22,7 +22,7 @@ def compress_nc_file(file_path: str | Path):
 
     ds = xr.load_dataset(file_path)
     comp = {"zlib": True, "complevel": 5}
-    encoding = {var: comp for var in ds.data_vars}
+    encoding = dict.fromkeys(ds.data_vars, comp)
     ds.to_netcdf(file_path, encoding=encoding)
 
 
@@ -69,6 +69,7 @@ def transient_absorption_two_datasets():
         EXAMPLES_FOLDER
         / "study_transient_absorption/transient_absorption_two_dataset_analysis.ipynb"
     )
+
 
 def spectral_constraints():
     """Runs ex_spectral_constraints/ex_spectral_constraints.ipynb"""
