@@ -47,6 +47,7 @@ def run_notebook(notebook_path: Path) -> Path:
         print(f"Setting notebook-path output to {notebook_path.as_posix()}")
     pm.execute_notebook(notebook_path, notebook_path, cwd=notebook_path.parent)
     compress_all_results()
+    return notebook_path
 
 
 def fluorescence():
@@ -153,6 +154,7 @@ def run_all():
         print("Failed to run the following examples:")
         for func_name in errors:
             print(func_name)
+        raise SystemExit(1)
 
 
 def set_gha_example_list_output():
