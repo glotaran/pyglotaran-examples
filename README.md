@@ -1,7 +1,7 @@
 # pyglotaran-examples
 
 This repository holds examples showcasing the use of the [`pyglotaran`](https://github.com/glotaran/pyglotaran) package.
-Can be installed as a python package from sources, but is not released on pypi or conda.
+Can be installed as a python package from sources, but is not released on PyPI.
 
 > [!IMPORTANT]
 > **Download the examples that match your pyglotaran version.**
@@ -15,7 +15,7 @@ Can be installed as a python package from sources, but is not released on pypi o
 **1. Check your pyglotaran version**
 
 ```shell
-python -c "import glotaran; print(glotaran.__version__)"
+uv run python -c "import glotaran; print(glotaran.__version__)"
 ```
 
 If you don't have pyglotaran yet, install the latest stable release from [PyPI](https://pypi.org/project/pyglotaran/), e.g. with `uv pip install pyglotaran`.
@@ -47,7 +47,12 @@ Prerequisites:
 - Python 3.13 or later
 - Python package `pyglotaran` v0.3.0 (or later)
 
-Note for Windows Users: The easiest way to get python for Windows is via [Anaconda](https://www.anaconda.com/)
+We recommend [uv](https://docs.astral.sh/uv/getting-started/installation/) to install Python and the
+packages. If you don't have Python 3.13 yet, install it with:
+
+```shell
+uv python install 3.13
+```
 
 ### Stable Release
 
@@ -56,7 +61,8 @@ To install pyglotaran-examples from sources, either clone the release matching y
 ```shell
 git clone --branch v0.7.5 https://github.com/glotaran/pyglotaran-examples.git
 cd pyglotaran-examples
-pip install -e .
+uv venv --python 3.13
+uv pip install -e .
 ```
 
 ## Using the examples as integration test for `pyglotaran` development
@@ -67,8 +73,8 @@ you can use the examples as an integration and run them from the CLI.
 Install the examples and all needed dependencies with:
 
 ```console
-pip install -e .
-pip install -r requirements.txt
+uv venv --python 3.13
+uv pip install -e . -r requirements.txt
 ```
 
 Run all examples via the CLI script:
