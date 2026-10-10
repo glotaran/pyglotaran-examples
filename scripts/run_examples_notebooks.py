@@ -22,13 +22,13 @@ def compress_nc_file(file_path: str | Path):
 
     ds = xr.load_dataset(file_path)
     comp = {"zlib": True, "complevel": 5}
-    encoding = {var: comp for var in ds.data_vars}
+    encoding = dict.fromkeys(ds.data_vars, comp)
     ds.to_netcdf(file_path, encoding=encoding)
 
 
 def compress_all_results():
     """Rewrite all *.nc result files with activated compression."""
-    results_path = Path.home() / "pyglotaran_examples_results"
+    results_path = Path.home() / "pyglotaran_examples_results_staging"
 
     for data_file in results_path.rglob("*.nc"):
         compress_nc_file(data_file)
@@ -47,24 +47,25 @@ def run_notebook(notebook_path: Path) -> Path:
         print(f"Setting notebook-path output to {notebook_path.as_posix()}")
     pm.execute_notebook(notebook_path, notebook_path, cwd=notebook_path.parent)
     compress_all_results()
+    return notebook_path
 
 
 def fluorescence():
-    """Run study_fluorescence/global_and_target_analysis.ipynb"""
+    """Run study_fluorescence/fluorescence_global_and_target_analysis.ipynb"""
     return run_notebook(
         EXAMPLES_FOLDER / "study_fluorescence/fluorescence_global_and_target_analysis.ipynb"
     )
 
 
 def transient_absorption():
-    """Runs study_transient_absorption/target_analysis.ipynb"""
+    """Runs study_transient_absorption/transient_absorption_target_analysis.ipynb"""
     return run_notebook(
         EXAMPLES_FOLDER / "study_transient_absorption/transient_absorption_target_analysis.ipynb"
     )
 
 
 def transient_absorption_two_datasets():
-    """Runs study_transient_absorption/two_dataset_analysis.ipynb"""
+    """Runs study_transient_absorption/transient_absorption_two_dataset_analysis.ipynb"""
     return run_notebook(
         EXAMPLES_FOLDER
         / "study_transient_absorption/transient_absorption_two_dataset_analysis.ipynb"
@@ -153,6 +154,7 @@ def run_all():
         print("Failed to run the following examples:")
         for func_name in errors:
             print(func_name)
+        raise SystemExit(1)
 
 
 def set_gha_example_list_output():

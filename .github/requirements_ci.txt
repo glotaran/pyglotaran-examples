@@ -1,7 +1,6 @@
+pyglotaran>=0.8.0.dev0
+ipykernel==7.4.0
+matplotlib==3.11.2
 
-pyglotaran>=0.3.0
-jupyterlab>=3.0.0
-matplotlib>=3.3.0
-
-yaargh>=0.28.0
-papermill>=2.3.4
+yaargh==0.28.0
+papermill==2.7.0

@@ -10,11 +10,11 @@ on:
       pyglotaran_branch:
         description: "pyglotaran branch/tag to run the examples against"
         required: true
-        default: "main"
+        default: "staging"
       pyglotaran_examples_branch:
         description: "pyglotaran-examples branch/tag to use"
         required: true
-        default: "main"
+        default: "staging_rewrite"
 
 jobs:
   create-example-list:
@@ -24,10 +24,10 @@ jobs:
       example-list: ${{ steps.create-example-list.outputs.example-list }}
     steps:
       - name: Cloning pyglotaran-examples
-        if: ${{ github.event.inputs.pyglotaran_examples_branch == '' }}
-        uses: actions/checkout@v5
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
           path: pyglotaran-examples
+          ref: ${{ github.event.inputs.pyglotaran_examples_branch }}
       - name: Set example list output
         id: create-example-list
         uses: ./pyglotaran-examples
@@ -42,25 +42,26 @@ jobs:
     strategy:
       matrix:
         example_name: ${{fromJson(needs.create-example-list.outputs.example-list)}}
+      fail-fast: false
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
           repository: "glotaran/pyglotaran"
-          # If not provided (push and pull_request event) it uses the default branch
-          ref: ${{ github.event.inputs.pyglotaran_branch }}
-      - name: Set up Python 3.10
-        uses: actions/setup-python@v7
+          # If not provided (push and pull_request event) it uses the pinned staging commit
+          ref: ${{ github.event.inputs.pyglotaran_branch != '' && github.event.inputs.pyglotaran_branch || 'd488bb8369773f8680af9fc388b0211bf0201aca'}}
+      - name: Set up Python 3.13
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
-          python-version: "3.10"
+          python-version: "3.13"
+      - name: Install uv
+        uses: astral-sh/setup-uv@bec219d24cd3e171d82865faccec33120bb574f4 # v10.1.0
       - name: Install pyglotaran
-        run: |
-          pip install wheel
-          pip install .
+        run: uv pip install --python "$(command -v python)" .
       - name: Cloning pyglotaran-examples
-        if: ${{ github.event.inputs.pyglotaran_examples_branch == '' }}
-        uses: actions/checkout@v5
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
           path: pyglotaran-examples
+          ref: ${{ github.event.inputs.pyglotaran_examples_branch }}
       - id: example-run
         uses: ./pyglotaran-examples
         with:
@@ -69,58 +70,58 @@ jobs:
 
       - name: Upload Example Plots Artifact
         if: always()
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: example-notebooks-${{ matrix.example_name }}
           path: ${{ steps.example-run.outputs.notebook-path }}
 
       - name: Upload Example Results
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: example-results-${{ matrix.example_name }}
-          path: ~/pyglotaran_examples_results
+          path: ~/pyglotaran_examples_results_staging
 
   collect-artifacts:
     if: always()
-    name: "Collect artifacts and reupload as bundel"
+    name: "Collect artifacts and reupload as bundle"
     runs-on: ubuntu-latest
     needs: [run-examples]
     steps:
       - name: Download Notebooks Artifacts
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
         with:
           path: example-notebooks
           pattern: example-notebooks-*
           merge-multiple: true
 
       - name: Upload Example Notebooks Artifact
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: example-notebooks
           path: example-notebooks
           overwrite: true
 
       - name: Delete Intermediate Notebooks artifacts
-        uses: GeekyEggo/delete-artifact@v6
+        uses: GeekyEggo/delete-artifact@f275313e70c08f6120db482d7a6b98377786765b # v5.1.0
         with:
           name: example-notebooks-*
 
       - name: Download Result Artifacts
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
         with:
           path: example-results
           pattern: example-results-*
           merge-multiple: true
 
       - name: Upload Example Result Artifact
-        uses: actions/upload-artifact@v7
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
         with:
           name: example-results
           path: example-results
           overwrite: true
 
       - name: Delete Intermediate Result artifacts
-        uses: GeekyEggo/delete-artifact@v6
+        uses: GeekyEggo/delete-artifact@f275313e70c08f6120db482d7a6b98377786765b # v5.1.0
         with:
           name: example-results-*
 
@@ -130,14 +131,15 @@ jobs:
     needs: [collect-artifacts]
     steps:
       - name: Checkout compare results
-        uses: actions/checkout@v5
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
           repository: "glotaran/pyglotaran-examples"
-          ref: comparison-results
+          # Pinned v0.7.4 gold standard (comparison-results branch).
+          ref: 5effc7525baaf8d658f773bb8410d6b7cd27fdfe
           path: comparison-results
 
       - name: Download result artifact
-        uses: actions/download-artifact@v8
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093 # v4.3.0
         with:
           name: example-results
           path: comparison-results-current
@@ -152,15 +154,29 @@ jobs:
           echo "♻️ pyglotaran-examples commit: $(< comparison-results-current/example_commit_sha.txt)"
           echo "::endgroup::"
 
-      - name: Set up Python 3.10
-        uses: actions/setup-python@v7
+      - name: Set up Python 3.13
+        uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5.6.0
         with:
-          python-version: "3.10"
+          python-version: "3.13"
 
       - name: Run result validator
-        uses: glotaran/pyglotaran-validation@main
+        uses: glotaran/pyglotaran-validation@cca4c5cfe69f3f461260b32cbf6f91dd0aa66a96 # main
         with:
           validation_name: pyglotaran-examples
+          comparison_mode: semantic
+          reference_root: comparison-results
+          current_root: comparison-results-current
+          report_path: semantic-report.json
+
+      - name: Upload semantic validation report
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: semantic-validation-report
+          path: |
+            semantic-report.json
+            semantic-report.md
+          if-no-files-found: error
 
   create-release:
     name: "🚀 Create release assets and tag comparison-results branch"
@@ -169,22 +185,19 @@ jobs:
     needs: [compare-results]
     steps:
       - name: ⏬ Checkout compare results
-        uses: actions/checkout@v5
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
         with:
           repository: "glotaran/pyglotaran-examples"
-          ref: comparison-results
-
-      - name: Get tag name
-        id: tag
-        uses: devops-actions/action-get-tag@v1.0.2
+          # Pinned v0.7.4 gold standard (comparison-results branch).
+          ref: 5effc7525baaf8d658f773bb8410d6b7cd27fdfe
 
       - name: 📦 Create release asset
-        run: zip -r comparison-results-${{steps.tag.outputs.tag}}.zip . -x ".git/*"
+        run: zip -r comparison-results-${{ github.ref_name }}.zip . -x ".git/*"
 
       - name: 🚀⬆️ Upload Release Asset
-        uses: softprops/action-gh-release@v3
+        uses: softprops/action-gh-release@3bb12739c298aeb8a4eeaf626c5b8d85266b0e65 # v2.6.2
         with:
-          files: comparison-results-${{steps.tag.outputs.tag}}.zip
+          files: comparison-results-${{ github.ref_name }}.zip
           generate_release_notes: true
           append_body: true
 
@@ -192,7 +205,7 @@ jobs:
         run: |
           git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
           git config user.name 'github-actions[bot]'
-          NEW_VERSION="comparison-results-${{steps.tag.outputs.tag}}"
-          git tag -a $NEW_VERSION -m "Comparison results used with release ${{steps.tag.outputs.tag}}"
+          NEW_VERSION="comparison-results-${{ github.ref_name }}"
+          git tag -a $NEW_VERSION -m "Comparison results used with release ${{ github.ref_name }}"
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
           git push origin $NEW_VERSION
