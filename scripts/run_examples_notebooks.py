@@ -28,7 +28,7 @@ def compress_nc_file(file_path: str | Path):
 
 def compress_all_results():
     """Rewrite all *.nc result files with activated compression."""
-    results_path = Path.home() / "pyglotaran_examples_results"
+    results_path = Path.home() / "pyglotaran_examples_results_staging"
 
     for data_file in results_path.rglob("*.nc"):
         compress_nc_file(data_file)
