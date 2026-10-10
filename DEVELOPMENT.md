@@ -1,30 +1,29 @@
 # Using the examples as integration test for `pyglotaran` development
 
-To locally check if your changes to `pyglotaran` introduced breaking changes
-you can use the examples as an integration and run them from the CLI.
+To locally check if your changes to `pyglotaran` introduced breaking changes,
+you can run the example notebooks against your `pyglotaran` checkout.
 
-Install the examples and all needed dependencies with:
+Create an environment with the requirements and install your `pyglotaran` checkout
+(here `../pyglotaran`) into it:
 
 ```console
 uv venv --python 3.13
-uv pip install -e . -r requirements.txt
+uv pip install -r requirements.txt
+uv pip install -e ../pyglotaran
 ```
 
-Run all examples via the CLI script:
+Run all examples:
 
 ```console
-uv run scripts/run_examples.py run-all
+uv run scripts/run_examples_notebooks.py run-all
 ```
 
-If you don't want the plots to pop up you can add the `--headless` flag,
-the plots will then be saved in the folder `plot_results` as one PDF per script.
+The notebooks are executed in place with [papermill](https://papermill.readthedocs.io),
+and the results are saved to `~/pyglotaran_examples_results_staging`.
+
+To run a single example, e.g. `fluorescence`, pass its name instead of `run-all`.
+The help lists all example names:
 
 ```console
-uv run scripts/run_examples.py run-all --headless
-```
-
-To run only single examples check out the help by running.
-
-```console
-uv run scripts/run_examples.py -h
+uv run scripts/run_examples_notebooks.py -h
 ```
